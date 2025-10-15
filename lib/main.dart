@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'constants.dart';
+import 'core/utils/app_colors.dart';
 import 'generated/l10n.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const LockersAdminDashboard());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class LockersAdminDashboard extends StatelessWidget {
+  const LockersAdminDashboard({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Lockers Dashboard',
-      // theme: ThemeData( 
-      //   primaryColor: AppColors.main,
-      //   scaffoldBackgroundColor: AppColors.white,
-      //   fontFamily: tajawal,
-      //   colorScheme: ColorScheme.fromSeed(seedColor: AppColors.main),
-      // ),
+      title: 'Lockers Admin Dashboard',
+      theme: ThemeData(
+        primaryColor: AppColors.main,
+        scaffoldBackgroundColor: AppColors.white,
+        fontFamily: tajawal,
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.main),
+      ),
       debugShowCheckedModeBanner: false,
       locale: const Locale('ar'),
       localizationsDelegates: [
