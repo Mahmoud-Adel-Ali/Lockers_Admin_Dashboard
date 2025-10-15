@@ -1,12 +1,22 @@
+import 'dart:developer';
+
+import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'constants.dart';
 import 'core/utils/app_colors.dart';
+import 'core/utils/size_config.dart';
 import 'generated/l10n.dart';
 
 void main() {
   runApp(const LockersAdminDashboard());
+
+  doWhenWindowReady(() {
+    appWindow.minSize = Size(1100, 700);
+    appWindow.alignment = Alignment.center;
+    appWindow.show();
+  });
 }
 
 class LockersAdminDashboard extends StatelessWidget {
@@ -14,6 +24,9 @@ class LockersAdminDashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig.init(context);
+    log("Widht: ${SizeConfig.width}");
+    log("Height: ${SizeConfig.height}");
     return MaterialApp(
       title: 'Lockers Admin Dashboard',
       theme: ThemeData(
