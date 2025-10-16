@@ -4,6 +4,8 @@ class Assets {
   
   static const String animationsLoadingLottie = "assets/animations/loading_lottie.json";
 
+  static const String imagesAppLogo = "assets/images/app_logo.png";
+
   static const String imagesArrowBackIcon = "assets/images/arrow_back_icon.svg";
 
   static const String imagesForget1Background = "assets/images/forget1_background.png";

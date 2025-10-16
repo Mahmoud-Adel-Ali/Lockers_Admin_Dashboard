@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
 import '../utils/app_colors.dart';
 import '../utils/app_text_styles.dart';
 import 'custom_text_form_field.dart';
@@ -39,9 +38,9 @@ class ProfileTextField extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 8.0),
                 child: Text(
                   title!,
-                  style: AppTextStyles.style12w400(
+                  style: AppTextStyles.style16w500(
                     context,
-                  ).copyWith(color: AppColors.grey, fontFamily: tajawal),
+                  ).copyWith(color: AppColors.black2),
                 ),
               ),
             SizedBox(width: title != null ? 16 : 0),

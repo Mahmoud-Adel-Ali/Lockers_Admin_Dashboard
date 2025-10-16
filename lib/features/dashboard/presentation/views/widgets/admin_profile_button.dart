@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/assets.dart';
-import 'company_profile_data_dialog.dart';
+import 'profile_data_dialog.dart';
 
 class AdminProfileButton extends StatelessWidget {
   const AdminProfileButton({super.key});
@@ -11,7 +11,7 @@ class AdminProfileButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      onPressed: () => companyProfileDataDialog(context),
+      onPressed: () => profileDataDialog(context),
       padding: EdgeInsets.all(10),
       height: 40,
       elevation: 0,
@@ -22,7 +22,7 @@ class AdminProfileButton extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 24,
-            child: Image.asset(Assets.imagesTestUserImage),
+            backgroundImage: AssetImage(Assets.imagesAppLogo),
           ),
           const SizedBox(width: 16),
           SvgPicture.asset(Assets.imagesSettingsIcon, width: 22, height: 22),
