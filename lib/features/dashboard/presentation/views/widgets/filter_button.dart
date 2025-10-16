@@ -42,17 +42,13 @@ class FilterButton extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SvgPicture.asset(isSelected ? activeIcon : inactiveIcon),
-            Expanded(
-              child: Center(
-                child: Text(
-                  title,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: AppTextStyles.style16w400(context).copyWith(
-                    color: isSelected ? inactiveColor : activeColor,
-                    fontFamily: tajawal,
-                  ),
-                ),
+            Text(
+              title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: AppTextStyles.style16w400(context).copyWith(
+                color: isSelected ? inactiveColor : activeColor,
+                fontFamily: tajawal,
               ),
             ),
           ],

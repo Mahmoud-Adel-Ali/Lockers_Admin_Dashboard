@@ -7,7 +7,7 @@ Widget getCurrentCompanyDashboardView(DashboardType type) {
     case DashboardType.Home:
       return Center(child: Text('Home'));
     case DashboardType.ShippingCompanies:
-      return Center(child: Text('datShippingCompaniesa'));
+      return Center(child: Text('ShippingCompanies'));
     case DashboardType.Units:
       return Center(child: Text('Units'));
     case DashboardType.FollowUpReservations:

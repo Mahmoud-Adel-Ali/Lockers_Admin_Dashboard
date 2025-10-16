@@ -15,7 +15,12 @@ class AdminDashboardAppBar extends StatelessWidget {
         AdminProfileButton(),
         NotificationButton(),
         SizedBox(width: 42),
-        Expanded(child: DashboardFeaturesButtons()),
+        Expanded(
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: DashboardFeaturesButtons(),
+          ),
+        ),
         SizedBox(width: 42),
         Image.asset(Assets.imagesLogo),
       ],
