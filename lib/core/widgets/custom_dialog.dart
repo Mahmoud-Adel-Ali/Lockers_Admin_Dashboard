@@ -52,7 +52,7 @@ class CustomDialog extends StatelessWidget {
                   child: Text(
                     title,
                     textAlign: TextAlign.center,
-                    style: AppTextStyles.style16w700(
+                    style: AppTextStyles.style20w700(
                       context,
                     ).copyWith(color: AppColors.purple),
                   ),

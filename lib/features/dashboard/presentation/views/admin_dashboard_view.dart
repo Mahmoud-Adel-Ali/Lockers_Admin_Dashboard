@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../notification/presentation/view/notification_view.dart';
 import '../manager/dashboard_manager.dart';
 import '../manager/functions/get_current_company_dashboard_view.dart';
 import 'widgets/admin_dashboard_app_bar.dart';
@@ -14,7 +15,7 @@ class AdminDashboardView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: context.read<DashboardManager>().drawerKey,
-      // drawer: Notificationview(),
+      drawer: Notificationview(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
         child: Column(
