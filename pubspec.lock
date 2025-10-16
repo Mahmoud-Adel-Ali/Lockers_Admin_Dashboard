@@ -25,6 +25,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.13.0"
+  awesome_dialog:
+    dependency: "direct main"
+    description:
+      name: awesome_dialog
+      sha256: "4c5821a0a637ceee022084e78c1b8237dd4b8bfca4dd24ac2484662a56707338"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.3.0"
   bitsdojo_window:
     dependency: "direct main"
     description:
@@ -160,6 +168,19 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_web_plugins:
+    dependency: transitive
+    description: flutter
+    source: sdk
+    version: "0.0.0"
+  graphs:
+    dependency: transitive
+    description:
+      name: graphs
+      sha256: "741bbf84165310a68ff28fe9e727332eef1407342fca52759cb21ad8177bb8d0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.2"
   http:
     dependency: transitive
     description:
@@ -328,6 +349,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.5+1"
+  rive:
+    dependency: transitive
+    description:
+      name: rive
+      sha256: "10bb9ce79f06b293dcfd0bcadb3afcc5cca7e9f0cbc54c2bc471d97387b52767"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.14.0-dev.10"
+  rive_native:
+    dependency: transitive
+    description:
+      name: rive_native
+      sha256: "012ea597d2e559dc08459e2f269122f7be514c1c64b9c1d4ae3dff9dd483f59d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.13"
   sky_engine:
     dependency: transitive
     description: flutter
