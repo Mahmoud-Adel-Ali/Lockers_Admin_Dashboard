@@ -4,6 +4,18 @@ class Assets {
   
   static const String animationsLoadingLottie = "assets/animations/loading_lottie.json";
 
+  static const String imagesActiveAgreementsIcon = "assets/images/active_agreements_icon.svg";
+
+  static const String imagesActiveComplainsIcon = "assets/images/active_complains_icon.svg";
+
+  static const String imagesActiveCustomersIcon = "assets/images/active_customers_icon.svg";
+
+  static const String imagesActiveFollowUpReservationIcon = "assets/images/active_follow_up_reservation_icon.svg";
+
+  static const String imagesActiveHomeIcon = "assets/images/active_home_icon.svg";
+
+  static const String imagesActiveUnitsIcon = "assets/images/active_units_icon.svg";
+
   static const String imagesAppLogo = "assets/images/app_logo.png";
 
   static const String imagesArrowBackIcon = "assets/images/arrow_back_icon.svg";
@@ -15,6 +27,18 @@ class Assets {
   static const String imagesForget3Background = "assets/images/forget3_background.png";
 
   static const String imagesGoogleMap = "assets/images/google_map.png";
+
+  static const String imagesInactiveAgreementsIcon = "assets/images/inactive_agreements_icon.svg";
+
+  static const String imagesInactiveComplainsIcon = "assets/images/inactive_complains_icon.svg";
+
+  static const String imagesInactiveCustomersIcon = "assets/images/inactive_customers_icon.svg";
+
+  static const String imagesInactiveFollowUpReservationIcon = "assets/images/inactive_follow_up_reservation_icon.svg";
+
+  static const String imagesInactiveHomeIcon = "assets/images/inactive_home_icon.svg";
+
+  static const String imagesInactiveUnitsIcon = "assets/images/inactive_units_icon.svg";
 
   static const String imagesLogo = "assets/images/logo.png";
 
