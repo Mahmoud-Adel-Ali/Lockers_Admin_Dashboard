@@ -6,6 +6,7 @@ import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/custom_phone_text_filed.dart';
 import '../../../../../core/widgets/custom_text_button.dart';
 import '../../../../../core/widgets/custom_text_password.dart';
+import '../../../../dashboard/presentation/views/admin_dashboard_view.dart';
 import '../forget_password_view.dart';
 
 class SigninForm extends StatefulWidget {
@@ -52,6 +53,10 @@ class _SigninFormState extends State<SigninForm> {
           CustomButton(
             text: 'تسجيل الدخول',
             onPressed: () async {
+              Navigator.pushReplacementNamed(
+                context,
+                AdminDashboardView.routeName,
+              );
               // if (formKey.currentState!.validate()) {
               //   await prov.signin(
               //     phone: phoneController.text,
