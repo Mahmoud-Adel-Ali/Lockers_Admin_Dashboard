@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'constants.dart';
+import 'core/functions/on_generate_route.dart';
 import 'core/utils/app_colors.dart';
 import 'core/utils/size_config.dart';
+import 'features/auth/presentation/views/signin_view.dart';
 import 'generated/l10n.dart';
 
 class LockersAdminDashboard extends StatelessWidget {
@@ -33,7 +35,8 @@ class LockersAdminDashboard extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
-      home: const Scaffold(),
+      onGenerateRoute: onGenerateRoutes,
+      initialRoute: SigninView.routeName,
     );
   }
 }
