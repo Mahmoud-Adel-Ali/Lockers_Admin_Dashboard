@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:lockers_admin_dashboard/main.dart';
+import 'package:lockers_admin_dashboard/lockers_admin_dashboard.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
