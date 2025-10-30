@@ -3,10 +3,15 @@ import 'package:flutter/material.dart';
 import '../utils/app_colors.dart';
 
 class CircularButton extends StatelessWidget {
-  const CircularButton({super.key, required this.child, this.onPressed});
+  const CircularButton({
+    super.key,
+    required this.child,
+    this.color = AppColors.white,
+    this.onPressed,
+  });
   final Widget child;
   final VoidCallback? onPressed;
-
+  final Color color;
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
@@ -17,7 +22,7 @@ class CircularButton extends StatelessWidget {
         padding: EdgeInsets.all(8),
         decoration: BoxDecoration(
           border: Border.all(color: AppColors.grey),
-          color: AppColors.white,
+          color: color,
           shape: BoxShape.circle,
         ),
         child: child,

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +13,6 @@ class FollowUpUnitCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        log('onTap');
         context.read<DashboardManager>().changeView(
           DashboardType.FollowUpReservationsDetails,
         );
