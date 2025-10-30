@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../follow_up_reservations/presentation/views/follow_up_reservations_view.dart';
 import '../../../data/enums/dashboard_type.dart';
 
 Widget getCurrentCompanyDashboardView(DashboardType type) {
@@ -11,7 +12,7 @@ Widget getCurrentCompanyDashboardView(DashboardType type) {
     case DashboardType.Units:
       return Center(child: Text('Units'));
     case DashboardType.FollowUpReservations:
-      return Center(child: Text('FollowUpReservations'));
+      return FollowUpReservationsView();
     case DashboardType.Agreements:
       return Center(child: Text('Agreements'));
     case DashboardType.Customers:
