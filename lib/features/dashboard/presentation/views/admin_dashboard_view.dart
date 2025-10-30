@@ -37,9 +37,9 @@ class AdminDashboardView extends StatelessWidget {
               spacing: 16,
               children: [
                 if (isDesktop) AdminDashboardAppBar(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: Expanded(
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
                     child: getCurrentCompanyDashboardView(
                       context.watch<DashboardManager>().type,
                     ),

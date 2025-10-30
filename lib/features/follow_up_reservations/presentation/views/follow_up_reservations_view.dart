@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 
 import 'widgets/filter_follow_up_units_location_section.dart';
+import 'widgets/follow_up_units_grid_view.dart';
 
 class FollowUpReservationsView extends StatelessWidget {
   const FollowUpReservationsView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      spacing: 16,
-      children: [
-        FilterFollowUpUnitsLocationSection(),
-        //
-      ],
+    return SingleChildScrollView(
+      child: const Column(
+        children: [
+          SizedBox(height: 16),
+          FilterFollowUpUnitsLocationSection(),
+          SizedBox(height: 16),
+          FollowUpUnitsGridView(),
+          SizedBox(height: 16),
+        ],
+      ),
     );
   }
 }
