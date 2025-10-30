@@ -10,6 +10,7 @@ class FollowUpReservationsDetailsView extends StatelessWidget {
     return SingleChildScrollView(
       child: const Column(
         children: [
+          SizedBox(height: 16),
           FollowUpReservationsDetailsHeaderView(),
           //
         ],
