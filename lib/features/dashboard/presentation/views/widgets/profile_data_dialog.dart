@@ -6,7 +6,8 @@ import '../../../../../core/utils/size_config.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/custom_dialog.dart';
 import '../../../../../core/widgets/profile_text_field.dart';
-import 'change_password_dialog.dart';
+import 'edit_profile_dialog.dart';
+import 'profile_password_filed.dart';
 
 Future<dynamic> profileDataDialog(BuildContext context) {
   return showDialog(
@@ -20,7 +21,7 @@ Future<dynamic> profileDataDialog(BuildContext context) {
         leading: CustomButton(
           text: 'تعديل البيانات',
           horizontal: 0,
-          onPressed: () {},
+          onPressed: () => editProfileDataDialog(context),
         ),
         child: Column(
           children: [
@@ -73,27 +74,4 @@ Future<dynamic> profileDataDialog(BuildContext context) {
       );
     },
   );
-}
-
-class ProfilePasswordFields extends StatelessWidget {
-  const ProfilePasswordFields({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      spacing: 16,
-      children: [
-        InkWell(
-          onTap: () => changePasswordDialog(context),
-          child: AbsorbPointer(
-            child: ProfileTextField(
-              title: 'كلمة المرور :',
-              readOnly: true,
-              controller: TextEditingController(text: '**********'),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
 }
