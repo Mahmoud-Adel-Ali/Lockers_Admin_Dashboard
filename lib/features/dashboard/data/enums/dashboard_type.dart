@@ -10,4 +10,6 @@ enum DashboardType {
   Employees, // الموظفين
   Complaints, // الشكاوي
   Maintenance, // الصيانة
+  //* Rlate to FollowUpReservations
+  FollowUpReservationsDetails, // تفاصيل متابعة الحجوزات
 }

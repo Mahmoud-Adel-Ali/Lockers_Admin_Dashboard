@@ -17,11 +17,14 @@ class AdminDashboardAppBar extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       child: Row(
         children: [
-          Text(
-            companyDashboardSubtitle(prov.type),
-            style: AppTextStyles.style20w500(context),
+          Expanded(
+            child: Text(
+              companyDashboardSubtitle(prov.type),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: AppTextStyles.style20w500(context),
+            ),
           ),
-          const Spacer(),
           Image.asset(Assets.imagesLogo),
         ],
       ),

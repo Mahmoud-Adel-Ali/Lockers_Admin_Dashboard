@@ -1,7 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../../core/utils/app_colors.dart';
 import '../../../../../../core/utils/app_text_styles.dart';
+import '../../../../dashboard/data/enums/dashboard_type.dart';
+import '../../../../dashboard/presentation/manager/dashboard_manager.dart';
 
 class FollowUpUnitCard extends StatelessWidget {
   const FollowUpUnitCard({super.key});
@@ -10,9 +15,10 @@ class FollowUpUnitCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // context.read<CompanyDashboardManager>().changeCompanyView(
-        //   CompanyDashboardType.UnitCustomersDetails,
-        // );
+        log('onTap');
+        context.read<DashboardManager>().changeView(
+          DashboardType.FollowUpReservationsDetails,
+        );
       },
       borderRadius: BorderRadius.circular(16),
       child: Container(
