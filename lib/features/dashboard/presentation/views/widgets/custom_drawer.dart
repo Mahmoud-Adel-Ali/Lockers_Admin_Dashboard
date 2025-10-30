@@ -18,12 +18,7 @@ class CustomDrawer extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16),
-            child: Row(
-              children: [
-                Expanded(child: AdminProfileButton()),
-                NotificationButton(),
-              ],
-            ),
+            child: Row(children: [AdminProfileButton(), NotificationButton()]),
           ),
           SizedBox(height: 24),
           Expanded(child: CustomDrawerListView()),

@@ -1,29 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/assets.dart';
-import 'admin_profile_button.dart';
-import 'dashboard_features_buttons.dart';
-import 'notification_button.dart';
+import '../../manager/dashboard_manager.dart';
+import '../../manager/functions/company_dashboard_subtitle.dart';
 
 class AdminDashboardAppBar extends StatelessWidget {
   const AdminDashboardAppBar({super.key});
-
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        AdminProfileButton(),
-        NotificationButton(),
-        SizedBox(width: 42),
-        Expanded(
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: DashboardFeaturesButtons(),
+    var prov = context.watch<DashboardManager>();
+    return Container(
+      color: AppColors.babyBlue,
+      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      child: Row(
+        children: [
+          Text(
+            companyDashboardSubtitle(prov.type),
+            style: AppTextStyles.style20w500(context),
           ),
-        ),
-        SizedBox(width: 42),
-        Image.asset(Assets.imagesLogo),
-      ],
+          const Spacer(),
+          Image.asset(Assets.imagesLogo),
+        ],
+      ),
     );
   }
 }

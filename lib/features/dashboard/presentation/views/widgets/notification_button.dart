@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/assets.dart';
+import '../../../../notification/presentation/view/notification_view.dart';
 import '../../manager/dashboard_manager.dart';
 
 class NotificationButton extends StatelessWidget {
@@ -13,7 +14,13 @@ class NotificationButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       onPressed: () {
-        context.read<DashboardManager>().openDrawer();
+        var prov = context.read<DashboardManager>();
+        if (prov.isDrawerOpen()) {
+          prov.closeDrawer();
+          Navigator.pushNamed(context, NotificationView.routeName);
+        } else {
+          prov.openDrawer();
+        }
       },
       padding: EdgeInsets.all(24),
       height: 50,
