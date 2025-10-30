@@ -17,31 +17,25 @@ class _FilterNotificationSectionState extends State<FilterNotificationSection> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Spacer(flex: 2),
-        Expanded(
-          flex: 2,
-          child: CustomButton(
-            onPressed: () {
-              showAll = false;
-              setState(() {});
-            },
-            text: 'الغير مقرؤة',
-            color: showAll ? AppColors.phosphorGreen : AppColors.main,
-            horizontal: 0,
-          ),
+        Spacer(),
+        CustomButton(
+          onPressed: () {
+            showAll = false;
+            setState(() {});
+          },
+          text: 'الغير مقرؤة',
+          color: showAll ? AppColors.phosphorGreen : AppColors.main,
+          horizontal: 0,
         ),
         SizedBox(width: 8),
-        Expanded(
-          flex: 1,
-          child: CustomButton(
-            onPressed: () {
-              showAll = true;
-              setState(() {});
-            },
-            text: 'الكل',
-            color: showAll ? AppColors.main : AppColors.phosphorGreen,
-            horizontal: 0,
-          ),
+        CustomButton(
+          onPressed: () {
+            showAll = true;
+            setState(() {});
+          },
+          text: 'الكل',
+          color: showAll ? AppColors.main : AppColors.phosphorGreen,
+          horizontal: 0,
         ),
       ],
     );

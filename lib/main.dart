@@ -17,8 +17,9 @@ void main() {
   );
 
   doWhenWindowReady(() {
-    appWindow.minSize = Size(1100, 700);
+    appWindow.minSize = Size(500, 500);
     appWindow.alignment = Alignment.center;
     appWindow.show();
+    appWindow.maximize();
   });
 }

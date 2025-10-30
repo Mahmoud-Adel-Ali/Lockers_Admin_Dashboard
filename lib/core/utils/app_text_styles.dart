@@ -153,6 +153,7 @@ double getResponsiveFontsize(BuildContext context, {required double fontSize}) {
 }
 
 double getScaleFactor(BuildContext context) {
+  SizeConfig.init(context);
   double width = SizeConfig.width;
 
   if (width <= SizeConfig.mobile) {

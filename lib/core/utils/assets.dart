@@ -10,9 +10,13 @@ class Assets {
 
   static const String imagesActiveCustomersIcon = "assets/images/active_customers_icon.svg";
 
+  static const String imagesActiveEmployeesIcon = "assets/images/active_employees_icon.svg";
+
   static const String imagesActiveFollowUpReservationIcon = "assets/images/active_follow_up_reservation_icon.svg";
 
   static const String imagesActiveHomeIcon = "assets/images/active_home_icon.svg";
+
+  static const String imagesActiveMaintenanceIcon = "assets/images/active_maintenance_icon.svg";
 
   static const String imagesActiveUnitsIcon = "assets/images/active_units_icon.svg";
 
@@ -33,6 +37,8 @@ class Assets {
   static const String imagesInactiveComplainsIcon = "assets/images/inactive_complains_icon.svg";
 
   static const String imagesInactiveCustomersIcon = "assets/images/inactive_customers_icon.svg";
+
+  static const String imagesInactiveEmployeesIcon = "assets/images/inactive_employees_icon.svg";
 
   static const String imagesInactiveFollowUpReservationIcon = "assets/images/inactive_follow_up_reservation_icon.svg";
 

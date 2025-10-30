@@ -7,5 +7,7 @@ enum DashboardType {
   FollowUpReservations, // متابعة الحجوزات
   Agreements, // الإتفاقات
   Customers, // العملاء
-  Complaints , // الشكاوي
+  Employees, // الموظفين
+  Complaints, // الشكاوي
+  Maintenance, // الصيانة
 }

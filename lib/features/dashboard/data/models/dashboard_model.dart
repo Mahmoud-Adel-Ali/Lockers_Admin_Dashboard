@@ -20,7 +20,7 @@ class DashboardModel {
 }
 
 List<DashboardModel> adminFeaturesList = [
-  // Home
+  //*  Home
   DashboardModel(
     title: 'الرئيسية',
     subtitle: 'الصفحة الرئيسية :',
@@ -29,7 +29,7 @@ List<DashboardModel> adminFeaturesList = [
     inactiveIcon: Assets.imagesInactiveHomeIcon,
     relatedTypes: [],
   ),
-  //Shipping Companies
+  //* Shipping Companies
   DashboardModel(
     title: 'شركات الشحن',
     subtitle: 'شركات الشحن :',
@@ -38,7 +38,7 @@ List<DashboardModel> adminFeaturesList = [
     inactiveIcon: Assets.imagesInactiveCustomersIcon,
     relatedTypes: [],
   ),
-  //Units
+  //* Units
   DashboardModel(
     title: 'الوحدات',
     subtitle: 'الوحدات :',
@@ -47,7 +47,7 @@ List<DashboardModel> adminFeaturesList = [
     inactiveIcon: Assets.imagesInactiveUnitsIcon,
     relatedTypes: [],
   ),
-  //Follow-Up Reservations
+  //* Follow-Up Reservations
   DashboardModel(
     title: 'متابعة الحجوزات',
     subtitle: 'متابعة الحجوزات :',
@@ -56,7 +56,7 @@ List<DashboardModel> adminFeaturesList = [
     inactiveIcon: Assets.imagesInactiveFollowUpReservationIcon,
     relatedTypes: [],
   ),
-  //Agreements
+  //* Agreements
   DashboardModel(
     title: 'الإتفاقات',
     subtitle: 'الإتفاقات :',
@@ -65,7 +65,7 @@ List<DashboardModel> adminFeaturesList = [
     inactiveIcon: Assets.imagesInactiveAgreementsIcon,
     relatedTypes: [],
   ),
-  //Customers
+  //* Customers
   DashboardModel(
     title: 'العملاء',
     subtitle: 'العملاء :',
@@ -74,13 +74,31 @@ List<DashboardModel> adminFeaturesList = [
     inactiveIcon: Assets.imagesInactiveCustomersIcon,
     relatedTypes: [],
   ),
-  //
+  //*  Employees
+  DashboardModel(
+    title: 'الموظفين',
+    subtitle: 'الموظفين :',
+    type: DashboardType.Employees,
+    activeIcon: Assets.imagesActiveEmployeesIcon,
+    inactiveIcon: Assets.imagesInactiveEmployeesIcon,
+  ),
+  //* Complaints
   DashboardModel(
     title: 'الشكاوي',
     subtitle: 'الشكاوي :',
     type: DashboardType.Complaints,
     activeIcon: Assets.imagesActiveComplainsIcon,
     inactiveIcon: Assets.imagesInactiveComplainsIcon,
+    relatedTypes: [],
+  ),
+  //* Maintenance
+  DashboardModel(
+    title: 'الصيانة',
+    subtitle: 'الصيانة :',
+    type: DashboardType.Maintenance,
+
+    activeIcon: Assets.imagesActiveMaintenanceIcon,
+    inactiveIcon: Assets.imagesInactiveMaintenanceIcon,
     relatedTypes: [],
   ),
 ];
