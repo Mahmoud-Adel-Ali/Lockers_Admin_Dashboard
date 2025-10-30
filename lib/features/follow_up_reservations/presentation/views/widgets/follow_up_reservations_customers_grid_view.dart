@@ -14,12 +14,12 @@ class FollowUpReservationCustomersGridView extends StatelessWidget {
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            //* meaning that the minwidth of the card is 210.
-            crossAxisCount: (width / 210).toInt(),
+            //* meaning that the minwidth of the card is 180.
+            crossAxisCount: (width / 180).toInt(),
             mainAxisSpacing: 8,
             crossAxisSpacing: 8,
-            childAspectRatio: 200 / 280,
-            mainAxisExtent: 240,
+            childAspectRatio: 200 / 300,
+            mainAxisExtent: 280,
           ),
           itemCount: 17,
           itemBuilder: (context, index) {

@@ -56,6 +56,8 @@ class Assets {
 
   static const String imagesSigninBackground = "assets/images/signin_background.png";
 
+  static const String imagesTestCompanyImage = "assets/images/test_company_image.png";
+
   static const String imagesTestMapImage = "assets/images/test_map_image.png";
 
   static const String imagesTestUserImage = "assets/images/test_user_image.png";
