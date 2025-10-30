@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../follow_up_reservations/presentation/views/follow_up_reservations_details_view.dart';
 import '../../../../follow_up_reservations/presentation/views/follow_up_reservations_view.dart';
 import '../../../data/enums/dashboard_type.dart';
 
@@ -25,6 +26,6 @@ Widget getCurrentCompanyDashboardView(DashboardType type) {
       return Center(child: Text('Maintenance'));
     // Rlate to FollowUpReservations
     case DashboardType.FollowUpReservationsDetails:
-      return Center(child: Text('FollowUpReservationsDetails'));
+      return FollowUpReservationsDetailsView();
   }
 }
