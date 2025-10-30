@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../../core/utils/app_colors.dart';
 import '../../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/assets.dart';
+import 'company_details_dialog.dart';
 
 class FollowUpReservationCustomerCard extends StatelessWidget {
   const FollowUpReservationCustomerCard({super.key});
@@ -83,25 +84,28 @@ class FollowUpReservationCustomerCard extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            color: AppColors.filedGrey,
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-            child: Row(
-              spacing: 16,
-              children: [
-                CircleAvatar(
-                  radius: 12,
-                  backgroundImage: AssetImage(Assets.imagesTestCompanyImage),
-                ),
-                Text(
-                  'شركه الشحن',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: AppTextStyles.style12w400(
-                    context,
-                  ).copyWith(color: AppColors.black),
-                ),
-              ],
+          InkWell(
+            onTap: () => companyDetailsDialog(context),
+            child: Container(
+              color: AppColors.filedGrey,
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              child: Row(
+                spacing: 16,
+                children: [
+                  CircleAvatar(
+                    radius: 12,
+                    backgroundImage: AssetImage(Assets.imagesTestCompanyImage),
+                  ),
+                  Text(
+                    'شركه الشحن',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppTextStyles.style12w400(
+                      context,
+                    ).copyWith(color: AppColors.black),
+                  ),
+                ],
+              ),
             ),
           ),
 
