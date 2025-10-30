@@ -20,5 +20,7 @@ Widget getCurrentCompanyDashboardView(DashboardType type) {
       return Center(child: Text('Employees'));
     case DashboardType.Complaints:
       return Center(child: Text('Complaints'));
+    case DashboardType.Maintenance:
+      return Center(child: Text('Maintenance'));
   }
 }

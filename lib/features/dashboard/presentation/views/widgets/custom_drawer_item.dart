@@ -30,20 +30,24 @@ class CustomDrawerItem extends StatelessWidget {
             AnimatedContainer(
               duration: Duration(milliseconds: kAnimationDuration),
               width: 3,
-              height: 40,
+              height: 35,
               decoration: BoxDecoration(
                 color: isSelected ? AppColors.glowYellow : Colors.transparent,
                 borderRadius: BorderRadius.circular(4),
               ),
             ),
             SizedBox(),
-            SvgPicture.asset(item.activeIcon, height: 20),
+            SvgPicture.asset(item.icon, height: 20),
             Expanded(
               child: Text(
                 item.title,
-                style: AppTextStyles.style16w500(
-                  context,
-                ).copyWith(color: AppColors.white),
+                style: isSelected
+                    ? AppTextStyles.style16w700(
+                        context,
+                      ).copyWith(color: AppColors.white)
+                    : AppTextStyles.style16w500(
+                        context,
+                      ).copyWith(color: AppColors.white),
               ),
             ),
           ],
