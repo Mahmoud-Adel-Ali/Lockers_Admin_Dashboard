@@ -5,6 +5,7 @@ import '../../../../../core/widgets/custom_search_field.dart';
 import '../../../../../core/widgets/dashboard_back_button.dart';
 import '../../../../dashboard/data/enums/dashboard_type.dart';
 import '../../../../dashboard/presentation/manager/dashboard_manager.dart';
+import 'filter_customers_button.dart';
 
 class FollowUpReservationsDetailsHeaderView extends StatelessWidget {
   const FollowUpReservationsDetailsHeaderView({super.key});
@@ -21,7 +22,12 @@ class FollowUpReservationsDetailsHeaderView extends StatelessWidget {
             );
           },
         ),
-        Expanded(child: CustomSearchField()),
+        ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 300),
+          child: CustomSearchField(),
+        ),
+        const Spacer(),
+        FilterCustomersButton(),
       ],
     );
   }
