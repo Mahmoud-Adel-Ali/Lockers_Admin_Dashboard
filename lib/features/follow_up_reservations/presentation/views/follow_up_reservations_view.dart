@@ -11,11 +11,11 @@ class FollowUpReservationsView extends StatelessWidget {
     return SingleChildScrollView(
       child: const Column(
         children: [
-          SizedBox(height: 16),
+          SizedBox(height: 8),
           FilterFollowUpUnitsLocationSection(),
-          SizedBox(height: 16),
+          SizedBox(height: 8),
           FollowUpUnitsGridView(),
-          SizedBox(height: 16),
+          SizedBox(height: 8),
         ],
       ),
     );
