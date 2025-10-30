@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/assets.dart';
 import '../../../../../core/utils/size_config.dart';
+import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/custom_dialog.dart';
 import '../../../../../core/widgets/profile_text_field.dart';
 import 'change_password_dialog.dart';
@@ -11,14 +13,19 @@ Future<dynamic> profileDataDialog(BuildContext context) {
     context: context,
     builder: (context) {
       return CustomDialog(
-        title: 'بيانات الحساب',
-        message: '',
         constraints: BoxConstraints(
           maxWidth: 500,
-          maxHeight: SizeConfig.height * 0.8,
+          maxHeight: SizeConfig.height * 0.9,
+        ),
+        leading: CustomButton(
+          text: 'تعديل البيانات',
+          horizontal: 0,
+          onPressed: () {},
         ),
         child: Column(
           children: [
+            Text('بيانات الحساب', style: AppTextStyles.style18w400(context)),
+            const SizedBox(height: 16),
             CircleAvatar(
               radius: 75,
               backgroundImage: AssetImage(Assets.imagesAppLogo),

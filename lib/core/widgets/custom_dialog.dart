@@ -13,8 +13,8 @@ class CustomDialog extends StatelessWidget {
 
   const CustomDialog({
     super.key,
-    required this.title,
-    required this.message,
+    this.title = '',
+    this.message = '',
     this.child,
     this.leading,
     this.constraints,
