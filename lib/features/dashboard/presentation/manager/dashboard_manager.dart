@@ -18,4 +18,11 @@ class DashboardManager extends ChangeNotifier {
     drawerKey.currentState?.openDrawer();
     // notifyListeners();
   }
+
+  void closeDrawer() {
+    drawerKey.currentState?.closeDrawer();
+    // notifyListeners();
+  }
+
+  bool isDrawerOpen() => drawerKey.currentState?.isDrawerOpen ?? false;
 }
