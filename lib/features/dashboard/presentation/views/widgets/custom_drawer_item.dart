@@ -37,7 +37,7 @@ class CustomDrawerItem extends StatelessWidget {
               ),
             ),
             SizedBox(),
-            SvgPicture.asset(item.activeIcon, height: 25),
+            SvgPicture.asset(item.activeIcon, height: 20),
             Expanded(
               child: Text(
                 item.title,
