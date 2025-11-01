@@ -30,8 +30,8 @@ class CustomCirclePercentIndicator extends StatelessWidget {
           context,
         ).copyWith(color: Colors.black87),
       ),
-      backgroundColor: AppColors.glowWhiteGreen,
-      progressColor: AppColors.main,
+      backgroundColor: AppColors.orange,
+      progressColor: AppColors.blue,
     );
   }
 }
