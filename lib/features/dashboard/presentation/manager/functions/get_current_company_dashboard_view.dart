@@ -25,8 +25,11 @@ Widget getCurrentCompanyDashboardView(DashboardType type) {
       return Center(child: Text('Complaints'));
     case DashboardType.Maintenance:
       return Center(child: Text('Maintenance'));
-    // Rlate to FollowUpReservations
+    //* Related to FollowUpReservations
     case DashboardType.FollowUpReservationsDetails:
       return FollowUpReservationsDetailsView();
+    //* Related to ShippingCompanies
+    case DashboardType.CompanyDetails:
+      return Center(child: Text('CompanyDetails'));
   }
 }

@@ -31,5 +31,8 @@ String companyDashboardSubtitle(DashboardType type) {
     // Rlate to FollowUpReservations
     case DashboardType.FollowUpReservationsDetails:
       return 'متابعة الحجوزات  >  حجوزات العملاء';
+    // Related to ShippingCompanies
+    case DashboardType.CompanyDetails:
+      return 'شركات الشحن  >  تفاصيل الشركة';
   }
 }

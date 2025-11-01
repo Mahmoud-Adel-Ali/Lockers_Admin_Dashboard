@@ -12,4 +12,6 @@ enum DashboardType {
   Maintenance, // الصيانة
   //* Rlate to FollowUpReservations
   FollowUpReservationsDetails, // تفاصيل متابعة الحجوزات
+  //* Related to ShippingCompanies
+  CompanyDetails, // تفاصيل شركة الشحن
 }
