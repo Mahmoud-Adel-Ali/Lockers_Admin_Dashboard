@@ -14,4 +14,5 @@ enum DashboardType {
   FollowUpReservationsDetails, // تفاصيل متابعة الحجوزات
   //* Related to ShippingCompanies
   CompanyDetails, // تفاصيل شركة الشحن
+  CompanyEmployees, // الموظفين لشركة الشحن
 }

@@ -32,5 +32,7 @@ Widget getCurrentCompanyDashboardView(DashboardType type) {
     //* Related to ShippingCompanies
     case DashboardType.CompanyDetails:
       return CompanyDetailsView();
+    case DashboardType.CompanyEmployees:
+      return Center(child: Text('CompanyEmployees'));
   }
 }

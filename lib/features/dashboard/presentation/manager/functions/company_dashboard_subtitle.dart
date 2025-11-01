@@ -34,5 +34,7 @@ String companyDashboardSubtitle(DashboardType type) {
     // Related to ShippingCompanies
     case DashboardType.CompanyDetails:
       return 'شركات الشحن  >  تفاصيل الشركة';
+    case DashboardType.CompanyEmployees:
+      return 'شركات الشحن  >  تفاصيل الشركة > الموظفين';
   }
 }
