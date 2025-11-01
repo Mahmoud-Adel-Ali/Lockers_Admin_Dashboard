@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/size_config.dart';
+import 'widgets/companies_grid_view.dart';
 import 'widgets/companies_view_header.dart';
 
 class CompaniesView extends StatelessWidget {
@@ -22,7 +23,9 @@ class CompaniesView extends StatelessWidget {
       body: Column(
         children: [
           CompaniesViewHeader(),
-          //
+          SizedBox(height: 8),
+          Expanded(child: CompaniesGridView()),
+          SizedBox(height: 16),
         ],
       ),
     );
