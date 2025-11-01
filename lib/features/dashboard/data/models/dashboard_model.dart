@@ -32,7 +32,10 @@ List<DashboardModel> adminFeaturesList = [
     subtitle: 'شركات الشحن :',
     type: DashboardType.ShippingCompanies,
     icon: Assets.imagesActiveCustomersIcon,
-    relatedTypes: [DashboardType.CompanyDetails],
+    relatedTypes: [
+      DashboardType.CompanyDetails,
+      DashboardType.CompanyEmployees,
+    ],
   ),
   //* Units
   DashboardModel(

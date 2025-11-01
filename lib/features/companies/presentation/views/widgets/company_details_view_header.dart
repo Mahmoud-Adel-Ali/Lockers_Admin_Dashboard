@@ -12,14 +12,13 @@ class CompanyDetailsViewHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var read = context.read<DashboardManager>();
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         DashboardBackIcon(
           onPressed: () {
-            context.read<DashboardManager>().changeView(
-              DashboardType.ShippingCompanies,
-            );
+            read.changeView(DashboardType.ShippingCompanies);
           },
         ),
         FilterButton(
@@ -27,7 +26,9 @@ class CompanyDetailsViewHeader extends StatelessWidget {
           activeIcon: Assets.imagesActiveEmployeesIcon,
           inactiveIcon: Assets.imagesInactiveEmployeesIcon,
           isSelected: false,
-          onTap: () {},
+          onTap: () {
+            read.changeView(DashboardType.CompanyEmployees);
+          },
         ),
       ],
     );
