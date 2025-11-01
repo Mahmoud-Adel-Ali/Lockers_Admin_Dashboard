@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../../core/widgets/dashboard_back_button.dart';
 import '../../../dashboard/data/enums/dashboard_type.dart';
 import '../../../dashboard/presentation/manager/dashboard_manager.dart';
+import 'widgets/company_employees_grid_view.dart';
 import 'widgets/employees_search_field.dart';
 
 class CompanyEmplyeesView extends StatelessWidget {
@@ -24,10 +25,11 @@ class CompanyEmplyeesView extends StatelessWidget {
                 );
               },
             ),
-           EmployeesSearchField(),
+            EmployeesSearchField(),
           ],
         ),
         SizedBox(height: 8),
+        Expanded(child: CompanyEmployeesGridView()),
       ],
     );
   }
