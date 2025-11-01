@@ -52,6 +52,8 @@ class Assets {
 
   static const String imagesMessage = "assets/images/message.png";
 
+  static const String imagesNoteIcon = "assets/images/note_icon.png";
+
   static const String imagesNotificationsIcon = "assets/images/notifications_icon.svg";
 
   static const String imagesSettingsIcon = "assets/images/settings_icon.svg";
