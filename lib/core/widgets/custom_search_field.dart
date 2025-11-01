@@ -15,29 +15,30 @@ class CustomSearchField extends StatelessWidget {
   final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: TextEditingController(),
-      textInputAction: TextInputAction.search,
-      onSubmitted: (value) {},
-      onChanged: (value) {},
-      cursorColor: AppColors.main,
-      style: AppTextStyles.style20w500(context).copyWith(color: Colors.black),
-      decoration: InputDecoration(
-        hintText: hintText,
-        prefixIcon: const Icon(Icons.search, color: Colors.black54),
-        contentPadding: const EdgeInsets.symmetric(
-          vertical: 12,
-          horizontal: 24,
-        ),
-        filled: true,
-        fillColor: Colors.white,
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(40),
-          borderSide: const BorderSide(color: AppColors.grey, width: 1),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(40),
-          borderSide: const BorderSide(color: AppColors.main, width: 1.2),
+    return SizedBox(
+      height: 42,
+      child: TextField(
+        controller: TextEditingController(),
+        textInputAction: TextInputAction.search,
+        onSubmitted: (value) {},
+        onChanged: (value) {},
+        cursorColor: AppColors.main,
+        style: AppTextStyles.style20w500(context).copyWith(color: Colors.black),
+        decoration: InputDecoration(
+          hintText: hintText,
+          hintStyle: AppTextStyles.style14w500(context),
+          prefixIcon: const Icon(Icons.search, color: Colors.black54, size: 20),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 24),
+          filled: true,
+          fillColor: Colors.white,
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(40),
+            borderSide: const BorderSide(color: AppColors.grey, width: 1),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(40),
+            borderSide: const BorderSide(color: AppColors.main, width: 1.2),
+          ),
         ),
       ),
     );
