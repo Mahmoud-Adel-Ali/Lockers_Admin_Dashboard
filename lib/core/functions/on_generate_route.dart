@@ -7,6 +7,7 @@ import '../../features/auth/presentation/views/verify_otp_view.dart';
 import '../../features/companies/presentation/views/pick_company_location_view.dart';
 import '../../features/dashboard/presentation/views/admin_dashboard_view.dart';
 import '../../features/notification/presentation/view/notification_view.dart';
+import '../views/show_location_view.dart';
 
 Route<dynamic> onGenerateRoutes(RouteSettings settings) {
   switch (settings.name) {
@@ -24,6 +25,8 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
       return MaterialPageRoute(builder: (_) => const NotificationView());
     case PickCompanyLocationView.routeName:
       return MaterialPageRoute(builder: (_) => const PickCompanyLocationView());
+    case ShowLocationView.routeName:
+      return MaterialPageRoute(builder: (_) => const ShowLocationView());
 
     default:
       return MaterialPageRoute(

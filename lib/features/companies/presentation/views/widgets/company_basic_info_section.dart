@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/assets.dart';
+import '../../../../../core/views/show_location_view.dart';
 import 'company_info_item.dart';
 
 class CompanyBasicInfoSection extends StatelessWidget {
@@ -45,6 +46,9 @@ class CompanyBasicInfoSection extends StatelessWidget {
               width: 20,
               height: 20,
             ),
+            onTap: () {
+              Navigator.pushNamed(context, ShowLocationView.routeName);
+            },
           ),
         ],
       ),
