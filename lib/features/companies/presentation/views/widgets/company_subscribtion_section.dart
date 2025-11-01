@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/widgets/custom_button.dart';
+import '../../../../../core/widgets/dialog_helper.dart';
 import 'company_subscribtion_body.dart';
 import 'company_subscribtion_header.dart';
 
@@ -17,7 +18,24 @@ class CompanySubscribtionSection extends StatelessWidget {
         Row(
           children: [
             Expanded(
-              child: CustomButton(text: 'إلغاء تفعيل الحساب', onPressed: () {}),
+              child: CustomButton(
+                text: 'إلغاء تفعيل الحساب',
+                onPressed: () {
+                  DialogHelper.showQuestionDialog(
+                    context,
+                    title: 'الغاء التفعيل',
+                    desc: 'هل ترغب في إيقاف تفعيل\nحساب الشركة',
+                    btnOkText: 'نعم',
+                    onOk: () {
+                      DialogHelper.showSuccessDialog(
+                        context,
+                        title: 'تم',
+                        desc: 'تم الغاء التفعيل بنجاح',
+                      );
+                    },
+                  );
+                },
+              ),
             ),
           ],
         ),
