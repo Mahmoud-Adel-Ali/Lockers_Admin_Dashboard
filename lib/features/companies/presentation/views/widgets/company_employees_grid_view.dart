@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/assets.dart';
 import '../../../../../core/widgets/custom_user_card.dart';
+import 'employee_data_dialog.dart';
 
 class CompanyEmployeesGridView extends StatelessWidget {
   const CompanyEmployeesGridView({super.key});
@@ -26,6 +27,7 @@ class CompanyEmployeesGridView extends StatelessWidget {
               name: 'John Doe ${index + 1}',
               phone: '1234567890',
               assetsImage: Assets.imagesTestUserImage,
+              onTap: () => showEmployeeDialog(context),
             );
           },
         );
