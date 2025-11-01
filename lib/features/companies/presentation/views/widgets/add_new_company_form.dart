@@ -7,6 +7,7 @@ import '../../../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../../../core/widgets/custom_text_password.dart';
 import '../../../../../core/widgets/custom_location_from_field.dart';
 import '../../../../../core/widgets/custom_phone_text_filed.dart';
+import '../pick_company_location_view.dart';
 
 class AddNewCompanyForm extends StatelessWidget {
   const AddNewCompanyForm({super.key});
@@ -49,7 +50,14 @@ class AddNewCompanyForm extends StatelessWidget {
                 CustomTextFormField(hintText: 'البريد الالكتروني'),
                 CustomPhoneTextField(),
                 CustomPasswordField(hintText: 'كلمة المرور'),
-                CustomLocationFormFied(hintText: 'موقع الشركة'),
+                CustomLocationFormFied(
+                  hintText: 'موقع الشركة',
+                  onTap: () {
+                    Navigator.of(
+                      context,
+                    ).pushNamed(PickCompanyLocationView.routeName);
+                  },
+                ),
                 SizedBox(height: 8),
                 CustomButton(text: 'إضافة', onPressed: () {}),
               ],
