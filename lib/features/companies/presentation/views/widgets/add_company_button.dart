@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/assets.dart';
 import '../../../../../core/widgets/filter_button.dart';
+import 'add_new_company_dialog.dart';
 
 class AddCompanyButton extends StatelessWidget {
   const AddCompanyButton({super.key});
@@ -17,6 +18,7 @@ class AddCompanyButton extends StatelessWidget {
           activeIcon: Assets.imagesAddIcon,
           inactiveIcon: Assets.imagesAddIcon,
           isSelected: false,
+          onTap: () => addNewCompanyDialog(context),
         ),
       ),
     );
