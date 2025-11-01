@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../companies/presentation/views/companies_view.dart';
+import '../../../../companies/presentation/views/company_details_view.dart';
 import '../../../../follow_up_reservations/presentation/views/follow_up_reservations_details_view.dart';
 import '../../../../follow_up_reservations/presentation/views/follow_up_reservations_view.dart';
 import '../../../data/enums/dashboard_type.dart';
@@ -30,6 +31,6 @@ Widget getCurrentCompanyDashboardView(DashboardType type) {
       return FollowUpReservationsDetailsView();
     //* Related to ShippingCompanies
     case DashboardType.CompanyDetails:
-      return Center(child: Text('CompanyDetails'));
+      return CompanyDetailsView();
   }
 }
