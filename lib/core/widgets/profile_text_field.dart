@@ -32,6 +32,7 @@ class ProfileTextField extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
         ),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             if (title != null)
               Padding(
@@ -45,16 +46,13 @@ class ProfileTextField extends StatelessWidget {
               ),
             SizedBox(width: title != null ? 16 : 0),
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: CustomTextFormField(
-                  hintText: '',
-                  readOnly: readOnly,
-                  controller: controller,
-                  validator: validator,
-                  color: AppColors.filedGrey,
-                  suffixIcon: suffixIcon,
-                ),
+              child: CustomTextFormField(
+                hintText: '',
+                readOnly: readOnly,
+                controller: controller,
+                validator: validator,
+                color: AppColors.filedGrey,
+                suffixIcon: suffixIcon,
               ),
             ),
           ],

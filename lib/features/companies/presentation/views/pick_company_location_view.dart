@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/utils/assets.dart';
 import '../../../../core/widgets/arrow_back_icon.dart';
 import '../../../../core/widgets/custom_button.dart';
+import 'widgets/pick_company_location_bottom_sheet.dart';
 
 class PickCompanyLocationView extends StatelessWidget {
   const PickCompanyLocationView({super.key});
@@ -32,7 +33,7 @@ class PickCompanyLocationView extends StatelessWidget {
               const Spacer(),
               CustomButton(
                 text: 'حفظ',
-                onPressed: () => Navigator.pop(context),
+                onPressed: () => pickCompanyLocationBottomSheet(context),
               ),
               SizedBox(height: 16),
             ],
