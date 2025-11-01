@@ -5,7 +5,7 @@ import '../../../../../../core/widgets/circular_button.dart';
 import '../../../../../../core/widgets/custom_button.dart';
 import '../../../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../../../core/widgets/custom_text_password.dart';
-import '../../../../../core/utils/assets.dart';
+import '../../../../../core/widgets/custom_location_from_field.dart';
 import '../../../../../core/widgets/custom_phone_text_filed.dart';
 
 class AddNewCompanyForm extends StatelessWidget {
@@ -49,42 +49,13 @@ class AddNewCompanyForm extends StatelessWidget {
                 CustomTextFormField(hintText: 'البريد الالكتروني'),
                 CustomPhoneTextField(),
                 CustomPasswordField(hintText: 'كلمة المرور'),
-                LocationFormFied(hintText: 'موقع الشركة'),
+                CustomLocationFormFied(hintText: 'موقع الشركة'),
                 SizedBox(height: 8),
                 CustomButton(text: 'إضافة', onPressed: () {}),
               ],
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class LocationFormFied extends StatelessWidget {
-  const LocationFormFied({
-    super.key,
-    this.hintText = 'الموقع',
-    this.controller,
-    this.onTap,
-  });
-  final String hintText;
-  final TextEditingController? controller;
-  final VoidCallback? onTap;
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: AbsorbPointer(
-        absorbing: true,
-        child: CustomTextFormField(
-          hintText: hintText,
-          controller: controller,
-          suffixIcon: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.asset(Assets.imagesGoogleMap, width: 10, height: 10),
-          ),
-        ),
       ),
     );
   }
