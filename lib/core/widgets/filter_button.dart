@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../../constants.dart';
-import '../../../../../core/utils/app_colors.dart';
-import '../../../../../core/utils/app_text_styles.dart';
+import '../../constants.dart';
+import '../utils/app_colors.dart';
+import '../utils/app_text_styles.dart';
 
 class FilterButton extends StatelessWidget {
   const FilterButton({

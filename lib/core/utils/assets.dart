@@ -20,6 +20,8 @@ class Assets {
 
   static const String imagesActiveUnitsIcon = "assets/images/active_units_icon.svg";
 
+  static const String imagesAddIcon = "assets/images/add_icon.svg";
+
   static const String imagesAppLogo = "assets/images/app_logo.png";
 
   static const String imagesArrowBackIcon = "assets/images/arrow_back_icon.svg";
