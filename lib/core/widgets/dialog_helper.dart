@@ -1,6 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
+import '../functions/get_root_context.dart';
 import '../utils/app_colors.dart';
 
 abstract class DialogHelper {
@@ -22,7 +23,7 @@ abstract class DialogHelper {
     void Function(DismissType)? onDismissCallback,
   }) {
     return AwesomeDialog(
-      context: context,
+      context: getRootContext(context),
       dialogType: dialogType,
       animType: animType,
       title: title,
