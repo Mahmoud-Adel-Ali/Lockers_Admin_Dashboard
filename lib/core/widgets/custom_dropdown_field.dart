@@ -39,20 +39,16 @@ class CustomDropdownTextField extends StatelessWidget {
       textStyle: AppTextStyles.style20w700(context),
       inputDecorationTheme: InputDecorationTheme(
         hintStyle: AppTextStyles.style16w400(context),
-        fillColor: AppColors.white,
+        fillColor: AppColors.filedGrey,
         filled: true,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(color: AppColors.phosphorGreen),
-        ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(color: AppColors.grey),
+          borderSide: const BorderSide(color: AppColors.filedGrey),
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(color: AppColors.grey),
+          borderSide: const BorderSide(color: AppColors.filedGrey),
         ),
       ),
       controller: controller,

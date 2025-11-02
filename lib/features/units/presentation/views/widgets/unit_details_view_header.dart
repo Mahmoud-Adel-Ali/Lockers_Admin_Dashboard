@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../core/utils/size_config.dart';
 import '../../../../../core/widgets/dashboard_back_button.dart';
 import '../../../../dashboard/data/enums/dashboard_type.dart';
 import '../../../../dashboard/presentation/manager/dashboard_manager.dart';
@@ -12,6 +13,8 @@ class UnitDetailsViewHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var read = context.read<DashboardManager>();
+    SizeConfig.init(context);
+    bool isMobile = SizeConfig.isMobile();
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -20,7 +23,7 @@ class UnitDetailsViewHeader extends StatelessWidget {
             read.changeView(DashboardType.Units);
           },
         ),
-        AddLockerButton(),
+        if (!isMobile) AddLockerButton(),
       ],
     );
   }

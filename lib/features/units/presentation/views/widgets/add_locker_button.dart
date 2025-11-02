@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/assets.dart';
 import '../../../../../core/widgets/filter_button.dart';
+import 'add_new_locker_dialog.dart';
 
 class AddLockerButton extends StatelessWidget {
   const AddLockerButton({super.key});
@@ -13,7 +14,7 @@ class AddLockerButton extends StatelessWidget {
       activeIcon: Assets.imagesAddIcon,
       inactiveIcon: Assets.imagesAddIcon,
       isSelected: false,
-      onTap: () {},
+      onTap: () => addNewLockerDialog(context),
     );
   }
 }
