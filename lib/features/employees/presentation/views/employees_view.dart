@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/size_config.dart';
+import 'widgets/employees_grid_view.dart';
 import 'widgets/employees_view_header.dart';
 
 class EmployeesView extends StatelessWidget {
@@ -23,6 +24,8 @@ class EmployeesView extends StatelessWidget {
         children: [
           const SizedBox(height: 8),
           EmployeesViewHeader(),
+          const SizedBox(height: 8),
+          Expanded(child: EmployeesGridView()),
           const SizedBox(height: 8),
         ],
       ),
