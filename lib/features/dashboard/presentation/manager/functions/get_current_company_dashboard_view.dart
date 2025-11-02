@@ -5,6 +5,7 @@ import '../../../../companies/presentation/views/company_details_view.dart';
 import '../../../../companies/presentation/views/company_emplyees_view.dart';
 import '../../../../follow_up_reservations/presentation/views/follow_up_reservations_details_view.dart';
 import '../../../../follow_up_reservations/presentation/views/follow_up_reservations_view.dart';
+import '../../../../units/presentation/views/units_view.dart';
 import '../../../data/enums/dashboard_type.dart';
 
 Widget getCurrentCompanyDashboardView(DashboardType type) {
@@ -14,9 +15,9 @@ Widget getCurrentCompanyDashboardView(DashboardType type) {
     case DashboardType.ShippingCompanies:
       return CompaniesView();
     case DashboardType.Units:
-      return Center(child: Text('Units'));
+      return const UnitsView();
     case DashboardType.FollowUpReservations:
-      return FollowUpReservationsView();
+      return const FollowUpReservationsView();
     case DashboardType.Agreements:
       return Center(child: Text('Agreements'));
     case DashboardType.Customers:
@@ -29,11 +30,11 @@ Widget getCurrentCompanyDashboardView(DashboardType type) {
       return Center(child: Text('Maintenance'));
     //* Related to FollowUpReservations
     case DashboardType.FollowUpReservationsDetails:
-      return FollowUpReservationsDetailsView();
+      return const FollowUpReservationsDetailsView();
     //* Related to ShippingCompanies
     case DashboardType.CompanyDetails:
-      return CompanyDetailsView();
+      return const CompanyDetailsView();
     case DashboardType.CompanyEmployees:
-      return CompanyEmplyeesView();
+      return const CompanyEmplyeesView();
   }
 }
