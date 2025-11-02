@@ -5,6 +5,7 @@ import '../../../../companies/presentation/views/company_details_view.dart';
 import '../../../../companies/presentation/views/company_emplyees_view.dart';
 import '../../../../follow_up_reservations/presentation/views/follow_up_reservations_details_view.dart';
 import '../../../../follow_up_reservations/presentation/views/follow_up_reservations_view.dart';
+import '../../../../units/presentation/views/unit_details_view.dart';
 import '../../../../units/presentation/views/units_view.dart';
 import '../../../data/enums/dashboard_type.dart';
 
@@ -38,6 +39,6 @@ Widget getCurrentCompanyDashboardView(DashboardType type) {
       return const CompanyEmplyeesView();
     //* Related to Units
     case DashboardType.UnitDetails:
-      return Center(child: Text('UnitDetails'));
+      return const UnitDetailsView();
   }
 }
