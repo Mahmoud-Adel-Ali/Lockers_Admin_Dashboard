@@ -21,6 +21,7 @@ class _MaintenanceViewState extends State<MaintenanceView> {
     return Scaffold(
       body: Column(
         children: [
+          SizedBox(height: 8),
           Row(
             spacing: 16,
             children: [

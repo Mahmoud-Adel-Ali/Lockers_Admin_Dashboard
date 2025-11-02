@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'widgets/filter_maintenace_lockers_location_section.dart';
+import 'widgets/maintenance_lockers_grid_view.dart';
 
 class MaintenanceLockersView extends StatelessWidget {
   const MaintenanceLockersView({super.key});
@@ -10,6 +11,8 @@ class MaintenanceLockersView extends StatelessWidget {
       children: [
         SizedBox(height: 8),
         FilterMaintenaceLockersLocationSection(),
+        SizedBox(height: 8),
+        Expanded(child: MaintenanceLockersGridView()),
         SizedBox(height: 8),
       ],
     );

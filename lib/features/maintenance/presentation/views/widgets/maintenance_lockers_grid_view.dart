@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'maintenance_unit_card.dart';
+import 'maintenance_locker_card.dart';
 
-class MaintenanceUnitsGridView extends StatelessWidget {
-  const MaintenanceUnitsGridView({super.key});
+class MaintenanceLockersGridView extends StatelessWidget {
+  const MaintenanceLockersGridView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,12 +16,12 @@ class MaintenanceUnitsGridView extends StatelessWidget {
             crossAxisCount: (width / 210).toInt(),
             mainAxisSpacing: 8,
             crossAxisSpacing: 8,
-            childAspectRatio: 198.5 / 250,
+            childAspectRatio: 200 / 250,
             mainAxisExtent: 200,
           ),
           itemCount: 20,
           itemBuilder: (context, index) {
-            return MaintenanceUnitCard();
+            return MaintenanceLockerCard();
           },
         );
       },

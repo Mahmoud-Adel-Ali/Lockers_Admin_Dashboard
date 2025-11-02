@@ -14,6 +14,7 @@ class MaintenanceUnitsView extends StatelessWidget {
         FilterMaintenaceUnitsLocationSection(),
         SizedBox(height: 8),
         Expanded(child: MaintenanceUnitsGridView()),
+        SizedBox(height: 8),
       ],
     );
   }
