@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/assets.dart';
 import '../../../../../core/widgets/filter_button.dart';
-import 'add_new_unit_dialog.dart';
+import 'add_new_employee_dialog.dart';
 
 class AddEmployeeButton extends StatelessWidget {
   const AddEmployeeButton({super.key});

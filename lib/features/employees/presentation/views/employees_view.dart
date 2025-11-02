@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/size_config.dart';
-import 'widgets/add_new_unit_dialog.dart';
+import 'widgets/add_new_employee_dialog.dart';
 import 'widgets/employees_grid_view.dart';
 import 'widgets/employees_view_header.dart';
 
