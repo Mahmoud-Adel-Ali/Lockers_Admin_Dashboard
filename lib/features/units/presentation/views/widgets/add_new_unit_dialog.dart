@@ -5,6 +5,7 @@ import '../../../../../../core/widgets/custom_dialog.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/custom_location_from_field.dart';
 import '../../../../../core/widgets/custom_text_form_field.dart';
+import '../../../../../core/widgets/dialog_helper.dart';
 import '../../../../companies/presentation/views/pick_company_location_view.dart';
 
 Future<dynamic> addNewUnitDialog(BuildContext context) {
@@ -45,7 +46,17 @@ class AddNewUnitForm extends StatelessWidget {
               },
             ),
             SizedBox(height: 16),
-            CustomButton(text: 'إضافة', onPressed: () {}),
+            CustomButton(
+              text: 'إضافة',
+              onPressed: () {
+                Navigator.pop(context);
+                DialogHelper.showSuccessDialog(
+                  context,
+                  title: 'تم',
+                  desc: 'تم اضافة الوحدة بنجاح',
+                );
+              },
+            ),
           ],
         ),
       ),

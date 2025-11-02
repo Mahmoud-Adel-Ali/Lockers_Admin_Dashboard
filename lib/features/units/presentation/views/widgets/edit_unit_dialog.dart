@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lockers_admin_dashboard/core/widgets/dialog_helper.dart';
 
 import '../../../../../../core/utils/size_config.dart';
 import '../../../../../../core/widgets/custom_dialog.dart';
@@ -45,7 +46,17 @@ class AddNewUnitForm extends StatelessWidget {
               },
             ),
             SizedBox(height: 16),
-            CustomButton(text: 'تعديل', onPressed: () {}),
+            CustomButton(
+              text: 'تعديل',
+              onPressed: () {
+                Navigator.pop(context);
+                DialogHelper.showSuccessDialog(
+                  context,
+                  title: 'تم',
+                  desc: 'تم التعديل بنجاح',
+                );
+              },
+            ),
           ],
         ),
       ),
