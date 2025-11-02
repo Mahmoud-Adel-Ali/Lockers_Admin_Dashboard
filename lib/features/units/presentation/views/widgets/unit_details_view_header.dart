@@ -6,6 +6,7 @@ import '../../../../../core/widgets/dashboard_back_button.dart';
 import '../../../../dashboard/data/enums/dashboard_type.dart';
 import '../../../../dashboard/presentation/manager/dashboard_manager.dart';
 import 'add_locker_button.dart';
+import 'header_unit_info_section.dart';
 
 class UnitDetailsViewHeader extends StatelessWidget {
   const UnitDetailsViewHeader({super.key});
@@ -23,7 +24,10 @@ class UnitDetailsViewHeader extends StatelessWidget {
             read.changeView(DashboardType.Units);
           },
         ),
-        if (!isMobile) AddLockerButton(),
+        if (!isMobile)
+          AddLockerButton()
+        else
+          Expanded(child: HeaderUnitInfoSection()),
       ],
     );
   }

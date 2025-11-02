@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/size_config.dart';
+import '../../../../core/widgets/show_location_container.dart';
 import 'widgets/add_new_locker_dialog.dart';
+import 'widgets/header_unit_info_section.dart';
 import 'widgets/unit_details_view_header.dart';
 
 class UnitDetailsView extends StatelessWidget {
@@ -24,7 +26,24 @@ class UnitDetailsView extends StatelessWidget {
         children: [
           const SizedBox(height: 8),
           UnitDetailsViewHeader(),
-          //
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              // الموقع
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 400),
+                child: ShowLocationContainer(
+                  text: 'القاهرة - حي الزمالك - شارع الميرغاب',
+                ),
+              ),
+              if (!isMobile) const Spacer(),
+              if (!isMobile)
+                ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 300),
+                  child: HeaderUnitInfoSection(),
+                ),
+            ],
+          ),
         ],
       ),
     );
