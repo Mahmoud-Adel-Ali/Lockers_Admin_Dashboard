@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/assets.dart';
+import 'edit_agreement_dialog.dart';
 
 class AgreementCard extends StatelessWidget {
   const AgreementCard({super.key});
@@ -26,7 +27,7 @@ class AgreementCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   InkWell(
-                    onTap: () {},
+                    onTap: () => editAgreementDialog(context),
                     child: Container(
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
