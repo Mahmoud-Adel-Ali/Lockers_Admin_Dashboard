@@ -36,5 +36,8 @@ Widget getCurrentCompanyDashboardView(DashboardType type) {
       return const CompanyDetailsView();
     case DashboardType.CompanyEmployees:
       return const CompanyEmplyeesView();
+    //* Related to Units
+    case DashboardType.UnitDetails:
+      return Center(child: Text('UnitDetails'));
   }
 }

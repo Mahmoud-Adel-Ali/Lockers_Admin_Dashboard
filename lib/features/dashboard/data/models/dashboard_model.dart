@@ -43,7 +43,7 @@ List<DashboardModel> adminFeaturesList = [
     subtitle: 'الوحدات :',
     type: DashboardType.Units,
     icon: Assets.imagesActiveUnitsIcon,
-    relatedTypes: [],
+    relatedTypes: [DashboardType.UnitDetails],
   ),
   //* Follow-Up Reservations
   DashboardModel(
