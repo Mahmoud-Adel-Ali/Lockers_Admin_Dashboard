@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import '../../../../../../core/utils/size_config.dart';
 import '../../../../../../core/widgets/custom_dialog.dart';
 import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/widgets/circular_button.dart';
 import '../../../../../core/widgets/custom_button.dart';
+import '../../../../../core/widgets/custom_labeled_checkbox.dart';
 import '../../../../../core/widgets/custom_phone_text_filed.dart';
 import '../../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../../core/widgets/custom_text_password.dart';
@@ -61,7 +63,56 @@ class AddNewUnitForm extends StatelessWidget {
             CustomPhoneTextField(),
             CustomTextFormField(hintText: 'الإيميل'),
             CustomPasswordField(),
-
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                color: AppColors.filedGrey,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        'الدور الوظيفي',
+                        style: AppTextStyles.style16w400(context),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 16),
+                  CustomLabeledCheckBox(
+                    label: 'إدارة شركات الشحن',
+                    initialValue: false,
+                    onChanged: (value) {},
+                  ),
+                  CustomLabeledCheckBox(
+                    label: 'إدارة الوحدات',
+                    initialValue: false,
+                    onChanged: (value) {},
+                  ),
+                  CustomLabeledCheckBox(
+                    label: 'متابعة الحجوزات',
+                    initialValue: false,
+                    onChanged: (value) {},
+                  ),
+                  CustomLabeledCheckBox(
+                    label: 'إدارة العملاء',
+                    initialValue: false,
+                    onChanged: (value) {},
+                  ),
+                  CustomLabeledCheckBox(
+                    label: 'إدارة الشكاوي',
+                    initialValue: false,
+                    onChanged: (value) {},
+                  ),
+                  CustomLabeledCheckBox(
+                    label: 'إدارة قسم الصيانة',
+                    initialValue: false,
+                    onChanged: (value) {},
+                  ),
+                ],
+              ),
+            ),
             SizedBox(height: 16),
             CustomButton(
               text: 'إضافة',
