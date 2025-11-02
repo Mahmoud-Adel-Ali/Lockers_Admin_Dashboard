@@ -26,6 +26,8 @@ class Assets {
 
   static const String imagesArrowBackIcon = "assets/images/arrow_back_icon.svg";
 
+  static const String imagesEditIcon = "assets/images/edit_icon.svg";
+
   static const String imagesForget1Background = "assets/images/forget1_background.png";
 
   static const String imagesForget2Background = "assets/images/forget2_background.png";
