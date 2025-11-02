@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/size_config.dart';
+import 'widgets/add_new_agreement_dialog.dart';
 import 'widgets/agreements_grid_view.dart';
 import 'widgets/agreements_view_header.dart';
 
@@ -17,7 +18,7 @@ class AgreementsView extends StatelessWidget {
           ? null
           : FloatingActionButton(
               backgroundColor: AppColors.main,
-              onPressed: () {},
+              onPressed: () => addNewAgreementDialog(context),
               child: const Icon(Icons.add, color: Colors.white),
             ),
       body: Column(

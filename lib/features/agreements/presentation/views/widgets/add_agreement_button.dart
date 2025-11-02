@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/assets.dart';
 import '../../../../../core/widgets/filter_button.dart';
+import 'add_new_agreement_dialog.dart';
 
 class AddAgreementButton extends StatelessWidget {
   const AddAgreementButton({super.key});
@@ -17,7 +18,7 @@ class AddAgreementButton extends StatelessWidget {
           activeIcon: Assets.imagesAddIcon,
           inactiveIcon: Assets.imagesAddIcon,
           isSelected: false,
-          onTap: () {},
+          onTap: () => addNewAgreementDialog(context),
         ),
       ),
     );
