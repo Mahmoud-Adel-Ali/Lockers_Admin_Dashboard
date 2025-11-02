@@ -7,12 +7,12 @@ import '../../../../../core/widgets/custom_location_from_field.dart';
 import '../../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../companies/presentation/views/pick_company_location_view.dart';
 
-Future<dynamic> addNewUnitDialog(BuildContext context) {
+Future<dynamic> editUnitDialog(BuildContext context) {
   return showDialog(
     context: context,
     builder: (context) {
       return CustomDialog(
-        title: 'إضافة وحدة جديدة',
+        title: 'تعديل بيانات الوحدة',
         constraints: BoxConstraints(
           maxWidth: 500,
           maxHeight: SizeConfig.height * 0.5,
@@ -45,7 +45,7 @@ class AddNewUnitForm extends StatelessWidget {
               },
             ),
             SizedBox(height: 16),
-            CustomButton(text: 'إضافة', onPressed: () {}),
+            CustomButton(text: 'تعديل', onPressed: () {}),
           ],
         ),
       ),

@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/assets.dart';
+import 'edit_unit_dialog.dart';
 
 class UnitCard extends StatelessWidget {
   const UnitCard({super.key});
@@ -43,13 +44,16 @@ class UnitCard extends StatelessWidget {
                   ],
                 ),
 
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: AppColors.white,
-                    shape: BoxShape.circle,
+                InkWell(
+                  onTap: () => editUnitDialog(context),
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      shape: BoxShape.circle,
+                    ),
+                    child: SvgPicture.asset(Assets.imagesEditIcon, width: 16),
                   ),
-                  child: SvgPicture.asset(Assets.imagesEditIcon, width: 16),
                 ),
               ],
             ),
