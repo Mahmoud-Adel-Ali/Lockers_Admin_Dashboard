@@ -5,6 +5,7 @@ import '../../../../core/utils/size_config.dart';
 import 'widgets/add_new_unit_dialog.dart';
 import 'widgets/add_unit_button.dart';
 import 'widgets/filter_units_location_section.dart';
+import 'widgets/units_grid_view.dart';
 
 class UnitsView extends StatelessWidget {
   const UnitsView({super.key});
@@ -28,6 +29,7 @@ class UnitsView extends StatelessWidget {
           if (!isMobile) SizedBox(height: 8),
           FilterUnitsLocationSection(),
           SizedBox(height: 8),
+          Expanded(child: UnitsGridView()),
         ],
       ),
     );
