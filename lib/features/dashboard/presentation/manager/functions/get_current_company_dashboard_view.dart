@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../agreements/presentation/views/agreements_view.dart';
 import '../../../../companies/presentation/views/companies_view.dart';
 import '../../../../companies/presentation/views/company_details_view.dart';
 import '../../../../companies/presentation/views/company_emplyees_view.dart';
@@ -21,7 +22,7 @@ Widget getCurrentCompanyDashboardView(DashboardType type) {
     case DashboardType.FollowUpReservations:
       return const FollowUpReservationsView();
     case DashboardType.Agreements:
-      return Center(child: Text('Agreements'));
+      return const AgreementsView();
     case DashboardType.Customers:
       return Center(child: Text('Customers'));
     case DashboardType.Employees:
