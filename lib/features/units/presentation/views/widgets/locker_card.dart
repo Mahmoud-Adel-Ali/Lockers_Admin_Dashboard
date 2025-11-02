@@ -35,7 +35,7 @@ class LockerCard extends StatelessWidget {
               children: [
                 Text(
                   'الخزنه رقم 1',
-                  style: AppTextStyles.style16w500(
+                  style: AppTextStyles.style16w700(
                     context,
                   ).copyWith(color: AppColors.main),
                 ),
@@ -55,6 +55,21 @@ class LockerCard extends StatelessWidget {
             ),
           ),
           const Spacer(),
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 8,
+                ),
+                decoration: const BoxDecoration(
+                  color: AppColors.whiteGrey,
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(16)),
+                ),
+                child: Text('Large', style: AppTextStyles.style16w500(context)),
+              ),
+            ],
+          ),
           InkWell(
             onTap: () {
               DialogHelper.showQuestionDialog(
