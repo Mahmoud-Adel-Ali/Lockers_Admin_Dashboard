@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/assets.dart';
 import '../../../../../core/widgets/filter_button.dart';
+import 'add_new_unit_dialog.dart';
 
 class AddUnitButton extends StatelessWidget {
   const AddUnitButton({super.key});
@@ -17,7 +18,7 @@ class AddUnitButton extends StatelessWidget {
           activeIcon: Assets.imagesAddIcon,
           inactiveIcon: Assets.imagesAddIcon,
           isSelected: false,
-          // onTap: () => addNewCompanyDialog(context),
+          onTap: () => addNewUnitDialog(context),
         ),
       ),
     );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/size_config.dart';
+import 'widgets/add_new_unit_dialog.dart';
 import 'widgets/add_unit_button.dart';
 
 class UnitsView extends StatelessWidget {
@@ -16,7 +17,7 @@ class UnitsView extends StatelessWidget {
           ? null
           : FloatingActionButton(
               backgroundColor: AppColors.main,
-              onPressed: () {},
+              onPressed: () => addNewUnitDialog(context),
               child: const Icon(Icons.add, color: Colors.white),
             ),
       body: Column(
