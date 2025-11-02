@@ -5,6 +5,7 @@ import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/assets.dart';
 import '../../../../../core/widgets/dialog_helper.dart';
+import 'edit_locker_dialog.dart';
 
 class LockerCard extends StatelessWidget {
   const LockerCard({super.key});
@@ -40,6 +41,7 @@ class LockerCard extends StatelessWidget {
                 ),
 
                 InkWell(
+                  onTap: () => editLockerDialog(context),
                   child: Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(

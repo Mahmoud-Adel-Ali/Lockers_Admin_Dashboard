@@ -44,6 +44,7 @@ class UnitDetailsView extends StatelessWidget {
 
           const SizedBox(height: 8),
           Expanded(child: LockersGridView()),
+          const SizedBox(height: 8),
         ],
       ),
     );
