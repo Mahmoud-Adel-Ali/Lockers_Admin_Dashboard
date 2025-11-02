@@ -37,11 +37,7 @@ class UnitDetailsView extends StatelessWidget {
                 ),
               ),
               if (!isMobile) const Spacer(),
-              if (!isMobile)
-                ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 300),
-                  child: HeaderUnitInfoSection(),
-                ),
+              if (!isMobile) HeaderUnitInfoSection(),
             ],
           ),
         ],

@@ -26,30 +26,25 @@ class UnitInfoItem extends StatelessWidget {
   final int value;
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-        decoration: BoxDecoration(
-          color: AppColors.whiteGrey,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: FittedBox(
-          fit: BoxFit.scaleDown,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(value.toString(), style: AppTextStyles.style16w500(context)),
-              const SizedBox(width: 4),
-              Text(
-                title,
-                style: AppTextStyles.style14w400(
-                  context,
-                ).copyWith(color: AppColors.black),
-              ),
-            ],
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      decoration: BoxDecoration(
+        color: AppColors.whiteGrey,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Text(value.toString(), style: AppTextStyles.style16w500(context)),
+          const SizedBox(width: 4),
+          Text(
+            title,
+            style: AppTextStyles.style14w400(
+              context,
+            ).copyWith(color: AppColors.black),
           ),
-        ),
+        ],
       ),
     );
   }

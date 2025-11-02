@@ -146,8 +146,8 @@ double getResponsiveFontsize(BuildContext context, {required double fontSize}) {
   double responsiveFontSize = scaleFactor * fontSize;
 
   // Clamp between 75% and 120% of original fontsize
-  double lowerLimit = 0.75 * fontSize;
-  double upperLimit = 1.2 * fontSize;
+  double lowerLimit = 0.8 * fontSize;
+  double upperLimit = 1.15 * fontSize;
 
   return responsiveFontSize.clamp(lowerLimit, upperLimit);
 }

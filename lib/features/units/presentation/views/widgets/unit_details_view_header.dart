@@ -27,7 +27,12 @@ class UnitDetailsViewHeader extends StatelessWidget {
         if (!isMobile)
           AddLockerButton()
         else
-          Expanded(child: HeaderUnitInfoSection()),
+          Expanded(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: HeaderUnitInfoSection(),
+            ),
+          ),
       ],
     );
   }
