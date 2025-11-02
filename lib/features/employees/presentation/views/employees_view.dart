@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/size_config.dart';
+import 'widgets/add_new_unit_dialog.dart';
 import 'widgets/employees_grid_view.dart';
 import 'widgets/employees_view_header.dart';
 
@@ -17,7 +18,7 @@ class EmployeesView extends StatelessWidget {
           ? null
           : FloatingActionButton(
               backgroundColor: AppColors.main,
-              onPressed: () {},
+              onPressed: () => addNewEmployeeDialog(context),
               child: const Icon(Icons.add, color: Colors.white),
             ),
       body: Column(

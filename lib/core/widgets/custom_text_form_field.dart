@@ -16,6 +16,7 @@ class CustomTextFormField extends StatelessWidget {
     this.colorText = AppColors.grey,
     this.autovalidateMode = AutovalidateMode.onUserInteraction,
     this.lines = 1,
+    this.lable,
     this.readOnly = false,
     this.enabled = true,
     this.radius = 20,
@@ -24,6 +25,7 @@ class CustomTextFormField extends StatelessWidget {
   });
 
   final String hintText;
+  final String? lable;
   final double radius;
   final int lines;
   final Color color, colorText;
@@ -53,6 +55,14 @@ class CustomTextFormField extends StatelessWidget {
         fillColor: color,
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,
+        label: lable != null
+            ? Text(
+                lable!,
+                style: AppTextStyles.style12w400(
+                  context,
+                ).copyWith(color: colorText),
+              )
+            : null,
         hint: Text(
           hintText,
           style: AppTextStyles.style12w400(context).copyWith(color: colorText),
