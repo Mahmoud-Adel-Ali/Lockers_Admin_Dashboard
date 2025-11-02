@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/assets.dart';
+import '../../../../../core/widgets/dialog_helper.dart';
 import 'edit_unit_dialog.dart';
 
 class UnitCard extends StatelessWidget {
@@ -59,25 +60,41 @@ class UnitCard extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          Container(
-            padding: const EdgeInsets.all(12.0),
-            decoration: const BoxDecoration(
-              color: AppColors.main,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(16),
-                bottomRight: Radius.circular(16),
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  'إرسال إلي الصيانة',
-                  style: AppTextStyles.style14w500(
+          InkWell(
+            onTap: () {
+              DialogHelper.showQuestionDialog(
+                context,
+                title: 'الصيانه',
+                desc: 'هل تريد ارسال الوحده للصيانه',
+                onOk: () {
+                  DialogHelper.showSuccessDialog(
                     context,
-                  ).copyWith(color: AppColors.white),
+                    title: 'تم',
+                    desc: 'تم ارسال الوحده للصيانه بنجاح',
+                  );
+                },
+              );
+            },
+            child: Container(
+              padding: const EdgeInsets.all(12.0),
+              decoration: const BoxDecoration(
+                color: AppColors.main,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(16),
+                  bottomRight: Radius.circular(16),
                 ),
-              ],
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(
+                    'إرسال إلي الصيانة',
+                    style: AppTextStyles.style14w500(
+                      context,
+                    ).copyWith(color: AppColors.white),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
