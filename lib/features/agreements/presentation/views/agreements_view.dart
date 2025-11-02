@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/size_config.dart';
+import 'widgets/agreements_grid_view.dart';
 import 'widgets/agreements_view_header.dart';
 
 class AgreementsView extends StatelessWidget {
@@ -23,6 +24,8 @@ class AgreementsView extends StatelessWidget {
         children: [
           SizedBox(height: 8),
           AgreementsViewHeader(),
+          SizedBox(height: 8),
+          Expanded(child: AgreementsGridView()),
           SizedBox(height: 8),
         ],
       ),
