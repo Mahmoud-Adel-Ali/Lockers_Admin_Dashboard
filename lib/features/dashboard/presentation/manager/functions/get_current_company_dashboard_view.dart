@@ -9,6 +9,7 @@ import '../../../../customers/presentation/views/customers_view.dart';
 import '../../../../employees/presentation/views/employees_view.dart';
 import '../../../../follow_up_reservations/presentation/views/follow_up_reservations_details_view.dart';
 import '../../../../follow_up_reservations/presentation/views/follow_up_reservations_view.dart';
+import '../../../../home/presentation/views/home_view.dart';
 import '../../../../maintenance/presentation/views/maintenance_view.dart';
 import '../../../../units/presentation/views/unit_details_view.dart';
 import '../../../../units/presentation/views/units_view.dart';
@@ -17,7 +18,7 @@ import '../../../data/enums/dashboard_type.dart';
 Widget getCurrentCompanyDashboardView(DashboardType type) {
   switch (type) {
     case DashboardType.Home:
-      return const Center(child: Text('Home'));
+      return const HomeView();
     case DashboardType.ShippingCompanies:
       return const CompaniesView();
     case DashboardType.Units:
