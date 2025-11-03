@@ -6,6 +6,7 @@ import '../../../../../core/utils/assets.dart';
 import '../../../data/enums/customer_type.dart';
 import 'blocked_customers_button.dart';
 import 'new_customers_button.dart';
+import 'show_customer_data_dialog.dart';
 import 'system_customers_button.dart';
 
 class CustomerCard extends StatelessWidget {
@@ -15,7 +16,7 @@ class CustomerCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () => showCustomerDataDialog(context),
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.whiteGrey,
