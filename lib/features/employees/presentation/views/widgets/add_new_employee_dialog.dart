@@ -22,14 +22,14 @@ Future<dynamic> addNewEmployeeDialog(BuildContext context) {
           maxWidth: 500,
           maxHeight: SizeConfig.height * 0.95,
         ),
-        child: const AddNewUnitForm(),
+        child: const AddEmployeeeDataForm(),
       );
     },
   );
 }
 
-class AddNewUnitForm extends StatelessWidget {
-  const AddNewUnitForm({super.key});
+class AddEmployeeeDataForm extends StatelessWidget {
+  const AddEmployeeeDataForm({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +121,7 @@ class AddNewUnitForm extends StatelessWidget {
                 DialogHelper.showSuccessDialog(
                   context,
                   title: 'تم',
-                  desc: 'تم اضافة الوحدة بنجاح',
+                  desc: 'تم اضافة الموظف بنجاح',
                 );
               },
             ),
