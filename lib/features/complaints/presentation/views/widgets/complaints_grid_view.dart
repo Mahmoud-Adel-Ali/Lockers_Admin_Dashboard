@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/assets.dart';
 import '../../../../../core/widgets/custom_user_card.dart';
+import 'show_comlaints_data_dialog.dart';
 
 class ComplaintsGridView extends StatelessWidget {
   const ComplaintsGridView({super.key});
@@ -26,6 +27,7 @@ class ComplaintsGridView extends StatelessWidget {
               name: 'John Doe ${index + 2}',
               phone: '1234567890',
               assetsImage: Assets.imagesTestUserImage,
+              onTap: () => showComplaintDataDialog(context),
             );
           },
         );

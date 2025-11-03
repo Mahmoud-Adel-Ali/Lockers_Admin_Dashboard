@@ -9,6 +9,7 @@ class CustomDialog extends StatelessWidget {
   final String message;
   final Widget? child;
   final Widget? leading;
+  final Widget? bottomWidget;
   final BoxConstraints? constraints;
 
   const CustomDialog({
@@ -18,6 +19,7 @@ class CustomDialog extends StatelessWidget {
     this.child,
     this.leading,
     this.constraints,
+    this.bottomWidget,
   });
 
   @override
@@ -75,6 +77,7 @@ class CustomDialog extends StatelessWidget {
                 ),
               ),
             ),
+            bottomWidget ?? const SizedBox(),
           ],
         ),
       ),
