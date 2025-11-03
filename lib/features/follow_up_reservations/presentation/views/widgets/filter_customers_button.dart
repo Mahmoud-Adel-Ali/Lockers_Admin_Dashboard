@@ -1,39 +1,28 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_colors.dart';
-import '../../../../../core/widgets/circular_button.dart';
+import '../../../../../core/utils/app_text_styles.dart';
+import '../../../../../core/widgets/custom_popup_menu_button.dart';
 
 class FilterCustomersButton extends StatelessWidget {
   const FilterCustomersButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return PopupMenuButton<String>(
-      menuPadding: EdgeInsets.only(left: 8, right: 8),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-        side: const BorderSide(color: AppColors.grey),
-      ),
-      position: PopupMenuPosition.under,
-      color: AppColors.whiteGrey,
-      borderRadius: BorderRadius.circular(16),
-      elevation: 0.5,
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      onSelected: (value) {},
-      itemBuilder: (context) => [
-        const PopupMenuItem<String>(value: 'all', child: Text('الكل')),
-        const PopupMenuItem<String>(
-          value: 'customer',
-          child: Text('عملاء التطبيق'),
-        ),
-        const PopupMenuItem<String>(
-          value: 'company',
-          child: Text('شركات الشحن'),
-        ),
-      ],
-      child: CircularButton(
-        child: const Icon(Icons.filter_alt_outlined, color: AppColors.main),
-      ),
+    // List of filter options
+    final items = ['الكل', 'عملاء التطبيق', 'شركات الشحن'];
+
+    return CustomPopupMenuButton<String>(
+      key: const Key('filter_button'),
+      items: items,
+      initialValue: items.first,
+      itemLabelBuilder: (item) => item,
+      backgroundColor: AppColors.whiteGrey,
+      textStyle: AppTextStyles.style16w400(context),
+      onSelected: (index) {
+        debugPrint('Selected customer filter index: $index');
+        debugPrint('Selected filter: ${items[index]}');
+      },
     );
   }
 }

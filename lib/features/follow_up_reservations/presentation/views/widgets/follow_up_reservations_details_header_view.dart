@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lockers_admin_dashboard/core/utils/size_config.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../core/widgets/custom_search_field.dart';
@@ -12,8 +13,9 @@ class FollowUpReservationsDetailsHeaderView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig.init(context);
+    bool isMobile = SizeConfig.isMobile();
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         DashboardBackIcon(
           onPressed: () {
@@ -22,11 +24,8 @@ class FollowUpReservationsDetailsHeaderView extends StatelessWidget {
             );
           },
         ),
-        ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 300),
-          child: CustomSearchField(),
-        ),
-        const Spacer(),
+        Expanded(child: CustomSearchField()),
+        if (!isMobile) const Spacer(flex: 2) else SizedBox(width: 16),
         FilterCustomersButton(),
       ],
     );
