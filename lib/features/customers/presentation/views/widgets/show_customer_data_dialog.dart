@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:lockers_admin_dashboard/core/utils/assets.dart';
 
@@ -70,28 +71,68 @@ class ShowCustomerDataForm extends StatelessWidget {
                 text: 'القاهرة - حي الزمالك - شارع الميرغاب',
               ),
             ),
-            Container(
-              padding: const EdgeInsets.all(8.0),
-              decoration: BoxDecoration(
-                color: AppColors.filedGrey,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        'صور البطاقة الشخصية ( وجه البطاقة )',
-                        style: AppTextStyles.style16w400(context),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 16),
-                ],
-              ),
+            CustomerDataCardWidget(
+              title: 'صور البطاقة الشخصية ( وجه البطاقة )',
+              assetImage: Assets.imagesTestFaceCard,
+            ),
+            CustomerDataCardWidget(
+              title: 'صور البطاقة الشخصية ( ظهر البطاقة )',
+              assetImage: Assets.imagesTestBackCard,
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class CustomerDataCardWidget extends StatelessWidget {
+  const CustomerDataCardWidget({
+    super.key,
+    required this.title,
+    this.assetImage,
+    this.video,
+  });
+  final String title;
+  final String? assetImage;
+  final Widget? video;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.filedGrey,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Text(
+                  'صور البطاقة الشخصية ( وجه البطاقة )',
+                  style: AppTextStyles.style16w400(context),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 8),
+          Container(
+            width: double.infinity,
+            height: 260,
+            decoration: BoxDecoration(
+              color: AppColors.whiteGrey,
+              borderRadius: BorderRadius.circular(8),
+              image: assetImage == null
+                  ? null
+                  : DecorationImage(
+                      image: AssetImage(assetImage!),
+                      fit: BoxFit.cover,
+                    ),
+            ),
+            child: video,
+          ),
+        ],
       ),
     );
   }
