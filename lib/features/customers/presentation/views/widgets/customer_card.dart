@@ -4,9 +4,9 @@ import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/assets.dart';
 import '../../../data/enums/customer_type.dart';
-import 'customers_blocked_button.dart';
-import 'customers_new_button.dart';
-import 'customers_system_button.dart';
+import 'blocked_customers_button.dart';
+import 'new_customers_button.dart';
+import 'system_customers_button.dart';
 
 class CustomerCard extends StatelessWidget {
   const CustomerCard({super.key, required this.type});
@@ -45,9 +45,9 @@ class CustomerCard extends StatelessWidget {
               style: AppTextStyles.style16w400(context),
             ),
             const Spacer(flex: 2),
-            if (type == CustomerType.system) CustomersSystemButton(),
-            if (type == CustomerType.blocked) CustomersBlockedButton(),
-            if (type == CustomerType.newCustomers) CustomersNewButton(),
+            if (type == CustomerType.system) SystemCustomersButton(),
+            if (type == CustomerType.blocked) BlockedCustomersButton(),
+            if (type == CustomerType.newCustomers) NewCustomersButton(),
           ],
         ),
       ),

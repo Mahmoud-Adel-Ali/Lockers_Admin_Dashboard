@@ -4,8 +4,8 @@ import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/widgets/dialog_helper.dart';
 
-class CustomersBlockedButton extends StatelessWidget {
-  const CustomersBlockedButton({super.key});
+class BlockedCustomersButton extends StatelessWidget {
+  const BlockedCustomersButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class CustomersBlockedButton extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
-          color: AppColors.black,
+          color: AppColors.phosphorGreen,
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(16),
             bottomRight: Radius.circular(16),

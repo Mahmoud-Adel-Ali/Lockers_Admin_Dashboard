@@ -4,8 +4,8 @@ import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/widgets/dialog_helper.dart';
 
-class CustomersSystemButton extends StatelessWidget {
-  const CustomersSystemButton({super.key});
+class SystemCustomersButton extends StatelessWidget {
+  const SystemCustomersButton({super.key});
 
   @override
   Widget build(BuildContext context) {
