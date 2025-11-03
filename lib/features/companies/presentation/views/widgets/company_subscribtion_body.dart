@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import 'company_info_item.dart';
-import 'custom_circle_percent_indicator.dart';
+import '../../../../../core/widgets/custom_circle_percent_indicator.dart';
 
 class CompanySubscribtionBody extends StatelessWidget {
   const CompanySubscribtionBody({super.key});

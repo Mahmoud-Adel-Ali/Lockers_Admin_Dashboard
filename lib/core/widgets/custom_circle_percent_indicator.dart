@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
-import '../../../../../../core/utils/app_colors.dart';
-import '../../../../../../core/utils/app_text_styles.dart';
+import '../../../core/utils/app_colors.dart';
+import '../../../core/utils/app_text_styles.dart';
 
 class CustomCirclePercentIndicator extends StatelessWidget {
   final double percent;
