@@ -1,75 +1,76 @@
 import 'package:flutter/material.dart';
-import 'package:lockers_admin_dashboard/core/utils/assets.dart';
 
 import '../../../../../../core/utils/size_config.dart';
 import '../../../../../../core/widgets/custom_dialog.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
+import '../../../../../core/utils/assets.dart';
+import '../../../../../core/widgets/circular_button.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/custom_labeled_checkbox.dart';
-import '../../../../../core/widgets/profile_text_field.dart';
-import 'edit_employee_data_dialog.dart';
+import '../../../../../core/widgets/custom_phone_text_filed.dart';
+import '../../../../../core/widgets/custom_text_form_field.dart';
+import '../../../../../core/widgets/dialog_helper.dart';
 
-Future<dynamic> showEmployeeDataDialog(BuildContext context) {
+Future<dynamic> editEmployeeDataDialog(BuildContext context) {
   return showDialog(
     context: context,
     builder: (context) {
       return CustomDialog(
+        title: 'تعديل بيانات الموظف',
         constraints: BoxConstraints(
           maxWidth: 500,
           maxHeight: SizeConfig.height * 0.95,
         ),
-        leading: CustomButton(
-          onPressed: () {
-            Navigator.pop(context);
-            editEmployeeDataDialog(context);
-          },
-          horizontal: 0,
-          text: 'تعديل البيانات',
-        ),
-        child: const ShowEmployeeDataForm(),
+        child: const EditEmployeeDataForm(),
       );
     },
   );
 }
 
-class ShowEmployeeDataForm extends StatelessWidget {
-  const ShowEmployeeDataForm({super.key});
+class EditEmployeeDataForm extends StatelessWidget {
+  const EditEmployeeDataForm({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return AbsorbPointer(
-      absorbing: true,
+    return Form(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           spacing: 16,
           children: [
-            Text(
-              'بيانات حساب الموظف',
-              style: AppTextStyles.style20w500(context),
-            ),
             SizedBox(
               height: 150,
               width: 150,
-              child: CircleAvatar(
-                radius: 100,
-                backgroundColor: AppColors.whiteGrey,
-                backgroundImage: AssetImage(Assets.imagesTestUserImage),
+              child: Stack(
+                children: [
+                  CircleAvatar(
+                    radius: 100,
+                    backgroundColor: AppColors.whiteGrey,
+                    backgroundImage: AssetImage(Assets.imagesTestUserImage),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    child: CircularButton(
+                      child: const Icon(Icons.camera_alt_outlined, size: 15),
+                      onPressed: () {},
+                    ),
+                  ),
+                ],
               ),
             ),
             const SizedBox(),
-            ProfileTextField(
-              title: 'الإسم',
+            CustomTextFormField(
+              lable: 'الإسم',
               controller: TextEditingController(text: 'محمدخالد عبدالرازق'),
             ),
-            ProfileTextField(
-              title: 'رقم الهاتف',
+            CustomPhoneTextField(
+              label: 'رقم الهاتف',
               controller: TextEditingController(text: '+20 0108765243456'),
             ),
-            ProfileTextField(
-              title: 'الإيميل',
-              controller: TextEditingController(text: 'mohammed123@gmail.com'),
+            CustomTextFormField(
+              lable: 'الإيميل',
+              controller: TextEditingController(text: 's4Fp2@example.com'),
             ),
             Container(
               padding: const EdgeInsets.all(8.0),
@@ -90,7 +91,7 @@ class ShowEmployeeDataForm extends StatelessWidget {
                   SizedBox(height: 16),
                   CustomLabeledCheckBox(
                     label: 'إدارة شركات الشحن',
-                    initialValue: true,
+                    initialValue: false,
                     onChanged: (value) {},
                   ),
                   CustomLabeledCheckBox(
@@ -100,7 +101,7 @@ class ShowEmployeeDataForm extends StatelessWidget {
                   ),
                   CustomLabeledCheckBox(
                     label: 'متابعة الحجوزات',
-                    initialValue: true,
+                    initialValue: false,
                     onChanged: (value) {},
                   ),
                   CustomLabeledCheckBox(
@@ -120,6 +121,18 @@ class ShowEmployeeDataForm extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+            SizedBox(height: 16),
+            CustomButton(
+              text: 'تعديل',
+              onPressed: () {
+                Navigator.pop(context);
+                DialogHelper.showSuccessDialog(
+                  context,
+                  title: 'تم',
+                  desc: 'تم تعديل بيانات الموظف بنجاح',
+                );
+              },
             ),
           ],
         ),

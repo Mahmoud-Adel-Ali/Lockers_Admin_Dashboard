@@ -8,9 +8,11 @@ class CustomPhoneTextField extends StatefulWidget {
   const CustomPhoneTextField({
     super.key,
     this.hintText = 'رقم الهاتف',
+    this.label,
     this.controller,
   });
   final String hintText;
+  final String? label;
   final TextEditingController? controller;
   @override
   State<CustomPhoneTextField> createState() => _CustomPhoneTextFieldState();
@@ -24,6 +26,7 @@ class _CustomPhoneTextFieldState extends State<CustomPhoneTextField> {
     return CustomTextFormField(
       hintText: widget.hintText,
       controller: widget.controller,
+      lable: widget.label,
       keyboardType: TextInputType.phone,
       suffixIcon: Icon(
         Icons.phone,

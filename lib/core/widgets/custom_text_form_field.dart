@@ -6,7 +6,7 @@ import '../utils/app_text_styles.dart';
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     super.key,
-    required this.hintText,
+    this.hintText = '',
     this.controller,
     this.validator,
     this.obscureText = false,
@@ -56,12 +56,7 @@ class CustomTextFormField extends StatelessWidget {
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,
         label: lable != null
-            ? Text(
-                lable!,
-                style: AppTextStyles.style12w400(
-                  context,
-                ).copyWith(color: colorText),
-              )
+            ? Text(lable!, style: AppTextStyles.style16w700(context))
             : null,
         hint: Text(
           hintText,
