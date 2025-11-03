@@ -5,6 +5,7 @@ import '../../../../companies/presentation/views/companies_view.dart';
 import '../../../../companies/presentation/views/company_details_view.dart';
 import '../../../../companies/presentation/views/company_emplyees_view.dart';
 import '../../../../complaints/presentation/views/complaints_view.dart';
+import '../../../../customers/presentation/views/customers_view.dart';
 import '../../../../employees/presentation/views/employees_view.dart';
 import '../../../../follow_up_reservations/presentation/views/follow_up_reservations_details_view.dart';
 import '../../../../follow_up_reservations/presentation/views/follow_up_reservations_view.dart';
@@ -16,9 +17,9 @@ import '../../../data/enums/dashboard_type.dart';
 Widget getCurrentCompanyDashboardView(DashboardType type) {
   switch (type) {
     case DashboardType.Home:
-      return Center(child: Text('Home'));
+      return const Center(child: Text('Home'));
     case DashboardType.ShippingCompanies:
-      return CompaniesView();
+      return const CompaniesView();
     case DashboardType.Units:
       return const UnitsView();
     case DashboardType.FollowUpReservations:
@@ -26,7 +27,7 @@ Widget getCurrentCompanyDashboardView(DashboardType type) {
     case DashboardType.Agreements:
       return const AgreementsView();
     case DashboardType.Customers:
-      return Center(child: Text('Customers'));
+      return const CustomersView();
     case DashboardType.Employees:
       return const EmployeesView();
     case DashboardType.Complaints:
