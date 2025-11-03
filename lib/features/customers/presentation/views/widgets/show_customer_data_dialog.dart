@@ -6,7 +6,9 @@ import '../../../../../../core/utils/size_config.dart';
 import '../../../../../../core/widgets/custom_dialog.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
+import '../../../../../core/views/show_location_view.dart';
 import '../../../../../core/widgets/profile_text_field.dart';
+import 'video_preview_widget.dart';
 
 Future<dynamic> showCustomerDataDialog(BuildContext context) {
   return showDialog(
@@ -29,58 +31,77 @@ class ShowCustomerDataForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AbsorbPointer(
-      absorbing: true,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          spacing: 16,
-          children: [
-            SizedBox(
-              height: 150,
-              width: 150,
-              child: CircleAvatar(
-                radius: 100,
-                backgroundColor: AppColors.whiteGrey,
-                backgroundImage: AssetImage(Assets.imagesTestUserImage),
-              ),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        spacing: 16,
+        children: [
+          SizedBox(
+            height: 150,
+            width: 150,
+            child: CircleAvatar(
+              radius: 100,
+              backgroundColor: AppColors.whiteGrey,
+              backgroundImage: AssetImage(Assets.imagesTestUserImage),
             ),
-            const SizedBox(),
-            ProfileTextField(
-              title: 'الإسم',
-              controller: TextEditingController(text: 'محمدخالد عبدالرازق'),
+          ),
+          const SizedBox(),
+          AbsorbPointer(
+            absorbing: true,
+            child: Column(
+              spacing: 16,
+              children: [
+                ProfileTextField(
+                  title: 'الإسم',
+                  controller: TextEditingController(text: 'محمدخالد عبدالرازق'),
+                ),
+                ProfileTextField(
+                  title: 'رقم الهاتف',
+                  controller: TextEditingController(text: '+20 0108765243456'),
+                ),
+                ProfileTextField(
+                  title: 'الإيميل',
+                  controller: TextEditingController(
+                    text: 'mohammed123@gmail.com',
+                  ),
+                ),
+              ],
             ),
-            ProfileTextField(
-              title: 'رقم الهاتف',
-              controller: TextEditingController(text: '+20 0108765243456'),
-            ),
-            ProfileTextField(
-              title: 'الإيميل',
-              controller: TextEditingController(text: 'mohammed123@gmail.com'),
-            ),
-            ProfileTextField(
-              suffixIcon: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Image.asset(
-                  Assets.imagesGoogleMap,
-                  width: 20,
-                  height: 20,
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.of(context).pushNamed(ShowLocationView.routeName);
+            },
+            child: AbsorbPointer(
+              absorbing: true,
+              child: ProfileTextField(
+                suffixIcon: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.asset(
+                    Assets.imagesGoogleMap,
+                    width: 20,
+                    height: 20,
+                  ),
+                ),
+                controller: TextEditingController(
+                  text: 'القاهرة - حي الزمالك - شارع الميرغاب',
                 ),
               ),
-              controller: TextEditingController(
-                text: 'القاهرة - حي الزمالك - شارع الميرغاب',
-              ),
             ),
-            CustomerDataCardWidget(
-              title: 'صور البطاقة الشخصية ( وجه البطاقة )',
-              assetImage: Assets.imagesTestFaceCard,
-            ),
-            CustomerDataCardWidget(
-              title: 'صور البطاقة الشخصية ( ظهر البطاقة )',
-              assetImage: Assets.imagesTestBackCard,
-            ),
-          ],
-        ),
+          ),
+          CustomerDataCardWidget(
+            title: 'صور البطاقة الشخصية ( وجه البطاقة )',
+            assetImage: Assets.imagesTestFaceCard,
+          ),
+          CustomerDataCardWidget(
+            title: 'صور البطاقة الشخصية ( ظهر البطاقة )',
+            assetImage: Assets.imagesTestBackCard,
+          ),
+          CustomerDataCardWidget(
+            title: 'فيديو قصير',
+            video: const VideoPreviewWidget(),
+          ),
+        ],
       ),
     );
   }
@@ -109,10 +130,7 @@ class CustomerDataCardWidget extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Text(
-                  'صور البطاقة الشخصية ( وجه البطاقة )',
-                  style: AppTextStyles.style16w400(context),
-                ),
+                Text(title, style: AppTextStyles.style16w400(context)),
               ],
             ),
           ),

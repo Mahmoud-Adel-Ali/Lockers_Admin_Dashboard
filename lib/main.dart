@@ -5,7 +5,9 @@ import 'package:provider/provider.dart';
 import 'features/dashboard/presentation/manager/dashboard_manager.dart';
 import 'lockers_admin_dashboard.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(
     MultiProvider(
       providers: [
