@@ -15,8 +15,8 @@ class EmployeesViewHeader extends StatelessWidget {
     return Row(
       spacing: 8,
       children: [
-        Expanded(child: CustomSearchField(hintText: 'ابحث عن موظف')),
-        if (!isMobile) const Spacer(),
+        Expanded(flex: 2, child: CustomSearchField(hintText: 'ابحث عن موظف')),
+        if (!isMobile) const Spacer(flex: 3),
         EmployeesSelectorField(),
         if (!isMobile) AddEmployeeButton(),
       ],

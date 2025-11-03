@@ -13,13 +13,13 @@ class FilterButton extends StatelessWidget {
     required this.inactiveIcon,
     required this.isSelected,
     this.onTap,
-    this.height = 45,
+    // this.height = 45,
     this.activeColor = AppColors.main,
     this.inactiveColor = AppColors.babyBlue,
   });
   final String title;
   final bool isSelected;
-  final double? height;
+  // final double? height;
   final VoidCallback? onTap;
   final String activeIcon, inactiveIcon;
   final Color activeColor, inactiveColor;
@@ -30,8 +30,8 @@ class FilterButton extends StatelessWidget {
       borderRadius: BorderRadius.circular(16),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: kAnimationDuration),
-        height: height,
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+        // height: height,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           color: isSelected ? activeColor : inactiveColor,
