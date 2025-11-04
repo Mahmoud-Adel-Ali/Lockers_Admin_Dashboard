@@ -1,12 +1,15 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/custom_phone_text_filed.dart';
 import '../../../../../core/widgets/custom_text_button.dart';
 import '../../../../../core/widgets/custom_text_password.dart';
+import '../../../../../core/widgets/dialog_helper.dart';
 import '../../../../dashboard/presentation/views/admin_dashboard_view.dart';
+import '../../manager/auth_provider.dart';
 import '../forget_password_view.dart';
 
 class SigninForm extends StatefulWidget {
@@ -33,7 +36,7 @@ class _SigninFormState extends State<SigninForm> {
 
   @override
   Widget build(BuildContext context) {
-    // var prov = context.watch<AuthProvider>();
+    var prov = context.watch<AuthProvider>();
     return Form(
       key: formKey,
       child: Column(
@@ -53,29 +56,25 @@ class _SigninFormState extends State<SigninForm> {
           CustomButton(
             text: 'تسجيل الدخول',
             onPressed: () async {
-              Navigator.pushReplacementNamed(
-                context,
-                AdminDashboardView.routeName,
-              );
-              // if (formKey.currentState!.validate()) {
-              //   await prov.signin(
-              //     phone: phoneController.text,
-              //     password: passwordController.text,
-              //   );
+              if (formKey.currentState!.validate()) {
+                await prov.signin(
+                  phone: phoneController.text,
+                  password: passwordController.text,
+                );
 
-              //   if (prov.checSingin == true) {
-              //     Navigator.pushReplacementNamed(
-              //       context,
-              //       CompanyDashboardView.routeName,
-              //     );
-              //   } else if (prov.checSingin == false) {
-              //     DialogHelper.showErrorDialog(
-              //       context,
-              //       title: 'خطا',
-              //       desc: prov.message,
-              //     );
-              //   }
-              // }
+                if (prov.checSingin == true) {
+                  Navigator.pushReplacementNamed(
+                    context,
+                    AdminDashboardView.routeName,
+                  );
+                } else if (prov.checSingin == false) {
+                  DialogHelper.showErrorDialog(
+                    context,
+                    title: 'خطا',
+                    desc: prov.message,
+                  );
+                }
+              }
             },
           ),
         ],

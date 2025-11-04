@@ -1,10 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/widgets/custom_text_button.dart';
+import '../../manager/auth_provider.dart';
 
 class ResentOtpWidget extends StatefulWidget {
   const ResentOtpWidget({super.key});
@@ -54,7 +56,7 @@ class _ResentOtpWidgetState extends State<ResentOtpWidget> {
               startCountdown();
 
               // Re-send the code
-              // await context.read<AuthProvider>().forgetPassword();
+              await context.read<AuthProvider>().forgetPassword();
             },
           )
         else

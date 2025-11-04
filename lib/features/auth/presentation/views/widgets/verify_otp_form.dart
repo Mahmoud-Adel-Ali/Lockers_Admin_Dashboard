@@ -1,9 +1,12 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/widgets/custom_button.dart';
+import '../../../../../core/widgets/dialog_helper.dart';
+import '../../manager/auth_provider.dart';
 import '../reset_password_view.dart';
 import 'pinput_field.dart';
 import 'resent_otp_widget.dart';
@@ -20,14 +23,14 @@ class _VerifyOtpFormState extends State<VerifyOtpForm> {
 
   @override
   Widget build(BuildContext context) {
-    // var prov = context.watch<AuthProvider>();
+    var prov = context.watch<AuthProvider>();
     return Column(
       children: [
         SizedBox(height: 24),
         Text('أدخل رقم ال PIN', style: AppTextStyles.style16w700(context)),
         SizedBox(height: 24),
         PinputField(
-          // controller: prov.otpController,
+          controller: prov.otpController,
           onChanged: (value) {
             otpIsComplete = value.length == 4;
             setState(() {});
@@ -42,18 +45,18 @@ class _VerifyOtpFormState extends State<VerifyOtpForm> {
             opacity: otpIsComplete ? 1 : 0.5,
             child: CustomButton(
               onPressed: () async {
-                // await prov.verifyOTP();
-                // if (prov.checkVerifyOTP == true) {
-                Navigator.of(
-                  context,
-                ).pushReplacementNamed(ResetPasswordView.routeName);
-                // } else {
-                //   DialogHelper.showErrorDialog(
-                //     context,
-                //     title: 'خطأ',
-                //     desc: prov.message,
-                //   );
-                // }
+                await prov.verifyOTP();
+                if (prov.checkVerifyOTP == true) {
+                  Navigator.of(
+                    context,
+                  ).pushReplacementNamed(ResetPasswordView.routeName);
+                } else {
+                  DialogHelper.showErrorDialog(
+                    context,
+                    title: 'خطأ',
+                    desc: prov.message,
+                  );
+                }
               },
             ),
           ),

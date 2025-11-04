@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../core/utils/assets.dart';
+import '../manager/auth_provider.dart';
 import 'widgets/custom_auth_view_body.dart';
 import 'widgets/verify_otp_form.dart';
 
@@ -14,6 +16,7 @@ class VerifyOtpView extends StatelessWidget {
       body: CustomAuthViewBody(
         title: 'تأكيد أنه أنت ؟',
         image: Assets.imagesForget2Background,
+        isLoading: context.watch<AuthProvider>().checkVerifyOTP == null,
         form: VerifyOtpForm(),
       ),
     );
