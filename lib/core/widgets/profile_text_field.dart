@@ -18,45 +18,34 @@ class ProfileTextField extends StatelessWidget {
   final bool readOnly;
   final Widget? suffixIcon;
   final VoidCallback? onTap;
-  final String Function(String?)? validator;
+  final String? Function(String?)? validator;
   final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Container(
-        width: double.infinity,
-        height: 52,
-        decoration: BoxDecoration(
-          color: AppColors.filedGrey,
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            if (title != null)
-              Padding(
-                padding: const EdgeInsets.only(right: 8.0),
+      child: CustomTextFormField(
+        hintText: '',
+        prefixIcon: title == null
+            ? null
+            : Padding(
+                padding: const EdgeInsets.only(
+                  left: 8.0,
+                  right: 8.0,
+                  top: 10.0,
+                ),
                 child: Text(
                   title!,
-                  style: AppTextStyles.style16w500(
+                  style: AppTextStyles.style14w400(
                     context,
-                  ).copyWith(color: AppColors.black2),
+                  ).copyWith(color: AppColors.black),
                 ),
               ),
-            SizedBox(width: title != null ? 16 : 0),
-            Expanded(
-              child: CustomTextFormField(
-                hintText: '',
-                readOnly: readOnly,
-                controller: controller,
-                validator: validator,
-                color: AppColors.filedGrey,
-                suffixIcon: suffixIcon,
-              ),
-            ),
-          ],
-        ),
+        readOnly: readOnly,
+        controller: controller,
+        validator: validator,
+        color: AppColors.filedGrey,
+        suffixIcon: suffixIcon,
       ),
     );
   }
