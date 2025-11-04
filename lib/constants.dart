@@ -7,6 +7,7 @@ const String poppins = 'Poppins';
 const int kAnimationDuration = 300;
 const String kErrorMsg =
     "حدث خطأ غير متوقع. يُرجى المحاولة مرة أخرى لاحقًا أو التواصل مع الدعم إذا استمرت المشكلة.";
+const String isLoggedIn = 'isLoggedIn-locker-admin';
 
 // Test Lists
 const List<String> cities = [
