@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../core/services/hive_services.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/dialog_helper.dart';
@@ -25,6 +26,8 @@ class LogoutButton extends StatelessWidget {
                   desc: 'هل ترغب في تسجيل الخروج من التطبيق؟',
                   btnOkText: 'نعم',
                   onOk: () {
+                    HiveServices.clearAdminData();
+                    HiveServices.setAdminLoggedOut();
                     Navigator.pushNamedAndRemoveUntil(
                       context,
                       SigninView.routeName,
