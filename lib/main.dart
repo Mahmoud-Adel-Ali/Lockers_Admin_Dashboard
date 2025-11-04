@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'core/services/service_locator.dart';
+import 'features/auth/presentation/manager/auth_provider.dart';
 import 'features/dashboard/presentation/manager/dashboard_manager.dart';
 import 'lockers_admin_dashboard.dart';
 
@@ -14,6 +15,7 @@ Future<void> main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => DashboardManager()),
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
         //
       ],
       child: const LockersAdminDashboard(),
