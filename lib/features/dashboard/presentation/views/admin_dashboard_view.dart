@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -6,12 +8,28 @@ import '../../../../core/utils/size_config.dart';
 import '../../../notification/presentation/view/notification_view.dart';
 import '../manager/dashboard_manager.dart';
 import '../manager/functions/get_current_company_dashboard_view.dart';
+import '../manager/profile_provider.dart';
 import 'widgets/admin_dashboard_app_bar.dart';
 import 'widgets/custom_drawer.dart';
 
 class AdminDashboardView extends StatelessWidget {
   const AdminDashboardView({super.key});
-  static const routeName = 'company_dashboard_view';
+  static const routeName = 'admin_dashboard_view';
+
+  @override
+  Widget build(BuildContext context) {
+    Future.microtask(() {
+      context.read<ProfileProvider>().getAdminData();
+    });
+    Future.microtask(() {
+      // another providers
+    });
+    return const AdminDashboardViewBody();
+  }
+}
+
+class AdminDashboardViewBody extends StatelessWidget {
+  const AdminDashboardViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {

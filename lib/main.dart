@@ -6,6 +6,7 @@ import 'core/functions/open_hive_boxes.dart';
 import 'core/services/service_locator.dart';
 import 'features/auth/presentation/manager/auth_provider.dart';
 import 'features/dashboard/presentation/manager/dashboard_manager.dart';
+import 'features/dashboard/presentation/manager/profile_provider.dart';
 import 'lockers_admin_dashboard.dart';
 
 Future<void> main() async {
@@ -19,6 +20,7 @@ Future<void> main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => DashboardManager()),
         ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => ProfileProvider()),
         //
       ],
       child: const LockersAdminDashboard(),

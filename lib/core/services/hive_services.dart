@@ -30,6 +30,11 @@ class HiveServices {
 
   /// Get Admin Data
   static AdminData getAdminData() {
+    // Get Permissions
+    final storedPermissions = adminBox.get(ApiKeys.permissions) ?? {};
+    final permissions = PermissionModel.fromJson(
+      Map<String, dynamic>.from(storedPermissions),
+    );
     return AdminData(
       id: adminBox.get(ApiKeys.id),
       token: adminBox.get(ApiKeys.token),
@@ -39,7 +44,7 @@ class HiveServices {
       image: adminBox.get(ApiKeys.image),
       active: adminBox.get(ApiKeys.active),
       role: adminBox.get(ApiKeys.role),
-      permissions: PermissionModel.fromJson(adminBox.get(ApiKeys.permissions)),
+      permissions: permissions,
     );
   }
 
