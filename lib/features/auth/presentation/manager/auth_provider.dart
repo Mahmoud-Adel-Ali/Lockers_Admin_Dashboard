@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/services/hive_services.dart';
 import '../../data/models/admin_data.dart';
 import '../../data/repos/auth_repo.dart';
 
@@ -26,8 +27,8 @@ class AuthProvider extends ChangeNotifier {
         checSingin = true;
         message = model.message;
         companyData = model.data;
-        // CompanyHiveServices.saveCompanyData(companyData!);
-        // CompanyHiveServices.setCompanyLoggedIn();
+        HiveServices.saveAdminData(companyData!);
+        HiveServices.setAdminLoggedIn();
       },
     );
     notifyListeners();
