@@ -15,7 +15,6 @@ class PackagesProvider extends ChangeNotifier {
   Future<void> getAllPackages() async {
     // Loading Stage
     checkGettingAllPackages = null;
-    message = '';
     notifyListeners();
 
     final response = await repo.getPackages();
@@ -54,5 +53,45 @@ class PackagesProvider extends ChangeNotifier {
     countLocker = TextEditingController(text: model.countLocker.toString());
     price = TextEditingController(text: model.price.toString());
     duration = TextEditingController(text: model.duration.toString());
+  }
+
+  //* Clear Controllers
+  void clearControllers() {
+    name.clear();
+    countLocker.clear();
+    price.clear();
+    duration.clear();
+  }
+
+  //* Update Package
+  bool? checkUpdatingPackage = false;
+
+  Future<void> updatePackage() async {
+    // Loading Stage
+    checkUpdatingPackage = null;
+    message = '';
+    notifyListeners();
+    PackageModel newPackage = PackageModel(
+      id: selectedPackage!.id,
+      name: name.text,
+      countLocker: int.parse(countLocker.text),
+      price: double.parse(price.text),
+      duration: int.parse(duration.text),
+    );
+
+    final response = await repo.updatePackage(package: newPackage);
+    response.fold(
+      (msg) {
+        message = msg;
+        checkUpdatingPackage = false;
+      },
+      (model) {
+        message = model.message;
+        checkUpdatingPackage = true;
+        getAllPackages();
+        clearControllers();
+      },
+    );
+    notifyListeners();
   }
 }
