@@ -4,10 +4,12 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/assets.dart';
+import '../../../data/models/package_model.dart';
 import 'edit_package_dialog.dart';
 
 class PackageCard extends StatelessWidget {
-  const PackageCard({super.key});
+  const PackageCard({super.key, required this.package});
+  final PackageModel package;
 
   @override
   Widget build(BuildContext context) {

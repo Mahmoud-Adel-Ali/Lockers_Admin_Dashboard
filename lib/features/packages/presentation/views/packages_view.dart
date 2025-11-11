@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:lockers_admin_dashboard/features/packages/presentation/manager/packages_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/size_config.dart';
+import '../../../../core/widgets/api_error_widget.dart';
 import 'widgets/add_new_package_dialog.dart';
 import 'widgets/packages_grid_view.dart';
 import 'widgets/packages_view_header.dart';
@@ -21,15 +24,30 @@ class PackagesView extends StatelessWidget {
               onPressed: () => addNewPackageDialog(context),
               child: const Icon(Icons.add, color: Colors.white),
             ),
-      body: Column(
-        children: [
-          SizedBox(height: 8),
-          PackagesViewHeader(),
-          SizedBox(height: 8),
-          Expanded(child: PackagesGridView()),
-          SizedBox(height: 8),
-        ],
+      body: Consumer<PackagesProvider>(
+        builder: (_, prov, _) {
+          return prov.checkGettingAllPackages == false
+              ? ApiErrorView(msg: prov.message, onRetry: prov.getAllPackages)
+              : PackagesViewBody();
+        },
       ),
+    );
+  }
+}
+
+class PackagesViewBody extends StatelessWidget {
+  const PackagesViewBody({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(height: 8),
+        PackagesViewHeader(),
+        SizedBox(height: 8),
+        Expanded(child: PackagesGridView()),
+        SizedBox(height: 8),
+      ],
     );
   }
 }
