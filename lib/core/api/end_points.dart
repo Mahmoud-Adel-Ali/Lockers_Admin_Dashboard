@@ -9,6 +9,7 @@ class EndPoints {
 
   //* Dashboard Endpoints
   static const complaints = '/api/admin/complains';
+  static const packages = '/api/admin/default-subscriptions';
 }
 
 // documentation :- https://documenter.getpostman.com/view/31698735/2sB3QDwYk7
