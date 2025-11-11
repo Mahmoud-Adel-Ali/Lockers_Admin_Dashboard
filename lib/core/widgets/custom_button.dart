@@ -12,11 +12,13 @@ class CustomButton extends StatelessWidget {
     this.color = AppColors.glowGreen,
     this.textColor = AppColors.white,
     this.horizontal = 25,
+    this.child,
   });
   final String text;
   final VoidCallback? onPressed;
   final Color color, textColor;
   final double horizontal;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +31,14 @@ class CustomButton extends StatelessWidget {
       onPressed: onPressed,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: horizontal, vertical: 10),
-        child: Text(
-          text,
-          style: AppTextStyles.style20w400(
-            context,
-          ).copyWith(color: textColor, fontFamily: vexa),
-        ),
+        child:
+            child ??
+            Text(
+              text,
+              style: AppTextStyles.style18w400(
+                context,
+              ).copyWith(color: textColor, fontFamily: vexa),
+            ),
       ),
     );
   }

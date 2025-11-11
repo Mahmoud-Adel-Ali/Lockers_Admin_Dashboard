@@ -1,1 +1,9 @@
-{}
+{
+  "the_language": "Language",
+  "language": "English",
+  "arabic": "Arabic",
+  "english": "English",
+  "ok": "OK",
+  "changeLanguageConfirmation": "Do you want to change the language?",
+  "unit": "Unit"
+}

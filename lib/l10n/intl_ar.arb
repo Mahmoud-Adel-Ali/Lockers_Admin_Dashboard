@@ -1,1 +1,9 @@
-{}
+{
+  "the_language": "اللغة",
+  "language": "العربية",
+  "arabic": "العربية",
+  "english": "الإنجليزية",
+  "ok": "موافق",
+  "changeLanguageConfirmation": "هل ترغب في تغيير اللغة؟",
+  "unit": "الوحده رقم"
+}

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/widgets/change_language_button.dart';
 import 'admin_profile_button.dart';
 import 'custom_drawer_list_view.dart';
 import 'logout_button.dart';
@@ -23,7 +24,7 @@ class CustomDrawer extends StatelessWidget {
           SizedBox(height: 24),
           Expanded(child: CustomDrawerListView()),
           SizedBox(height: 24),
-          // ChangeLanguageButton(),
+          ChangeLanguageButton(),
           LogoutButton(),
         ],
       ),
