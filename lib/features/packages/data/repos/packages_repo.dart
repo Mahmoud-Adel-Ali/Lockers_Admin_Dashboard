@@ -26,6 +26,24 @@ class PackagesRepo {
     }
   }
 
+  //* Add New Package
+  Future<Either<String, SimpleModel>> addNewPackage({
+    required PackageModel package,
+  }) async {
+    try {
+      final response = await dio.post(
+        EndPoints.packages,
+        data: package.toJson(),
+      );
+      return Right(SimpleModel.fromJson(response));
+    } on ServerException catch (e) {
+      return Left(e.errorModel.message);
+    } catch (e) {
+      log("Exception in addNewPackage: $e");
+      return Left(e.toString());
+    }
+  }
+
   //* Update Package
   Future<Either<String, SimpleModel>> updatePackage({
     required PackageModel package,
