@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/assets.dart';
 import '../../../data/models/package_model.dart';
+import '../../manager/packages_provider.dart';
 import 'edit_package_dialog.dart';
 
 class PackageCard extends StatelessWidget {
@@ -29,7 +31,10 @@ class PackageCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   InkWell(
-                    onTap: () => editPackageDialog(context),
+                    onTap: () {
+                      context.read<PackagesProvider>().onSelectPackage(package);
+                      editPackageDialog(context);
+                    },
                     child: Container(
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../utils/app_colors.dart';
 import '../utils/app_text_styles.dart';
@@ -22,6 +23,7 @@ class CustomTextFormField extends StatelessWidget {
     this.radius = 20,
     this.keyboardType,
     this.onChanged,
+    this.inputFormatters,
   });
 
   final String hintText;
@@ -37,6 +39,7 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? prefixIcon;
   final TextInputType? keyboardType;
   final AutovalidateMode autovalidateMode;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +53,7 @@ class CustomTextFormField extends StatelessWidget {
       obscureText: obscureText,
       readOnly: readOnly,
       keyboardType: keyboardType,
+      inputFormatters: inputFormatters,
       decoration: InputDecoration(
         filled: true,
         fillColor: color,

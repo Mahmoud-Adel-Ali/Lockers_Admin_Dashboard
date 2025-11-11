@@ -55,7 +55,7 @@ bool validatorOfPasswordBool(String? value) {
 
 String? validatorOfUserName(String? value) {
   if (value == null || value.trim().length < 3) {
-    return 'يجب أن يكون اسم المستخدم 3 أحرف على الأقل';
+    return 'يجب أن يكون الاسم 3 أحرف على الأقل';
   }
 
   bool upper = value.contains(RegExp(r'[A-Z]'));
@@ -97,4 +97,20 @@ bool validatorOfEgyptianPhoneBool(String? value) {
   if (value == null || value.isEmpty) return false;
   final isValid = regexPhone.hasMatch(value.trim());
   return isValid;
+}
+
+String? simpleValidator(String? value) {
+  if (value == null || value.isEmpty) {
+    return 'هذا الحقل مطلوب';
+  }
+  return null;
+}
+
+String? validatorOfPrice(String? value) {
+  if (value == null || value.isEmpty) {
+    return 'من فضلك أدخل السعر';
+  } else if (double.tryParse(value) == null) {
+    return 'يرجى إدخال رقم صالح';
+  }
+  return null;
 }
