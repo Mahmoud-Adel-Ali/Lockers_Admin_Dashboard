@@ -63,6 +63,37 @@ class PackagesProvider extends ChangeNotifier {
     duration.clear();
   }
 
+  //* Add New Package
+  bool? checkAddingNewPackage = false;
+
+  Future<void> addNewPackage() async {
+    // Loading Stage
+    checkAddingNewPackage = null;
+    message = '';
+    notifyListeners();
+    var newPackage = PackageModel(
+      id: 0,
+      name: name.text,
+      countLocker: int.parse(countLocker.text),
+      price: double.parse(price.text),
+      duration: int.parse(duration.text),
+    );
+    final response = await repo.addNewPackage(package: newPackage);
+    response.fold(
+      (msg) {
+        message = msg;
+        checkAddingNewPackage = false;
+      },
+      (model) {
+        message = model.message;
+        checkAddingNewPackage = true;
+        getAllPackages();
+        clearControllers();
+      },
+    );
+    notifyListeners();
+  }
+
   //* Update Package
   bool? checkUpdatingPackage = false;
 
