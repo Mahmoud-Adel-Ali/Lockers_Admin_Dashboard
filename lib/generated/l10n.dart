@@ -93,6 +93,11 @@ class S {
   String get unit {
     return Intl.message('Unit', name: 'unit', desc: '', args: []);
   }
+
+  /// `Error`
+  String get error {
+    return Intl.message('Error', name: 'error', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

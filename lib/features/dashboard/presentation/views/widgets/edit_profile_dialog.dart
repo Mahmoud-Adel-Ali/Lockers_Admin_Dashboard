@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../core/functions/check_unauthenticated.dart';
 import '../../../../../core/functions/snack_bar.dart';
 import '../../../../../core/functions/validation_of_input_fields.dart';
 import '../../../../../core/utils/app_colors.dart';
@@ -16,6 +17,7 @@ import '../../../../../core/widgets/custom_dialog.dart';
 import '../../../../../core/widgets/custom_progress_hub.dart';
 import '../../../../../core/widgets/dialog_helper.dart';
 import '../../../../../core/widgets/profile_text_field.dart';
+import '../../../../../generated/l10n.dart';
 import '../../manager/profile_provider.dart';
 import 'profile_password_filed.dart';
 
@@ -117,9 +119,10 @@ class EditProfileForm extends StatelessWidget {
                               Navigator.pop(context);
                               showSuccessSnackBar(context, msg: prov.message);
                             } else {
+                              checkUnauthenticated(context, msg: prov.message);
                               DialogHelper.showErrorDialog(
                                 context,
-                                title: 'خطا',
+                                title: S.of(context).error,
                                 desc: prov.message,
                               );
                             }

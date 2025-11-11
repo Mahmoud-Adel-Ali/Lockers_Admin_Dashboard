@@ -3,12 +3,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../core/functions/check_unauthenticated.dart';
 import '../../../../../core/functions/snack_bar.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/custom_dialog.dart';
 import '../../../../../core/widgets/custom_progress_hub.dart';
 import '../../../../../core/widgets/custom_text_password.dart';
 import '../../../../../core/widgets/dialog_helper.dart';
+import '../../../../../generated/l10n.dart';
 import '../../manager/profile_provider.dart';
 
 Future<void> changePasswordDialog(BuildContext context) async {
@@ -87,9 +89,13 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
                           msg: prov.checkChangingPasswordMessage,
                         );
                       } else {
+                        checkUnauthenticated(
+                          context,
+                          msg: prov.checkChangingPasswordMessage,
+                        );
                         DialogHelper.showErrorDialog(
                           context,
-                          title: 'خطا',
+                          title: S.of(context).error,
                           desc: prov.checkChangingPasswordMessage,
                         );
                       }

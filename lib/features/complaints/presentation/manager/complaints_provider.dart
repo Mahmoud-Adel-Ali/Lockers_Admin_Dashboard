@@ -51,15 +51,16 @@ class ComplaintsProvider extends ChangeNotifier {
   }
 
   //* Reply to complaint
+  var replyController = TextEditingController();
   bool? checkReplyingToComplaint = false;
-  Future<void> replyToComplaint({
-    required int id,
-    required String reply,
-  }) async {
+  Future<void> replyToComplaint({required int id}) async {
     checkReplyingToComplaint = null;
     notifyListeners();
 
-    final result = await repo.replyToComplaint(id: id, reply: reply);
+    final result = await repo.replyToComplaint(
+      id: id,
+      reply: replyController.text,
+    );
     result.fold(
       (msg) {
         message = msg;
@@ -69,6 +70,7 @@ class ComplaintsProvider extends ChangeNotifier {
         message = model.message;
         checkReplyingToComplaint = true;
         getAllComplaints();
+        replyController.clear();
       },
     );
     notifyListeners();

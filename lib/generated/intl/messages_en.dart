@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Do you want to change the language?",
     ),
     "english": MessageLookupByLibrary.simpleMessage("English"),
+    "error": MessageLookupByLibrary.simpleMessage("Error"),
     "language": MessageLookupByLibrary.simpleMessage("English"),
     "ok": MessageLookupByLibrary.simpleMessage("OK"),
     "the_language": MessageLookupByLibrary.simpleMessage("Language"),
