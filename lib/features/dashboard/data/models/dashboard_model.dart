@@ -53,12 +53,12 @@ List<DashboardModel> adminFeaturesList = [
     icon: Assets.imagesActiveFollowUpReservationIcon,
     relatedTypes: [DashboardType.FollowUpReservationsDetails],
   ),
-  //* Agreements
+  //* Packages
   DashboardModel(
-    title: 'الإتفاقات',
-    subtitle: 'الإتفاقات :',
-    type: DashboardType.Agreements,
-    icon: Assets.imagesActiveAgreementsIcon,
+    title: 'الباقات',
+    subtitle: 'الباقات :',
+    type: DashboardType.Packages,
+    icon: Assets.imagesActivePackagesIcon,
     relatedTypes: [],
   ),
   //* Customers

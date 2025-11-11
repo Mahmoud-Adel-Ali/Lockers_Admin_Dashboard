@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'agreement_card.dart';
+import 'package_card.dart';
 
-class AgreementsGridView extends StatelessWidget {
-  const AgreementsGridView({super.key});
+class PackagesGridView extends StatelessWidget {
+  const PackagesGridView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class AgreementsGridView extends StatelessWidget {
           ),
           itemCount: 20,
           itemBuilder: (context, index) {
-            return AgreementCard();
+            return PackageCard();
           },
         );
       },

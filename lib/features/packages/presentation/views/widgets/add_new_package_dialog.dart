@@ -7,7 +7,7 @@ import '../../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../../core/widgets/dialog_helper.dart';
 import 'white_grey_container.dart';
 
-Future<dynamic> addNewAgreementDialog(BuildContext context) {
+Future<dynamic> addNewPackageDialog(BuildContext context) {
   return showDialog(
     context: context,
     builder: (context) {
@@ -17,14 +17,14 @@ Future<dynamic> addNewAgreementDialog(BuildContext context) {
           maxWidth: 500,
           maxHeight: SizeConfig.height * 0.7,
         ),
-        child: const AddNewAgreementForm(),
+        child: const AddNewPackageForm(),
       );
     },
   );
 }
 
-class AddNewAgreementForm extends StatelessWidget {
-  const AddNewAgreementForm({super.key});
+class AddNewPackageForm extends StatelessWidget {
+  const AddNewPackageForm({super.key});
 
   @override
   Widget build(BuildContext context) {

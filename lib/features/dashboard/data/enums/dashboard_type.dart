@@ -5,7 +5,7 @@ enum DashboardType {
   ShippingCompanies, // شركات الشحن
   Units, // الوحدات
   FollowUpReservations, // متابعة الحجوزات
-  Agreements, // الإتفاقات
+  Packages, // الباقات
   Customers, // العملاء
   Employees, // الموظفين
   Complaints, // الشكاوي

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../agreements/presentation/views/agreements_view.dart';
 import '../../../../companies/presentation/views/companies_view.dart';
 import '../../../../companies/presentation/views/company_details_view.dart';
 import '../../../../companies/presentation/views/company_emplyees_view.dart';
@@ -11,6 +10,7 @@ import '../../../../follow_up_reservations/presentation/views/follow_up_reservat
 import '../../../../follow_up_reservations/presentation/views/follow_up_reservations_view.dart';
 import '../../../../home/presentation/views/home_view.dart';
 import '../../../../maintenance/presentation/views/maintenance_view.dart';
+import '../../../../packages/presentation/views/packages_view.dart';
 import '../../../../units/presentation/views/unit_details_view.dart';
 import '../../../../units/presentation/views/units_view.dart';
 import '../../../data/enums/dashboard_type.dart';
@@ -25,8 +25,8 @@ Widget getCurrentCompanyDashboardView(DashboardType type) {
       return const UnitsView();
     case DashboardType.FollowUpReservations:
       return const FollowUpReservationsView();
-    case DashboardType.Agreements:
-      return const AgreementsView();
+    case DashboardType.Packages:
+      return const PackagesView();
     case DashboardType.Customers:
       return const CustomersView();
     case DashboardType.Employees:

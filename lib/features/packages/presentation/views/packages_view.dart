@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/size_config.dart';
-import 'widgets/add_new_agreement_dialog.dart';
-import 'widgets/agreements_grid_view.dart';
-import 'widgets/agreements_view_header.dart';
+import 'widgets/add_new_package_dialog.dart';
+import 'widgets/packages_grid_view.dart';
+import 'widgets/packages_view_header.dart';
 
-class AgreementsView extends StatelessWidget {
-  const AgreementsView({super.key});
+class PackagesView extends StatelessWidget {
+  const PackagesView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,15 +18,15 @@ class AgreementsView extends StatelessWidget {
           ? null
           : FloatingActionButton(
               backgroundColor: AppColors.main,
-              onPressed: () => addNewAgreementDialog(context),
+              onPressed: () => addNewPackageDialog(context),
               child: const Icon(Icons.add, color: Colors.white),
             ),
       body: Column(
         children: [
           SizedBox(height: 8),
-          AgreementsViewHeader(),
+          PackagesViewHeader(),
           SizedBox(height: 8),
-          Expanded(child: AgreementsGridView()),
+          Expanded(child: PackagesGridView()),
           SizedBox(height: 8),
         ],
       ),

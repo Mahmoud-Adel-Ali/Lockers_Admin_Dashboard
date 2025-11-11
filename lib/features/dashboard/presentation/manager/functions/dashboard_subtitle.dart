@@ -18,8 +18,8 @@ String dashboardSubtitle(DashboardType type) {
       return 'الوحدات :';
     case DashboardType.FollowUpReservations:
       return 'متابعة الحجوزات :';
-    case DashboardType.Agreements:
-      return 'الإتفاقات :';
+    case DashboardType.Packages:
+      return 'الباقات :';
     case DashboardType.Customers:
       return 'العملاء :';
     case DashboardType.Complaints:

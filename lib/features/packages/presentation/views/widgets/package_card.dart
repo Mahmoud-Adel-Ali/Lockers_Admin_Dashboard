@@ -4,10 +4,10 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/assets.dart';
-import 'edit_agreement_dialog.dart';
+import 'edit_package_dialog.dart';
 
-class AgreementCard extends StatelessWidget {
-  const AgreementCard({super.key});
+class PackageCard extends StatelessWidget {
+  const PackageCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class AgreementCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   InkWell(
-                    onTap: () => editAgreementDialog(context),
+                    onTap: () => editPackageDialog(context),
                     child: Container(
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
@@ -40,7 +40,7 @@ class AgreementCard extends StatelessWidget {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      'Comapny',  
+                      'Comapny',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.end,
