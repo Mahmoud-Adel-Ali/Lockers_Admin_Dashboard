@@ -10,6 +10,7 @@ class ComplaintsProvider extends ChangeNotifier {
   List<ComplaintModel> complaints = [];
   List<ComplaintModel> filteredComplaints = [];
   ComplaintsType complaintsType = ComplaintsType.all;
+  var searchController = TextEditingController();
 
   String message = '';
   //* Get All Complaints
@@ -21,7 +22,7 @@ class ComplaintsProvider extends ChangeNotifier {
     message = '';
     notifyListeners();
 
-    final result = await repo.getAllComplaints();
+    final result = await repo.getAllComplaints(search: searchController.text);
     result.fold(
       (msg) {
         message = msg;

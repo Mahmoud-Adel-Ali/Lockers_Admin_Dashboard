@@ -12,9 +12,14 @@ class ComplaintsRepo {
   final DioConsumer dio = getit.get<DioConsumer>();
 
   //* Get All Complaints
-  Future<Either<String, ComplaintsResponseModel>> getAllComplaints() async {
+  Future<Either<String, ComplaintsResponseModel>> getAllComplaints({
+    required String search,
+  }) async {
     try {
-      final response = await dio.get(EndPoints.complaints, isFormData: false);
+      final response = await dio.get(
+        '${EndPoints.complaints}?search=$search',
+        isFormData: false,
+      );
       return Right(ComplaintsResponseModel.fromJson(response));
     } on ServerException catch (e) {
       return Left(e.errorModel.message);
