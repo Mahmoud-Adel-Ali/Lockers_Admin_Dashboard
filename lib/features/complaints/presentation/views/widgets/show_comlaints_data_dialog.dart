@@ -8,8 +8,12 @@ import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/widgets/dialog_helper.dart';
 import '../../../../../core/widgets/profile_text_field.dart';
+import '../../../data/models/complaint_model.dart';
 
-Future<dynamic> showComplaintDataDialog(BuildContext context) {
+Future<dynamic> showComplaintDataDialog(
+  BuildContext context, {
+  required ComplaintModel complaint,
+}) {
   return showDialog(
     context: context,
     builder: (context) {

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import '../../../../../core/utils/assets.dart';
 import '../../../../../core/widgets/custom_user_card.dart';
+import '../../../data/models/complaint_model.dart';
 import '../../manager/complaints_provider.dart';
 import 'show_comlaints_data_dialog.dart';
 
@@ -13,7 +13,7 @@ class ComplaintsGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var prov = context.watch<ComplaintsProvider>();
-    List complaints = prov.filteredComplaints;
+    List<ComplaintModel> complaints = prov.filteredComplaints;
     return LayoutBuilder(
       builder: (context, constraints) {
         var width = constraints.maxWidth;
@@ -30,12 +30,14 @@ class ComplaintsGridView extends StatelessWidget {
             ),
             itemCount: complaints.length,
             itemBuilder: (context, index) {
-              // var complaint = complaints[index];
+              ComplaintModel complaint = complaints[index];
               return CustomUserCard(
-                name: 'John Doe ${index + 2}',
-                phone: '1234567890',
-                assetsImage: Assets.imagesTestUserImage,
-                onTap: () => showComplaintDataDialog(context),
+                // (complaint.reply == null ? '🟢 ' : '') +
+                name: complaint.name,
+                phone: complaint.phone,
+                imgUrl: complaint.image,
+                onTap: () =>
+                    showComplaintDataDialog(context, complaint: complaint),
               );
             },
           ),
