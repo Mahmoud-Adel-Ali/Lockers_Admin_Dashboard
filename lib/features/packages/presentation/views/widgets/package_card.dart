@@ -42,7 +42,7 @@ class PackageCard extends StatelessWidget {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      'Comapny',
+                      package.name,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.end,
@@ -70,7 +70,7 @@ class PackageCard extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    '1500 EGP',
+                    '${package.price} جنيه',
                     style: AppTextStyles.style12w400(
                       context,
                     ).copyWith(color: AppColors.main),
@@ -94,7 +94,7 @@ class PackageCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Text(
-                          '123 حجز',
+                          '${package.countLocker} حجز',
                           style: AppTextStyles.style12w400(
                             context,
                           ).copyWith(color: AppColors.white),
@@ -117,7 +117,7 @@ class PackageCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Text(
-                          '3 أشهر',
+                          '${package.duration} شهر',
                           style: AppTextStyles.style12w400(
                             context,
                           ).copyWith(color: AppColors.white),
