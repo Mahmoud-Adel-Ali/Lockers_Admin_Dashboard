@@ -49,4 +49,28 @@ class ComplaintsProvider extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  //* Reply to complaint
+  bool? checkReplyingToComplaint = false;
+  Future<void> replyToComplaint({
+    required int id,
+    required String reply,
+  }) async {
+    checkReplyingToComplaint = null;
+    notifyListeners();
+
+    final result = await repo.replyToComplaint(id: id, reply: reply);
+    result.fold(
+      (msg) {
+        message = msg;
+        checkReplyingToComplaint = false;
+      },
+      (model) {
+        message = model.message;
+        checkReplyingToComplaint = true;
+        getAllComplaints();
+      },
+    );
+    notifyListeners();
+  }
 }
