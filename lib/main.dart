@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'core/functions/open_hive_boxes.dart';
+import 'core/providers/language_provider.dart';
 import 'core/services/service_locator.dart';
 import 'features/auth/presentation/manager/auth_provider.dart';
 import 'features/dashboard/presentation/manager/dashboard_manager.dart';
@@ -18,6 +19,7 @@ Future<void> main() async {
   runApp(
     MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => LanguageProvider()),
         ChangeNotifierProvider(create: (_) => DashboardManager()),
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => ProfileProvider()),

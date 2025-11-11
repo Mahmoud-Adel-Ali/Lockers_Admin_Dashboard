@@ -2,9 +2,11 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 
 import 'constants.dart';
 import 'core/functions/on_generate_route.dart';
+import 'core/providers/language_provider.dart';
 import 'core/services/hive_services.dart';
 import 'core/utils/app_colors.dart';
 import 'core/utils/size_config.dart';
@@ -17,6 +19,7 @@ class LockersAdminDashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var langProv = context.watch<LanguageProvider>();
     SizeConfig.init(context);
     bool isLoggedIn = HiveServices.isAdminLoggedIn();
     log("Widht: ${SizeConfig.width}");
@@ -30,7 +33,7 @@ class LockersAdminDashboard extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.main),
       ),
       debugShowCheckedModeBanner: false,
-      locale: const Locale('ar'),
+      locale: langProv.currentLocale,
       localizationsDelegates: [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
