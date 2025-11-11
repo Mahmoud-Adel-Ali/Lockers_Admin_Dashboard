@@ -13,7 +13,7 @@ class ComplaintsGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var prov = context.watch<ComplaintsProvider>();
-    List complaints = prov.complaints;
+    List complaints = prov.filteredComplaints;
     return LayoutBuilder(
       builder: (context, constraints) {
         var width = constraints.maxWidth;
