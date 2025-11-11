@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../providers/language_provider.dart';
 import '../utils/app_colors.dart';
 import '../utils/app_text_styles.dart';
 
@@ -43,41 +45,43 @@ class _CustomPopupMenuButtonState<T> extends State<CustomPopupMenuButton<T>> {
 
   @override
   Widget build(BuildContext context) {
-    return PopupMenuButton<int>(
-      offset: widget.offset,
-      borderRadius: BorderRadius.circular(widget.borderRadius),
-      onSelected: (index) {
-        setState(() {
-          selectedItem = widget.items[index];
-        });
-        widget.onSelected(index);
-      },
-      itemBuilder: (context) => List.generate(widget.items.length, (index) {
-        final item = widget.items[index];
-        return PopupMenuItem<int>(
-          value: index,
-          child: Text(
-            widget.itemLabelBuilder(item),
-            style: widget.textStyle ?? AppTextStyles.style16w400(context),
-          ),
-        );
-      }),
-      child: Container(
-        padding: widget.padding,
-        decoration: BoxDecoration(
-          color: widget.backgroundColor,
-          borderRadius: BorderRadius.circular(widget.borderRadius),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              widget.itemLabelBuilder(selectedItem),
-              style: widget.textStyle,
+    return Consumer<LanguageProvider>(
+      builder: (_, prov, _) => PopupMenuButton<int>(
+        offset: widget.offset,
+        borderRadius: BorderRadius.circular(widget.borderRadius),
+        onSelected: (index) {
+          setState(() {
+            selectedItem = widget.items[index];
+          });
+          widget.onSelected(index);
+        },
+        itemBuilder: (context) => List.generate(widget.items.length, (index) {
+          final item = widget.items[index];
+          return PopupMenuItem<int>(
+            value: index,
+            child: Text(
+              widget.itemLabelBuilder(item),
+              style: widget.textStyle ?? AppTextStyles.style16w400(context),
             ),
-            const SizedBox(width: 4),
-            const Icon(Icons.keyboard_arrow_down, size: 18),
-          ],
+          );
+        }),
+        child: Container(
+          padding: widget.padding,
+          decoration: BoxDecoration(
+            color: widget.backgroundColor,
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                widget.itemLabelBuilder(selectedItem),
+                style: widget.textStyle,
+              ),
+              const SizedBox(width: 4),
+              const Icon(Icons.keyboard_arrow_down, size: 18),
+            ],
+          ),
         ),
       ),
     );
