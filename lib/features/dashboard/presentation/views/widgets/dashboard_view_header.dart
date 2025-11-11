@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../manager/dashboard_manager.dart';
-import '../../manager/functions/company_dashboard_subtitle.dart';
+import '../../manager/functions/dashboard_subtitle.dart';
 
 class DashboardViewHeader extends StatelessWidget {
   const DashboardViewHeader({super.key});
@@ -16,7 +16,7 @@ class DashboardViewHeader extends StatelessWidget {
       builder: (_, prov, _) => Row(
         children: [
           Text(
-            companyDashboardSubtitle(prov.type),
+            dashboardSubtitle(prov.type),
             style: AppTextStyles.style32w400(
               context,
             ).copyWith(color: AppColors.main),

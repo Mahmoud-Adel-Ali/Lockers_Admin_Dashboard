@@ -6,6 +6,7 @@ import 'core/functions/open_hive_boxes.dart';
 import 'core/providers/language_provider.dart';
 import 'core/services/service_locator.dart';
 import 'features/auth/presentation/manager/auth_provider.dart';
+import 'features/complaints/presentation/manager/complaints_provider.dart';
 import 'features/dashboard/presentation/manager/dashboard_manager.dart';
 import 'features/dashboard/presentation/manager/profile_provider.dart';
 import 'lockers_admin_dashboard.dart';
@@ -19,11 +20,13 @@ Future<void> main() async {
   runApp(
     MultiProvider(
       providers: [
+        //* Core Providers
         ChangeNotifierProvider(create: (_) => LanguageProvider()),
         ChangeNotifierProvider(create: (_) => DashboardManager()),
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => ProfileProvider()),
-        //
+        //* Features Providers
+        ChangeNotifierProvider(create: (_) => ComplaintsProvider()),
       ],
       child: const LockersAdminDashboard(),
     ),

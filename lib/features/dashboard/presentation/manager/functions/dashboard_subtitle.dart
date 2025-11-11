@@ -1,6 +1,6 @@
 import '../../../data/enums/dashboard_type.dart';
 
-String companyDashboardSubtitle(DashboardType type) {
+String dashboardSubtitle(DashboardType type) {
   //   var subtitle = adminFeaturesList
   //       .where((item) => item.type == type)
   //       .first

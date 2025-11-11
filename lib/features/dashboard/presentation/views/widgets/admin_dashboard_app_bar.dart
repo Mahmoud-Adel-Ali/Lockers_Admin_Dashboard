@@ -5,7 +5,7 @@ import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/assets.dart';
 import '../../manager/dashboard_manager.dart';
-import '../../manager/functions/company_dashboard_subtitle.dart';
+import '../../manager/functions/dashboard_subtitle.dart';
 
 class AdminDashboardAppBar extends StatelessWidget {
   const AdminDashboardAppBar({super.key});
@@ -19,7 +19,7 @@ class AdminDashboardAppBar extends StatelessWidget {
         children: [
           Expanded(
             child: Text(
-              companyDashboardSubtitle(prov.type),
+              dashboardSubtitle(prov.type),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: AppTextStyles.style20w500(context),
