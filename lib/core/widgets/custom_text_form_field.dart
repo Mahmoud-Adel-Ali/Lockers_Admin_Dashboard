@@ -60,11 +60,16 @@ class CustomTextFormField extends StatelessWidget {
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,
         label: lable != null
-            ? Text(lable!, style: AppTextStyles.style16w700(context))
+            ? Text(
+                lable!,
+                style: AppTextStyles.style16w500(
+                  context,
+                ).copyWith(color: colorText),
+              )
             : null,
         hint: Text(
           hintText,
-          style: AppTextStyles.style12w400(context).copyWith(color: colorText),
+          style: AppTextStyles.style16w500(context).copyWith(color: colorText),
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(radius),

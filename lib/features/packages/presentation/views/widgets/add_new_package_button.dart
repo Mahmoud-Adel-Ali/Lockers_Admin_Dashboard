@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../core/utils/assets.dart';
 import '../../../../../core/widgets/filter_button.dart';
+import '../../manager/packages_provider.dart';
 import 'add_new_package_dialog.dart';
 
 class AddNewPackageButton extends StatelessWidget {
@@ -18,7 +20,10 @@ class AddNewPackageButton extends StatelessWidget {
           activeIcon: Assets.imagesAddIcon,
           inactiveIcon: Assets.imagesAddIcon,
           isSelected: false,
-          onTap: () => addNewPackageDialog(context),
+          onTap: () {
+            context.read<PackagesProvider>().clearControllers();
+            addNewPackageDialog(context);
+          },
         ),
       ),
     );
