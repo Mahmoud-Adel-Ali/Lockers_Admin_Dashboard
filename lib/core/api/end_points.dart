@@ -6,6 +6,9 @@ class EndPoints {
   static const verifyOTP = '/api/admin/verify-otp';
   static const resetPassword = '/api/admin/reset-password';
   static const profile = '/api/admin/profile';
+
+  //* Dashboard Endpoints
+  static const complaints = '/api/admin/complains';
 }
 
 // documentation :- https://documenter.getpostman.com/view/31698735/2sB3QDwYk7
