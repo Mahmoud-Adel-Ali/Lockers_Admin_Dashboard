@@ -72,7 +72,7 @@ class CompaniesProvider extends ChangeNotifier {
   //* Add Company
   // Company Image
   XFile? image;
-  void pickCompanyImage({required ImageSource source}) async {
+  void pickCompanyImage() async {
     image = await pickImage();
     notifyListeners();
   }
@@ -98,6 +98,8 @@ class CompaniesProvider extends ChangeNotifier {
     emailController.clear();
     passwordController.clear();
     passwordConfirmationController.clear();
+    locationDetailsModel = null;
+    image = null;
   }
 
   // on pick location from google map
@@ -105,6 +107,49 @@ class CompaniesProvider extends ChangeNotifier {
 
   void onPickLocation(LocationDetailsModel location) {
     locationDetailsModel = location;
+    notifyListeners();
+  }
+
+  // Add New Company Method
+  bool? checkAddNewCompany = false;
+  Future<void> addNewCompany() async {
+    if (locationDetailsModel == null) {
+      message = 'Please Pick Company Location';
+      checkAddNewCompany = false;
+      notifyListeners();
+      return;
+    } else if (image == null) {
+      message = 'Please Pick Company Image';
+      checkAddNewCompany = false;
+      notifyListeners();
+      return;
+    }
+    // Loading Stage
+    checkAddNewCompany = null;
+    message = '';
+    notifyListeners();
+
+    final response = await repo.addNewCompany(
+      image: image!,
+      name: nameController.text,
+      adminName: adminNameController.text,
+      phone: phoneController.text,
+      email: emailController.text,
+      password: passwordController.text,
+      passwordConfirmation: passwordConfirmationController.text,
+      location: locationDetailsModel!,
+    );
+    response.fold(
+      (msg) {
+        message = msg;
+        checkAddNewCompany = false;
+      },
+      (msg) {
+        message = msg.message;
+        checkAddNewCompany = true;
+        getAllCompanies();
+      },
+    );
     notifyListeners();
   }
 }
