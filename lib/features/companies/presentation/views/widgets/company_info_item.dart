@@ -25,7 +25,7 @@ class CompanyInfoItem extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: AppTextStyles.style16w500(
+                style: AppTextStyles.style16w700(
                   context,
                 ).copyWith(color: AppColors.main),
               ),
@@ -42,7 +42,9 @@ class CompanyInfoItem extends StatelessWidget {
                 trailing: trailing,
                 title: Text(
                   value,
-                  style: AppTextStyles.style16w400(
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppTextStyles.style16w700(
                     context,
                   ).copyWith(color: AppColors.black2),
                 ),
