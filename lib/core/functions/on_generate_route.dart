@@ -7,6 +7,7 @@ import '../../features/auth/presentation/views/verify_otp_view.dart';
 import '../../features/companies/presentation/views/pick_company_location_view.dart';
 import '../../features/dashboard/presentation/views/admin_dashboard_view.dart';
 import '../../features/notification/presentation/view/notification_view.dart';
+import '../models/location_details_model.dart';
 import '../views/show_location_view.dart';
 
 Route<dynamic> onGenerateRoutes(RouteSettings settings) {
@@ -26,7 +27,11 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
     case PickCompanyLocationView.routeName:
       return MaterialPageRoute(builder: (_) => const PickCompanyLocationView());
     case ShowLocationView.routeName:
-      return MaterialPageRoute(builder: (_) => const ShowLocationView());
+      LocationDetailsModel locationModel =
+          settings.arguments as LocationDetailsModel;
+      return MaterialPageRoute(
+        builder: (_) => ShowLocationView(locationModel: locationModel),
+      );
 
     default:
       return MaterialPageRoute(

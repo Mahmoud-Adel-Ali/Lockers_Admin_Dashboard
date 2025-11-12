@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../models/location_details_model.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/app_text_styles.dart';
 import '../../utils/assets.dart';
 import '../../widgets/profile_text_field.dart';
 
-Future<dynamic> showLocationDetailsBottomSheet(BuildContext context) {
+Future<dynamic> showLocationDetailsBottomSheet(
+  BuildContext context, {
+  required LocationDetailsModel locationModel,
+}) {
   return showModalBottomSheet(
     context: context,
     sheetAnimationStyle: AnimationStyle(
@@ -66,24 +70,32 @@ Future<dynamic> showLocationDetailsBottomSheet(BuildContext context) {
                   children: [
                     ProfileTextField(
                       title: 'المدينة :',
-                      controller: TextEditingController(text: 'سوهاج'),
+                      controller: TextEditingController(
+                        text: locationModel.city,
+                      ),
                     ),
                     ProfileTextField(
                       title: 'الحي :',
-                      controller: TextEditingController(text: 'جهينة'),
+                      controller: TextEditingController(
+                        text: locationModel.neighborhood,
+                      ),
                     ),
                     ProfileTextField(
                       title: 'الشارع :',
-                      controller: TextEditingController(text: 'عبدالحليم'),
+                      controller: TextEditingController(
+                        text: locationModel.street,
+                      ),
                     ),
                     ProfileTextField(
                       title: 'رقم المبني :',
-                      controller: TextEditingController(text: '8'),
+                      controller: TextEditingController(
+                        text: locationModel.buildingNum,
+                      ),
                     ),
                     ProfileTextField(
                       title: 'عنوان إضافي :',
                       controller: TextEditingController(
-                        text: 'برج الصفا الدور الخامس',
+                        text: locationModel.administrativeArea,
                       ),
                     ),
                   ],
