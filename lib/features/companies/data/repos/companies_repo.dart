@@ -12,9 +12,14 @@ class CompaniesRepo {
   final DioConsumer dio = getit.get<DioConsumer>();
 
   // Get All Companies
-  Future<Either<String, AllCompaniesResponse>> getAllCompanies() async {
+  Future<Either<String, AllCompaniesResponse>> getAllCompanies({
+    required String search,
+  }) async {
     try {
-      final response = await dio.get(EndPoints.companies, isFormData: false);
+      final response = await dio.get(
+        '${EndPoints.companies}?phone=$search',
+        isFormData: false,
+      );
       return Right(AllCompaniesResponse.fromJson(response));
     } on ServerException catch (e) {
       return Left(e.errorModel.message);

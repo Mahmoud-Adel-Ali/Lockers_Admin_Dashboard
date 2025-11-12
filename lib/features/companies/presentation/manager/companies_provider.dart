@@ -7,6 +7,7 @@ class CompaniesProvider extends ChangeNotifier {
   CompaniesRepo repo = CompaniesRepo();
 
   List<CompanyModel> companies = [];
+  var searchCompanyController = TextEditingController();
   String message = '';
 
   // Get All Companies
@@ -16,7 +17,9 @@ class CompaniesProvider extends ChangeNotifier {
     checkGetAllCompanies = null;
     notifyListeners();
 
-    final response = await repo.getAllCompanies();
+    final response = await repo.getAllCompanies(
+      search: searchCompanyController.text,
+    );
     response.fold(
       (msg) {
         message = msg;
