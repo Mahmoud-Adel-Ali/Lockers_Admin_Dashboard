@@ -1,10 +1,13 @@
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../../core/api/dio_consumer.dart';
 import '../../../../core/api/end_points.dart';
 import '../../../../core/errors/exception.dart';
+import '../../../../core/models/location_details_model.dart';
+import '../../../../core/models/simple_model.dart';
 import '../../../../core/services/service_locator.dart';
 import '../models/all_companies_response.dart';
 import '../models/company_response.dart';
@@ -44,6 +47,41 @@ class CompaniesRepo {
       return Left(e.errorModel.message);
     } catch (e) {
       log("Exception in getCompanyDetails: $e");
+      return Left(e.toString());
+    }
+  }
+
+  // Add New Company
+  Future<Either<String, SimpleModel>> addNewCompany({
+    required XFile image,
+    required String name,
+    required String adminName,
+    required String phone,
+    required String email,
+    required String password,
+    required String passwordConfirmation,
+    required LocationDetailsModel location,
+  }) async {
+    try {
+      Map<String, String> data = {
+        'name': name,
+        'admin_name': adminName,
+        'phone': phone,
+        'email': email,
+        'password': password,
+        'password_confirmation': passwordConfirmation,
+        ...location.toJson(),
+      };
+      final response = await dio.multipart(
+        path: EndPoints.companies,
+        imageFile: image,
+        fields: data,
+      );
+      return Right(SimpleModel.fromJson(response));
+    } on ServerException catch (e) {
+      return Left(e.errorModel.message);
+    } catch (e) {
+      log("Exception in addNewCompany: $e");
       return Left(e.toString());
     }
   }
