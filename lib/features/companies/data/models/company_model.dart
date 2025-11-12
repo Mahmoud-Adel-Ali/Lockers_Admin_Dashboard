@@ -15,6 +15,7 @@ class CompanyModel {
   final String additionAddress;
   final double latitude;
   final double longitude;
+  final bool isActive;
   final SubscriptionModel? subscription;
   final List<CompanyEmployeeModel> employees;
 
@@ -32,6 +33,7 @@ class CompanyModel {
     this.additionAddress = '',
     this.latitude = 0.0,
     this.longitude = 0.0,
+    this.isActive = false,
     this.subscription,
     this.employees = const [],
   });
@@ -49,6 +51,7 @@ class CompanyModel {
       street: json['street'] ?? '',
       buildNumber: json['buildNumber'] ?? '',
       additionAddress: json['additionAddress'] ?? '',
+      isActive: json['isActive'] == 1 ? true : false,
       latitude: (json['latitude'] != null)
           ? double.tryParse(json['latitude'].toString()) ?? 0.0
           : 0.0,
@@ -81,6 +84,7 @@ class CompanyModel {
       'additionAddress': additionAddress,
       'latitude': latitude,
       'longitude': longitude,
+      'isActive': isActive,
       'subscription': subscription?.toJson(),
       'employees': employees.map((e) => e.toJson()).toList(),
     };

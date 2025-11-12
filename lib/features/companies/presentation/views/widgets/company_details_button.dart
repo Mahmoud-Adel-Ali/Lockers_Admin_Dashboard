@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/dialog_helper.dart';
+import '../../../data/models/company_model.dart';
+import '../../manager/companies_provider.dart';
 
 class CompanyDetailsButton extends StatelessWidget {
   const CompanyDetailsButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // var prov = context.watch<CompaniesProvider>();
-    // CompanyModel? company = prov.companyDetails;
-    // bool isActive = company?.isActive ?? false;
+    var prov = context.watch<CompaniesProvider>();
+    CompanyModel? company = prov.companyDetails;
+    bool isActive = company?.isActive ?? false;
     return CustomButton(
-      text: 'إلغاء تفعيل الحساب',
-      color: AppColors.red,
+      text: isActive ? 'إلغاء تفعيل الحساب' : 'تفعيل الحساب',
+      color: isActive ? AppColors.red : AppColors.main,
       onPressed: () {
         DialogHelper.showQuestionDialog(
           context,
