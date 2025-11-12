@@ -3,6 +3,11 @@
         android:label="lockers_admin_dashboard"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        android:requestLegacyExternalStorage="true"
+
+        <!-- Googles Map Key -->
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCTh2cSDnCmblafoa1Kz6DyjMOpFzAqMp0"/>
+        
         <activity
             android:name=".MainActivity"
             android:exported="true"
