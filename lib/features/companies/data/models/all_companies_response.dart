@@ -3,19 +3,20 @@ import 'company_model.dart';
 class AllCompaniesResponse {
   final bool status;
   final String message;
-  final List<CompanyModel> data;
+  final List<CompanyModel> companies;
 
   const AllCompaniesResponse({
     required this.status,
     required this.message,
-    this.data = const [],
+    this.companies = const [],
   });
 
   factory AllCompaniesResponse.fromJson(Map<String, dynamic> json) {
     return AllCompaniesResponse(
       status: json['status'] ?? false,
       message: json['message'] ?? '',
-      data: (json['data'] as List?)
+      companies:
+          (json['data'] as List?)
               ?.map((e) => CompanyModel.fromJson(e))
               .toList() ??
           const [],
@@ -26,7 +27,7 @@ class AllCompaniesResponse {
     return {
       'status': status,
       'message': message,
-      'data': data.map((e) => e.toJson()).toList(),
+      'data': companies.map((e) => e.toJson()).toList(),
     };
   }
 }
