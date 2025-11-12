@@ -6,5 +6,9 @@
   "ok": "موافق",
   "changeLanguageConfirmation": "هل ترغب في تغيير اللغة؟",
   "unit": "الوحده رقم",
-  "error": "خطأ"
+  "error": "خطأ",
+  "location_service_error_title": "خطاء في خدمة الموقع",
+  "location_service_error_desc": "يبدو أن خدمة تحديد الموقع (GPS) مغلقة.\n\nيرجى تفعيل خدمة الموقع من إعدادات الهاتف ثم المحاولة مرة أخرى.",
+  "location_permission_error_title": "خطاء في صلاحيات الموقع",
+  "location_permission_error_desc": "التطبيق لا يمتلك إذن الوصول إلى موقعك.\n\nيرجى منح الإذن من إعدادات الهاتف لتفعيل ميزة تحديد الموقع."
 }

@@ -98,6 +98,46 @@ class S {
   String get error {
     return Intl.message('Error', name: 'error', desc: '', args: []);
   }
+
+  /// `Location Service Error`
+  String get location_service_error_title {
+    return Intl.message(
+      'Location Service Error',
+      name: 'location_service_error_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `It seems that the location service (GPS) is turned off.\n\nPlease enable it from your phone settings and try again.`
+  String get location_service_error_desc {
+    return Intl.message(
+      'It seems that the location service (GPS) is turned off.\n\nPlease enable it from your phone settings and try again.',
+      name: 'location_service_error_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Location Permission Error`
+  String get location_permission_error_title {
+    return Intl.message(
+      'Location Permission Error',
+      name: 'location_permission_error_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The app does not have permission to access your location.\n\nPlease grant location permission in your phone settings to enable location features.`
+  String get location_permission_error_desc {
+    return Intl.message(
+      'The app does not have permission to access your location.\n\nPlease grant location permission in your phone settings to enable location features.',
+      name: 'location_permission_error_desc',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

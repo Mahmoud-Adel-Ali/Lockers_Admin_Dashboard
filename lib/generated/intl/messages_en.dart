@@ -29,6 +29,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "english": MessageLookupByLibrary.simpleMessage("English"),
     "error": MessageLookupByLibrary.simpleMessage("Error"),
     "language": MessageLookupByLibrary.simpleMessage("English"),
+    "location_permission_error_desc": MessageLookupByLibrary.simpleMessage(
+      "The app does not have permission to access your location.\n\nPlease grant location permission in your phone settings to enable location features.",
+    ),
+    "location_permission_error_title": MessageLookupByLibrary.simpleMessage(
+      "Location Permission Error",
+    ),
+    "location_service_error_desc": MessageLookupByLibrary.simpleMessage(
+      "It seems that the location service (GPS) is turned off.\n\nPlease enable it from your phone settings and try again.",
+    ),
+    "location_service_error_title": MessageLookupByLibrary.simpleMessage(
+      "Location Service Error",
+    ),
     "ok": MessageLookupByLibrary.simpleMessage("OK"),
     "the_language": MessageLookupByLibrary.simpleMessage("Language"),
     "unit": MessageLookupByLibrary.simpleMessage("Unit"),

@@ -89,7 +89,15 @@ Future<dynamic> pickLocationBottomSheet(BuildContext context) {
                 ],
               ),
             ),
-            CustomButton(text: 'حفظ', onPressed: () => Navigator.pop(context)),
+            CustomButton(
+              text: 'حفظ',
+              onPressed: () {
+                //* Close bottom sheet
+                Navigator.pop(context);
+                //* Close pick location view and back with data
+                Navigator.pop(context);
+              },
+            ),
             SizedBox(height: 16),
           ],
         ),

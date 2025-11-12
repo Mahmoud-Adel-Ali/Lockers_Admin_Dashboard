@@ -29,6 +29,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "english": MessageLookupByLibrary.simpleMessage("الإنجليزية"),
     "error": MessageLookupByLibrary.simpleMessage("خطأ"),
     "language": MessageLookupByLibrary.simpleMessage("العربية"),
+    "location_permission_error_desc": MessageLookupByLibrary.simpleMessage(
+      "التطبيق لا يمتلك إذن الوصول إلى موقعك.\n\nيرجى منح الإذن من إعدادات الهاتف لتفعيل ميزة تحديد الموقع.",
+    ),
+    "location_permission_error_title": MessageLookupByLibrary.simpleMessage(
+      "خطاء في صلاحيات الموقع",
+    ),
+    "location_service_error_desc": MessageLookupByLibrary.simpleMessage(
+      "يبدو أن خدمة تحديد الموقع (GPS) مغلقة.\n\nيرجى تفعيل خدمة الموقع من إعدادات الهاتف ثم المحاولة مرة أخرى.",
+    ),
+    "location_service_error_title": MessageLookupByLibrary.simpleMessage(
+      "خطاء في خدمة الموقع",
+    ),
     "ok": MessageLookupByLibrary.simpleMessage("موافق"),
     "the_language": MessageLookupByLibrary.simpleMessage("اللغة"),
     "unit": MessageLookupByLibrary.simpleMessage("الوحده رقم"),
