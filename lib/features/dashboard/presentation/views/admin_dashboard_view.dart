@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/size_config.dart';
+import '../../../companies/presentation/manager/companies_provider.dart';
 import '../../../complaints/presentation/manager/complaints_provider.dart';
 import '../../../notification/presentation/view/notification_view.dart';
 import '../../../packages/presentation/manager/packages_provider.dart';
@@ -25,8 +26,9 @@ class AdminDashboardView extends StatelessWidget {
     });
     Future.microtask(() {
       // another providers
-      context.read<ComplaintsProvider>().getAllComplaints();
+      context.read<CompaniesProvider>().getAllCompanies();
       context.read<PackagesProvider>().getAllPackages();
+      context.read<ComplaintsProvider>().getAllComplaints();
     });
     return const AdminDashboardViewBody();
   }
