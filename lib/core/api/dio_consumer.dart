@@ -131,7 +131,7 @@ class DioConsumer extends ApiConsumer {
   @override
   Future<Map<String, dynamic>> multipart({
     required String path,
-    required Map<String, String> fields,
+    required Map<String, dynamic> fields,
     XFile? imageFile,
     Map<String, String>? queryParameters,
   }) async {

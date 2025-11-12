@@ -63,7 +63,7 @@ class CompaniesRepo {
     required LocationDetailsModel location,
   }) async {
     try {
-      Map<String, String> data = {
+      Map<String, dynamic> data = {
         'name': name,
         'admin_name': adminName,
         'phone': phone,

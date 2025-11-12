@@ -148,6 +148,7 @@ class CompaniesProvider extends ChangeNotifier {
         message = msg.message;
         checkAddNewCompany = true;
         getAllCompanies();
+        clearControllers();
       },
     );
     notifyListeners();
