@@ -10,22 +10,22 @@ class CompaniesProvider extends ChangeNotifier {
   String message = '';
 
   // Get All Companies
-  bool? checkGetAllCompaniesLoading = false;
+  bool? checkGetAllCompanies = false;
   Future<void> getAllCompanies() async {
     // Loading Stage
-    checkGetAllCompaniesLoading = null;
+    checkGetAllCompanies = null;
     notifyListeners();
 
     final response = await repo.getAllCompanies();
     response.fold(
       (msg) {
         message = msg;
-        checkGetAllCompaniesLoading = false;
+        checkGetAllCompanies = false;
       },
       (msg) {
         companies = msg.companies;
         message = msg.message;
-        checkGetAllCompaniesLoading = true;
+        checkGetAllCompanies = true;
       },
     );
     notifyListeners();

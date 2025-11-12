@@ -9,10 +9,11 @@ import '../../../../../core/utils/assets.dart';
 import '../../../../../core/utils/size_config.dart';
 import '../../../../dashboard/data/enums/dashboard_type.dart';
 import '../../../../dashboard/presentation/manager/dashboard_manager.dart';
+import '../../../data/models/company_model.dart';
 
 class CompanyCard extends StatelessWidget {
-  const CompanyCard({super.key});
-
+  const CompanyCard({super.key, required this.company});
+  final CompanyModel company;
   @override
   Widget build(BuildContext context) {
     return InkWell(
