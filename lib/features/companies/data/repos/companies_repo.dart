@@ -85,4 +85,21 @@ class CompaniesRepo {
       return Left(e.toString());
     }
   }
+
+  // Update Company [status]
+  Future<Either<String, SimpleModel>> updateCompanyStatus({
+    required int id,
+    required int status, // 0 | 1
+  }) async {
+    try {
+      Map<String, dynamic> data = {'status': status};
+      final response = await dio.post('${EndPoints.companies}/$id', data: data);
+      return Right(SimpleModel.fromJson(response));
+    } on ServerException catch (e) {
+      return Left(e.errorModel.message);
+    } catch (e) {
+      log("Exception in updateCompanyStatus: $e");
+      return Left(e.toString());
+    }
+  }
 }
