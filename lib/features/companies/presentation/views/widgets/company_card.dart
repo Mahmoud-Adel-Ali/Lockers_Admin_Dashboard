@@ -1,12 +1,9 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:lockers_admin_dashboard/core/widgets/custom_cached_network_image.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
-import '../../../../../core/utils/assets.dart';
-import '../../../../../core/utils/size_config.dart';
 import '../../../../dashboard/data/enums/dashboard_type.dart';
 import '../../../../dashboard/presentation/manager/dashboard_manager.dart';
 import '../../../data/models/company_model.dart';
@@ -29,22 +26,31 @@ class CompanyCard extends StatelessWidget {
         ),
         child: Column(
           children: [
-            const Spacer(),
-            CircleAvatar(
-              radius: max(SizeConfig.width * 0.025, 40),
-              child: Image.asset(
-                Assets.imagesTestCompanyImage,
-                height: 100,
-                width: 100,
+            const SizedBox(height: 16),
+            Expanded(
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return Container(
+                    width: constraints.maxWidth,
+                    height: constraints.maxHeight,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: customCachedNetworkImageprovider(
+                        company.image,
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
-            const Spacer(flex: 2),
+            const SizedBox(height: 16),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Column(
                 children: [
                   Text(
-                    'شركة حمدون للإستيراد والتصدير',
+                    company.name,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.center,
@@ -54,7 +60,7 @@ class CompanyCard extends StatelessWidget {
                   ),
                   SizedBox(height: 4),
                   Text(
-                    '+20 0109876543',
+                    company.phone,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: AppTextStyles.style16w400(
