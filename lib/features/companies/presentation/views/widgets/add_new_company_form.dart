@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:lockers_admin_dashboard/core/utils/app_colors.dart';
 
@@ -5,9 +7,10 @@ import '../../../../../../core/widgets/circular_button.dart';
 import '../../../../../../core/widgets/custom_button.dart';
 import '../../../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../../../core/widgets/custom_text_password.dart';
+import '../../../../../core/models/location_details_model.dart';
+import '../../../../../core/views/pick_location_view.dart';
 import '../../../../../core/widgets/custom_location_from_field.dart';
 import '../../../../../core/widgets/custom_phone_text_filed.dart';
-import '../../../../../core/views/pick_location_view.dart';
 
 class AddNewCompanyForm extends StatelessWidget {
   const AddNewCompanyForm({super.key});
@@ -52,8 +55,17 @@ class AddNewCompanyForm extends StatelessWidget {
                 CustomPasswordField(hintText: 'كلمة المرور'),
                 CustomLocationFormFied(
                   hintText: 'موقع الشركة',
-                  onTap: () {
-                    Navigator.of(context).pushNamed(PickLocationView.routeName);
+                  onTap: () async {
+                    final location = await Navigator.push<LocationDetailsModel>(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const PickLocationView(),
+                      ),
+                    );
+
+                    if (location != null) {
+                      log('City: ${location.toString()}');
+                    }
                   },
                 ),
                 SizedBox(height: 8),

@@ -41,6 +41,15 @@ class _PickLocationViewState extends State<PickLocationView> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    mapController.dispose();
+    markers.clear();
+    locationDetailsModel = null;
+    isLoading = false;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
@@ -53,8 +62,21 @@ class _PickLocationViewState extends State<PickLocationView> {
               mapController = controller;
               updateLocation();
             },
+            onTap: (latLng) {
+              // Update marker to new position
+              setLocationMarker(latLng);
+              // Update model values
+              locationDetailsModel = LocationDetailsModel(
+                latitude: latLng.latitude,
+                longitude: latLng.longitude,
+              );
+            },
           ),
-          PickLocationViewBody(isLoading: isLoading),
+
+          PickLocationViewBody(
+            isLoading: isLoading,
+            locationModel: locationDetailsModel,
+          ),
         ],
       ),
     );
@@ -104,7 +126,7 @@ class _PickLocationViewState extends State<PickLocationView> {
       markerId: const MarkerId('Your Location'),
       position: latLng,
       infoWindow: const InfoWindow(title: 'Your Location'),
-      icon: BitmapDescriptor.defaultMarker,
+      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
     );
 
     markers = {myLocationMarker};
@@ -113,8 +135,13 @@ class _PickLocationViewState extends State<PickLocationView> {
 }
 
 class PickLocationViewBody extends StatelessWidget {
-  const PickLocationViewBody({super.key, required this.isLoading});
+  const PickLocationViewBody({
+    super.key,
+    required this.isLoading,
+    required this.locationModel,
+  });
   final bool isLoading;
+  final LocationDetailsModel? locationModel;
 
   @override
   Widget build(BuildContext context) {
@@ -126,12 +153,17 @@ class PickLocationViewBody extends StatelessWidget {
           child: Row(children: [ArrowBackIcon()]),
         ),
         const Spacer(),
-        if (isLoading)
-          Center(child: const CircularProgressIndicator())
-        else
+        if (isLoading) Center(child: const CircularProgressIndicator()),
+        if (!isLoading)
           CustomButton(
             text: 'حفظ',
-            onPressed: () => pickLocationBottomSheet(context),
+            onPressed: () {
+              // Open bottom sheet to complete details
+              pickLocationDetailsBottomSheet(
+                context,
+                locationModel: locationModel!,
+              );
+            },
           ),
         SizedBox(height: 16),
       ],
