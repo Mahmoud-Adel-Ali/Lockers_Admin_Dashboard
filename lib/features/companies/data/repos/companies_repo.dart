@@ -7,6 +7,7 @@ import '../../../../core/api/end_points.dart';
 import '../../../../core/errors/exception.dart';
 import '../../../../core/services/service_locator.dart';
 import '../models/all_companies_response.dart';
+import '../models/company_response.dart';
 
 class CompaniesRepo {
   final DioConsumer dio = getit.get<DioConsumer>();
@@ -25,6 +26,24 @@ class CompaniesRepo {
       return Left(e.errorModel.message);
     } catch (e) {
       log("Exception in getAllCompanies: $e");
+      return Left(e.toString());
+    }
+  }
+
+  // Get Company Details
+  Future<Either<String, CompanyResponse>> getCompanyDetails({
+    required int id,
+  }) async {
+    try {
+      final response = await dio.get(
+        '${EndPoints.companies}/$id',
+        isFormData: false,
+      );
+      return Right(CompanyResponse.fromJson(response));
+    } on ServerException catch (e) {
+      return Left(e.errorModel.message);
+    } catch (e) {
+      log("Exception in getCompanyDetails: $e");
       return Left(e.toString());
     }
   }
