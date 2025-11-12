@@ -6,7 +6,7 @@ import '../../../../../../core/widgets/custom_dialog.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/custom_location_from_field.dart';
 import '../../../../../core/widgets/custom_text_form_field.dart';
-import '../../../../companies/presentation/views/pick_company_location_view.dart';
+import '../../../../../core/views/pick_location_view.dart';
 
 Future<dynamic> editUnitDialog(BuildContext context) {
   return showDialog(
@@ -40,9 +40,7 @@ class AddNewUnitForm extends StatelessWidget {
             CustomLocationFormFied(
               hintText: 'موقع الشركة',
               onTap: () {
-                Navigator.of(
-                  context,
-                ).pushNamed(PickCompanyLocationView.routeName);
+                Navigator.of(context).pushNamed(PickLocationView.routeName);
               },
             ),
             SizedBox(height: 16),

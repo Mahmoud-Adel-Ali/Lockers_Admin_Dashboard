@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../../core/utils/app_colors.dart';
-import '../../../../../core/utils/app_text_styles.dart';
-import '../../../../../core/utils/assets.dart';
-import '../../../../../core/widgets/custom_button.dart';
-import '../../../../../core/widgets/profile_text_field.dart';
+import '../../utils/app_colors.dart';
+import '../../utils/app_text_styles.dart';
+import '../../utils/assets.dart';
+import '../../widgets/custom_button.dart';
+import '../../widgets/profile_text_field.dart';
 
-Future<dynamic> pickCompanyLocationBottomSheet(BuildContext context) {
+Future<dynamic> pickLocationBottomSheet(BuildContext context) {
   return showModalBottomSheet(
     context: context,
     sheetAnimationStyle: AnimationStyle(

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/assets.dart';
-import '../../../../core/widgets/arrow_back_icon.dart';
-import '../../../../core/widgets/custom_button.dart';
-import 'widgets/pick_company_location_bottom_sheet.dart';
+import '../utils/assets.dart';
+import '../widgets/arrow_back_icon.dart';
+import '../widgets/custom_button.dart';
+import 'widgets/pick_location_bottom_sheet.dart';
 
-class PickCompanyLocationView extends StatelessWidget {
-  const PickCompanyLocationView({super.key});
+class PickLocationView extends StatelessWidget {
+  const PickLocationView({super.key});
   static const routeName = 'PickCompanyLocation';
 
   @override
@@ -33,7 +33,7 @@ class PickCompanyLocationView extends StatelessWidget {
               const Spacer(),
               CustomButton(
                 text: 'حفظ',
-                onPressed: () => pickCompanyLocationBottomSheet(context),
+                onPressed: () => pickLocationBottomSheet(context),
               ),
               SizedBox(height: 16),
             ],
