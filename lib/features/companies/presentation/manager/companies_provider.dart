@@ -38,11 +38,12 @@ class CompaniesProvider extends ChangeNotifier {
   }
 
   // Company Details
-  int companyId = 0;
+  // int companyId = 0;
   CompanyModel? companyDetails;
 
   void onSelectCompany(CompanyModel company) {
-    companyId = company.id;
+    // companyId = company.id;
+    companyDetails = company;
     getCompanyDetails();
   }
 
@@ -54,7 +55,7 @@ class CompaniesProvider extends ChangeNotifier {
     checkGetCompanyDetails = null;
     notifyListeners();
 
-    final response = await repo.getCompanyDetails(id: companyId);
+    final response = await repo.getCompanyDetails(id: companyDetails!.id);
     response.fold(
       (msg) {
         message = msg;
@@ -152,5 +153,33 @@ class CompaniesProvider extends ChangeNotifier {
       },
     );
     notifyListeners();
+  }
+
+  // Update Company [status]
+
+  bool? checkUpdateCompanyStatus = false;
+  Future<void> updateCompanyStatus() async {
+    // Loading Stage
+    checkUpdateCompanyStatus = null;
+    message = '';
+    notifyListeners();
+
+    final response = await repo.updateCompanyStatus(
+      id: companyDetails!.id,
+      // if true => 0 | if false => 1
+      // 0 => active | 1 => not active
+      status: companyDetails!.isActive == true ? 0 : 1,
+    );
+    response.fold(
+      (msg) {
+        message = msg;
+        checkUpdateCompanyStatus = false;
+        notifyListeners();
+      },
+      (model) {
+        checkUpdateCompanyStatus = true;
+        getCompanyDetails();
+      },
+    );
   }
 }

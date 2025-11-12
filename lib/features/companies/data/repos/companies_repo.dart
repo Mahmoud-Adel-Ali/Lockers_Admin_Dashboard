@@ -21,7 +21,7 @@ class CompaniesRepo {
   }) async {
     try {
       final response = await dio.get(
-        '${EndPoints.companies}?phone=$search',
+        '${EndPoints.companies}?search=$search',
         isFormData: false,
       );
       return Right(AllCompaniesResponse.fromJson(response));
@@ -92,7 +92,8 @@ class CompaniesRepo {
     required int status, // 0 | 1
   }) async {
     try {
-      Map<String, dynamic> data = {'status': status};
+      Map<String, dynamic> data = {'_method': 'PUT', 'status': status};
+      log("data: $data");
       final response = await dio.post('${EndPoints.companies}/$id', data: data);
       return Right(SimpleModel.fromJson(response));
     } on ServerException catch (e) {
