@@ -28,7 +28,7 @@ class CompanyBasicInfoSection extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(16)),
       ),
       child: Skeletonizer(
-        enabled: prov.checkGetAllCompanies == null,
+        enabled: prov.checkGetCompanyDetails == null,
         child: Column(
           spacing: 12,
           children: [
