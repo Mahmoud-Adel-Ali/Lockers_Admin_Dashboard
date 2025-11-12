@@ -1,60 +1,77 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:lockers_admin_dashboard/core/utils/app_colors.dart';
+import 'package:provider/provider.dart';
 
-import '../../../../../../core/widgets/circular_button.dart';
-import '../../../../../../core/widgets/custom_button.dart';
 import '../../../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../../../core/widgets/custom_text_password.dart';
+import '../../../../../core/functions/convert_location_to_text.dart';
+import '../../../../../core/functions/validation_of_input_fields.dart';
 import '../../../../../core/models/location_details_model.dart';
 import '../../../../../core/views/pick_location_view.dart';
 import '../../../../../core/widgets/custom_location_from_field.dart';
 import '../../../../../core/widgets/custom_phone_text_filed.dart';
+import '../../manager/companies_provider.dart';
+import 'add_new_company_form_button.dart';
+import 'add_new_company_image.dart';
 
 class AddNewCompanyForm extends StatelessWidget {
   const AddNewCompanyForm({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var prov = context.watch<CompaniesProvider>();
     return Form(
+      key: prov.formKey,
       child: Column(
         children: [
-          SizedBox(
-            height: 200,
-            width: 200,
-            child: Stack(
-              children: [
-                CircleAvatar(radius: 100, backgroundColor: AppColors.whiteGrey),
-                Positioned(
-                  bottom: 10,
-                  right: 15,
-                  child: SizedBox(
-                    width: 30,
-                    height: 30,
-                    child: CircularButton(
-                      child: Center(
-                        child: Icon(Icons.camera_alt_outlined, size: 15),
-                      ),
-                      onPressed: () {},
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+          AddNewCompanyImageSection(),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
               spacing: 16,
               children: [
-                CustomTextFormField(hintText: 'إسم الشركة'),
-                CustomTextFormField(hintText: 'إسم مسؤول الإدارة'),
-                CustomTextFormField(hintText: 'البريد الالكتروني'),
-                CustomPhoneTextField(),
-                CustomPasswordField(hintText: 'كلمة المرور'),
+                CustomTextFormField(
+                  hintText: 'إسم الشركة',
+                  controller: prov.nameController,
+                  validator: validatorOfUserName,
+                ),
+                CustomTextFormField(
+                  hintText: 'إسم مسؤول الإدارة',
+                  controller: prov.adminNameController,
+                  validator: validatorOfUserName,
+                ),
+                CustomTextFormField(
+                  hintText: 'البريد الالكتروني',
+                  controller: prov.emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  validator: validatorOfEmail,
+                ),
+                CustomPhoneTextField(controller: prov.phoneController),
+                CustomPasswordField(
+                  hintText: 'كلمة المرور',
+                  controller: prov.passwordController,
+                ),
+                CustomPasswordField(
+                  hintText: 'تاكيد كلمة المرور',
+                  controller: prov.passwordConfirmationController,
+                ),
                 CustomLocationFormFied(
                   hintText: 'موقع الشركة',
+                  controller: prov.locationDetailsModel == null
+                      ? null
+                      : TextEditingController(
+                          text: convertLocationToText(
+                            context,
+                            city: prov.locationDetailsModel!.city,
+                            neighborhood:
+                                prov.locationDetailsModel!.neighborhood,
+                            street: prov.locationDetailsModel!.street,
+                            buildingNum: prov.locationDetailsModel!.buildingNum,
+                          ),
+                        ),
                   onTap: () async {
                     final location = await Navigator.push<LocationDetailsModel>(
                       context,
@@ -64,12 +81,13 @@ class AddNewCompanyForm extends StatelessWidget {
                     );
 
                     if (location != null) {
+                      prov.onPickLocation(location);
                       log('City: ${location.toString()}');
                     }
                   },
                 ),
                 SizedBox(height: 8),
-                CustomButton(text: 'إضافة', onPressed: () {}),
+                AddNewCompanyFormButton(),
               ],
             ),
           ),

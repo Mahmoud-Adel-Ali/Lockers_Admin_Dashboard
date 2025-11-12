@@ -23,12 +23,12 @@ class CustomLocationFormFied extends StatelessWidget {
         child: CustomTextFormField(
           hintText: hintText,
           readOnly: true,
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'الموقع مطلوب';
-            }
-            return null;
-          },
+          // validator: (value) {
+          //   if (value == null || value.isEmpty) {
+          //     return 'الموقع مطلوب';
+          //   }
+          //   return null;
+          // },
           controller: controller,
           suffixIcon: Padding(
             padding: const EdgeInsets.all(8.0),
