@@ -38,7 +38,7 @@ class SubscriptionModel {
       remainLockers: json['remainLockers'] ?? 0,
       startDate: json['start_date'] ?? '',
       endDate: json['end_date'] ?? '',
-      percentage: {json['percentage'] ?? 0.0} as num,
+      percentage: (json['percentage'] ?? 0.0) as num,
       remainDays: json['remainDays'] ?? 0,
       isActive: json['is_active'] ?? false,
     );

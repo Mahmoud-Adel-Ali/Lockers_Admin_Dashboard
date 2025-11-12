@@ -7,6 +7,7 @@ import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../dashboard/data/enums/dashboard_type.dart';
 import '../../../../dashboard/presentation/manager/dashboard_manager.dart';
 import '../../../data/models/company_model.dart';
+import '../../manager/companies_provider.dart';
 
 class CompanyCard extends StatelessWidget {
   const CompanyCard({super.key, required this.company});
@@ -15,6 +16,7 @@ class CompanyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        context.read<CompaniesProvider>().onSelectCompany(company);
         context.read<DashboardManager>().changeView(
           DashboardType.CompanyDetails,
         );

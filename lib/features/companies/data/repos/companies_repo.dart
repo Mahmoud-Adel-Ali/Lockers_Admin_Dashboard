@@ -42,9 +42,10 @@ class CompaniesRepo {
       return Right(CompanyResponse.fromJson(response));
     } on ServerException catch (e) {
       return Left(e.errorModel.message);
-    } catch (e) {
-      log("Exception in getCompanyDetails: $e");
-      return Left(e.toString());
     }
+    // catch (e) {
+    //   log("Exception in getCompanyDetails: $e");
+    //   return Left(e.toString());
+    // }
   }
 }
