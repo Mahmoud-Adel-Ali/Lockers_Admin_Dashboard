@@ -33,4 +33,36 @@ class CompaniesProvider extends ChangeNotifier {
     );
     notifyListeners();
   }
+
+  // Company Details
+  int companyId = 0;
+  CompanyModel? companyDetails;
+
+  void onSelectCompany(CompanyModel company) {
+    companyId = company.id;
+    getCompanyDetails();
+  }
+
+  // Get Company Details
+  bool? checkGetCompanyDetails = false;
+  Future<void> getCompanyDetails() async {
+    // Loading Stage
+    message = '';
+    checkGetCompanyDetails = null;
+    notifyListeners();
+
+    final response = await repo.getCompanyDetails(id: companyId);
+    response.fold(
+      (msg) {
+        message = msg;
+        checkGetCompanyDetails = false;
+      },
+      (model) {
+        companyDetails = model.company;
+        message = model.message;
+        checkGetCompanyDetails = true;
+      },
+    );
+    notifyListeners();
+  }
 }
