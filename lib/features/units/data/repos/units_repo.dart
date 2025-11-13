@@ -7,6 +7,7 @@ import '../../../../core/api/dio_consumer.dart';
 import '../../../../core/api/end_points.dart';
 import '../../../../core/errors/exception.dart';
 import '../../../../core/models/places_model.dart';
+import '../../../../core/models/simple_model.dart';
 import '../../../../core/services/service_locator.dart';
 import '../models/all_units_response.dart';
 
@@ -26,7 +27,6 @@ class UnitsRepo {
     }
   }
 
-
   // Get All Units
   Future<Either<String, AllUnitsResponse>> getAllUnits() async {
     try {
@@ -40,4 +40,22 @@ class UnitsRepo {
     }
   }
 
+  //* Send Unit to mantenance
+  Future<Either<String, SimpleModel>> sendUnitToMaintenance({
+    required int id,
+  }) async {
+    try {
+      Map<String, dynamic> data = {'_method': 'PUT', 'under_maintenance': 1};
+      final response = await dio.post(
+        '${EndPoints.maintenanceUnits}/$id',
+        data: data,
+      );
+      return Right(SimpleModel.fromJson(response));
+    } on ServerException catch (e) {
+      return Left(e.errorModel.message);
+    } catch (e) {
+      log("Exception in sendUnitToMaintenance [Admin]: $e");
+      return Left(kErrorMsg);
+    }
+  }
 }

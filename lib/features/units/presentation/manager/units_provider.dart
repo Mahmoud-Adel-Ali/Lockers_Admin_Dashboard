@@ -39,7 +39,6 @@ class UnitsProvider extends ChangeNotifier {
 
   Future<void> getAllUnits() async {
     checkGettingAllUnits = null;
-    message = '';
     notifyListeners();
 
     final response = await repo.getAllUnits();
@@ -97,6 +96,26 @@ class UnitsProvider extends ChangeNotifier {
   UnitModel? selectedUnit;
   void onSelectUnit(UnitModel unit) {
     selectedUnit = unit;
+    notifyListeners();
+  }
+
+  //* Send Unit to mantenance
+  bool? checkSendingUnitToMantenance = false;
+  Future<void> sendUnitToMantenance({required int id}) async {
+    checkSendingUnitToMantenance = null;
+    notifyListeners();
+    final response = await repo.sendUnitToMaintenance(id: id);
+    response.fold(
+      (msg) {
+        checkSendingUnitToMantenance = false;
+        message = msg;
+      },
+      (model) {
+        checkSendingUnitToMantenance = true;
+        message = model.message;
+        getAllUnits();
+      },
+    );
     notifyListeners();
   }
 }
