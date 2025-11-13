@@ -51,7 +51,6 @@ class CompaniesProvider extends ChangeNotifier {
   bool? checkGetCompanyDetails = false;
   Future<void> getCompanyDetails() async {
     // Loading Stage
-    message = '';
     checkGetCompanyDetails = null;
     notifyListeners();
 
@@ -178,6 +177,7 @@ class CompaniesProvider extends ChangeNotifier {
       },
       (model) {
         checkUpdateCompanyStatus = true;
+        message = model.message;
         getCompanyDetails();
       },
     );
