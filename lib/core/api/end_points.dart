@@ -13,6 +13,7 @@ class EndPoints {
   static const complaints = '/api/admin/complains';
   static const packages = '/api/admin/default-subscriptions';
   static const companies = '/api/admin/companies';
+  static const adminRegions = '/api/admin/regions/';
 }
 
 // documentation :- https://documenter.getpostman.com/view/31698735/2sB3QDwYk7
