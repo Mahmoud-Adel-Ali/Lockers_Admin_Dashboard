@@ -31,7 +31,7 @@ class UnitsGridView extends StatelessWidget {
                   ),
                   itemCount: units.length,
                   itemBuilder: (context, index) {
-                    return UnitCard();
+                    return UnitCard(unit: units[index]);
                   },
                 ),
               );

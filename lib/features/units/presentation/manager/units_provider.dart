@@ -92,4 +92,11 @@ class UnitsProvider extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  //* On Select Unit
+  UnitModel? selectedUnit;
+  void onSelectUnit(UnitModel unit) {
+    selectedUnit = unit;
+    notifyListeners();
+  }
 }
