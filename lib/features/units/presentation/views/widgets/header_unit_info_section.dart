@@ -1,21 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
+import '../../manager/units_provider.dart';
 
 class HeaderUnitInfoSection extends StatelessWidget {
   const HeaderUnitInfoSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      spacing: 8,
-      children: const [
-        UnitInfoItem(title: 'خزينة', value: 25),
-        UnitInfoItem(title: 'في الصيانة', value: 1),
-        UnitInfoItem(title: 'متاحة', value: 12),
-        UnitInfoItem(title: 'محجوز', value: 12),
-      ],
+    var prov = context.watch<UnitsProvider>();
+    var unit = prov.selectedUnit;
+    return Skeletonizer(
+      enabled: prov.checkGettingUnitDetails == null,
+      child: Row(
+        spacing: 8,
+        children: [
+          UnitInfoItem(title: 'خزينة', value: unit?.countLockers ?? 0),
+          UnitInfoItem(title: 'متاحة', value: unit?.countAvailable ?? 0),
+          UnitInfoItem(title: 'محجوز', value: unit?.countReserved ?? 0),
+          UnitInfoItem(title: 'جاري الحجز', value: unit?.countProgress ?? 0),
+          UnitInfoItem(
+            title: 'في الصيانة',
+            value: unit?.countUnderMaintenance ?? 0,
+          ),
+        ],
+      ),
     );
   }
 }

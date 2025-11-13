@@ -16,9 +16,15 @@ class ShowLocationContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
       ),
       child: Row(
+        spacing: 8,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(text, style: AppTextStyles.style16w500(context)),
+          Text(
+            text,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: AppTextStyles.style16w500(context),
+          ),
           SizedBox(
             width: 20,
             height: 20,
