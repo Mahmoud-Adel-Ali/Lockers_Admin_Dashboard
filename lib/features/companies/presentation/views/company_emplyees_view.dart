@@ -5,7 +5,6 @@ import '../../../../core/widgets/dashboard_back_button.dart';
 import '../../../dashboard/data/enums/dashboard_type.dart';
 import '../../../dashboard/presentation/manager/dashboard_manager.dart';
 import 'widgets/company_employees_grid_view.dart';
-import 'widgets/employees_search_field.dart';
 
 class CompanyEmplyeesView extends StatelessWidget {
   const CompanyEmplyeesView({super.key});
@@ -25,7 +24,8 @@ class CompanyEmplyeesView extends StatelessWidget {
                 );
               },
             ),
-            EmployeesSearchField(),
+            const SizedBox(width: 8),
+            // EmployeesSearchField(),
           ],
         ),
         SizedBox(height: 8),
