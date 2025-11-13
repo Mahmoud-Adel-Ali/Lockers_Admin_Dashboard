@@ -14,6 +14,7 @@ class EndPoints {
   static const packages = '/api/admin/default-subscriptions';
   static const companies = '/api/admin/companies';
   static const adminRegions = '/api/admin/regions/';
+  static const adminUnits = '/api/admin/units';
 }
 
 // documentation :- https://documenter.getpostman.com/view/31698735/2sB3QDwYk7
