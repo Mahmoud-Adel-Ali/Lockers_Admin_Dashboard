@@ -1,4 +1,5 @@
 // import 'package:bitsdojo_window/bitsdojo_window.dart';
+import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -38,10 +39,10 @@ Future<void> main() async {
     ),
   );
 
-  // doWhenWindowReady(() {
-  //   appWindow.minSize = Size(500, 500);
-  //   appWindow.alignment = Alignment.center;
-  //   appWindow.show();
-  //   appWindow.maximize();
-  // });
+  doWhenWindowReady(() {
+    appWindow.minSize = Size(500, 500);
+    appWindow.alignment = Alignment.center;
+    appWindow.show();
+    appWindow.maximize();
+  });
 }
