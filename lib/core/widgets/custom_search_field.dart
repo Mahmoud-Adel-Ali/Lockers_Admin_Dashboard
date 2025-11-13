@@ -9,11 +9,13 @@ class CustomSearchField extends StatefulWidget {
     this.hintText = 'البحث',
     this.onChanged,
     this.controller,
+    this.keyboardType = TextInputType.text,
   });
 
   final String hintText;
   final Function(String)? onChanged;
   final TextEditingController? controller;
+  final TextInputType? keyboardType;
 
   @override
   State<CustomSearchField> createState() => _CustomSearchFieldState();
@@ -26,55 +28,50 @@ class _CustomSearchFieldState extends State<CustomSearchField> {
   void initState() {
     super.initState();
     _controller = widget.controller ?? TextEditingController();
-    _controller.addListener(() => setState(() {})); // rebuild when text changes
+    // _controller.addListener(() {
+    //   setState(() {}); // rebuild to show/hide clear icon
+    // });
   }
 
   @override
   void dispose() {
     if (widget.controller == null) {
-      _controller.dispose();
+      _controller.removeListener(() {});
+      _controller.dispose(); // only dispose if we created it
     }
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 42,
-      child: TextField(
-        controller: _controller,
-        textInputAction: TextInputAction.search,
-        cursorColor: AppColors.main,
-        onChanged: widget.onChanged,
-        style: AppTextStyles.style20w500(context).copyWith(color: Colors.black),
-        decoration: InputDecoration(
-          hintText: widget.hintText,
-          hintStyle: AppTextStyles.style14w500(context),
-          prefixIcon: const Icon(Icons.search, color: Colors.black54, size: 20),
-          suffixIcon: _controller.text.isNotEmpty
-              ? IconButton(
-                  icon: const Icon(
-                    Icons.clear,
-                    color: Colors.black54,
-                    size: 20,
-                  ),
-                  onPressed: () {
-                    _controller.clear();
-                    widget.onChanged?.call('');
-                  },
-                )
-              : null,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 24),
-          filled: true,
-          fillColor: Colors.white,
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(40),
-            borderSide: const BorderSide(color: AppColors.grey, width: 1),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(40),
-            borderSide: const BorderSide(color: AppColors.main, width: 1.2),
-          ),
+    return TextField(
+      controller: _controller,
+      textInputAction: TextInputAction.search,
+      keyboardType: widget.keyboardType,
+      onChanged: widget.onChanged,
+      cursorColor: AppColors.main,
+      style: AppTextStyles.style20w500(context).copyWith(color: Colors.black),
+      decoration: InputDecoration(
+        hintText: widget.hintText,
+        hintStyle: AppTextStyles.style14w500(
+          context,
+        ).copyWith(color: AppColors.phosphorGreen),
+        prefixIcon: const Icon(Icons.search, color: AppColors.phosphorGreen),
+        suffixIcon: _controller.text.isNotEmpty
+            ? IconButton(
+                icon: const Icon(Icons.clear, color: AppColors.phosphorGreen),
+                onPressed: () {
+                  _controller.clear();
+                  widget.onChanged?.call('');
+                },
+              )
+            : null,
+        contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
+        filled: true,
+        fillColor: AppColors.babyBlue,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+          borderSide: BorderSide.none,
         ),
       ),
     );
