@@ -11,6 +11,7 @@ import 'features/complaints/presentation/manager/complaints_provider.dart';
 import 'features/dashboard/presentation/manager/dashboard_manager.dart';
 import 'features/dashboard/presentation/manager/profile_provider.dart';
 import 'features/packages/presentation/manager/packages_provider.dart';
+import 'features/units/presentation/manager/units_provider.dart';
 import 'lockers_admin_dashboard.dart';
 
 Future<void> main() async {
@@ -29,6 +30,7 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (_) => ProfileProvider()),
         //* Features Providers
         ChangeNotifierProvider(create: (_) => CompaniesProvider()),
+        ChangeNotifierProvider(create: (_) => UnitsProvider()),
         ChangeNotifierProvider(create: (_) => PackagesProvider()),
         ChangeNotifierProvider(create: (_) => ComplaintsProvider()),
       ],
