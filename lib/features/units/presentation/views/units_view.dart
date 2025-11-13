@@ -30,6 +30,7 @@ class UnitsView extends StatelessWidget {
           FilterUnitsLocationSection(),
           SizedBox(height: 8),
           Expanded(child: UnitsGridView()),
+          SizedBox(height: 8),
         ],
       ),
     );
