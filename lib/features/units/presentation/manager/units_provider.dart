@@ -96,6 +96,26 @@ class UnitsProvider extends ChangeNotifier {
   UnitModel? selectedUnit;
   void onSelectUnit(UnitModel unit) {
     selectedUnit = unit;
+    getUnitDetails();
+  }
+
+  //* Get Unit Details
+  bool? checkGettingUnitDetails = false;
+  Future<void> getUnitDetails() async {
+    checkGettingUnitDetails = null;
+    notifyListeners();
+    final response = await repo.getUnitDetails(id: selectedUnit!.id);
+    response.fold(
+      (msg) {
+        checkGettingUnitDetails = false;
+        message = msg;
+      },
+      (model) {
+        checkGettingUnitDetails = true;
+        selectedUnit = model.data;
+        message = model.message;
+      },
+    );
     notifyListeners();
   }
 

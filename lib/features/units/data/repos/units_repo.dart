@@ -10,6 +10,7 @@ import '../../../../core/models/places_model.dart';
 import '../../../../core/models/simple_model.dart';
 import '../../../../core/services/service_locator.dart';
 import '../models/all_units_response.dart';
+import '../models/unit_details_response.dart';
 
 class UnitsRepo {
   final DioConsumer dio = getit.get<DioConsumer>();
@@ -27,7 +28,7 @@ class UnitsRepo {
     }
   }
 
-  // Get All Units
+  //* Get All Units
   Future<Either<String, AllUnitsResponse>> getAllUnits() async {
     try {
       final response = await dio.get(EndPoints.adminUnits, isFormData: false);
@@ -36,6 +37,24 @@ class UnitsRepo {
       return Left(e.errorModel.message);
     } catch (e) {
       log("Exception in getAllUnits [Admin]: $e");
+      return Left(kErrorMsg);
+    }
+  }
+
+  //* Get Unit Details
+  Future<Either<String, UnitDetailsResponse>> getUnitDetails({
+    required int id,
+  }) async {
+    try {
+      final response = await dio.get(
+        '${EndPoints.adminUnits}/$id',
+        isFormData: false,
+      );
+      return Right(UnitDetailsResponse.fromJson(response));
+    } on ServerException catch (e) {
+      return Left(e.errorModel.message);
+    } catch (e) {
+      log("Exception in getUnitDetails [Admin]: $e");
       return Left(kErrorMsg);
     }
   }
