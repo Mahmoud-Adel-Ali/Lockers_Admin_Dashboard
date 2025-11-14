@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 import '../../../../core/enum/locker_size.dart';
+import '../../../../core/models/location_details_model.dart';
 import '../../../../core/models/places_model.dart';
 import '../../../../core/models/unit_model.dart';
 import '../../data/repos/units_repo.dart';
@@ -205,6 +206,40 @@ class UnitsProvider extends ChangeNotifier {
         checkUpdatingLockerInUnit = true;
         message = model.message;
         getUnitDetails();
+      },
+    );
+    notifyListeners();
+  }
+
+  //* Add New Unit
+  LocationDetailsModel? unitLocation;
+  void onPickLocation(LocationDetailsModel location) {
+    unitLocation = location;
+    notifyListeners();
+  }
+
+  bool? checkAddingNewUnit = false;
+  Future<void> addNewUnit() async {
+    if (unitLocation == null) {
+      message = 'Please Pick Unit Location';
+      checkAddingNewUnit = false;
+      notifyListeners();
+      return;
+    }
+
+    checkAddingNewUnit = null;
+    notifyListeners();
+    final response = await repo.addNewUnit(location: unitLocation!);
+    response.fold(
+      (msg) {
+        checkAddingNewUnit = false;
+        message = msg;
+      },
+      (model) {
+        checkAddingNewUnit = true;
+        message = model.message;
+        unitLocation = null;
+        getAllUnits();
       },
     );
     notifyListeners();

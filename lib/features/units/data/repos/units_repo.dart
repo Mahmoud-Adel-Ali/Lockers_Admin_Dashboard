@@ -7,6 +7,7 @@ import '../../../../core/api/dio_consumer.dart';
 import '../../../../core/api/end_points.dart';
 import '../../../../core/enum/locker_size.dart';
 import '../../../../core/errors/exception.dart';
+import '../../../../core/models/location_details_model.dart';
 import '../../../../core/models/places_model.dart';
 import '../../../../core/models/simple_model.dart';
 import '../../../../core/services/service_locator.dart';
@@ -136,6 +137,24 @@ class UnitsRepo {
       return Left(e.errorModel.message);
     } catch (e) {
       log("Exception in updateLockerInUnit [Admin]: $e");
+      return Left(kErrorMsg);
+    }
+  }
+
+  //* Add New Unit
+  Future<Either<String, SimpleModel>> addNewUnit({
+    required LocationDetailsModel location,
+  }) async {
+    try {
+      final response = await dio.post(
+        EndPoints.adminUnits,
+        data: location.toJson(),
+      );
+      return Right(SimpleModel.fromJson(response));
+    } on ServerException catch (e) {
+      return Left(e.errorModel.message);
+    } catch (e) {
+      log("Exception in addNewUnit [Admin]: $e");
       return Left(kErrorMsg);
     }
   }
