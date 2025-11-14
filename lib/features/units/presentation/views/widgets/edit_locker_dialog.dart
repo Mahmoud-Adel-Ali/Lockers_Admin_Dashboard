@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../../../../../core/utils/size_config.dart';
 import '../../../../../../core/widgets/custom_dialog.dart';
 import '../../../../../core/widgets/custom_button.dart';
-import '../../../../../core/widgets/custom_dropdown_field.dart';
 import '../../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../../core/widgets/dialog_helper.dart';
 
@@ -36,10 +35,10 @@ class EditLockerForm extends StatelessWidget {
           children: [
             const SizedBox(),
             CustomTextFormField(hintText: 'رقم الخزينة'),
-            CustomDropdownTextField(
-              hintText: 'حجم ال locker',
-              items: ['Small', 'Medium', 'Large'],
-            ),
+            // CustomDropdownTextField(
+            //   hintText: 'حجم ال locker',
+            //   items: ['Small', 'Medium', 'Large'],
+            // ),
             SizedBox(height: 16),
             CustomButton(
               text: 'إضافة',

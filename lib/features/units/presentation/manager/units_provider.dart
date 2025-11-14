@@ -162,13 +162,13 @@ class UnitsProvider extends ChangeNotifier {
 
   //* Add Locker to Unit
   bool? checkAddingLockerToUnit = false;
-  Future<void> addLockerToUnit({
-    required int unitId,
-    required LockerSize size,
-  }) async {
+  Future<void> addLockerToUnit({required LockerSize size}) async {
     checkAddingLockerToUnit = null;
     notifyListeners();
-    final response = await repo.addLockerToUnit(unitId: unitId, size: size);
+    final response = await repo.addLockerToUnit(
+      unitId: selectedUnit!.id,
+      size: size,
+    );
     response.fold(
       (msg) {
         checkAddingLockerToUnit = false;
