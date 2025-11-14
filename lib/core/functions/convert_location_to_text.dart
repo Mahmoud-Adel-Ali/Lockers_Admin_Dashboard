@@ -8,16 +8,16 @@ String convertLocationToText(
   String? buildingNum,
 }) {
   String location = '';
-  if (city != null) {
+  if (city != null && city.isNotEmpty) {
     location += city;
   }
-  if (neighborhood != null) {
+  if (neighborhood != null && neighborhood.isNotEmpty) {
     location += ' - $neighborhood';
   }
-  if (street != null) {
+  if (street != null && street.isNotEmpty) {
     location += ' - $street';
   }
-  if (buildingNum != null) {
+  if (buildingNum != null && buildingNum.isNotEmpty) {
     location += ' - مبني $buildingNum';
   }
   return location;

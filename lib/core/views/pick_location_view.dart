@@ -45,6 +45,8 @@ class _PickLocationViewState extends State<PickLocationView> {
         widget.locationModel!.longitude,
       );
       initialCameraPosition = CameraPosition(target: latLng, zoom: 16);
+      isLoading = false;
+      setLocationMarker(latLng);
     }
     locationService = LocationService();
   }

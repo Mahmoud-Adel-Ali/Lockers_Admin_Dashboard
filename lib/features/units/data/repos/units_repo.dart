@@ -146,6 +146,7 @@ class UnitsRepo {
     required LocationDetailsModel location,
   }) async {
     try {
+      log('addNewUnit [Admin]:${location.toJson()}');
       final response = await dio.post(
         EndPoints.adminUnits,
         data: location.toJson(),
