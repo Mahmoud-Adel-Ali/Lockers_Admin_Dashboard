@@ -16,6 +16,8 @@ class EndPoints {
   static const adminRegions = '/api/admin/regions';
   static const adminUnits = '/api/admin/units';
   static const maintenanceUnits = '/api/admin/update-under-maintenance-units';
+  static const maintenanceLockers =
+      '/api/admin/update-under-maintenance-lockers';
 }
 
 // documentation :- https://documenter.getpostman.com/view/31698735/2sB3QDwYk7

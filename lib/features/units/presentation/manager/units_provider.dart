@@ -138,4 +138,24 @@ class UnitsProvider extends ChangeNotifier {
     );
     notifyListeners();
   }
+
+  //* Sent Locker to maintenance
+  bool? checkSendingLockerToMantenance = false;
+  Future<void> sendLockerToMantenance({required int id}) async {
+    checkSendingLockerToMantenance = null;
+    notifyListeners();
+    final response = await repo.sendLockerToMaintenance(id: id);
+    response.fold(
+      (msg) {
+        checkSendingLockerToMantenance = false;
+        message = msg;
+      },
+      (model) {
+        checkSendingLockerToMantenance = true;
+        message = model.message;
+        getUnitDetails();
+      },
+    );
+    notifyListeners();
+  }
 }

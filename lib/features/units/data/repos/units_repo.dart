@@ -77,4 +77,23 @@ class UnitsRepo {
       return Left(kErrorMsg);
     }
   }
+
+  //* Sent Locker to maintenance
+  Future<Either<String, SimpleModel>> sendLockerToMaintenance({
+    required int id,
+  }) async {
+    try {
+      Map<String, dynamic> data = {'_method': 'PUT', 'under_maintenance': 1};
+      final response = await dio.post(
+        '${EndPoints.maintenanceLockers}/$id',
+        data: data,
+      );
+      return Right(SimpleModel.fromJson(response));
+    } on ServerException catch (e) {
+      return Left(e.errorModel.message);
+    } catch (e) {
+      log("Exception in sendLockerToMaintenance [Admin]: $e");
+      return Left(kErrorMsg);
+    }
+  }
 }
