@@ -57,7 +57,7 @@ class LockerCard extends StatelessWidget {
                 ),
 
                 InkWell(
-                  onTap: () => editLockerDialog(context),
+                  onTap: () => editLockerDialog(context, locker: locker),
                   child: Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
