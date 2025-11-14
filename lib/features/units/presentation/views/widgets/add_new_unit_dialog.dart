@@ -44,7 +44,7 @@ class AddNewUnitForm extends StatelessWidget {
             const SizedBox(),
             // CustomTextFormField(hintText: 'رقم الوحدة'),
             CustomLocationFormFied(
-              hintText: 'موقع الشركة',
+              hintText: 'موقع الوحدة',
               controller: prov.unitLocation == null
                   ? null
                   : TextEditingController(
