@@ -114,4 +114,29 @@ class UnitsRepo {
       return Left(kErrorMsg);
     }
   }
+
+  //* Update Locker in Unit
+  Future<Either<String, SimpleModel>> updateLockerInUnit({
+    required int unitId,
+    required int lockerId,
+    required LockerSize size,
+  }) async {
+    try {
+      Map<String, dynamic> data = {
+        '_method': 'PUT',
+        'unit_id': unitId,
+        'size': size.name,
+      };
+      final response = await dio.post(
+        '${EndPoints.adminLockers}/$lockerId',
+        data: data,
+      );
+      return Right(SimpleModel.fromJson(response));
+    } on ServerException catch (e) {
+      return Left(e.errorModel.message);
+    } catch (e) {
+      log("Exception in updateLockerInUnit [Admin]: $e");
+      return Left(kErrorMsg);
+    }
+  }
 }

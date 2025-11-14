@@ -182,4 +182,31 @@ class UnitsProvider extends ChangeNotifier {
     );
     notifyListeners();
   }
+
+  //* Update Locker in unit
+  bool? checkUpdatingLockerInUnit = false;
+  Future<void> updateLockerInUnit({
+    required int id,
+    required LockerSize size,
+  }) async {
+    checkUpdatingLockerInUnit = null;
+    notifyListeners();
+    final response = await repo.updateLockerInUnit(
+      lockerId: id,
+      unitId: selectedUnit!.id,
+      size: size,
+    );
+    response.fold(
+      (msg) {
+        checkUpdatingLockerInUnit = false;
+        message = msg;
+      },
+      (model) {
+        checkUpdatingLockerInUnit = true;
+        message = model.message;
+        getUnitDetails();
+      },
+    );
+    notifyListeners();
+  }
 }
