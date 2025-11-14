@@ -14,9 +14,10 @@ import '../widgets/dialog_helper.dart';
 import 'widgets/pick_location_bottom_sheet.dart';
 
 class PickLocationView extends StatefulWidget {
-  const PickLocationView({super.key});
+  const PickLocationView({super.key, this.locationModel});
   static const routeName = 'PickCompanyLocation';
 
+  final LocationDetailsModel? locationModel;
   @override
   State<PickLocationView> createState() => _PickLocationViewState();
 }
@@ -33,10 +34,18 @@ class _PickLocationViewState extends State<PickLocationView> {
   @override
   void initState() {
     super.initState();
-    // Egypt initial position
-    var latLng = LatLng(27.504233709174983, 30.720281847535116);
+    if (widget.locationModel == null) {
+      // Egypt initial position
+      var latLng = LatLng(27.504233709174983, 30.720281847535116);
 
-    initialCameraPosition = CameraPosition(target: latLng, zoom: 10);
+      initialCameraPosition = CameraPosition(target: latLng, zoom: 10);
+    } else {
+      var latLng = LatLng(
+        widget.locationModel!.latitude,
+        widget.locationModel!.longitude,
+      );
+      initialCameraPosition = CameraPosition(target: latLng, zoom: 16);
+    }
     locationService = LocationService();
   }
 
@@ -60,7 +69,7 @@ class _PickLocationViewState extends State<PickLocationView> {
             zoomControlsEnabled: false,
             onMapCreated: (controller) {
               mapController = controller;
-              updateLocation();
+              if (widget.locationModel == null) updateLocation();
             },
             onTap: (latLng) {
               // Update marker to new position

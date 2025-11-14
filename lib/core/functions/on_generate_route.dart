@@ -4,10 +4,10 @@ import '../../features/auth/presentation/views/forget_password_view.dart';
 import '../../features/auth/presentation/views/reset_password_view.dart';
 import '../../features/auth/presentation/views/signin_view.dart';
 import '../../features/auth/presentation/views/verify_otp_view.dart';
-import '../views/pick_location_view.dart';
 import '../../features/dashboard/presentation/views/admin_dashboard_view.dart';
 import '../../features/notification/presentation/view/notification_view.dart';
 import '../models/location_details_model.dart';
+import '../views/pick_location_view.dart';
 import '../views/show_location_view.dart';
 
 Route<dynamic> onGenerateRoutes(RouteSettings settings) {
@@ -25,7 +25,11 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
     case NotificationView.routeName:
       return MaterialPageRoute(builder: (_) => const NotificationView());
     case PickLocationView.routeName:
-      return MaterialPageRoute(builder: (_) => const PickLocationView());
+      LocationDetailsModel? locationModel =
+          settings.arguments as LocationDetailsModel?;
+      return MaterialPageRoute(
+        builder: (_) => PickLocationView(locationModel: locationModel),
+      );
     case ShowLocationView.routeName:
       LocationDetailsModel locationModel =
           settings.arguments as LocationDetailsModel;
