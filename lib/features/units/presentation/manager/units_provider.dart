@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 
+import '../../../../core/enum/locker_size.dart';
 import '../../../../core/models/places_model.dart';
 import '../../../../core/models/unit_model.dart';
 import '../../data/repos/units_repo.dart';
@@ -152,6 +153,29 @@ class UnitsProvider extends ChangeNotifier {
       },
       (model) {
         checkSendingLockerToMantenance = true;
+        message = model.message;
+        getUnitDetails();
+      },
+    );
+    notifyListeners();
+  }
+
+  //* Add Locker to Unit
+  bool? checkAddingLockerToUnit = false;
+  Future<void> addLockerToUnit({
+    required int unitId,
+    required LockerSize size,
+  }) async {
+    checkAddingLockerToUnit = null;
+    notifyListeners();
+    final response = await repo.addLockerToUnit(unitId: unitId, size: size);
+    response.fold(
+      (msg) {
+        checkAddingLockerToUnit = false;
+        message = msg;
+      },
+      (model) {
+        checkAddingLockerToUnit = true;
         message = model.message;
         getUnitDetails();
       },

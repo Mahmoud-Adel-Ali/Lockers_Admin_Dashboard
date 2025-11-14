@@ -5,6 +5,7 @@ import 'package:dartz/dartz.dart';
 import '../../../../constants.dart';
 import '../../../../core/api/dio_consumer.dart';
 import '../../../../core/api/end_points.dart';
+import '../../../../core/enum/locker_size.dart';
 import '../../../../core/errors/exception.dart';
 import '../../../../core/models/places_model.dart';
 import '../../../../core/models/simple_model.dart';
@@ -93,6 +94,23 @@ class UnitsRepo {
       return Left(e.errorModel.message);
     } catch (e) {
       log("Exception in sendLockerToMaintenance [Admin]: $e");
+      return Left(kErrorMsg);
+    }
+  }
+
+  //* Add Locker to Unit
+  Future<Either<String, SimpleModel>> addLockerToUnit({
+    required int unitId,
+    required LockerSize size,
+  }) async {
+    try {
+      Map<String, dynamic> data = {'unit_id': unitId, 'size': size.name};
+      final response = await dio.post(EndPoints.adminLockers, data: data);
+      return Right(SimpleModel.fromJson(response));
+    } on ServerException catch (e) {
+      return Left(e.errorModel.message);
+    } catch (e) {
+      log("Exception in addLockerToUnit [Admin]: $e");
       return Left(kErrorMsg);
     }
   }

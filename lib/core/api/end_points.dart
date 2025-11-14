@@ -14,6 +14,7 @@ class EndPoints {
   static const packages = '/api/admin/default-subscriptions';
   static const companies = '/api/admin/companies';
   static const adminRegions = '/api/admin/regions';
+  static const adminLockers = '/api/admin/lockers';
   static const adminUnits = '/api/admin/units';
   static const maintenanceUnits = '/api/admin/update-under-maintenance-units';
   static const maintenanceLockers =
