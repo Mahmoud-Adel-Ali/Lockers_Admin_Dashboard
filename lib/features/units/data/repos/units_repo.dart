@@ -158,4 +158,23 @@ class UnitsRepo {
       return Left(kErrorMsg);
     }
   }
+
+  //* Update Unit
+  Future<Either<String, SimpleModel>> updateUnit({
+    required int id,
+    required LocationDetailsModel location,
+  }) async {
+    try {
+      final response = await dio.post(
+        '${EndPoints.adminUnits}/$id',
+        data: {'_method': 'PUT', ...location.toJson()},
+      );
+      return Right(SimpleModel.fromJson(response));
+    } on ServerException catch (e) {
+      return Left(e.errorModel.message);
+    } catch (e) {
+      log("Exception in updateUnit [Admin]: $e");
+      return Left(kErrorMsg);
+    }
+  }
 }

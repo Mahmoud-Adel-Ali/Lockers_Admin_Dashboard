@@ -211,13 +211,14 @@ class UnitsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  //* Add New Unit
+  //* On Pick Location for Unit [add & update]
   LocationDetailsModel? unitLocation;
   void onPickLocation(LocationDetailsModel location) {
     unitLocation = location;
     notifyListeners();
   }
 
+  //* Add New Unit
   bool? checkAddingNewUnit = false;
   Future<void> addNewUnit() async {
     if (unitLocation == null) {
@@ -237,6 +238,27 @@ class UnitsProvider extends ChangeNotifier {
       },
       (model) {
         checkAddingNewUnit = true;
+        message = model.message;
+        unitLocation = null;
+        getAllUnits();
+      },
+    );
+    notifyListeners();
+  }
+
+  //* Update Unit
+  bool? checkUpdatingUnit = false;
+  Future<void> updateUnit({required int id}) async {
+    checkUpdatingUnit = null;
+    notifyListeners();
+    final response = await repo.updateUnit(id: id, location: unitLocation!);
+    response.fold(
+      (msg) {
+        checkUpdatingUnit = false;
+        message = msg;
+      },
+      (model) {
+        checkUpdatingUnit = true;
         message = model.message;
         unitLocation = null;
         getAllUnits();
