@@ -29,7 +29,7 @@ extension LockerExtension on int? {
     final emoji = withEmoji ? '🗄️ ' : '';
     final isArabic = Localizations.localeOf(context).languageCode == 'ar';
 
-    return isArabic ? '$emojiالخزنه #$number' : '$emoji Locker #$number';
+    return isArabic ? '$emojiالخزينه #$number' : '$emoji Locker #$number';
   }
 
   /// Combines locker number and count in one localized string

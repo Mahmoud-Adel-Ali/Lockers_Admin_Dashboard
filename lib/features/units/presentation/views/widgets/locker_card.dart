@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:lockers_admin_dashboard/core/enum/locker_size.dart';
+import 'package:lockers_admin_dashboard/core/extensions/locker_extension.dart';
 
+import '../../../../../core/functions/is_arabic.dart';
+import '../../../../../core/models/locker_model.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/assets.dart';
@@ -8,7 +12,8 @@ import '../../../../../core/widgets/dialog_helper.dart';
 import 'edit_locker_dialog.dart';
 
 class LockerCard extends StatelessWidget {
-  const LockerCard({super.key});
+  const LockerCard({super.key, required this.locker});
+  final LockerModel locker;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +39,10 @@ class LockerCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'الخزنه رقم 1',
+                  locker.lockerNumber.toLockerNumberString(
+                    context,
+                    withEmoji: true,
+                  ),
                   style: AppTextStyles.style16w700(
                     context,
                   ).copyWith(color: AppColors.main),
@@ -62,11 +70,17 @@ class LockerCard extends StatelessWidget {
                   horizontal: 12,
                   vertical: 8,
                 ),
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: AppColors.whiteGrey,
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(16)),
+                  borderRadius: BorderRadius.only(
+                    topRight: isArabic() ? Radius.zero : Radius.circular(16),
+                    topLeft: isArabic() ? Radius.circular(16) : Radius.zero,
+                  ),
                 ),
-                child: Text('Large', style: AppTextStyles.style16w500(context)),
+                child: Text(
+                  isArabic() ? locker.size.arName : locker.size.enName,
+                  style: AppTextStyles.style16w500(context),
+                ),
               ),
             ],
           ),
