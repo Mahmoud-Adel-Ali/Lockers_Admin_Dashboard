@@ -13,9 +13,14 @@ class EmployeesRepo {
   final DioConsumer dio = getit.get<DioConsumer>();
 
   //* Get All Employees
-  Future<Either<String, AllEmployeesModel>> getAllEmployees() async {
+  Future<Either<String, AllEmployeesModel>> getAllEmployees({
+    required String search,
+  }) async {
     try {
-      final response = await dio.get(EndPoints.allEmployees, isFormData: false);
+      final response = await dio.get(
+        "${EndPoints.allEmployees}?search=$search",
+        isFormData: false,
+      );
       return Right(AllEmployeesModel.fromJson(response));
     } on ServerException catch (e) {
       return Left(e.errorModel.message);

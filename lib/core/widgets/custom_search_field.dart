@@ -28,15 +28,14 @@ class _CustomSearchFieldState extends State<CustomSearchField> {
   void initState() {
     super.initState();
     _controller = widget.controller ?? TextEditingController();
-    // _controller.addListener(() {
-    //   setState(() {}); // rebuild to show/hide clear icon
-    // });
+    _controller.addListener(() {
+      setState(() {}); // rebuild to show/hide clear icon
+    });
   }
 
   @override
   void dispose() {
     if (widget.controller == null) {
-      _controller.removeListener(() {});
       _controller.dispose(); // only dispose if we created it
     }
     super.dispose();

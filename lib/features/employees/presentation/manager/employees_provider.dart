@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 import '../../data/models/employee_model.dart';
 import '../../data/repos/employees_repo.dart';
@@ -9,6 +9,7 @@ class EmployeesProvider extends ChangeNotifier {
   String message = '';
 
   //* Get All Employees
+  var searchController = TextEditingController();
   List<EmployeeModel> employees = [];
 
   bool? checkGetAllEmployees = false;
@@ -17,7 +18,7 @@ class EmployeesProvider extends ChangeNotifier {
     checkGetAllEmployees = null;
     notifyListeners();
 
-    final result = await repo.getAllEmployees();
+    final result = await repo.getAllEmployees(search: searchController.text);
     result.fold(
       (msg) {
         message = msg;
