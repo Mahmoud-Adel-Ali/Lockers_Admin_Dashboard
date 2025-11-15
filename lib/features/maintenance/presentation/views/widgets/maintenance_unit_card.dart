@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../core/models/unit_model.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/assets.dart';
@@ -7,8 +8,8 @@ import '../../../../../core/views/show_location_view.dart';
 import '../../../../../core/widgets/dialog_helper.dart';
 
 class MaintenanceUnitCard extends StatelessWidget {
-  const MaintenanceUnitCard({super.key});
-
+  const MaintenanceUnitCard({super.key, required this.unit});
+  final UnitModel unit;
   @override
   Widget build(BuildContext context) {
     return InkWell(
