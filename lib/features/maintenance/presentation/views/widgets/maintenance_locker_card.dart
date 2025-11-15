@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:lockers_admin_dashboard/core/extensions/locker_extension.dart';
+import 'package:lockers_admin_dashboard/core/extensions/unit_extension.dart';
 
+import '../../../../../core/functions/is_arabic.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/assets.dart';
 import '../../../../../core/views/show_location_view.dart';
 import '../../../../../core/widgets/dialog_helper.dart';
+import '../../../data/models/maintenance_locker_model.dart';
 
 class MaintenanceLockerCard extends StatelessWidget {
-  const MaintenanceLockerCard({super.key});
+  const MaintenanceLockerCard({super.key, required this.locker});
+  final MaintenanceLockerModel locker;
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +36,16 @@ class MaintenanceLockerCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'الخزينه رقم 23',
+                        locker.lockerNumber.toLockerNumberString(
+                          context,
+                          withEmoji: true,
+                        ),
                         style: AppTextStyles.style20w500(
                           context,
                         ).copyWith(color: AppColors.white),
                       ),
                       Text(
-                        'الوحده رقم 1',
+                        locker.unitNumber.toUnitString(context),
                         style: AppTextStyles.style16w500(
                           context,
                         ).copyWith(color: AppColors.white),
@@ -71,11 +79,11 @@ class MaintenanceLockerCard extends StatelessWidget {
                     horizontal: 12,
                     vertical: 8,
                   ),
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     color: AppColors.filedGrey,
                     borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(16),
-                      // topRight: Radius.circular(16),
+                      topLeft: isArabic() ? Radius.circular(16) : Radius.zero,
+                      topRight: isArabic() ? Radius.zero : Radius.circular(16),
                     ),
                   ),
                   child: Text(

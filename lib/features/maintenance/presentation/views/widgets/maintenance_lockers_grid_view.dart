@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
+import '../../../../../core/widgets/empty_grid_view_widget.dart';
+import '../../manager/maintenance_provider.dart';
 import 'maintenance_locker_card.dart';
 
 class MaintenanceLockersGridView extends StatelessWidget {
@@ -7,24 +11,32 @@ class MaintenanceLockersGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        var width = constraints.maxWidth;
-        return GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            //* meaning that the minwidth of the card is 210.
-            crossAxisCount: (width / 210).toInt(),
-            mainAxisSpacing: 8,
-            crossAxisSpacing: 8,
-            childAspectRatio: 200 / 250,
-            mainAxisExtent: 200,
-          ),
-          itemCount: 20,
-          itemBuilder: (context, index) {
-            return MaintenanceLockerCard();
-          },
-        );
-      },
-    );
+    var prov = context.watch<MaintenanceProvider>();
+    var lockers = prov.filteredMaintenanceLockersList;
+
+    return lockers.isEmpty
+        ? EmptyGridViewWidget(msg: 'No lockers found')
+        : LayoutBuilder(
+            builder: (context, constraints) {
+              var width = constraints.maxWidth;
+              return Skeletonizer(
+                enabled: prov.checkGetMaintenanceLockers == null,
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    //* meaning that the minwidth of the card is 210.
+                    crossAxisCount: (width / 210).toInt(),
+                    mainAxisSpacing: 8,
+                    crossAxisSpacing: 8,
+                    childAspectRatio: 200 / 250,
+                    mainAxisExtent: 200,
+                  ),
+                  itemCount: lockers.length,
+                  itemBuilder: (context, index) {
+                    return MaintenanceLockerCard(locker: lockers[index]);
+                  },
+                ),
+              );
+            },
+          );
   }
 }
