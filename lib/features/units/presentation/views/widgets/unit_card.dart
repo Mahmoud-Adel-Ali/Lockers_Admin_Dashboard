@@ -66,7 +66,7 @@ class UnitCard extends StatelessWidget {
                   ),
 
                   InkWell(
-                    onTap: () => editUnitDialog(context),
+                    onTap: () => editUnitDialog(context, unit: unit),
                     child: Container(
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(

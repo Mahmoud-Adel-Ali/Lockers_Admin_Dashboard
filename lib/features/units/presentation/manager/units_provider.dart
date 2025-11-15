@@ -29,6 +29,7 @@ class UnitsProvider extends ChangeNotifier {
         cities = model.data!.cities;
         checkGettingAllRegions = true;
         message = model.message;
+        filterUnits();
       },
     );
     notifyListeners();
@@ -222,7 +223,7 @@ class UnitsProvider extends ChangeNotifier {
   bool? checkAddingNewUnit = false;
   Future<void> addNewUnit() async {
     if (unitLocation == null) {
-      message = 'Please Pick Unit Location';
+      message = 'لم يتم تحديد موقع الوحدة بعد';
       checkAddingNewUnit = false;
       notifyListeners();
       return;
@@ -249,6 +250,12 @@ class UnitsProvider extends ChangeNotifier {
   //* Update Unit
   bool? checkUpdatingUnit = false;
   Future<void> updateUnit({required int id}) async {
+    if (unitLocation == null) {
+      message = 'لم يتم تحديد موقع الوحدة بعد';
+      checkUpdatingUnit = false;
+      notifyListeners();
+      return;
+    }
     checkUpdatingUnit = null;
     notifyListeners();
     final response = await repo.updateUnit(id: id, location: unitLocation!);
