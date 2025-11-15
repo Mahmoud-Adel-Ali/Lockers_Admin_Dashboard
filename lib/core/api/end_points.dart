@@ -16,12 +16,15 @@ class EndPoints {
   static const adminRegions = '/api/admin/regions';
   static const adminLockers = '/api/admin/lockers';
   static const adminUnits = '/api/admin/units';
-  static const maintenanceUnits = '/api/admin/update-under-maintenance-units';
-  static const maintenanceLockers =
+  static const maintenanceUnits = '/api/admin/under-maintenance-units';
+  static const maintenanceLockers = '/api/admin/under-maintenance-lockers';
+  static const updateMaintenanceUnits =
+      '/api/admin/update-under-maintenance-units';
+  static const updateMaintenanceLockers =
       '/api/admin/update-under-maintenance-lockers';
-  static const regionsOfMaintainceUnits =
+  static const regionsOfMaintenanceUnits =
       '/api/admin/regions-under-maintenance-units';
-  static const regionsOfMaintainceLockers =
+  static const regionsOfMaintenanceLockers =
       '/api/admin/regions-under-maintenance-lockers';
 }
 

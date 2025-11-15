@@ -10,44 +10,45 @@ import '../../../../core/models/places_model.dart';
 import '../../../../core/models/simple_model.dart';
 import '../../../../core/services/service_locator.dart';
 import '../../../units/data/models/all_units_response.dart';
+import '../models/all_maintenance_lockers_response.dart';
 
 class MaintenanceRepo {
   final DioConsumer dio = getit.get<DioConsumer>();
 
-  //* Get Regions Of Maintaince Units
-  Future<Either<String, PlacesModel>> getRegionsOfMaintainceUnits() async {
+  //* Get Regions Of Maintenance Units
+  Future<Either<String, PlacesModel>> getRegionsOfMaintenanceUnits() async {
     try {
       final response = await dio.get(
-        EndPoints.regionsOfMaintainceUnits,
+        EndPoints.regionsOfMaintenanceUnits,
         isFormData: false,
       );
       return Right(PlacesModel.fromJson(response));
     } on ServerException catch (e) {
       return Left(e.errorModel.message);
     } catch (e) {
-      log("Exception in getRegionsOfMaintainceUnits: $e");
+      log("Exception in getRegionsOfMaintenanceUnits: $e");
       return Left(kErrorMsg);
     }
   }
 
-  //* Get Regions Of Maintaince Lockers
-  Future<Either<String, PlacesModel>> getRegionsOfMaintainceLockers() async {
+  //* Get Regions Of Maintenance Lockers
+  Future<Either<String, PlacesModel>> getRegionsOfMaintenanceLockers() async {
     try {
       final response = await dio.get(
-        EndPoints.regionsOfMaintainceLockers,
+        EndPoints.regionsOfMaintenanceLockers,
         isFormData: false,
       );
       return Right(PlacesModel.fromJson(response));
     } on ServerException catch (e) {
       return Left(e.errorModel.message);
     } catch (e) {
-      log("Exception in getRegionsOfMaintainceLockers: $e");
+      log("Exception in getRegionsOfMaintenanceLockers: $e");
       return Left(kErrorMsg);
     }
   }
 
-  //* Get Maintaince Units
-  Future<Either<String, AllUnitsResponse>> getMaintainceUnits() async {
+  //* Get Maintenance Units
+  Future<Either<String, AllUnitsResponse>> getMaintenanceUnits() async {
     try {
       final response = await dio.get(
         EndPoints.maintenanceUnits,
@@ -57,24 +58,24 @@ class MaintenanceRepo {
     } on ServerException catch (e) {
       return Left(e.errorModel.message);
     } catch (e) {
-      log("Exception in getMaintainceUnits: $e");
+      log("Exception in getMaintenanceUnits: $e");
       return Left(kErrorMsg);
     }
   }
 
-  //* Get Maintaince Lockers
-  Future<Either<String, AllUnitsResponse>> getMaintainceLockers() async {
+  //* Get Maintenance Lockers
+  Future<Either<String, AllMaintenanceLockerResponse>>
+  getMaintenanceLockers() async {
     try {
       final response = await dio.get(
         EndPoints.maintenanceLockers,
         isFormData: false,
       );
-      // TODO : Change AllUnitsResponse to AllLockersResponse
-      return Right(AllUnitsResponse.fromJson(response));
+      return Right(AllMaintenanceLockerResponse.fromJson(response));
     } on ServerException catch (e) {
       return Left(e.errorModel.message);
     } catch (e) {
-      log("Exception in getMaintainceLockers: $e");
+      log("Exception in getMaintenanceLockers: $e");
       return Left(kErrorMsg);
     }
   }
@@ -86,7 +87,7 @@ class MaintenanceRepo {
     try {
       Map<String, dynamic> data = {'_method': 'PUT', 'under_maintenance': 0};
       final response = await dio.post(
-        '${EndPoints.maintenanceUnits}/$id',
+        '${EndPoints.updateMaintenanceUnits}/$id',
         data: data,
       );
       return Right(SimpleModel.fromJson(response));
@@ -105,7 +106,7 @@ class MaintenanceRepo {
     try {
       Map<String, dynamic> data = {'_method': 'PUT', 'under_maintenance': 0};
       final response = await dio.post(
-        '${EndPoints.maintenanceLockers}/$id',
+        '${EndPoints.updateMaintenanceLockers}/$id',
         data: data,
       );
       return Right(SimpleModel.fromJson(response));

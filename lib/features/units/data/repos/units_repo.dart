@@ -68,7 +68,7 @@ class UnitsRepo {
     try {
       Map<String, dynamic> data = {'_method': 'PUT', 'under_maintenance': 1};
       final response = await dio.post(
-        '${EndPoints.maintenanceUnits}/$id',
+        '${EndPoints.updateMaintenanceUnits}/$id',
         data: data,
       );
       return Right(SimpleModel.fromJson(response));
@@ -87,7 +87,7 @@ class UnitsRepo {
     try {
       Map<String, dynamic> data = {'_method': 'PUT', 'under_maintenance': 1};
       final response = await dio.post(
-        '${EndPoints.maintenanceLockers}/$id',
+        '${EndPoints.updateMaintenanceLockers}/$id',
         data: data,
       );
       return Right(SimpleModel.fromJson(response));
