@@ -3,6 +3,7 @@ import 'permissions_model.dart';
 class EmployeeModel {
   final String name;
   final String phone;
+  final String image;
   final String email;
   final String? password;
   final String? passwordConfirmation;
@@ -11,6 +12,7 @@ class EmployeeModel {
   EmployeeModel({
     required this.name,
     required this.phone,
+    required this.image,
     required this.email,
     this.password,
     this.passwordConfirmation,
@@ -21,6 +23,7 @@ class EmployeeModel {
     return EmployeeModel(
       name: json['name'] ?? '',
       phone: json['phone'] ?? '',
+      image: json['image'] ?? '',
       email: json['email'] ?? '',
       password: json['password'],
       passwordConfirmation: json['password_confirmation'],
