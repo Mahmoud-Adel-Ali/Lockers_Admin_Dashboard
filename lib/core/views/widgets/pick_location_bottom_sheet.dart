@@ -19,10 +19,8 @@ Future<void> pickLocationDetailsBottomSheet(
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
     ),
-    builder: (context) => PickLocationBottomSheetForm(
-      latitude: locationModel.latitude,
-      longitude: locationModel.longitude,
-    ),
+    builder: (context) =>
+        PickLocationBottomSheetForm(locationModel: locationModel),
   );
 
   // If user saved
@@ -33,13 +31,8 @@ Future<void> pickLocationDetailsBottomSheet(
 }
 
 class PickLocationBottomSheetForm extends StatefulWidget {
-  final double latitude;
-  final double longitude;
-  const PickLocationBottomSheetForm({
-    super.key,
-    required this.latitude,
-    required this.longitude,
-  });
+  final LocationDetailsModel locationModel;
+  const PickLocationBottomSheetForm({super.key, required this.locationModel});
 
   @override
   State<PickLocationBottomSheetForm> createState() =>
@@ -54,6 +47,17 @@ class _PickLocationBottomSheetFormState
   final streetController = TextEditingController();
   final buildingController = TextEditingController();
   final administrativeAreaController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    cityController.text = widget.locationModel.city ?? '';
+    neighborhoodController.text = widget.locationModel.neighborhood ?? '';
+    streetController.text = widget.locationModel.street ?? '';
+    buildingController.text = widget.locationModel.buildingNum ?? '';
+    administrativeAreaController.text =
+        widget.locationModel.administrativeArea ?? '';
+  }
 
   @override
   void dispose() {
@@ -113,8 +117,8 @@ class _PickLocationBottomSheetFormState
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     final result = LocationDetailsModel(
-                      latitude: widget.latitude,
-                      longitude: widget.longitude,
+                      latitude: widget.locationModel.latitude,
+                      longitude: widget.locationModel.longitude,
                       city: cityController.text,
                       neighborhood: neighborhoodController.text,
                       street: streetController.text,

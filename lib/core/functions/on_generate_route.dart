@@ -28,7 +28,7 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
       LocationDetailsModel? locationModel =
           settings.arguments as LocationDetailsModel?;
       return MaterialPageRoute(
-        builder: (_) => PickLocationView(locationModel: locationModel),
+        builder: (_) => PickLocationView(lastLocationModel: locationModel),
       );
     case ShowLocationView.routeName:
       LocationDetailsModel locationModel =

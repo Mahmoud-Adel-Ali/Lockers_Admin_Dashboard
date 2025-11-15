@@ -29,14 +29,14 @@ Future<dynamic> editUnitDialog(
       return CustomDialog(
         title: 'تعديل بيانات الوحدة',
         constraints: BoxConstraints(maxWidth: 500, maxHeight: 300),
-        child: AddNewUnitForm(unit: unit),
+        child: EditUnitForm(unit: unit),
       );
     },
   );
 }
 
-class AddNewUnitForm extends StatelessWidget {
-  const AddNewUnitForm({super.key, required this.unit});
+class EditUnitForm extends StatelessWidget {
+  const EditUnitForm({super.key, required this.unit});
   final UnitModel unit;
   @override
   Widget build(BuildContext context) {
@@ -49,6 +49,7 @@ class AddNewUnitForm extends StatelessWidget {
       neighborhood: unit.neighborhood,
       street: unit.street,
       buildingNum: unit.buildNumber,
+      administrativeArea: unit.additionAddress,
     );
     var controller = TextEditingController(
       text: convertLocationToText(
@@ -59,61 +60,56 @@ class AddNewUnitForm extends StatelessWidget {
         buildingNum: prov.unitLocation?.buildingNum ?? unit.buildNumber,
       ),
     );
-    return Form(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          spacing: 16,
-          children: [
-            const SizedBox(),
-            // CustomTextFormField(hintText: 'رقم الوحدة'),
-            CustomLocationFormFied(
-              hintText: 'موقع الوحدة',
-              controller: controller,
-              onTap: () async {
-                final location = await Navigator.push<LocationDetailsModel>(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) =>
-                        PickLocationView(locationModel: lastUnitLocation),
-                  ),
-                );
+    return Column(
+      spacing: 16,
+      children: [
+        const SizedBox(),
+        // CustomTextFormField(hintText: 'رقم الوحدة'),
+        CustomLocationFormFied(
+          hintText: 'موقع الوحدة',
+          controller: controller,
+          onTap: () async {
+            final location = await Navigator.push<LocationDetailsModel>(
+              context,
+              MaterialPageRoute(
+                builder: (_) =>
+                    PickLocationView(lastLocationModel: lastUnitLocation),
+              ),
+            );
 
-                if (location != null) {
-                  prov.onPickLocation(location);
-                }
-              },
-            ),
-            SizedBox(height: 16),
-            CustomButton(
-              text: 'تعديل',
-              onPressed: () async {
-                //* Show Loading Dialog
-                showLoadingDialog(context);
-
-                await prov.updateUnit(id: unit.id);
-
-                //* Close Loading Dialog
-                Navigator.pop(context);
-
-                if (prov.checkUpdatingUnit == true) {
-                  //* Close Dialog
-                  Navigator.pop(context);
-
-                  showSuccessSnackBar(context, msg: prov.message);
-                } else if (prov.checkUpdatingUnit == false) {
-                  checkUnauthenticated(context, msg: prov.message);
-                  DialogHelper.showErrorDialog(
-                    context,
-                    title: S.of(context).error,
-                    desc: prov.message,
-                  );
-                }
-              },
-            ),
-          ],
+            if (location != null) {
+              prov.onPickLocation(location);
+            }
+          },
         ),
-      ),
+        SizedBox(height: 16),
+        CustomButton(
+          text: 'حفظ التغييرات',
+          onPressed: () async {
+            //* Show Loading Dialog
+            showLoadingDialog(context);
+
+            await prov.updateUnit(id: unit.id);
+
+            //* Close Loading Dialog
+            Navigator.pop(context);
+
+            if (prov.checkUpdatingUnit == true) {
+              //* Close Dialog
+              Navigator.pop(context);
+
+              showSuccessSnackBar(context, msg: prov.message);
+            } else if (prov.checkUpdatingUnit == false) {
+              checkUnauthenticated(context, msg: prov.message);
+              DialogHelper.showErrorDialog(
+                context,
+                title: S.of(context).error,
+                desc: prov.message,
+              );
+            }
+          },
+        ),
+      ],
     );
   }
 }

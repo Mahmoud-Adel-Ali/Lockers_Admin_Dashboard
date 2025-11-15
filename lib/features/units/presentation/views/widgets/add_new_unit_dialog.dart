@@ -35,68 +35,63 @@ class AddNewUnitForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var prov = context.watch<UnitsProvider>();
-    return Form(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          spacing: 16,
-          children: [
-            const SizedBox(),
-            // CustomTextFormField(hintText: 'رقم الوحدة'),
-            CustomLocationFormFied(
-              hintText: 'موقع الوحدة',
-              controller: prov.unitLocation == null
-                  ? null
-                  : TextEditingController(
-                      text: convertLocationToText(
-                        context,
-                        city: prov.unitLocation?.city,
-                        neighborhood: prov.unitLocation?.neighborhood,
-                        street: prov.unitLocation?.street,
-                        buildingNum: prov.unitLocation?.buildingNum,
-                      ),
-                    ),
-              onTap: () async {
-                final location = await Navigator.push<LocationDetailsModel>(
-                  context,
-                  MaterialPageRoute(builder: (_) => const PickLocationView()),
-                );
-
-                if (location != null) {
-                  prov.onPickLocation(location);
-                }
-              },
-            ),
-            SizedBox(height: 16),
-            CustomButton(
-              text: 'إضافة',
-              onPressed: () async {
-                //* Show Loading Dialog
-                showLoadingDialog(context);
-
-                await prov.addNewUnit();
-
-                //* Close Loading Dialog
-                Navigator.pop(context);
-
-                if (prov.checkAddingNewUnit == true) {
-                  //* Close Dialog
-                  Navigator.pop(context);
-
-                  showSuccessSnackBar(context, msg: prov.message);
-                } else if (prov.checkAddingNewUnit == false) {
-                  checkUnauthenticated(context, msg: prov.message);
-                  DialogHelper.showErrorDialog(
+    return Column(
+      spacing: 16,
+      children: [
+        const SizedBox(),
+        // CustomTextFormField(hintText: 'رقم الوحدة'),
+        CustomLocationFormFied(
+          hintText: 'موقع الوحدة',
+          controller: prov.unitLocation == null
+              ? null
+              : TextEditingController(
+                  text: convertLocationToText(
                     context,
-                    title: S.of(context).error,
-                    desc: prov.message,
-                  );
-                }
-              },
-            ),
-          ],
+                    city: prov.unitLocation?.city,
+                    neighborhood: prov.unitLocation?.neighborhood,
+                    street: prov.unitLocation?.street,
+                    buildingNum: prov.unitLocation?.buildingNum,
+                  ),
+                ),
+          onTap: () async {
+            final location = await Navigator.push<LocationDetailsModel>(
+              context,
+              MaterialPageRoute(builder: (_) => const PickLocationView()),
+            );
+
+            if (location != null) {
+              prov.onPickLocation(location);
+            }
+          },
         ),
-      ),
+        SizedBox(height: 16),
+        CustomButton(
+          text: 'إضافة',
+          onPressed: () async {
+            //* Show Loading Dialog
+            showLoadingDialog(context);
+
+            await prov.addNewUnit();
+
+            //* Close Loading Dialog
+            Navigator.pop(context);
+
+            if (prov.checkAddingNewUnit == true) {
+              //* Close Dialog
+              Navigator.pop(context);
+
+              showSuccessSnackBar(context, msg: prov.message);
+            } else if (prov.checkAddingNewUnit == false) {
+              checkUnauthenticated(context, msg: prov.message);
+              DialogHelper.showErrorDialog(
+                context,
+                title: S.of(context).error,
+                desc: prov.message,
+              );
+            }
+          },
+        ),
+      ],
     );
   }
 }

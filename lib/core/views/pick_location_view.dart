@@ -14,10 +14,10 @@ import '../widgets/dialog_helper.dart';
 import 'widgets/pick_location_bottom_sheet.dart';
 
 class PickLocationView extends StatefulWidget {
-  const PickLocationView({super.key, this.locationModel});
+  const PickLocationView({super.key, this.lastLocationModel});
   static const routeName = 'PickCompanyLocation';
 
-  final LocationDetailsModel? locationModel;
+  final LocationDetailsModel? lastLocationModel;
   @override
   State<PickLocationView> createState() => _PickLocationViewState();
 }
@@ -34,30 +34,38 @@ class _PickLocationViewState extends State<PickLocationView> {
   @override
   void initState() {
     super.initState();
-    if (widget.locationModel == null) {
+    if (widget.lastLocationModel == null) {
+      locationService = LocationService();
       // Egypt initial position
       var latLng = LatLng(27.504233709174983, 30.720281847535116);
 
       initialCameraPosition = CameraPosition(target: latLng, zoom: 10);
     } else {
       var latLng = LatLng(
-        widget.locationModel!.latitude,
-        widget.locationModel!.longitude,
+        widget.lastLocationModel!.latitude,
+        widget.lastLocationModel!.longitude,
       );
       initialCameraPosition = CameraPosition(target: latLng, zoom: 16);
       isLoading = false;
+      locationDetailsModel = LocationDetailsModel(
+        latitude: latLng.latitude,
+        longitude: latLng.longitude,
+        country: widget.lastLocationModel!.country,
+        city: widget.lastLocationModel!.city,
+        buildingNum: widget.lastLocationModel!.buildingNum,
+        neighborhood: widget.lastLocationModel!.neighborhood,
+        street: widget.lastLocationModel!.street,
+        postalCode: widget.lastLocationModel!.postalCode,
+        administrativeArea: widget.lastLocationModel!.administrativeArea,
+      );
       setLocationMarker(latLng);
     }
-    locationService = LocationService();
   }
 
   @override
   void dispose() {
     super.dispose();
     mapController.dispose();
-    markers.clear();
-    locationDetailsModel = null;
-    isLoading = false;
   }
 
   @override
@@ -71,7 +79,7 @@ class _PickLocationViewState extends State<PickLocationView> {
             zoomControlsEnabled: false,
             onMapCreated: (controller) {
               mapController = controller;
-              if (widget.locationModel == null) updateLocation();
+              if (widget.lastLocationModel == null) updateLocation();
             },
             onTap: (latLng) {
               // Update marker to new position
@@ -149,7 +157,7 @@ class PickLocationViewBody extends StatelessWidget {
   const PickLocationViewBody({
     super.key,
     required this.isLoading,
-    required this.locationModel,
+    this.locationModel,
   });
   final bool isLoading;
   final LocationDetailsModel? locationModel;

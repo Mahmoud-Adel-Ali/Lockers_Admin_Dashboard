@@ -251,7 +251,7 @@ class UnitsProvider extends ChangeNotifier {
   bool? checkUpdatingUnit = false;
   Future<void> updateUnit({required int id}) async {
     if (unitLocation == null) {
-      message = 'لم يتم تحديد موقع الوحدة بعد';
+      message = 'لم يتم تحديد موقع جديد للوحدة بعد';
       checkUpdatingUnit = false;
       notifyListeners();
       return;
