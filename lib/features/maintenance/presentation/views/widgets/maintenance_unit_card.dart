@@ -134,7 +134,7 @@ class MaintenanceUnitButton extends StatelessWidget {
         DialogHelper.showQuestionDialog(
           context,
           title: 'الصيانه',
-          desc: 'هل ترغب في إعادة الوحده رقم 1 إلي العمل',
+          desc: 'هل ترغب في إعادة الوحده إلي العمل',
           onOk: () async {
             //* Show Loading Dialog
             showLoadingDialog(context);

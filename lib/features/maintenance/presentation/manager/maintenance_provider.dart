@@ -132,6 +132,7 @@ class MaintenanceProvider extends ChangeNotifier {
   // filter units by city and neighborhood
   void filterMaintenanceUnits() {
     if (regionsOfMaintenanceUnits.isEmpty) {
+      filteredMaintenanceUnitsList = maintenanceUnits;
       return;
     } else if (selectedUnitsRegion == -1) {
       filteredMaintenanceUnitsList = maintenanceUnits
@@ -170,6 +171,7 @@ class MaintenanceProvider extends ChangeNotifier {
 
   void filterMaintenanceLockers() {
     if (regionsOfMaintenanceLockers.isEmpty) {
+      filteredMaintenanceLockersList = maintenanceLockers;
       return;
     } else if (selectedLockersRegion == -1) {
       filteredMaintenanceLockersList = maintenanceLockers
