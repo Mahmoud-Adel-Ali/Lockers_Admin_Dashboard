@@ -4,6 +4,7 @@ import 'package:lockers_admin_dashboard/core/extensions/unit_extension.dart';
 
 import '../../../../../core/functions/convert_location_to_text.dart';
 import '../../../../../core/functions/is_arabic.dart';
+import '../../../../../core/models/location_details_model.dart';
 import '../../../../../core/models/unit_model.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
@@ -52,9 +53,19 @@ class MaintenanceUnitCard extends StatelessWidget {
 
                   InkWell(
                     onTap: () {
-                      Navigator.of(
-                        context,
-                      ).pushNamed(ShowLocationView.routeName);
+                      LocationDetailsModel location = LocationDetailsModel(
+                        latitude: unit.latitude,
+                        longitude: unit.longitude,
+                        city: unit.city,
+                        neighborhood: unit.neighborhood,
+                        street: unit.street,
+                        buildingNum: unit.buildNumber,
+                        administrativeArea: unit.additionAddress,
+                      );
+                      Navigator.of(context).pushNamed(
+                        ShowLocationView.routeName,
+                        arguments: location,
+                      );
                     },
                     child: Container(
                       padding: const EdgeInsets.all(8),
