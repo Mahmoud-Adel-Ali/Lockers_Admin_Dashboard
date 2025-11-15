@@ -7,6 +7,7 @@ import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/size_config.dart';
 import '../../../companies/presentation/manager/companies_provider.dart';
 import '../../../complaints/presentation/manager/complaints_provider.dart';
+import '../../../maintenance/presentation/manager/maintenance_provider.dart';
 import '../../../notification/presentation/view/notification_view.dart';
 import '../../../packages/presentation/manager/packages_provider.dart';
 import '../../../units/presentation/manager/units_provider.dart';
@@ -33,6 +34,11 @@ class AdminDashboardView extends StatelessWidget {
         ..getAllUnits();
       context.read<PackagesProvider>().getAllPackages();
       context.read<ComplaintsProvider>().getAllComplaints();
+      context.read<MaintenanceProvider>()
+        ..getRegionsOfMaintenanceUnits()
+        ..getRegionsOfMaintenanceLockers()
+        ..getMaintenanceUnits()
+        ..getMaintenanceLockers();
     });
     return const AdminDashboardViewBody();
   }
