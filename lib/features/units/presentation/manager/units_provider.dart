@@ -16,7 +16,6 @@ class UnitsProvider extends ChangeNotifier {
   bool? checkGettingAllRegions = false;
   Future<void> getAllRegions() async {
     checkGettingAllRegions = null;
-    message = '';
     notifyListeners();
 
     final response = await repo.getAllRegions();
@@ -41,6 +40,9 @@ class UnitsProvider extends ChangeNotifier {
   bool? checkGettingAllUnits = false;
 
   Future<void> getAllUnits() async {
+    selectedCity = 0;
+    selectedRegion = -1;
+
     checkGettingAllUnits = null;
     notifyListeners();
 
@@ -54,8 +56,6 @@ class UnitsProvider extends ChangeNotifier {
         allUnitsList = model.data;
         checkGettingAllUnits = true;
         message = model.message;
-        selectedCity = 0;
-        selectedRegion = -1;
         filterUnits();
       },
     );
@@ -242,6 +242,7 @@ class UnitsProvider extends ChangeNotifier {
         message = model.message;
         unitLocation = null;
         getAllUnits();
+        getAllRegions();
       },
     );
     notifyListeners();
@@ -269,6 +270,7 @@ class UnitsProvider extends ChangeNotifier {
         message = model.message;
         unitLocation = null;
         getAllUnits();
+        getAllRegions();
       },
     );
     notifyListeners();
