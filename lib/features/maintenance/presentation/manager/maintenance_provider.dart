@@ -190,4 +190,48 @@ class MaintenanceProvider extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  //* delete Unit from mantenance
+  bool? checkDeleteUnitFromMaintenance = false;
+
+  Future<void> deleteUnitFromMaintenance({required int unitId}) async {
+    checkDeleteUnitFromMaintenance = null;
+    notifyListeners();
+    final response = await repo.deleteUnitFromMaintenance(id: unitId);
+    response.fold(
+      (msg) {
+        checkDeleteUnitFromMaintenance = false;
+        message = msg;
+      },
+      (model) {
+        checkDeleteUnitFromMaintenance = true;
+        message = model.message;
+        getRegionsOfMaintenanceUnits();
+        getMaintenanceUnits();
+      },
+    );
+    notifyListeners();
+  }
+
+  //* delete Locker from mantenance
+  bool? checkDeleteLockerFromMaintenance = false;
+
+  Future<void> deleteLockerFromMaintenance({required int lockerId}) async {
+    checkDeleteLockerFromMaintenance = null;
+    notifyListeners();
+    final response = await repo.deleteLockerFromMaintenance(id: lockerId);
+    response.fold(
+      (msg) {
+        checkDeleteLockerFromMaintenance = false;
+        message = msg;
+      },
+      (model) {
+        checkDeleteLockerFromMaintenance = true;
+        message = model.message;
+        getRegionsOfMaintenanceLockers();
+        getMaintenanceLockers();
+      },
+    );
+    notifyListeners();
+  }
 }

@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 
 import '../../../../../core/functions/check_unauthenticated.dart';
 import '../../../../../core/functions/show_loading_dialog.dart';
-import '../../../../../core/functions/snack_bar.dart';
 import '../../../../../core/models/unit_model.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
@@ -17,6 +16,7 @@ import '../../../../../core/widgets/dialog_helper.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../dashboard/data/enums/dashboard_type.dart';
 import '../../../../dashboard/presentation/manager/dashboard_manager.dart';
+import '../../../../maintenance/presentation/manager/maintenance_provider.dart';
 import '../../manager/units_provider.dart';
 import 'edit_unit_dialog.dart';
 
@@ -111,7 +111,9 @@ class SendToMaintenanceButton extends StatelessWidget {
             Navigator.pop(context);
 
             if (prov.checkSendingUnitToMantenance == true) {
-              showSuccessSnackBar(context, msg: prov.message);
+              context.read<MaintenanceProvider>()
+                ..getRegionsOfMaintenanceUnits()
+                ..getMaintenanceUnits();
             } else if (prov.checkSendingUnitToMantenance == false) {
               checkUnauthenticated(context, msg: prov.message);
               DialogHelper.showErrorDialog(

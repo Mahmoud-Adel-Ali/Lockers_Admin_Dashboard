@@ -1,9 +1,14 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:lockers_admin_dashboard/core/extensions/locker_extension.dart';
 import 'package:lockers_admin_dashboard/core/extensions/unit_extension.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../../core/functions/check_unauthenticated.dart';
 import '../../../../../core/functions/convert_location_to_text.dart';
 import '../../../../../core/functions/is_arabic.dart';
+import '../../../../../core/functions/show_loading_dialog.dart';
 import '../../../../../core/models/location_details_model.dart';
 import '../../../../../core/models/unit_model.dart';
 import '../../../../../core/utils/app_colors.dart';
@@ -11,6 +16,9 @@ import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/assets.dart';
 import '../../../../../core/views/show_location_view.dart';
 import '../../../../../core/widgets/dialog_helper.dart';
+import '../../../../../generated/l10n.dart';
+import '../../../../units/presentation/manager/units_provider.dart';
+import '../../manager/maintenance_provider.dart';
 
 class MaintenanceUnitCard extends StatelessWidget {
   const MaintenanceUnitCard({super.key, required this.unit});
@@ -105,42 +113,68 @@ class MaintenanceUnitCard extends StatelessWidget {
                 ),
               ],
             ),
-            InkWell(
-              onTap: () {
-                DialogHelper.showQuestionDialog(
-                  context,
-                  title: 'الصيانه',
-                  desc: 'هل ترغب في إعادة الوحده رقم 1 إلي العمل',
-                  onOk: () {
-                    DialogHelper.showSuccessDialog(
-                      context,
-                      title: 'تم',
-                      desc: 'تم ارسال الوحده رقم 1 الى العمل بنجاح',
-                    );
-                  },
-                );
-              },
-              child: Container(
-                padding: const EdgeInsets.all(12.0),
-                decoration: const BoxDecoration(
-                  color: AppColors.main,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(16),
-                    bottomRight: Radius.circular(16),
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(
-                      'إرجاع إلي العمل',
-                      style: AppTextStyles.style14w500(
-                        context,
-                      ).copyWith(color: AppColors.white),
-                    ),
-                  ],
-                ),
-              ),
+            MaintenanceUnitButton(unit: unit),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class MaintenanceUnitButton extends StatelessWidget {
+  const MaintenanceUnitButton({super.key, required this.unit});
+
+  final UnitModel unit;
+
+  @override
+  Widget build(BuildContext context) {
+    var prov = context.watch<MaintenanceProvider>();
+    return InkWell(
+      onTap: () {
+        DialogHelper.showQuestionDialog(
+          context,
+          title: 'الصيانه',
+          desc: 'هل ترغب في إعادة الوحده رقم 1 إلي العمل',
+          onOk: () async {
+            //* Show Loading Dialog
+            showLoadingDialog(context);
+
+            await prov.deleteUnitFromMaintenance(unitId: unit.id);
+
+            //* Close Loading Dialog
+            Navigator.pop(context);
+            if (prov.checkDeleteUnitFromMaintenance == true) {
+              context.read<UnitsProvider>()
+                ..getAllRegions()
+                ..getAllUnits();
+            } else if (prov.checkDeleteUnitFromMaintenance == false) {
+              checkUnauthenticated(context, msg: prov.message);
+              DialogHelper.showErrorDialog(
+                context,
+                title: S.of(context).error,
+                desc: prov.message,
+              );
+            }
+          },
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.all(12.0),
+        decoration: const BoxDecoration(
+          color: AppColors.main,
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(16),
+            bottomRight: Radius.circular(16),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text(
+              'إرجاع إلي العمل',
+              style: AppTextStyles.style14w500(
+                context,
+              ).copyWith(color: AppColors.white),
             ),
           ],
         ),

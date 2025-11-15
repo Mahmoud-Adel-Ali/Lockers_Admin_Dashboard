@@ -16,6 +16,7 @@ import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/assets.dart';
 import '../../../../../core/widgets/dialog_helper.dart';
 import '../../../../../generated/l10n.dart';
+import '../../../../maintenance/presentation/manager/maintenance_provider.dart';
 import '../../manager/units_provider.dart';
 import 'edit_locker_dialog.dart';
 
@@ -122,6 +123,9 @@ class SendLockerButton extends StatelessWidget {
 
             if (prov.checkSendingLockerToMantenance == true) {
               showSuccessSnackBar(context, msg: prov.message);
+              context.read<MaintenanceProvider>()
+                ..getRegionsOfMaintenanceLockers()
+                ..getMaintenanceLockers();
             } else if (prov.checkSendingLockerToMantenance == false) {
               checkUnauthenticated(context, msg: prov.message);
               DialogHelper.showErrorDialog(
