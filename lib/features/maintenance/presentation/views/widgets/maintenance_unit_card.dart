@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:lockers_admin_dashboard/core/extensions/locker_extension.dart';
+import 'package:lockers_admin_dashboard/core/extensions/unit_extension.dart';
 
+import '../../../../../core/functions/convert_location_to_text.dart';
+import '../../../../../core/functions/is_arabic.dart';
 import '../../../../../core/models/unit_model.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
@@ -32,13 +36,13 @@ class MaintenanceUnitCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'الوحده رقم 1',
+                        unit.unitNumber.toUnitString(context),
                         style: AppTextStyles.style20w500(
                           context,
                         ).copyWith(color: AppColors.white),
                       ),
                       Text(
-                        '132 خزينه',
+                        unit.countLockers.toLockerString(context),
                         style: AppTextStyles.style16w500(
                           context,
                         ).copyWith(color: AppColors.white),
@@ -72,15 +76,19 @@ class MaintenanceUnitCard extends StatelessWidget {
                     horizontal: 12,
                     vertical: 8,
                   ),
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     color: AppColors.filedGrey,
                     borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(16),
-                      // topRight: Radius.circular(16),
+                      topLeft: isArabic() ? Radius.circular(16) : Radius.zero,
+                      topRight: isArabic() ? Radius.zero : Radius.circular(16),
                     ),
                   ),
                   child: Text(
-                    'سوهاج - حي شرق',
+                    convertLocationToText(
+                      context,
+                      city: unit.city,
+                      neighborhood: unit.neighborhood,
+                    ),
                     style: AppTextStyles.style14w500(context),
                   ),
                 ),
