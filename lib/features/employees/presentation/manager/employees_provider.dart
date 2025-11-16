@@ -104,7 +104,7 @@ class EmployeesProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  //* Add Employee
+  //* Employee [Add & Update]
   XFile? image;
   var formKey = GlobalKey<FormState>();
   var name = TextEditingController();
@@ -199,6 +199,61 @@ class EmployeesProvider extends ChangeNotifier {
       },
       (model) {
         checkAddEmployee = true;
+        message = model.message;
+        getAllEmployees();
+      },
+    );
+    notifyListeners();
+  }
+
+  //* Fill Employee Data
+  void fillEmployeeData(EmployeeModel model) {
+    name.text = model.name;
+    phone.text = model.phone;
+    email.text = model.email;
+    password.text = model.password!;
+    passwordConfirmation.text = model.passwordConfirmation!;
+    manageUnits = model.permissions.manageUnits;
+    manageCustomers = model.permissions.manageCustomers;
+    manageComplaints = model.permissions.manageComplaints;
+    manageMaintenance = model.permissions.manageMaintenance;
+    followReservations = model.permissions.followReservations;
+    manageShippingCompanies = model.permissions.manageShippingCompanies;
+    notifyListeners();
+  }
+
+  //* Update Employee
+  bool? checkUpdateEmployee = false;
+  Future<void> updateEmployee({required int id}) async {
+    checkUpdateEmployee = null;
+    notifyListeners();
+
+    EmployeeModel employee = EmployeeModel(
+      name: name.text,
+      phone: phone.text,
+      email: email.text,
+      image: '', // not yet uploaded
+      password: password.text,
+      passwordConfirmation: passwordConfirmation.text,
+      permissions: PermissionsModel(
+        manageUnits: manageUnits,
+        manageCustomers: manageCustomers,
+        manageComplaints: manageComplaints,
+        manageMaintenance: manageMaintenance,
+        followReservations: followReservations,
+        manageShippingCompanies: manageShippingCompanies,
+      ),
+    );
+
+    final response = await repo.updateEmployee(id: id, employee: employee);
+
+    response.fold(
+      (msg) {
+        checkUpdateEmployee = false;
+        message = msg;
+      },
+      (model) {
+        checkUpdateEmployee = true;
         message = model.message;
         getAllEmployees();
       },

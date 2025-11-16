@@ -53,4 +53,23 @@ class EmployeesRepo {
       return Left(kErrorMsg);
     }
   }
+
+  //* Update Employee
+  Future<Either<String, SimpleModel>> updateEmployee({
+    required int id,
+    required EmployeeModel employee,
+  }) async {
+    try {
+      final response = await dio.post(
+        '${EndPoints.allEmployees}/$id',
+        data: {'_method': 'PUT', ...employee.toJson()},
+      );
+      return Right(SimpleModel.fromJson(response));
+    } on ServerException catch (e) {
+      return Left(e.errorModel.message);
+    } catch (e) {
+      log("Exception in updateEmployee [Admin]: $e");
+      return Left(kErrorMsg);
+    }
+  }
 }
