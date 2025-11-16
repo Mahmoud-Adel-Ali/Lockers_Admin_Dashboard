@@ -6,6 +6,7 @@ import 'package:lockers_admin_dashboard/core/extensions/unit_extension.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../core/functions/check_unauthenticated.dart';
+import '../../../../../core/functions/convert_location_to_text.dart';
 import '../../../../../core/functions/is_arabic.dart';
 import '../../../../../core/functions/show_loading_dialog.dart';
 import '../../../../../core/models/location_details_model.dart';
@@ -105,7 +106,11 @@ class MaintenanceLockerCard extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    'سوهاج - حي شرق',
+                    convertLocationToText(
+                      context,
+                      city: locker.city,
+                      neighborhood: locker.neighborhood,
+                    ),
                     style: AppTextStyles.style14w500(context),
                   ),
                 ),

@@ -180,6 +180,7 @@ class UnitsProvider extends ChangeNotifier {
         checkAddingLockerToUnit = true;
         message = model.message;
         getUnitDetails();
+        getAllUnits();
       },
     );
     notifyListeners();
