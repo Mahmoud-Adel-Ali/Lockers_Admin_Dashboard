@@ -29,3 +29,34 @@ extension CustomerTypeExtension on CustomerType {
     }
   }
 }
+
+// From API
+CustomerType customerTypeFromString(String type) {
+  switch (type) {
+    case "all":
+      return CustomerType.all;
+    case "active":
+      return CustomerType.system;
+    case "pending":
+      return CustomerType.newCustomers;
+    case "blocked":
+      return CustomerType.blocked;
+    default:
+      return CustomerType.system;
+  }
+}
+
+// To API
+String customerTypeToString(CustomerType type) {
+  switch (type) {
+    case CustomerType.all:
+      return "all";
+    case CustomerType.system:
+      return "active";
+    case CustomerType.newCustomers:
+      return "pending";
+    case CustomerType.blocked:
+      return "blocked";
+    
+  }
+}
