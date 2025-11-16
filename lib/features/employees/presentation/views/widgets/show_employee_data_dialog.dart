@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:lockers_admin_dashboard/core/utils/assets.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../../core/utils/size_config.dart';
 import '../../../../../../core/widgets/custom_dialog.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/widgets/custom_button.dart';
+import '../../../../../core/widgets/custom_cached_network_image.dart';
 import '../../../../../core/widgets/custom_labeled_checkbox.dart';
 import '../../../../../core/widgets/profile_text_field.dart';
+import '../../../data/models/employee_model.dart';
+import '../../manager/employees_provider.dart';
 import 'edit_employee_data_dialog.dart';
 
-Future<dynamic> showEmployeeDataDialog(BuildContext context) {
+Future<dynamic> showEmployeeDataDialog(
+  BuildContext context, {
+  required EmployeeModel employee,
+}) {
   return showDialog(
     context: context,
     builder: (context) {
@@ -27,17 +33,18 @@ Future<dynamic> showEmployeeDataDialog(BuildContext context) {
           horizontal: 0,
           text: 'تعديل البيانات',
         ),
-        child: const ShowEmployeeDataForm(),
+        child: ShowEmployeeDataForm(employee: employee),
       );
     },
   );
 }
 
 class ShowEmployeeDataForm extends StatelessWidget {
-  const ShowEmployeeDataForm({super.key});
-
+  const ShowEmployeeDataForm({super.key, required this.employee});
+  final EmployeeModel employee;
   @override
   Widget build(BuildContext context) {
+    var prov = context.read<EmployeesProvider>();
     return AbsorbPointer(
       absorbing: true,
       child: Padding(
@@ -49,28 +56,18 @@ class ShowEmployeeDataForm extends StatelessWidget {
               'بيانات حساب الموظف',
               style: AppTextStyles.style20w500(context),
             ),
-            SizedBox(
-              height: 150,
+            Container(
               width: 150,
-              child: CircleAvatar(
-                radius: 100,
-                backgroundColor: AppColors.whiteGrey,
-                backgroundImage: AssetImage(Assets.imagesTestUserImage),
+              height: 150,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: customCachedNetworkImageprovider(employee.image),
               ),
             ),
             const SizedBox(),
-            ProfileTextField(
-              title: 'الإسم',
-              controller: TextEditingController(text: 'محمدخالد عبدالرازق'),
-            ),
-            ProfileTextField(
-              title: 'رقم الهاتف',
-              controller: TextEditingController(text: '+20 0108765243456'),
-            ),
-            ProfileTextField(
-              title: 'الإيميل',
-              controller: TextEditingController(text: 'mohammed123@gmail.com'),
-            ),
+            ProfileTextField(title: 'الإسم', controller: prov.name),
+            ProfileTextField(title: 'رقم الهاتف', controller: prov.phone),
+            ProfileTextField(title: 'الإيميل', controller: prov.email),
             Container(
               padding: const EdgeInsets.all(8.0),
               decoration: BoxDecoration(
@@ -90,32 +87,32 @@ class ShowEmployeeDataForm extends StatelessWidget {
                   SizedBox(height: 16),
                   CustomLabeledCheckBox(
                     label: 'إدارة شركات الشحن',
-                    initialValue: true,
+                    initialValue: prov.manageShippingCompanies,
                     onChanged: (value) {},
                   ),
                   CustomLabeledCheckBox(
                     label: 'إدارة الوحدات',
-                    initialValue: false,
+                    initialValue: prov.manageUnits,
                     onChanged: (value) {},
                   ),
                   CustomLabeledCheckBox(
                     label: 'متابعة الحجوزات',
-                    initialValue: true,
+                    initialValue: prov.followReservations,
                     onChanged: (value) {},
                   ),
                   CustomLabeledCheckBox(
                     label: 'إدارة العملاء',
-                    initialValue: false,
+                    initialValue: prov.manageCustomers,
                     onChanged: (value) {},
                   ),
                   CustomLabeledCheckBox(
                     label: 'إدارة الشكاوي',
-                    initialValue: false,
+                    initialValue: prov.manageComplaints,
                     onChanged: (value) {},
                   ),
                   CustomLabeledCheckBox(
                     label: 'إدارة قسم الصيانة',
-                    initialValue: false,
+                    initialValue: prov.manageMaintenance,
                     onChanged: (value) {},
                   ),
                 ],

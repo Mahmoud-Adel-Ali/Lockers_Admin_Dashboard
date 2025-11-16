@@ -36,7 +36,13 @@ class EmployeesGridView extends StatelessWidget {
                       name: employees[index].name,
                       phone: employees[index].phone,
                       imgUrl: employees[index].image,
-                      onTap: () => showEmployeeDataDialog(context),
+                      onTap: () {
+                        prov.fillEmployeeData(employees[index]);
+                        showEmployeeDataDialog(
+                          context,
+                          employee: employees[index],
+                        );
+                      },
                     );
                   },
                 ),
