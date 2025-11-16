@@ -17,8 +17,7 @@ class ApiInterceptor extends Interceptor {
     // final tokenBox = Hive.box<String>(ApiKeys.token);
     // final langBox = Hive.box(ApiKeys.language);
 
-    options.headers['Authorization'] =
-        "Bearer ${HiveServices.getToken()}";
+    options.headers['Authorization'] = "Bearer ${HiveServices.getToken()}";
     // options.headers['lang'] = langBox.get('langCode', defaultValue: 'ar');
 
     // Generate unique key for this request

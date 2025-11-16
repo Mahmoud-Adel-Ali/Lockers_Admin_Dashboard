@@ -20,10 +20,6 @@ class CompanyResponse {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'status': status,
-      'message': message,
-      'data': company.toJson(),
-    };
+    return {'status': status, 'message': message, 'data': company.toJson()};
   }
 }

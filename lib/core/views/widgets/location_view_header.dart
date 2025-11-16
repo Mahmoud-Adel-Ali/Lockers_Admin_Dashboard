@@ -5,8 +5,6 @@ import '../../utils/app_colors.dart';
 import '../../utils/app_text_styles.dart';
 import '../../widgets/arrow_back_icon.dart';
 
-
-
 class LocationViewHeader extends StatelessWidget {
   const LocationViewHeader({super.key, required this.title});
   final String title;

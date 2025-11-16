@@ -20,10 +20,6 @@ class UnitDetailsResponse {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'status': status,
-      'message': message,
-      'data': data?.toJson(),
-    };
+    return {'status': status, 'message': message, 'data': data?.toJson()};
   }
 }

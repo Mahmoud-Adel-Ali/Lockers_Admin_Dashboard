@@ -15,7 +15,8 @@ class AllMaintenanceLockerResponse {
     return AllMaintenanceLockerResponse(
       status: json['status'] ?? false,
       message: json['message'] ?? '',
-      lockers: (json['data'] as List?)
+      lockers:
+          (json['data'] as List?)
               ?.map((e) => MaintenanceLockerModel.fromJson(e))
               .toList() ??
           [],

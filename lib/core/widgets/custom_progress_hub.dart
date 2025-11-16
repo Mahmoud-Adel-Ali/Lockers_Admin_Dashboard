@@ -13,7 +13,6 @@ class CustomProgressHub extends StatelessWidget {
   final bool isLoading;
   final Widget child;
   @override
-
   Widget build(BuildContext context) {
     return ModalProgressHUD(
       progressIndicator: LoadingIconWidget(),

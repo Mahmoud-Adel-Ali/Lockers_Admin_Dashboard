@@ -51,7 +51,8 @@ class UnitModel {
       countAvailable: json['countAvailable'] ?? 0,
       countReserved: json['countReserved'] ?? 0,
       countUnderMaintenance: json['countUnderMaintenance'] ?? 0,
-      lockers: (json['lockers'] as List?)
+      lockers:
+          (json['lockers'] as List?)
               ?.map((e) => LockerModel.fromJson(e))
               .toList() ??
           [],

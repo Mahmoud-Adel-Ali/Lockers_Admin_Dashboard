@@ -57,6 +57,5 @@ String customerTypeToString(CustomerType type) {
       return "pending";
     case CustomerType.blocked:
       return "blocked";
-    
   }
 }

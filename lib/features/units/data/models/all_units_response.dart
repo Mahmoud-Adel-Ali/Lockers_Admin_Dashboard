@@ -15,9 +15,8 @@ class AllUnitsResponse {
     return AllUnitsResponse(
       status: json['status'] ?? false,
       message: json['message'] ?? '',
-      data: (json['data'] as List?)
-              ?.map((e) => UnitModel.fromJson(e))
-              .toList() ??
+      data:
+          (json['data'] as List?)?.map((e) => UnitModel.fromJson(e)).toList() ??
           [],
     );
   }

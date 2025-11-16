@@ -24,10 +24,10 @@ class PackageModel {
   }
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'name': name,
-        'countLocker': countLocker,
-        'price': price,
-        'duration': duration,
-      };
+    'id': id,
+    'name': name,
+    'countLocker': countLocker,
+    'price': price,
+    'duration': duration,
+  };
 }

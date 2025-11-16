@@ -3,7 +3,6 @@ import 'package:hive/hive.dart';
 
 import '../api/api_keys.dart';
 
-
 class LanguageProvider extends ChangeNotifier {
   Locale? _currentLocale;
 
