@@ -211,8 +211,8 @@ class EmployeesProvider extends ChangeNotifier {
     name.text = model.name;
     phone.text = model.phone;
     email.text = model.email;
-    password.text = model.password!;
-    passwordConfirmation.text = model.passwordConfirmation!;
+    password.text = model.password ?? '';
+    passwordConfirmation.text = model.passwordConfirmation ?? '';
     manageUnits = model.permissions.manageUnits;
     manageCustomers = model.permissions.manageCustomers;
     manageComplaints = model.permissions.manageComplaints;

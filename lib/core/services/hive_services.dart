@@ -35,7 +35,7 @@ class HiveServices {
     final permissions = PermissionModel.fromJson(
       Map<String, dynamic>.from(storedPermissions),
     );
-    return AdminData(
+    var adminData = AdminData(
       id: adminBox.get(ApiKeys.id),
       token: adminBox.get(ApiKeys.token),
       name: adminBox.get(ApiKeys.name),
@@ -46,6 +46,8 @@ class HiveServices {
       role: adminBox.get(ApiKeys.role),
       permissions: permissions,
     );
+    log("Get Admin Data: ${adminData.toJson()}");
+    return adminData;
   }
 
   /// Get only token

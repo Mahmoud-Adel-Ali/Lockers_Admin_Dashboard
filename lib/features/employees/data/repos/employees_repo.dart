@@ -60,6 +60,7 @@ class EmployeesRepo {
     required EmployeeModel employee,
   }) async {
     try {
+      log('updateEmployee [Admin]:${employee.toJson()}');
       final response = await dio.post(
         '${EndPoints.allEmployees}/$id',
         data: {'_method': 'PUT', ...employee.toJson()},

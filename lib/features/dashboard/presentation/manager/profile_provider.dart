@@ -16,14 +16,11 @@ class ProfileProvider extends ChangeNotifier {
 
   void saveAdminData(AdminData admin) {
     HiveServices.saveAdminData(admin);
-    // notifyListeners();
   }
 
   void getAdminData() {
     adminData = HiveServices.getAdminData();
-    // fillLocationDetails(adminData!);
     fillAdminData();
-    log(adminData.toString());
     notifyListeners();
   }
 

@@ -24,7 +24,10 @@ class EmployeesView extends StatelessWidget {
                 ? null
                 : FloatingActionButton(
                     backgroundColor: AppColors.main,
-                    onPressed: () => addNewEmployeeDialog(context),
+                    onPressed: () {
+                      prov.clearAllData();
+                      addNewEmployeeDialog(context);
+                    },
                     child: const Icon(Icons.add, color: Colors.white),
                   ),
             body: Column(

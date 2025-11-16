@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../utils/app_colors.dart';
+import '../utils/app_text_styles.dart';
 
 class CustomLabeledCheckBox extends StatefulWidget {
   final String label;
@@ -51,12 +52,12 @@ class _CustomLabeledCheckBoxState extends State<CustomLabeledCheckBox> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4),
                 ),
-                activeColor: AppColors.main,
+                activeColor: AppColors.green,
               ),
               Expanded(
                 child: Text(
                   widget.label,
-                  style: const TextStyle(fontSize: 15, color: Colors.black),
+                  style: AppTextStyles.style16w500(context),
                 ),
               ),
             ],

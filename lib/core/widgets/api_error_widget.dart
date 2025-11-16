@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 
+import '../../generated/l10n.dart';
 import '../functions/check_unauthenticated.dart';
 
 class ApiErrorView extends StatelessWidget {
@@ -40,8 +41,8 @@ class ApiErrorView extends StatelessWidget {
               child: const Icon(Icons.close, color: Colors.red, size: 40),
             ),
             const SizedBox(height: 20),
-            const Text(
-              'ERROR',
+            Text(
+              S.of(context).error,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 22,
