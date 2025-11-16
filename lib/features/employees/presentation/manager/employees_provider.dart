@@ -1,9 +1,12 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
+import '../../../../core/functions/pick_image.dart';
 import '../../data/enums/permission_type.dart';
 import '../../data/models/employee_model.dart';
+import '../../data/models/permissions_model.dart';
 import '../../data/repos/employees_repo.dart';
 
 class EmployeesProvider extends ChangeNotifier {
@@ -98,6 +101,108 @@ class EmployeesProvider extends ChangeNotifier {
       filteredEmployees = employees.where(filterFn).toList();
     }
     log(filteredEmployees.length.toString());
+    notifyListeners();
+  }
+
+  //* Add Employee
+  XFile? image;
+  var formKey = GlobalKey<FormState>();
+  var name = TextEditingController();
+  var phone = TextEditingController();
+  var email = TextEditingController();
+  var password = TextEditingController();
+  var passwordConfirmation = TextEditingController();
+
+  bool manageUnits = false;
+  bool manageCustomers = false;
+  bool manageComplaints = false;
+  bool manageMaintenance = false;
+  bool followReservations = false;
+  bool manageShippingCompanies = false;
+
+  void pickEmployeeImage() async {
+    image = await pickImage();
+    notifyListeners();
+  }
+
+  void clearImage() {
+    image = null;
+    notifyListeners();
+  }
+
+  void changePermissions({
+    bool? manageUnits,
+    bool? manageCustomers,
+    bool? manageComplaints,
+    bool? manageMaintenance,
+    bool? followReservations,
+    bool? manageShippingCompanies,
+  }) {
+    this.manageUnits = manageUnits ?? this.manageUnits;
+    this.manageCustomers = manageCustomers ?? this.manageCustomers;
+    this.manageComplaints = manageComplaints ?? this.manageComplaints;
+    this.manageMaintenance = manageMaintenance ?? this.manageMaintenance;
+    this.followReservations = followReservations ?? this.followReservations;
+    this.manageShippingCompanies =
+        manageShippingCompanies ?? this.manageShippingCompanies;
+    notifyListeners();
+  }
+
+  void clearAllData() {
+    image = null;
+    name.clear();
+    phone.clear();
+    email.clear();
+    password.clear();
+    passwordConfirmation.clear();
+    manageUnits = false;
+    manageCustomers = false;
+    manageComplaints = false;
+    manageMaintenance = false;
+    followReservations = false;
+    manageShippingCompanies = false;
+    notifyListeners();
+  }
+
+  //* Add New Employee
+  bool? checkAddEmployee = false;
+  Future<void> addNewEmployee() async {
+    checkAddEmployee = null;
+    notifyListeners();
+
+    EmployeeModel employee = EmployeeModel(
+      name: name.text,
+      phone: phone.text,
+      email: email.text,
+      image: '', // not yet uploaded
+      password: password.text,
+      passwordConfirmation: passwordConfirmation.text,
+      permissions: PermissionsModel(
+        manageUnits: manageUnits,
+        manageCustomers: manageCustomers,
+        manageComplaints: manageComplaints,
+        manageMaintenance: manageMaintenance,
+        followReservations: followReservations,
+        manageShippingCompanies: manageShippingCompanies,
+      ),
+    );
+
+    final response = await repo.addNewEmployee(
+      image: image,
+      employee: employee,
+    );
+
+    response.fold(
+      (msg) {
+        checkAddEmployee = false;
+        message = msg;
+      },
+      (model) {
+        checkAddEmployee = true;
+        message = model.message;
+        getAllEmployees();
+      },
+    );
     notifyListeners();
   }
 }

@@ -35,7 +35,7 @@ class EmployeesRepo {
 
   //* Add New Employee
   Future<Either<String, SimpleModel>> addNewEmployee({
-    required XFile image,
+    required XFile? image,
     required EmployeeModel employee,
   }) async {
     try {
