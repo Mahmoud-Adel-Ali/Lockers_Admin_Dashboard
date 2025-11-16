@@ -28,7 +28,7 @@ Future<dynamic> showEmployeeDataDialog(
         leading: CustomButton(
           onPressed: () {
             Navigator.pop(context);
-            editEmployeeDataDialog(context);
+            editEmployeeDataDialog(context, employee: employee);
           },
           horizontal: 0,
           text: 'تعديل البيانات',

@@ -1,6 +1,7 @@
 import 'permissions_model.dart';
 
 class EmployeeModel {
+  final int id;
   final String name;
   final String phone;
   final String image;
@@ -10,6 +11,7 @@ class EmployeeModel {
   final PermissionsModel permissions;
 
   EmployeeModel({
+    this.id = 0,
     required this.name,
     required this.phone,
     required this.image,
@@ -21,6 +23,7 @@ class EmployeeModel {
 
   factory EmployeeModel.fromJson(Map<String, dynamic> json) {
     return EmployeeModel(
+      id: json['id'] ?? 0,
       name: json['name'] ?? '',
       phone: json['phone'] ?? '',
       image: json['image'] ?? '',
