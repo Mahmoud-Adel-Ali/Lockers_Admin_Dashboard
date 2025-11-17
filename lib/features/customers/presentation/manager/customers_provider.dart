@@ -12,7 +12,7 @@ class CustomersProvider extends ChangeNotifier {
   //* All Customers Variables
   List<CustomerModel> customers = [];
   var searchController = TextEditingController();
-  CustomerType type = CustomerType.all;
+  CustomerType customerType = CustomerType.all;
   int currentPage = 1;
   int lastPage = 1;
 
@@ -24,7 +24,7 @@ class CustomersProvider extends ChangeNotifier {
     final result = await repo.getAllCustomers(
       search: searchController.text.trim(),
       page: currentPage,
-      status: type,
+      status: customerType,
     );
     result.fold(
       (l) {
@@ -44,7 +44,7 @@ class CustomersProvider extends ChangeNotifier {
 
   // On Change Customer Type
   void onChangeCustomerType(CustomerType type) {
-    this.type = type;
+    customerType = type;
     currentPage = 1;
     getAllCustomers();
   }
