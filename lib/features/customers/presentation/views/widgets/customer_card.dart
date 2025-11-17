@@ -4,17 +4,19 @@ import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/assets.dart';
 import '../../../data/enums/customer_type.dart';
+import '../../../data/models/customer_model.dart';
 import 'blocked_customers_button.dart';
 import 'new_customers_button.dart';
 import 'show_customer_data_dialog.dart';
 import 'system_customers_button.dart';
 
 class CustomerCard extends StatelessWidget {
-  const CustomerCard({super.key, required this.type});
-  final CustomerType type;
+  const CustomerCard({super.key, required this.customer});
+  final CustomerModel customer;
 
   @override
   Widget build(BuildContext context) {
+    var type = customer.status;
     return InkWell(
       onTap: () => showCustomerDataDialog(context),
       child: Container(
