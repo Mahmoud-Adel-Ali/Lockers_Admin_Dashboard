@@ -14,7 +14,7 @@ class HomeHeaderItem extends StatelessWidget {
     return Expanded(
       flex: flex,
       child: SizedBox(
-        height: 100,
+        // height: 100,
         child: ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 8),
           leading: CircleAvatar(

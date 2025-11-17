@@ -52,6 +52,10 @@ class Assets {
 
   static const String imagesInactiveUnitsIcon = "assets/images/inactive_units_icon.svg";
 
+  static const String imagesLockerIcon1 = "assets/images/locker_icon1.svg";
+
+  static const String imagesLockerIcon2 = "assets/images/locker_icon2.svg";
+
   static const String imagesLogo = "assets/images/logo.png";
 
   static const String imagesMessage = "assets/images/message.png";
@@ -73,6 +77,10 @@ class Assets {
   static const String imagesTestMapImage = "assets/images/test_map_image.png";
 
   static const String imagesTestUserImage = "assets/images/test_user_image.png";
+
+  static const String imagesUnitIcon1 = "assets/images/unit_icon1.svg";
+
+  static const String imagesUnitIcon2 = "assets/images/unit_icon2.svg";
 
   static const String videosFiveMinuts = "assets/videos/five_minuts.mp4";
 }
