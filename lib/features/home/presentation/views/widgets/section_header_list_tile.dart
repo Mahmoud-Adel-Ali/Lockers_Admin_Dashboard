@@ -28,7 +28,7 @@ class SectionHeaderListTile extends StatelessWidget {
         title,
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
-        style: AppTextStyles.style24w600(
+        style: AppTextStyles.style16w500(
           context,
         ).copyWith(color: AppColors.main, fontFamily: almarai),
       ),

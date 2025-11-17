@@ -64,6 +64,8 @@ class Assets {
 
   static const String imagesNotificationsIcon = "assets/images/notifications_icon.svg";
 
+  static const String imagesReservationsIcon = "assets/images/reservations_icon.svg";
+
   static const String imagesSettingsIcon = "assets/images/settings_icon.svg";
 
   static const String imagesSigninBackground = "assets/images/signin_background.png";

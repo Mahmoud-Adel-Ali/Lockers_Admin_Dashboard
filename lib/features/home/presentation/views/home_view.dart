@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/utils/size_config.dart';
 import 'widgets/home_view_header.dart';
 import 'widgets/lockers_indecator.dart';
+import 'widgets/sales_section.dart';
 import 'widgets/units_indecator.dart';
 
 class HomeView extends StatelessWidget {
@@ -30,6 +31,8 @@ class HomeView extends StatelessWidget {
                     Expanded(child: LockersIndecator()),
                   ],
                 ),
+          const SizedBox(height: 8),
+          SalesSection(),
         ],
       ),
     );
