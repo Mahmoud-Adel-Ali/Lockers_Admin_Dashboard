@@ -1,16 +1,23 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:lockers_admin_dashboard/core/models/location_details_model.dart';
 import 'package:lockers_admin_dashboard/core/utils/assets.dart';
 
 import '../../../../../../core/utils/size_config.dart';
 import '../../../../../../core/widgets/custom_dialog.dart';
+import '../../../../../core/functions/convert_location_to_text.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/views/show_location_view.dart';
+import '../../../../../core/widgets/custom_cached_network_image.dart';
 import '../../../../../core/widgets/profile_text_field.dart';
+import '../../../data/models/customer_model.dart';
 import 'video_preview_widget.dart';
 
-Future<dynamic> showCustomerDataDialog(BuildContext context) {
+Future<dynamic> showCustomerDataDialog(
+  BuildContext context, {
+  required CustomerModel customer,
+}) {
   return showDialog(
     context: context,
     builder: (context) {
@@ -20,15 +27,15 @@ Future<dynamic> showCustomerDataDialog(BuildContext context) {
           maxHeight: SizeConfig.height * 0.95,
         ),
         title: 'بيانات حساب العميل',
-        child: const ShowCustomerDataForm(),
+        child: ShowCustomerDataForm(customer: customer),
       );
     },
   );
 }
 
 class ShowCustomerDataForm extends StatelessWidget {
-  const ShowCustomerDataForm({super.key});
-
+  const ShowCustomerDataForm({super.key, required this.customer});
+  final CustomerModel customer;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -36,13 +43,12 @@ class ShowCustomerDataForm extends StatelessWidget {
       child: Column(
         spacing: 16,
         children: [
-          SizedBox(
-            height: 150,
-            width: 150,
-            child: CircleAvatar(
-              radius: 100,
-              backgroundColor: AppColors.whiteGrey,
-              backgroundImage: AssetImage(Assets.imagesTestUserImage),
+          Container(
+            height: 160,
+            width: 160,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              image: customCachedNetworkImageprovider(customer.image),
             ),
           ),
           const SizedBox(),
@@ -53,24 +59,33 @@ class ShowCustomerDataForm extends StatelessWidget {
               children: [
                 ProfileTextField(
                   title: 'الإسم',
-                  controller: TextEditingController(text: 'محمدخالد عبدالرازق'),
+                  controller: TextEditingController(text: customer.name),
                 ),
                 ProfileTextField(
                   title: 'رقم الهاتف',
-                  controller: TextEditingController(text: '+20 0108765243456'),
+                  controller: TextEditingController(text: customer.phone),
                 ),
                 ProfileTextField(
                   title: 'الإيميل',
-                  controller: TextEditingController(
-                    text: 'mohammed123@gmail.com',
-                  ),
+                  controller: TextEditingController(text: customer.email),
                 ),
               ],
             ),
           ),
           InkWell(
             onTap: () {
-              Navigator.of(context).pushNamed(ShowLocationView.routeName);
+              LocationDetailsModel location = LocationDetailsModel(
+                latitude: customer.latitude,
+                longitude: customer.longitude,
+                city: customer.city,
+                neighborhood: customer.neighborhood,
+                street: customer.street,
+                buildingNum: customer.buildNumber,
+                administrativeArea: customer.additionalAddress,
+              );
+              Navigator.of(
+                context,
+              ).pushNamed(ShowLocationView.routeName, arguments: location);
             },
             child: AbsorbPointer(
               absorbing: true,
@@ -84,22 +99,28 @@ class ShowCustomerDataForm extends StatelessWidget {
                   ),
                 ),
                 controller: TextEditingController(
-                  text: 'القاهرة - حي الزمالك - شارع الميرغاب',
+                  text: convertLocationToText(
+                    context,
+                    city: customer.city,
+                    neighborhood: customer.neighborhood,
+                    street: customer.street,
+                    buildingNum: customer.buildNumber,
+                  ),
                 ),
               ),
             ),
           ),
           CustomerDataCardWidget(
             title: 'صور البطاقة الشخصية ( وجه البطاقة )',
-            assetImage: Assets.imagesTestFaceCard,
+            imageUrl: customer.face,
           ),
           CustomerDataCardWidget(
             title: 'صور البطاقة الشخصية ( ظهر البطاقة )',
-            assetImage: Assets.imagesTestBackCard,
+            imageUrl: customer.back,
           ),
           CustomerDataCardWidget(
             title: 'فيديو قصير',
-            video: const VideoPreviewWidget(),
+            video: VideoPreviewWidget(videoUrl: customer.video),
           ),
         ],
       ),
@@ -111,11 +132,11 @@ class CustomerDataCardWidget extends StatelessWidget {
   const CustomerDataCardWidget({
     super.key,
     required this.title,
-    this.assetImage,
+    this.imageUrl,
     this.video,
   });
   final String title;
-  final String? assetImage;
+  final String? imageUrl;
   final Widget? video;
   @override
   Widget build(BuildContext context) {
@@ -141,12 +162,9 @@ class CustomerDataCardWidget extends StatelessWidget {
             decoration: BoxDecoration(
               color: AppColors.whiteGrey,
               borderRadius: BorderRadius.circular(8),
-              image: assetImage == null
+              image: imageUrl == null
                   ? null
-                  : DecorationImage(
-                      image: AssetImage(assetImage!),
-                      fit: BoxFit.cover,
-                    ),
+                  : customCachedNetworkImageprovider(imageUrl),
             ),
             child: video,
           ),

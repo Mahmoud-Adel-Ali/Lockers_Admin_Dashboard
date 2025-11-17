@@ -39,7 +39,8 @@ DecorationImage customCachedNetworkImageprovider(
   return DecorationImage(
     fit: fit ?? BoxFit.cover,
     image: CachedNetworkImageProvider(
-      (imgPath != null && imgPath.isNotEmpty) ? imgPath : emptyImage,
+      // (imgPath != null && imgPath.isNotEmpty) ? imgPath : emptyImage,
+      imgPath ?? "",
     ),
     onError: (exception, stackTrace) =>
         const Icon(Icons.account_circle, color: AppColors.red),

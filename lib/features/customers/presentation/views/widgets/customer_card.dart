@@ -18,7 +18,7 @@ class CustomerCard extends StatelessWidget {
   Widget build(BuildContext context) {
     var type = customer.status;
     return InkWell(
-      onTap: () => showCustomerDataDialog(context),
+      onTap: () => showCustomerDataDialog(context, customer: customer),
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.whiteGrey,

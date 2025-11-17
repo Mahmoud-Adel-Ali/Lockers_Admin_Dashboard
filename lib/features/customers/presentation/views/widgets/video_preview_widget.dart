@@ -3,10 +3,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
-import '../../../../../core/utils/assets.dart';
-
 class VideoPreviewWidget extends StatefulWidget {
-  const VideoPreviewWidget({super.key});
+  const VideoPreviewWidget({super.key, required this.videoUrl});
+  final String videoUrl;
 
   @override
   State<VideoPreviewWidget> createState() => _VideoPreviewWidgetState();
@@ -23,13 +22,9 @@ class _VideoPreviewWidgetState extends State<VideoPreviewWidget> {
   }
 
   Future<void> _initVideo() async {
-    _controller = VideoPlayerController.asset((Assets.videosFiveMinuts));
+    // _controller = VideoPlayerController.asset((Assets.videosFiveMinuts));
 
-    // _controller = VideoPlayerController.networkUrl(
-    //   Uri.parse(
-    //     'https://www.youtube.com/watch?v=zKYNITx17Mw&pp=ygULNSBzZWMgdmlkZW8%3D',
-    //   ),
-    // );
+    _controller = VideoPlayerController.networkUrl(Uri.parse(widget.videoUrl));
 
     await _controller!.initialize();
     _controller!.setLooping(true);
