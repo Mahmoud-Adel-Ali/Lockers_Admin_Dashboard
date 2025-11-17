@@ -35,18 +35,17 @@ class CustomersGridView extends StatelessWidget {
                 },
               ),
             ),
-
-            // PaginationControls(
-            //   hasNext: currentPage < totalPages,
-            //   hasPrevious: currentPage > 1,
-            //   onNext: () => cubit.loadNextPage(),
-            //   onPrevious: () => cubit.loadPreviousPage(),
-            // ),
             PaginationControls(
-              hasNext: true,
-              hasPrevious: true,
-              onNext: () {},
-              onPrevious: () {},
+              hasNext: prov.currentPage < prov.lastPage,
+              hasPrevious: prov.currentPage > 1,
+              onNext: () {
+                if (prov.checkGetAllCustomers == null) return;
+                prov.nextPage();
+              },
+              onPrevious: () {
+                if (prov.checkGetAllCustomers == null) return;
+                prov.previousPage();
+              },
             ),
           ],
         );
