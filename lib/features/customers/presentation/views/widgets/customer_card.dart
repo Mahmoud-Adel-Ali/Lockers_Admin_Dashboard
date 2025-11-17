@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
-import '../../../../../core/utils/assets.dart';
+import '../../../../../core/widgets/custom_cached_network_image.dart';
 import '../../../data/enums/customer_type.dart';
 import '../../../data/models/customer_model.dart';
 import 'blocked_customers_button.dart';
@@ -26,31 +26,43 @@ class CustomerCard extends StatelessWidget {
         ),
         child: Column(
           children: [
-            const Spacer(flex: 2),
-            CircleAvatar(
-              radius: 45,
-              backgroundImage: AssetImage(Assets.imagesTestUserImage),
-            ),
-            const Spacer(flex: 2),
-            Text(
-              'MOHAMED ALI',
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              textAlign: TextAlign.center,
-              style: AppTextStyles.style20w500(context),
+            const SizedBox(height: 16),
+            Expanded(
+              child: Container(
+                width: double.infinity,
+                height: double.infinity,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: customCachedNetworkImageprovider(
+                    customer.image,
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
             ),
             const SizedBox(height: 8),
             Text(
-              '020 123 4567 258',
+              customer.name,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
+              style: AppTextStyles.style18w400(context),
+            ),
+            // const SizedBox(height: 8),
+            Text(
+              customer.phone,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
               style: AppTextStyles.style16w400(context),
             ),
-            const Spacer(flex: 2),
-            if (type == CustomerType.system) SystemCustomersButton(),
-            if (type == CustomerType.blocked) BlockedCustomersButton(),
-            if (type == CustomerType.newCustomers) NewCustomersButton(),
+            const SizedBox(height: 8),
+            if (type == CustomerType.system)
+              SystemCustomersButton(customer: customer),
+            if (type == CustomerType.blocked)
+              BlockedCustomersButton(customer: customer),
+            if (type == CustomerType.newCustomers)
+              NewCustomersButton(customer: customer),
           ],
         ),
       ),

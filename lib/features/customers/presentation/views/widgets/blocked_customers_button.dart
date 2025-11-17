@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/widgets/dialog_helper.dart';
+import '../../../data/models/customer_model.dart';
 
 class BlockedCustomersButton extends StatelessWidget {
-  const BlockedCustomersButton({super.key});
+  const BlockedCustomersButton({super.key, required this.customer});
+  final CustomerModel customer;
 
   @override
   Widget build(BuildContext context) {

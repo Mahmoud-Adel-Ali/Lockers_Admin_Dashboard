@@ -22,12 +22,12 @@ class CustomersGridView extends StatelessWidget {
               enabled: prov.checkGetAllCustomers == null,
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  //* meaning that the minwidth of the card is 160.
-                  crossAxisCount: (width / 160).toInt(),
+                  //* meaning that the minwidth of the card is 175.
+                  crossAxisCount: (width / 175).toInt(),
                   mainAxisSpacing: 8,
                   crossAxisSpacing: 8,
                   childAspectRatio: 198.5 / 250,
-                  mainAxisExtent: 222,
+                  mainAxisExtent: 240,
                 ),
                 itemCount: customers.length,
                 itemBuilder: (context, index) {
