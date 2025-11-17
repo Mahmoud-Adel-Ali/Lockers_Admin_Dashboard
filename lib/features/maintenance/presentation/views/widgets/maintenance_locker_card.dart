@@ -16,6 +16,7 @@ import '../../../../../core/utils/assets.dart';
 import '../../../../../core/views/show_location_view.dart';
 import '../../../../../core/widgets/dialog_helper.dart';
 import '../../../../../generated/l10n.dart';
+import '../../../../home/presentation/manager/home_provider.dart';
 import '../../../data/models/maintenance_locker_model.dart';
 import '../../manager/maintenance_provider.dart';
 
@@ -147,6 +148,7 @@ class MaintenanceLockerButton extends StatelessWidget {
             //* Close Loading Dialog
             Navigator.pop(context);
             if (prov.checkDeleteLockerFromMaintenance == true) {
+              context.read<HomeProvider>().getHomeDashboardData();
             } else if (prov.checkDeleteLockerFromMaintenance == false) {
               checkUnauthenticated(context, msg: prov.message);
               DialogHelper.showErrorDialog(

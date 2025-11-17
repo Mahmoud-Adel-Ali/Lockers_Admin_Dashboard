@@ -16,6 +16,7 @@ import '../../../../../core/widgets/dialog_helper.dart';
 import '../../../../../generated/l10n.dart';
 import '../../../../dashboard/data/enums/dashboard_type.dart';
 import '../../../../dashboard/presentation/manager/dashboard_manager.dart';
+import '../../../../home/presentation/manager/home_provider.dart';
 import '../../../../maintenance/presentation/manager/maintenance_provider.dart';
 import '../../manager/units_provider.dart';
 import 'edit_unit_dialog.dart';
@@ -111,6 +112,7 @@ class SendToMaintenanceButton extends StatelessWidget {
             Navigator.pop(context);
 
             if (prov.checkSendingUnitToMantenance == true) {
+              context.read<HomeProvider>().getHomeDashboardData();
               context.read<MaintenanceProvider>()
                 ..getRegionsOfMaintenanceUnits()
                 ..getMaintenanceUnits();

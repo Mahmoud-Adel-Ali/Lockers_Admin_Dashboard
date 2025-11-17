@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
@@ -61,7 +62,8 @@ class ReservationsChart extends StatelessWidget {
     List<MonthlyOrders> monthly = prov.monthly;
     return AspectRatio(
       aspectRatio: 5,
-      child: SizedBox(
+      child: Skeletonizer(
+        enabled: prov.checkGetHomeDashboardData == null,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -136,7 +138,7 @@ class ReservationsChart extends StatelessWidget {
                     //     FlLine(color: AppColors.gray, strokeWidth: 1),
                   ),
                   borderData: FlBorderData(show: false),
-                  barGroups: List.generate(12, (i) {
+                  barGroups: List.generate(monthly.length, (i) {
                     final isHighlighted = (i == DateTime.now().month - 1);
                     var val = (monthly[i].orders / 1000).toDouble();
                     return BarChartGroupData(

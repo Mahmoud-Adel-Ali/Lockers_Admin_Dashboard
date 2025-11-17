@@ -17,6 +17,7 @@ import '../../../../../core/utils/assets.dart';
 import '../../../../../core/views/show_location_view.dart';
 import '../../../../../core/widgets/dialog_helper.dart';
 import '../../../../../generated/l10n.dart';
+import '../../../../home/presentation/manager/home_provider.dart';
 import '../../../../units/presentation/manager/units_provider.dart';
 import '../../manager/maintenance_provider.dart';
 
@@ -144,6 +145,7 @@ class MaintenanceUnitButton extends StatelessWidget {
             //* Close Loading Dialog
             Navigator.pop(context);
             if (prov.checkDeleteUnitFromMaintenance == true) {
+              context.read<HomeProvider>().getHomeDashboardData();
               context.read<UnitsProvider>()
                 ..getAllRegions()
                 ..getAllUnits();
