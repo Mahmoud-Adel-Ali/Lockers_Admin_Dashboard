@@ -62,4 +62,27 @@ class CustomersProvider extends ChangeNotifier {
     currentPage -= 1;
     getAllCustomers();
   }
+
+  //* Update Status
+  bool? checkUpdateCustomerStatus = false;
+  Future<void> updateCustomerStatus({
+    required int id,
+    required CustomerType status,
+  }) async {
+    checkUpdateCustomerStatus = null;
+    notifyListeners();
+    final result = await repo.updateCustomerStatus(id: id, status: status);
+    result.fold(
+      (l) {
+        message = l;
+        checkUpdateCustomerStatus = false;
+      },
+      (model) {
+        message = model.message;
+        checkUpdateCustomerStatus = true;
+        getAllCustomers();
+      },
+    );
+    notifyListeners();
+  }
 }
