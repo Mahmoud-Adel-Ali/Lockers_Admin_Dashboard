@@ -10,6 +10,7 @@ class EndPoints {
   static const profile = '/api/admin/profile';
 
   //* Dashboard Endpoints
+  static const homeDashboard = '/api/admin/index';
   static const complaints = '/api/admin/complains';
   static const packages = '/api/admin/default-subscriptions';
   static const companies = '/api/admin/companies';
