@@ -27,6 +27,7 @@ class EndPoints {
   static const regionsOfMaintenanceLockers =
       '/api/admin/regions-under-maintenance-lockers';
   static const allEmployees = '/api/admin/employees';
+  static const customers = '/api/admin/customers';
 }
 
 // documentation :- https://documenter.getpostman.com/view/31698735/2sB3QDwYk7

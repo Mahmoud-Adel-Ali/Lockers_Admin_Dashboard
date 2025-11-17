@@ -50,7 +50,7 @@ CustomerType customerTypeFromString(String type) {
 String customerTypeToString(CustomerType type) {
   switch (type) {
     case CustomerType.all:
-      return "all";
+      return "";
     case CustomerType.system:
       return "active";
     case CustomerType.newCustomers:
