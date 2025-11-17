@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/widgets/dialog_helper.dart';
+import '../../../data/enums/customer_type.dart';
 import '../../../data/models/customer_model.dart';
+import '../../manager/functions/update_customer_status.dart';
 
 class NewCustomersButton extends StatelessWidget {
   const NewCustomersButton({super.key, required this.customer});
@@ -23,10 +25,10 @@ class NewCustomersButton extends StatelessWidget {
                   title: 'تاكيد',
                   desc: 'هل ترغب في قبول الحساب ؟',
                   onOk: () {
-                    DialogHelper.showSuccessDialog(
+                    updateCustomerStatus(
                       context,
-                      title: 'تم',
-                      desc: 'تم قبول الحساب بنجاح',
+                      id: customer.id,
+                      newStatus: CustomerType.system,
                     );
                   },
                 );
@@ -65,10 +67,10 @@ class NewCustomersButton extends StatelessWidget {
                   title: 'تاكيد',
                   desc: 'هل ترغب في حظر الحساب ؟',
                   onOk: () {
-                    DialogHelper.showSuccessDialog(
+                    updateCustomerStatus(
                       context,
-                      title: 'تم',
-                      desc: 'تم حظر الحساب بنجاح',
+                      id: customer.id,
+                      newStatus: CustomerType.blocked,
                     );
                   },
                 );
