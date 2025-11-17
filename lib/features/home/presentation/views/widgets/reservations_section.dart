@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/assets.dart';
-import 'sales_chart.dart';
+import 'reservations_chart.dart';
 import 'section_header_list_tile.dart';
 
-class SalesSection extends StatelessWidget {
-  const SalesSection({super.key});
+class ReservationsSection extends StatelessWidget {
+  const ReservationsSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -64,13 +64,13 @@ class SalesSection extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     child: SizedBox(
                       width: 600, // minimum width for chart to look good
-                      child: SalesChart(),
+                      child: ReservationsChart(),
                     ),
                   );
                 }
 
                 // Otherwise → show normally
-                return SalesChart();
+                return ReservationsChart();
               },
             ),
           ),

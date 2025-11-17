@@ -49,8 +49,8 @@ final List<String> months = [
   'Dec',
 ];
 
-class SalesChart extends StatelessWidget {
-  const SalesChart({super.key});
+class ReservationsChart extends StatelessWidget {
+  const ReservationsChart({super.key});
 
   @override
   Widget build(BuildContext context) {
