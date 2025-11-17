@@ -7,6 +7,7 @@ import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/size_config.dart';
 import '../../../companies/presentation/manager/companies_provider.dart';
 import '../../../complaints/presentation/manager/complaints_provider.dart';
+import '../../../customers/presentation/manager/customers_provider.dart';
 import '../../../employees/presentation/manager/employees_provider.dart';
 import '../../../maintenance/presentation/manager/maintenance_provider.dart';
 import '../../../notification/presentation/view/notification_view.dart';
@@ -34,6 +35,7 @@ class AdminDashboardView extends StatelessWidget {
         ..getAllRegions()
         ..getAllUnits();
       context.read<PackagesProvider>().getAllPackages();
+      context.read<CustomersProvider>().getAllCustomers();
       context.read<EmployeesProvider>().getAllEmployees();
       context.read<ComplaintsProvider>().getAllComplaints();
       context.read<MaintenanceProvider>()

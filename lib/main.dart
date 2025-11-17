@@ -9,6 +9,7 @@ import 'core/services/service_locator.dart';
 import 'features/auth/presentation/manager/auth_provider.dart';
 import 'features/companies/presentation/manager/companies_provider.dart';
 import 'features/complaints/presentation/manager/complaints_provider.dart';
+import 'features/customers/presentation/manager/customers_provider.dart';
 import 'features/dashboard/presentation/manager/dashboard_manager.dart';
 import 'features/dashboard/presentation/manager/profile_provider.dart';
 import 'features/employees/presentation/manager/employees_provider.dart';
@@ -35,6 +36,7 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (_) => CompaniesProvider()),
         ChangeNotifierProvider(create: (_) => UnitsProvider()),
         ChangeNotifierProvider(create: (_) => PackagesProvider()),
+        ChangeNotifierProvider(create: (_) => CustomersProvider()),
         ChangeNotifierProvider(create: (_) => EmployeesProvider()),
         ChangeNotifierProvider(create: (_) => ComplaintsProvider()),
         ChangeNotifierProvider(create: (_) => MaintenanceProvider()),
