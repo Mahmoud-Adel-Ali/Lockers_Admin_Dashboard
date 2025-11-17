@@ -1,38 +1,41 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
+import '../../../data/models/home_dashboard_response.dart';
+import '../../manager/home_provider.dart';
 
-final List<double> monthlyValues = [
-  0.5,
-  0.75,
-  1.0,
-  0.75,
-  0.5,
-  0.25,
-  0.5,
-  0.75,
-  0.75,
-  0.5,
-  0.75,
-  0.75,
-];
+// final List<double> monthlyValues = [
+//   0.5,
+//   0.75,
+//   1.0,
+//   0.75,
+//   0.5,
+//   0.25,
+//   0.5,
+//   0.75,
+//   0.75,
+//   0.5,
+//   0.75,
+//   0.75,
+// ];
 
-final List<String> completedOrders = [
-  '17',
-  '3',
-  '6',
-  '1',
-  '0',
-  '12',
-  '11',
-  '50',
-  '10',
-  '39',
-  '47',
-  '90',
-];
+// final List<String> completedOrders = [
+//   '17',
+//   '3',
+//   '6',
+//   '1',
+//   '0',
+//   '12',
+//   '11',
+//   '50',
+//   '10',
+//   '39',
+//   '47',
+//   '90',
+// ];
 
 final List<String> months = [
   'Jan',
@@ -54,6 +57,8 @@ class ReservationsChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var prov = context.watch<HomeProvider>();
+    List<MonthlyOrders> monthly = prov.monthly;
     return AspectRatio(
       aspectRatio: 5,
       child: SizedBox(
@@ -78,15 +83,15 @@ class ReservationsChart extends StatelessWidget {
                           if (value == 0) {
                             label = '0 حجز';
                           } else if (value == 0.25) {
-                            label = '100 حجز';
-                          } else if (value == 0.5) {
                             label = '200 حجز';
-                          } else if (value == 0.75) {
-                            label = '300 حجز';
-                          } else if (value == 1.0) {
+                          } else if (value == 0.5) {
                             label = '400 حجز';
+                          } else if (value == 0.75) {
+                            label = '600 حجز';
+                          } else if (value == 1.0) {
+                            label = '800 حجز';
                           } else if (value == 1.5) {
-                            label = '500 حجز';
+                            label = '1000 حجز';
                           } else {
                             return const SizedBox.shrink();
                           }
@@ -132,15 +137,16 @@ class ReservationsChart extends StatelessWidget {
                   ),
                   borderData: FlBorderData(show: false),
                   barGroups: List.generate(12, (i) {
-                    final isHighlighted = i == 2; // March
+                    final isHighlighted = (i == DateTime.now().month - 1);
+                    var val = (monthly[i].orders / 1000).toDouble();
                     return BarChartGroupData(
                       x: i,
                       barRods: [
                         BarChartRodData(
-                          toY: monthlyValues[i],
+                          toY: val > 1.5 ? 1.5 : val + 0.26,
                           width: 35,
                           color: isHighlighted
-                              ? AppColors.main
+                              ? AppColors.blue
                               : AppColors.grey,
                           borderRadius: BorderRadius.circular(2),
                         ),
@@ -159,19 +165,22 @@ class ReservationsChart extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: completedOrders
-                            .map(
-                              (p) => FittedBox(
-                                fit: BoxFit.scaleDown,
-                                child: Text(
-                                  p,
-                                  style: AppTextStyles.style14w400(context),
+                      child: Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: monthly
+                              .map(
+                                (p) => FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: Text(
+                                    p.orders.toString(),
+                                    style: AppTextStyles.style14w400(context),
+                                  ),
                                 ),
-                              ),
-                            )
-                            .toList(),
+                              )
+                              .toList(),
+                        ),
                       ),
                     ),
                     SizedBox(width: 32),
