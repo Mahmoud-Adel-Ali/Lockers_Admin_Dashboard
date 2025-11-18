@@ -10,6 +10,7 @@ class PackagesProvider extends ChangeNotifier {
   String message = '';
 
   //* Get All Packages
+  var searchController = TextEditingController();
   bool? checkGettingAllPackages = false;
 
   Future<void> getAllPackages() async {
@@ -17,7 +18,7 @@ class PackagesProvider extends ChangeNotifier {
     checkGettingAllPackages = null;
     notifyListeners();
 
-    final response = await repo.getPackages();
+    final response = await repo.getPackages(search: searchController.text);
     response.fold(
       (msg) {
         message = msg;

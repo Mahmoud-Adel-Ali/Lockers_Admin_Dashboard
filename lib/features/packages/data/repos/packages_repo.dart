@@ -14,9 +14,14 @@ class PackagesRepo {
   final DioConsumer dio = getit.get<DioConsumer>();
 
   //* Get All Packages
-  Future<Either<String, PackagesResponseModel>> getPackages() async {
+  Future<Either<String, PackagesResponseModel>> getPackages({
+    required String search,
+  }) async {
     try {
-      final response = await dio.get(EndPoints.packages, isFormData: false);
+      final response = await dio.get(
+        "${EndPoints.packages}?search=$search",
+        isFormData: false,
+      );
       return Right(PackagesResponseModel.fromJson(response));
     } on ServerException catch (e) {
       return Left(e.errorModel.message);
