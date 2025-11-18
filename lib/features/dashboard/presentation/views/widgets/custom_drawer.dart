@@ -17,6 +17,7 @@ class CustomDrawer extends StatelessWidget {
       decoration: BoxDecoration(color: AppColors.main),
       child: Column(
         children: [
+          SizedBox(height: 16),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16),
             child: Row(children: [AdminProfileButton(), NotificationButton()]),

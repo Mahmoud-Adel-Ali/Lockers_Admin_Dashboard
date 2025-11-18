@@ -14,7 +14,7 @@ class FollowUpUnitsGridView extends StatelessWidget {
     var prov = context.watch<ReservationsProvider>();
     var units = prov.filteredUnits;
     return units.isEmpty
-        ? EmptyGridViewWidget(msg: 'No units found')
+        ? EmptyGridViewWidget(msg: 'لا توجد وحدات بعد')
         : LayoutBuilder(
             builder: (context, constraints) {
               var width = constraints.maxWidth;

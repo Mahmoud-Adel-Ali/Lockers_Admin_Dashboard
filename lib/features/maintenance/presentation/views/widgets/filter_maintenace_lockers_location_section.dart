@@ -17,7 +17,7 @@ class FilterMaintenaceLockersLocationSection extends StatelessWidget {
         ? []
         : cities[prov.selectedLockersCity].neighborhoods;
     return cities.isEmpty
-        ? Center(child: Text('لا يوجد مدن'))
+        ? Center(child: Text(''))
         : Column(
             spacing: 8,
             children: [

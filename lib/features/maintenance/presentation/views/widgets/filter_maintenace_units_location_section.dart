@@ -17,7 +17,7 @@ class FilterMaintenaceUnitsLocationSection extends StatelessWidget {
         ? []
         : cities[prov.selectedUnitsCity].neighborhoods;
     return cities.isEmpty
-        ? Center(child: Text('لا يوجد مدن'))
+        ? Center(child: Text(''))
         : Column(
             spacing: 8,
             children: [
