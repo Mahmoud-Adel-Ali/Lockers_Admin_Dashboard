@@ -37,7 +37,7 @@ class EditPackageForm extends StatelessWidget {
               spacing: 8,
               children: [
                 Expanded(
-                  flex: 5,
+                  flex: 4,
                   child: CustomTextFormField(
                     hintText: 'عدد الحجوزات',
                     validator: simpleValidator,
@@ -53,7 +53,7 @@ class EditPackageForm extends StatelessWidget {
               spacing: 8,
               children: [
                 Expanded(
-                  flex: 5,
+                  flex: 4,
                   child: CustomTextFormField(
                     hintText: 'سعر الباقة',
                     validator: validatorOfPrice,
@@ -73,7 +73,7 @@ class EditPackageForm extends StatelessWidget {
               spacing: 8,
               children: [
                 Expanded(
-                  flex: 5,
+                  flex: 4,
                   child: CustomTextFormField(
                     hintText: 'المدة الزمنية',
                     validator: simpleValidator,

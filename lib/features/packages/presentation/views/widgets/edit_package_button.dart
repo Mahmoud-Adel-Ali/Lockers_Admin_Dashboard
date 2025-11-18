@@ -31,11 +31,6 @@ class EditPackageButton extends StatelessWidget {
           if (prov.checkUpdatingPackage == true) {
             //* Close Dialog
             Navigator.pop(context);
-            DialogHelper.showSuccessDialog(
-              context,
-              title: 'تم',
-              desc: prov.message,
-            );
           } else if (prov.checkUpdatingPackage == false) {
             checkUnauthenticated(context, msg: prov.message);
             DialogHelper.showErrorDialog(

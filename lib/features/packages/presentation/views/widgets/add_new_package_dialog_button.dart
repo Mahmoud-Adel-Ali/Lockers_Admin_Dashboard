@@ -28,15 +28,10 @@ class AddNewPackageDialogButton extends StatelessWidget {
           //* Close Loading Dialog
           Navigator.pop(context);
 
-          if (prov.checkUpdatingPackage == true) {
+          if (prov.checkAddingNewPackage == true) {
             //* Close Dialog
             Navigator.pop(context);
-            DialogHelper.showSuccessDialog(
-              context,
-              title: 'تم',
-              desc: prov.message,
-            );
-          } else if (prov.checkUpdatingPackage == false) {
+          } else if (prov.checkAddingNewPackage == false) {
             checkUnauthenticated(context, msg: prov.message);
             DialogHelper.showErrorDialog(
               context,
