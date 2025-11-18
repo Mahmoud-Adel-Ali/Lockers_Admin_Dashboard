@@ -1,16 +1,21 @@
+import '../enum/locker_size.dart';
+import '../enum/locker_status.dart';
+
 class UserModel {
   final String name;
   final String phone;
   final String image;
-  final String size;
+  final LockerSize size;
+  final LockerStatus status;
   final int lockerNum;
-  final CompanyModel? company;
+  final OrderCompanyModel? company;
 
   UserModel({
     required this.name,
     required this.phone,
     required this.image,
     required this.size,
+    required this.status,
     required this.lockerNum,
     required this.company,
   });
@@ -20,9 +25,13 @@ class UserModel {
       name: json['name'] ?? '',
       phone: json['phone'] ?? '',
       image: json['image'] ?? '',
-      size: json['size'] ?? '',
+      size: parseLockerSize(json['size']),
+      // TODO : tell backend about this is not found
+      status: parseLockerStatus(json['status']),
       lockerNum: json['lockerNum'] ?? 0,
-      company: CompanyModel.fromJson(json['company']),
+      company: json['company'] == null
+          ? null
+          : OrderCompanyModel.fromJson(json['company']),
     );
   }
 
@@ -31,16 +40,17 @@ class UserModel {
       'name': name,
       'phone': phone,
       'image': image,
-      'size': size,
+      'size': size.name,
       'lockerNum': lockerNum,
       'company': company?.toJson(),
     };
   }
 }
 
-class CompanyModel {
+class OrderCompanyModel {
   final String name;
   final String phone;
+  final String email;
   final String image;
   final String city;
   final String neighborhood;
@@ -48,9 +58,10 @@ class CompanyModel {
   final String building;
   final String additionalAddress;
 
-  CompanyModel({
+  OrderCompanyModel({
     required this.name,
     required this.phone,
+    required this.email,
     required this.image,
     required this.city,
     required this.neighborhood,
@@ -59,11 +70,12 @@ class CompanyModel {
     required this.additionalAddress,
   });
 
-  factory CompanyModel.fromJson(Map<String, dynamic> json) {
-    return CompanyModel(
+  factory OrderCompanyModel.fromJson(Map<String, dynamic> json) {
+    return OrderCompanyModel(
       name: json['name'] ?? '',
       phone: json['phone'] ?? '',
       image: json['image'] ?? '',
+      email: json['email'] ?? '',
       city: json['city'] ?? '',
       neighborhood: json['neighborhood'] ?? '',
       street: json['street'] ?? '',
@@ -77,6 +89,7 @@ class CompanyModel {
       'name': name,
       'phone': phone,
       'image': image,
+      'email': email,
       'city': city,
       'neighborhood': neighborhood,
       'street': street,

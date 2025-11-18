@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../core/functions/convert_location_to_text.dart';
+import '../../../../../core/models/user_model.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/assets.dart';
 import '../../../../../core/utils/size_config.dart';
+import '../../../../../core/widgets/custom_cached_network_image.dart';
 import '../../../../../core/widgets/custom_dialog.dart';
 import '../../../../../core/widgets/profile_text_field.dart';
 
-Future<dynamic> companyDetailsDialog(BuildContext context) {
+Future<dynamic> companyDetailsDialog(
+  BuildContext context, {
+  required OrderCompanyModel company,
+}) {
   return showDialog(
     context: context,
     builder: (context) {
@@ -21,9 +27,16 @@ Future<dynamic> companyDetailsDialog(BuildContext context) {
           children: [
             Text('بيانات الحساب', style: AppTextStyles.style24w500(context)),
             const SizedBox(height: 16),
-            CircleAvatar(
-              radius: 75,
-              backgroundImage: AssetImage(Assets.imagesTestCompanyImage),
+            Container(
+              width: 150,
+              height: 150,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: customCachedNetworkImageprovider(
+                  company.image,
+                  fit: BoxFit.contain,
+                ),
+              ),
             ),
             const SizedBox(height: 16),
             Padding(
@@ -37,26 +50,34 @@ Future<dynamic> companyDetailsDialog(BuildContext context) {
                       children: [
                         ProfileTextField(
                           title: 'الإسم :',
-                          controller: TextEditingController(
-                            text: 'محمدخالد عبدالرازق',
-                          ),
+                          controller: TextEditingController(text: company.name),
                           readOnly: true,
                         ),
+                        
                         ProfileTextField(
                           title: 'الإيميل :',
                           controller: TextEditingController(
-                            text: 'www.noon.ecommerce.gov',
+                            text: company.email,
                           ),
                           readOnly: true,
                         ),
                         ProfileTextField(
                           title: 'رقم الهاتف :',
                           controller: TextEditingController(
-                            text: '+20 0108765434567',
+                            text: company.phone,
                           ),
                           readOnly: true,
                         ),
 
+                        // ShowLocationContainer(
+                        //   text: convertLocationToText(
+                        //     context,
+                        //     city: company.city,
+                        //     neighborhood: company.neighborhood,
+                        //     street: company.street,
+                        //     buildingNum: company.building,
+                        //   ),
+                        // ),
                         Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 16,
@@ -70,7 +91,13 @@ Future<dynamic> companyDetailsDialog(BuildContext context) {
                             children: [
                               Expanded(
                                 child: Text(
-                                  'مصر - القاهرة - حي الزيتون',
+                                  convertLocationToText(
+                                    context,
+                                    city: company.city,
+                                    neighborhood: company.neighborhood,
+                                    street: company.street,
+                                    buildingNum: company.building,
+                                  ),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: AppTextStyles.style20w500(

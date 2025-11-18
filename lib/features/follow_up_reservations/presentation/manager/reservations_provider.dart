@@ -49,14 +49,15 @@ class ReservationsProvider extends ChangeNotifier {
       (msg) {
         checkGettingAllUnits = false;
         message = msg;
+        notifyListeners();
       },
       (model) {
         allUnitsList = model.data;
         checkGettingAllUnits = true;
+        allUnitsList = model.data;
         filterUnits();
       },
     );
-    notifyListeners();
   }
 
   // Filteration the units by city and neighborhood
@@ -142,6 +143,7 @@ class ReservationsProvider extends ChangeNotifier {
         checkGettingUnitDetails = true;
         selectedUnit = model.data;
         usersList = model.data?.users ?? [];
+        filterUsers(showAll: true);
       },
     );
     notifyListeners();

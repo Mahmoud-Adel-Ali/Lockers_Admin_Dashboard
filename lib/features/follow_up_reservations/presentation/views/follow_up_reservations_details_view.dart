@@ -20,6 +20,12 @@ class FollowUpReservationsDetailsView extends StatelessWidget {
           SizedBox(height: 8),
           prov.checkGettingUnitDetails == false
               ? ApiErrorView(msg: prov.message, onRetry: prov.getUnitDetails)
+              : prov.checkGettingUnitDetails == null
+              ? SizedBox(
+                  width: 300,
+                  height: 500,
+                  child: const Center(child: LinearProgressIndicator()),
+                )
               : FollowUpReservationCustomersGridView(),
           SizedBox(height: 8),
         ],

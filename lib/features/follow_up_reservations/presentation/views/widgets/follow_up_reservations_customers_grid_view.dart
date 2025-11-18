@@ -13,7 +13,7 @@ class FollowUpReservationCustomersGridView extends StatelessWidget {
   Widget build(BuildContext context) {
     var prov = context.watch<ReservationsProvider>();
     var users = prov.filterdUsersList;
-    return users.isEmpty
+    return users.isEmpty && prov.checkGettingUnitDetails == true
         ? const EmptyGridViewWidget(msg: 'لا يوجد عملاء بعد')
         : LayoutBuilder(
             builder: (context, constraints) {

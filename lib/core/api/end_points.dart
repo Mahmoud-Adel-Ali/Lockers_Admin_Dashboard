@@ -31,7 +31,7 @@ class EndPoints {
   static const customers = '/api/admin/customers';
   static const ordersRegions = '/api/admin/order-regions';
   static const allReservationUnits = '/api/admin/all-units';
-  static const reservationUnitDetails = 'api/admin/orders';
+  static const reservationUnitDetails = '/api/admin/orders';
 }
 
 // documentation :- https://documenter.getpostman.com/view/31698735/2sB3QDwYk7

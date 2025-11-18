@@ -58,9 +58,10 @@ class ReservationsRepo {
       return Right(UnitDetailsResponse.fromJson(response));
     } on ServerException catch (e) {
       return Left(e.errorModel.message);
-    } catch (e) {
-      log("Exception in getUnitDetails [Admin]: $e");
-      return Left(kErrorMsg);
     }
+    // catch (e) {
+    //   log("Exception in getUnitDetails [Admin]: $e");
+    //   return Left(kErrorMsg);
+    // }
   }
 }

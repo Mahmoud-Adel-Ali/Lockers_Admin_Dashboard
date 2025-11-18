@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:lockers_admin_dashboard/core/enum/locker_size.dart';
+import 'package:lockers_admin_dashboard/core/enum/locker_status.dart';
+import 'package:lockers_admin_dashboard/core/extensions/locker_extension.dart';
 
 import '../../../../../../core/utils/app_colors.dart';
 import '../../../../../../core/utils/app_text_styles.dart';
+import '../../../../../core/functions/is_arabic.dart';
 import '../../../../../core/models/user_model.dart';
-import '../../../../../core/utils/assets.dart';
+import '../../../../../core/widgets/custom_cached_network_image.dart';
 import 'company_details_dialog.dart';
 
 class FollowUpReservationCustomerCard extends StatelessWidget {
@@ -30,7 +34,10 @@ class FollowUpReservationCustomerCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        'الخزينه رقم : 1',
+                        user.lockerNum.toLockerNumberString(
+                          context,
+                          withEmoji: true,
+                        ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: AppTextStyles.style14w400(
@@ -44,13 +51,15 @@ class FollowUpReservationCustomerCard extends StatelessWidget {
                     flex: 5,
                     child: LayoutBuilder(
                       builder: (context, constraints) {
-                        return CircleAvatar(
-                          backgroundColor: AppColors.whiteGrey,
-                          radius: constraints.maxHeight / 2,
-                          child: Image.asset(
-                            Assets.imagesTestUserImage,
-                            height: 100,
-                            width: 100,
+                        return Container(
+                          width: constraints.maxWidth,
+                          height: constraints.maxHeight,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: customCachedNetworkImageprovider(
+                              user.image,
+                              fit: BoxFit.contain,
+                            ),
                           ),
                         );
                       },
@@ -64,16 +73,18 @@ class FollowUpReservationCustomerCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'أحمد علي خالد',
+                          user.name,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.center,
                           style: AppTextStyles.style16w500(
                             context,
                           ).copyWith(color: AppColors.black),
                         ),
                         Text(
-                          '01000000000',
+                          user.phone,
                           maxLines: 1,
+                          textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,
                           style: AppTextStyles.style16w500(
                             context,
@@ -86,30 +97,43 @@ class FollowUpReservationCustomerCard extends StatelessWidget {
               ),
             ),
           ),
-          InkWell(
-            onTap: () => companyDetailsDialog(context),
-            child: Container(
-              color: AppColors.filedGrey,
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-              child: Row(
-                spacing: 16,
-                children: [
-                  CircleAvatar(
-                    radius: 12,
-                    backgroundImage: AssetImage(Assets.imagesTestCompanyImage),
+          user.company == null
+              ? const SizedBox()
+              : InkWell(
+                  onTap: () =>
+                      companyDetailsDialog(context, company: user.company!),
+                  child: Container(
+                    color: AppColors.filedGrey,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 4,
+                    ),
+                    child: Row(
+                      spacing: 16,
+                      children: [
+                        Container(
+                          width: 25,
+                          height: 25,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: customCachedNetworkImageprovider(
+                              user.company!.image,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          user.company!.name,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: AppTextStyles.style12w400(
+                            context,
+                          ).copyWith(color: AppColors.black),
+                        ),
+                      ],
+                    ),
                   ),
-                  Text(
-                    'شركه الشحن',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: AppTextStyles.style12w400(
-                      context,
-                    ).copyWith(color: AppColors.black),
-                  ),
-                ],
-              ),
-            ),
-          ),
+                ),
 
           Directionality(
             textDirection: TextDirection.ltr,
@@ -127,7 +151,7 @@ class FollowUpReservationCustomerCard extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        'Large',
+                        isArabic() ? user.size.arName : user.size.enName,
                         style: AppTextStyles.style14w500(
                           context,
                         ).copyWith(color: AppColors.white),
@@ -148,7 +172,7 @@ class FollowUpReservationCustomerCard extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        'تم إنهاء الحجز',
+                        isArabic() ? user.status.arName : user.status.enName,
                         style: AppTextStyles.style14w500(
                           context,
                         ).copyWith(color: AppColors.white),
