@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/size_config.dart';
 import '../../../../core/widgets/api_error_widget.dart';
+import '../../../../core/widgets/empty_grid_view_widget.dart';
 import '../manager/employees_provider.dart';
 import 'widgets/add_new_employee_dialog.dart';
 import 'widgets/employees_grid_view.dart';
@@ -35,7 +36,11 @@ class EmployeesView extends StatelessWidget {
                 const SizedBox(height: 8),
                 EmployeesViewHeader(),
                 const SizedBox(height: 8),
-                Expanded(child: EmployeesGridView()),
+                Expanded(
+                  child: prov.filteredEmployees.isEmpty
+                      ? EmptyGridViewWidget(msg: 'لا يوجد موظفين بعد')
+                      : EmployeesGridView(),
+                ),
                 const SizedBox(height: 8),
               ],
             ),

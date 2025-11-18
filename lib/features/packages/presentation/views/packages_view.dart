@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/size_config.dart';
 import '../../../../core/widgets/api_error_widget.dart';
+import '../../../../core/widgets/empty_grid_view_widget.dart';
 import 'widgets/add_new_package_dialog.dart';
 import 'widgets/packages_grid_view.dart';
 import 'widgets/packages_view_header.dart';
@@ -40,12 +41,17 @@ class PackagesViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var prov = context.watch<PackagesProvider>();
     return Column(
       children: [
         SizedBox(height: 8),
         PackagesViewHeader(),
         SizedBox(height: 8),
-        Expanded(child: PackagesGridView()),
+        Expanded(
+          child: prov.packages.isEmpty
+              ? EmptyGridViewWidget(msg: 'لا يوجد باقات بعد')
+              : PackagesGridView(),
+        ),
         SizedBox(height: 8),
       ],
     );

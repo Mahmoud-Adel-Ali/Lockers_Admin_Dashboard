@@ -26,7 +26,6 @@ class UserModel {
       phone: json['phone'] ?? '',
       image: json['image'] ?? '',
       size: parseLockerSize(json['size']),
-      // TODO : tell backend about this is not found
       status: parseLockerStatus(json['status']),
       lockerNum: json['lockerNum'] ?? 0,
       company: json['company'] == null

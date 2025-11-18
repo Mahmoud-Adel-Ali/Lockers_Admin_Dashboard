@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import '../../../../../core/widgets/empty_grid_view_widget.dart';
 import '../../manager/customers_provider.dart';
 import 'customer_card.dart';
 import 'pagination_controls.dart';
@@ -21,22 +20,20 @@ class CustomersGridView extends StatelessWidget {
           children: [
             Skeletonizer(
               enabled: prov.checkGetAllCustomers == null,
-              child: customers.isEmpty
-                  ? EmptyGridViewWidget(msg: 'لا يوجد عملاء بعد')
-                  : GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        //* meaning that the minwidth of the card is 175.
-                        crossAxisCount: (width / 175).toInt(),
-                        mainAxisSpacing: 8,
-                        crossAxisSpacing: 8,
-                        childAspectRatio: 198.5 / 250,
-                        mainAxisExtent: 240,
-                      ),
-                      itemCount: customers.length,
-                      itemBuilder: (context, index) {
-                        return CustomerCard(customer: customers[index]);
-                      },
-                    ),
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  //* meaning that the minwidth of the card is 175.
+                  crossAxisCount: (width / 175).toInt(),
+                  mainAxisSpacing: 8,
+                  crossAxisSpacing: 8,
+                  childAspectRatio: 198.5 / 250,
+                  mainAxisExtent: 240,
+                ),
+                itemCount: customers.length,
+                itemBuilder: (context, index) {
+                  return CustomerCard(customer: customers[index]);
+                },
+              ),
             ),
             PaginationControls(
               hasNext: prov.currentPage < prov.lastPage,

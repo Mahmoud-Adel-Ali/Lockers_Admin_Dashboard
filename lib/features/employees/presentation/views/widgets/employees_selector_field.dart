@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:lockers_admin_dashboard/core/functions/is_arabic.dart';
 import 'package:provider/provider.dart';
@@ -29,6 +31,7 @@ class EmployeesSelectorField extends StatelessWidget {
       itemLabelBuilder: (item) =>
           isArabic() ? item.arName : item.enName, // how to display each item
       onSelected: (index) {
+        log("Selected: ${items[index]}");
         prov.filterEmployees(permissionType: items[index]);
       },
     );

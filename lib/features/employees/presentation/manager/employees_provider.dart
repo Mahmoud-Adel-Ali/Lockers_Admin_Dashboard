@@ -35,7 +35,7 @@ class EmployeesProvider extends ChangeNotifier {
         message = model.message;
         checkGetAllEmployees = true;
         employees = model.employees;
-        filteredEmployees = employees;
+        filterEmployees(permissionType: permissionType);
       },
     );
     notifyListeners();
@@ -43,43 +43,6 @@ class EmployeesProvider extends ChangeNotifier {
 
   // Filter Employees
   PermissionType permissionType = PermissionType.all;
-  // void filterEmployees({required PermissionType permissionType}) {
-  //   this.permissionType = permissionType;
-  //   switch (permissionType) {
-  //     case PermissionType.all:
-  //       filteredEmployees = employees;
-  //       break;
-  //     case PermissionType.manageShippingCompanies:
-  //       filteredEmployees = employees
-  //           .where((element) => element.permissions.manageShippingCompanies)
-  //           .toList();
-  //       break;
-  //     case PermissionType.manageUnits:
-  //       filteredEmployees = employees
-  //           .where((element) => element.permissions.manageUnits)
-  //           .toList();
-  //       break;
-  //     case PermissionType.followReservations:
-  //       filteredEmployees = employees
-  //           .where((element) => element.permissions.followReservations)
-  //           .toList();
-  //       break;
-  //     case PermissionType.manageCustomers:
-  //       filteredEmployees = employees
-  //           .where((element) => element.permissions.manageCustomers)
-  //           .toList();
-  //       break;
-  //     case PermissionType.manageComplaints:
-  //       filteredEmployees = employees
-  //           .where((element) => element.permissions.manageComplaints)
-  //           .toList();
-  //       break;
-  //     case PermissionType.manageMaintenance:
-  //       filteredEmployees = employees
-  //           .where((element) => element.permissions.manageMaintenance)
-  //           .toList();
-  //   }
-  // }
 
   final Map<PermissionType, bool Function(EmployeeModel)> permissionMap = {
     PermissionType.manageShippingCompanies: (e) =>
@@ -261,3 +224,43 @@ class EmployeesProvider extends ChangeNotifier {
     notifyListeners();
   }
 }
+ 
+ 
+ 
+  // void filterEmployees({required PermissionType permissionType}) {
+  //   this.permissionType = permissionType;
+  //   switch (permissionType) {
+  //     case PermissionType.all:
+  //       filteredEmployees = employees;
+  //       break;
+  //     case PermissionType.manageShippingCompanies:
+  //       filteredEmployees = employees
+  //           .where((element) => element.permissions.manageShippingCompanies)
+  //           .toList();
+  //       break;
+  //     case PermissionType.manageUnits:
+  //       filteredEmployees = employees
+  //           .where((element) => element.permissions.manageUnits)
+  //           .toList();
+  //       break;
+  //     case PermissionType.followReservations:
+  //       filteredEmployees = employees
+  //           .where((element) => element.permissions.followReservations)
+  //           .toList();
+  //       break;
+  //     case PermissionType.manageCustomers:
+  //       filteredEmployees = employees
+  //           .where((element) => element.permissions.manageCustomers)
+  //           .toList();
+  //       break;
+  //     case PermissionType.manageComplaints:
+  //       filteredEmployees = employees
+  //           .where((element) => element.permissions.manageComplaints)
+  //           .toList();
+  //       break;
+  //     case PermissionType.manageMaintenance:
+  //       filteredEmployees = employees
+  //           .where((element) => element.permissions.manageMaintenance)
+  //           .toList();
+  //   }
+  // }
