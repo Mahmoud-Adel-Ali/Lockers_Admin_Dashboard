@@ -115,7 +115,9 @@ class SendToMaintenanceButton extends StatelessWidget {
               context.read<HomeProvider>().getHomeDashboardData();
               context.read<MaintenanceProvider>()
                 ..getRegionsOfMaintenanceUnits()
-                ..getMaintenanceUnits();
+                ..getMaintenanceUnits()
+                ..getMaintenanceLockers()
+                ..getRegionsOfMaintenanceLockers();
             } else if (prov.checkSendingUnitToMantenance == false) {
               checkUnauthenticated(context, msg: prov.message);
               DialogHelper.showErrorDialog(

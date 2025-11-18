@@ -9,7 +9,6 @@ import '../../../../../core/functions/check_unauthenticated.dart';
 import '../../../../../core/functions/snack_bar.dart';
 import '../../../../../core/functions/validation_of_input_fields.dart';
 import '../../../../../core/utils/app_colors.dart';
-import '../../../../../core/utils/size_config.dart';
 import '../../../../../core/widgets/circular_button.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/custom_cached_network_image.dart';
@@ -26,10 +25,7 @@ Future<dynamic> editProfileDataDialog(BuildContext context) {
     context: context,
     builder: (context) {
       return CustomDialog(
-        constraints: BoxConstraints(
-          maxWidth: 500,
-          maxHeight: SizeConfig.height * 0.8,
-        ),
+        constraints: BoxConstraints(maxWidth: 500, maxHeight: 620),
         child: EditProfileForm(),
       );
     },

@@ -19,7 +19,11 @@ class EmptyGridViewWidget extends StatelessWidget {
     return Center(
       child: Column(
         children: [
-          Lottie.asset(lottiePath ?? Assets.animationsEmptyGrid),
+          Lottie.asset(
+            lottiePath ?? Assets.animationsEmptyGrid2,
+            repeat: false,
+            height: 300,
+          ),
           const SizedBox(height: 24),
           Text(msg, style: AppTextStyles.style20w700(context)),
         ],

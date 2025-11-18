@@ -210,6 +210,8 @@ class MaintenanceProvider extends ChangeNotifier {
         message = model.message;
         getRegionsOfMaintenanceUnits();
         getMaintenanceUnits();
+        getMaintenanceLockers();
+        getRegionsOfMaintenanceLockers();
       },
     );
     notifyListeners();
@@ -230,8 +232,10 @@ class MaintenanceProvider extends ChangeNotifier {
       (model) {
         checkDeleteLockerFromMaintenance = true;
         message = model.message;
-        getRegionsOfMaintenanceLockers();
+        getRegionsOfMaintenanceUnits();
+        getMaintenanceUnits();
         getMaintenanceLockers();
+        getRegionsOfMaintenanceLockers();
       },
     );
     notifyListeners();

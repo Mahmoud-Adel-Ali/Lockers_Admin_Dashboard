@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../core/utils/app_text_styles.dart';
-import '../../../../../core/utils/size_config.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/custom_cached_network_image.dart';
 import '../../../../../core/widgets/custom_dialog.dart';
@@ -16,10 +15,7 @@ Future<dynamic> profileDataDialog(BuildContext context) {
     context: context,
     builder: (context) {
       return CustomDialog(
-        constraints: BoxConstraints(
-          maxWidth: 500,
-          maxHeight: SizeConfig.height * 0.9,
-        ),
+        constraints: BoxConstraints(maxWidth: 500, maxHeight: 620),
         leading: CustomButton(
           text: 'تعديل البيانات',
           horizontal: 0,

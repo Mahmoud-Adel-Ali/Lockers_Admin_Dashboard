@@ -141,11 +141,16 @@ class ReservationsChart extends StatelessWidget {
                   barGroups: List.generate(monthly.length, (i) {
                     final isHighlighted = (i == DateTime.now().month - 1);
                     var val = (monthly[i].orders / 1000).toDouble();
+                    var finalVal = val > 1.5
+                        ? 1.5
+                        : val == 0
+                        ? 0.0
+                        : val + 0.05;
                     return BarChartGroupData(
                       x: i,
                       barRods: [
                         BarChartRodData(
-                          toY: val > 1.5 ? 1.5 : val + 0.26,
+                          toY: finalVal,
                           width: 35,
                           color: isHighlighted
                               ? AppColors.blue

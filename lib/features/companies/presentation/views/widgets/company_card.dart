@@ -37,10 +37,8 @@ class CompanyCard extends StatelessWidget {
                     height: constraints.maxHeight,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      image: customCachedNetworkImageprovider(
-                        company.image,
-                        fit: BoxFit.contain,
-                      ),
+                      border: Border.all(color: AppColors.grey),
+                      image: customCachedNetworkImageprovider(company.image),
                     ),
                   );
                 },
