@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:lockers_admin_dashboard/core/extensions/customers_extension.dart';
+import 'package:lockers_admin_dashboard/core/extensions/unit_extension.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../../core/utils/app_colors.dart';
 import '../../../../../../core/utils/app_text_styles.dart';
+import '../../../../../core/models/unit_model.dart';
 import '../../../../dashboard/data/enums/dashboard_type.dart';
 import '../../../../dashboard/presentation/manager/dashboard_manager.dart';
+import '../../manager/reservations_provider.dart';
 
 class FollowUpUnitCard extends StatelessWidget {
-  const FollowUpUnitCard({super.key});
+  const FollowUpUnitCard({super.key, required this.unit});
+  final UnitModel unit;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        context.read<ReservationsProvider>().onSelectUnit(unit);
         context.read<DashboardManager>().changeView(
           DashboardType.FollowUpReservationsDetails,
         );
@@ -38,7 +44,7 @@ class FollowUpUnitCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    "Unit 01",
+                    unit.unitNumber.toUnitString(context),
                     style: AppTextStyles.style20w500(
                       context,
                     ).copyWith(color: AppColors.white),
@@ -48,7 +54,7 @@ class FollowUpUnitCard extends StatelessWidget {
             ),
             const Spacer(),
             Text(
-              "23 عميل",
+              unit.unitNumber.toCustomerString(context),
               style: AppTextStyles.style20w500(
                 context,
               ).copyWith(color: AppColors.white),
