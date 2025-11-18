@@ -13,6 +13,7 @@ import 'features/customers/presentation/manager/customers_provider.dart';
 import 'features/dashboard/presentation/manager/dashboard_manager.dart';
 import 'features/dashboard/presentation/manager/profile_provider.dart';
 import 'features/employees/presentation/manager/employees_provider.dart';
+import 'features/follow_up_reservations/presentation/manager/reservations_provider.dart';
 import 'features/home/presentation/manager/home_provider.dart';
 import 'features/maintenance/presentation/manager/maintenance_provider.dart';
 import 'features/packages/presentation/manager/packages_provider.dart';
@@ -36,6 +37,7 @@ Future<void> main() async {
         //* Features Providers
         ChangeNotifierProvider(create: (_) => HomeProvider()),
         ChangeNotifierProvider(create: (_) => CompaniesProvider()),
+        ChangeNotifierProvider(create: (_) => ReservationsProvider()),
         ChangeNotifierProvider(create: (_) => UnitsProvider()),
         ChangeNotifierProvider(create: (_) => PackagesProvider()),
         ChangeNotifierProvider(create: (_) => CustomersProvider()),

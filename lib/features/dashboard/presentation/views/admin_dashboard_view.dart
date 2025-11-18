@@ -9,6 +9,7 @@ import '../../../companies/presentation/manager/companies_provider.dart';
 import '../../../complaints/presentation/manager/complaints_provider.dart';
 import '../../../customers/presentation/manager/customers_provider.dart';
 import '../../../employees/presentation/manager/employees_provider.dart';
+import '../../../follow_up_reservations/presentation/manager/reservations_provider.dart';
 import '../../../home/presentation/manager/home_provider.dart';
 import '../../../maintenance/presentation/manager/maintenance_provider.dart';
 import '../../../notification/presentation/view/notification_view.dart';
@@ -34,6 +35,9 @@ class AdminDashboardView extends StatelessWidget {
       context.read<HomeProvider>().getHomeDashboardData();
       context.read<CompaniesProvider>().getAllCompanies();
       context.read<UnitsProvider>()
+        ..getAllRegions()
+        ..getAllUnits();
+      context.read<ReservationsProvider>()
         ..getAllRegions()
         ..getAllUnits();
       context.read<PackagesProvider>().getAllPackages();
