@@ -51,7 +51,7 @@ class CompanyModel {
       street: json['street'] ?? '',
       buildNumber: json['buildNumber'] ?? '',
       additionAddress: json['additionAddress'] ?? '',
-      isActive: json['isActive'] == 1 ? true : false,
+      isActive: json['status'] == 1 ? true : false,
       latitude: (json['latitude'] != null)
           ? double.tryParse(json['latitude'].toString()) ?? 0.0
           : 0.0,

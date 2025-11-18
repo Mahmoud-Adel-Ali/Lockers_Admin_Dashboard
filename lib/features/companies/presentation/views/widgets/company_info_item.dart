@@ -44,7 +44,7 @@ class CompanyInfoItem extends StatelessWidget {
                   value,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: AppTextStyles.style16w700(
+                  style: AppTextStyles.style14w500(
                     context,
                   ).copyWith(color: AppColors.black2),
                 ),
