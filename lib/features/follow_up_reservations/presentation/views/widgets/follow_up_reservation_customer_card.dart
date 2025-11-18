@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../core/utils/app_colors.dart';
 import '../../../../../../core/utils/app_text_styles.dart';
+import '../../../../../core/models/user_model.dart';
 import '../../../../../core/utils/assets.dart';
 import 'company_details_dialog.dart';
 
 class FollowUpReservationCustomerCard extends StatelessWidget {
-  const FollowUpReservationCustomerCard({super.key});
+  const FollowUpReservationCustomerCard({super.key, required this.user});
+  final UserModel user;
 
   @override
   Widget build(BuildContext context) {

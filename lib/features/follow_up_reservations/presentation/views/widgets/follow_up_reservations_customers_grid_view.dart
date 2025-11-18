@@ -1,5 +1,9 @@
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
+import '../../../../../core/widgets/empty_grid_view_widget.dart';
+import '../../manager/reservations_provider.dart';
 import 'follow_up_reservation_customer_card.dart';
 
 class FollowUpReservationCustomersGridView extends StatelessWidget {
@@ -7,26 +11,33 @@ class FollowUpReservationCustomersGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        var width = constraints.maxWidth;
-        return GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            //* meaning that the minwidth of the card is 180.
-            crossAxisCount: (width / 180).toInt(),
-            mainAxisSpacing: 8,
-            crossAxisSpacing: 8,
-            childAspectRatio: 200 / 300,
-            mainAxisExtent: 280,
-          ),
-          itemCount: 17,
-          itemBuilder: (context, index) {
-            return const FollowUpReservationCustomerCard();
-          },
-        );
-      },
-    );
+    var prov = context.watch<ReservationsProvider>();
+    var users = prov.filterdUsersList;
+    return users.isEmpty
+        ? const EmptyGridViewWidget(msg: 'لا يوجد عملاء بعد')
+        : LayoutBuilder(
+            builder: (context, constraints) {
+              var width = constraints.maxWidth;
+              return Skeletonizer(
+                enabled: prov.checkGettingUnitDetails == null,
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    //* meaning that the minwidth of the card is 180.
+                    crossAxisCount: (width / 180).toInt(),
+                    mainAxisSpacing: 8,
+                    crossAxisSpacing: 8,
+                    childAspectRatio: 200 / 300,
+                    mainAxisExtent: 280,
+                  ),
+                  itemCount: users.length,
+                  itemBuilder: (context, index) {
+                    return FollowUpReservationCustomerCard(user: users[index]);
+                  },
+                ),
+              );
+            },
+          );
   }
 }
