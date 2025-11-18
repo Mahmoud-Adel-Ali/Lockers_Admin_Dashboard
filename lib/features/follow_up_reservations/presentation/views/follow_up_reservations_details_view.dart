@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../core/widgets/api_error_widget.dart';
+import '../manager/reservations_provider.dart';
 import 'widgets/follow_up_reservations_customers_grid_view.dart';
 import 'widgets/follow_up_reservations_details_header_view.dart';
 
@@ -8,13 +11,16 @@ class FollowUpReservationsDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var prov = context.watch<ReservationsProvider>();
     return SingleChildScrollView(
-      child: const Column(
+      child: Column(
         children: [
           SizedBox(height: 8),
           FollowUpReservationsDetailsHeaderView(),
           SizedBox(height: 8),
-          FollowUpReservationCustomersGridView(),
+          prov.checkGettingUnitDetails == false
+              ? ApiErrorView(msg: prov.message, onRetry: prov.getUnitDetails)
+              : FollowUpReservationCustomersGridView(),
           SizedBox(height: 8),
         ],
       ),

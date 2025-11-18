@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 
 import '../../../../core/models/places_model.dart';
 import '../../../../core/models/unit_model.dart';
+import '../../../../core/models/user_model.dart';
 import '../../data/repos/reservations_repo.dart';
 
 class ReservationsProvider extends ChangeNotifier {
@@ -98,9 +99,37 @@ class ReservationsProvider extends ChangeNotifier {
     getUnitDetails();
   }
 
-  //* Get Unit Details
+  //* Get All Order Unit Details
+  List<UserModel> usersList = [];
+  List<UserModel> filterdUsersList = [];
+
+  int currentIdx = 0;
+  void filterUsers({
+    bool showAll = false,
+    bool showAllUsrs = false,
+    bool showShippingOrder = false,
+  }) {
+    if (showAllUsrs) {
+      currentIdx = 1;
+      filterdUsersList = usersList.where((user) {
+        return user.company == null;
+      }).toList();
+    } else if (showShippingOrder) {
+      currentIdx = 2;
+      filterdUsersList = usersList.where((user) {
+        return user.company != null;
+      }).toList();
+    } else {
+      currentIdx = 0;
+      filterdUsersList = usersList;
+    }
+    notifyListeners();
+  }
+
+  // Get Unit Details
   bool? checkGettingUnitDetails = false;
   Future<void> getUnitDetails() async {
+    currentIdx = 0;
     checkGettingUnitDetails = null;
     notifyListeners();
     final response = await repo.getUnitDetails(id: selectedUnit!.id);
@@ -112,6 +141,7 @@ class ReservationsProvider extends ChangeNotifier {
       (model) {
         checkGettingUnitDetails = true;
         selectedUnit = model.data;
+        usersList = model.data?.users ?? [];
       },
     );
     notifyListeners();
