@@ -84,11 +84,9 @@ class _PickLocationViewState extends State<PickLocationView> {
             onTap: (latLng) {
               // Update marker to new position
               setLocationMarker(latLng);
-              // Update model values
-              locationDetailsModel = LocationDetailsModel(
-                latitude: latLng.latitude,
-                longitude: latLng.longitude,
-              );
+
+              /// Update location details
+              updateLocation(newLatLng: latLng);
             },
           ),
 
@@ -101,9 +99,10 @@ class _PickLocationViewState extends State<PickLocationView> {
     );
   }
 
-  void updateLocation() async {
+  void updateLocation({LatLng? newLatLng}) async {
+    setState(() => isLoading = true);
     try {
-      var locationData = await locationService.getLocationDetails();
+      var locationData = await locationService.getLocationDetails(newLatLng);
       locationDetailsModel = locationData;
 
       var latLng = LatLng(locationData.latitude, locationData.longitude);

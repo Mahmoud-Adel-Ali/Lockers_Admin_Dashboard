@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:geocoding/geocoding.dart' as gecode;
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
 import '../models/location_details_model.dart';
@@ -43,25 +44,27 @@ class LocationService {
     return locationData;
   }
 
-  Future<LocationDetailsModel> getLocationDetails() async {
+  Future<LocationDetailsModel> getLocationDetails(LatLng? latLng) async {
     final loc = await getLocation();
 
+    latLng ??= LatLng(loc.latitude!, loc.longitude!);
+
     final placemarks = await gecode.placemarkFromCoordinates(
-      loc.latitude!,
-      loc.longitude!,
+      latLng.latitude,
+      latLng.longitude,
     );
 
-    final place = placemarks.first;
-
+    final gecode.Placemark place = placemarks.first;
+    log(place.toString());
     final locationDetailsModel = LocationDetailsModel(
-      latitude: loc.latitude!,
-      longitude: loc.longitude!,
+      latitude: latLng.latitude,
+      longitude: latLng.longitude,
       country: place.country,
-      city: place.locality ?? place.subAdministrativeArea,
-      neighborhood: place.subLocality,
-      street: place.street,
+      city: place.administrativeArea ?? place.locality,
+      neighborhood: place.subAdministrativeArea,
+      street: place.street ?? place.thoroughfare,
       postalCode: place.postalCode,
-      administrativeArea: place.administrativeArea,
+      administrativeArea: place.subLocality,
     );
 
     log(locationDetailsModel.toString());
