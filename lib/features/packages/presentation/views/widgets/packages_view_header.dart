@@ -22,8 +22,7 @@ class PackagesViewHeader extends StatelessWidget {
           child: CustomSearchField(
             controller: prov.searchController,
             onChanged: (val) {
-              var prevent =
-                  prov.checkGettingAllPackages == null || val.trim().isEmpty;
+              var prevent = prov.checkGettingAllPackages == null;
               if (!prevent) prov.getAllPackages();
             },
           ),
