@@ -1,10 +1,8 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:http_parser/http_parser.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../errors/exception.dart';
+import '../models/picked_image_model.dart';
 import 'api_consumer.dart';
 import 'api_interceptor.dart';
 import 'end_points.dart';
@@ -132,21 +130,23 @@ class DioConsumer extends ApiConsumer {
   Future<Map<String, dynamic>> multipart({
     required String path,
     required Map<String, dynamic> fields,
-    XFile? imageFile,
+    PickedImage? pickedImage,
     Map<String, String>? queryParameters,
   }) async {
     try {
-      final formData = FormData.fromMap({
-        ...fields,
-        if (imageFile != null && File(imageFile.path).existsSync())
-          'image': await MultipartFile.fromFile(
-            imageFile.path,
-            filename: imageFile.name,
-            contentType: imageFile.path.toLowerCase().endsWith('.png')
-                ? MediaType('image', 'png')
-                : MediaType('image', 'jpeg'),
-          ),
-      });
+      final formMap = {...fields};
+
+      if (pickedImage != null) {
+        formMap['image'] = MultipartFile.fromBytes(
+          pickedImage.bytes,
+          filename: pickedImage.fileName,
+          contentType: pickedImage.fileName.toLowerCase().endsWith('.png')
+              ? MediaType('image', 'png')
+              : MediaType('image', 'jpeg'),
+        );
+      }
+
+      final formData = FormData.fromMap(formMap);
 
       final response = await dio.post(
         path,

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,7 +27,7 @@ class AddNewEmployeeImage extends StatelessWidget {
                 border: Border.all(color: AppColors.grey),
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: FileImage(File(prov.image!.path)),
+                  image: MemoryImage(prov.image!.bytes),
                 ),
               ),
             ),

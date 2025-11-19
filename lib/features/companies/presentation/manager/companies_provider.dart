@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
-import '../../../../core/functions/pick_image.dart';
+import '../../../../core/functions/pick_image_universal.dart';
 import '../../../../core/models/location_details_model.dart';
+import '../../../../core/models/picked_image_model.dart';
 import '../../data/models/company_model.dart';
 import '../../data/repos/companies_repo.dart';
 
@@ -71,9 +71,9 @@ class CompaniesProvider extends ChangeNotifier {
 
   //* Add Company
   // Company Image
-  XFile? image;
+  PickedImage? image;
   void pickCompanyImage() async {
-    image = await pickImage();
+    image = await pickImageUniversal();
     notifyListeners();
   }
 

@@ -1,12 +1,12 @@
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../../../constants.dart';
 import '../../../../core/api/dio_consumer.dart';
 import '../../../../core/api/end_points.dart';
 import '../../../../core/errors/exception.dart';
+import '../../../../core/models/picked_image_model.dart';
 import '../../../../core/models/simple_model.dart';
 import '../../../../core/services/service_locator.dart';
 import '../models/all_employees_model.dart';
@@ -35,14 +35,14 @@ class EmployeesRepo {
 
   //* Add New Employee
   Future<Either<String, SimpleModel>> addNewEmployee({
-    required XFile? image,
+    required PickedImage? image,
     required EmployeeModel employee,
   }) async {
     try {
       log('addNewEmployee [Admin]:${employee.toJson()}');
       final response = await dio.multipart(
         path: EndPoints.allEmployees,
-        imageFile: image,
+        pickedImage: image,
         fields: employee.toJson(),
       );
       return Right(SimpleModel.fromJson(response));

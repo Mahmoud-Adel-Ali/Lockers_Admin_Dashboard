@@ -1,10 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
-import '../../../../core/functions/pick_image.dart';
+import '../../../../core/functions/pick_image_universal.dart';
 import '../../../../core/models/location_details_model.dart';
+import '../../../../core/models/picked_image_model.dart';
 import '../../../../core/services/hive_services.dart';
 import '../../../auth/data/models/admin_data.dart';
 import '../../data/repo/profile_repo.dart';
@@ -176,24 +176,14 @@ class ProfileProvider extends ChangeNotifier {
   //   checkUpdateLocation = null;
   // }
 
-  XFile? imageFile;
+  PickedImage? imageFile;
   void pickFromGallery() async {
-    imageFile = await pickImage(
-      source: ImageSource.gallery,
-      imageQuality: 80,
-      maxWidth: 1000,
-      maxHeight: 1000,
-    );
+    imageFile = await pickImageUniversal();
     notifyListeners();
   }
 
   void pickFromCamera() async {
-    imageFile = await pickImage(
-      source: ImageSource.camera,
-      imageQuality: 80,
-      maxWidth: 1000,
-      maxHeight: 1000,
-    );
+    imageFile = await pickImageUniversal();
     notifyListeners();
   }
 

@@ -1,4 +1,4 @@
-import 'package:image_picker/image_picker.dart';
+import '../models/picked_image_model.dart';
 
 abstract class ApiConsumer {
   Future<T> get<T>(
@@ -38,8 +38,8 @@ abstract class ApiConsumer {
 
   Future<Map<String, dynamic>> multipart({
     required String path,
-    required Map<String, String> fields,
-    XFile? imageFile,
+    required Map<String, dynamic> fields,
+    PickedImage? pickedImage,
     Map<String, String>? queryParameters,
   });
 }

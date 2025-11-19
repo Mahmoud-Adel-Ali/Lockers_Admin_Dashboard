@@ -1,12 +1,12 @@
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../../../constants.dart';
 import '../../../../core/api/dio_consumer.dart';
 import '../../../../core/api/end_points.dart';
 import '../../../../core/errors/exception.dart';
+import '../../../../core/models/picked_image_model.dart';
 import '../../../../core/models/simple_model.dart';
 import '../../../../core/services/service_locator.dart';
 import '../../../auth/data/models/auth_model.dart';
@@ -40,7 +40,7 @@ class ProfileRepo {
 
   //* Update Profile
   Future<Either<String, AuthModel>> updateProfile({
-    required XFile? image,
+    required PickedImage? image,
     required String name,
     required String email,
   }) async {
@@ -49,7 +49,7 @@ class ProfileRepo {
       log("Data in updateProfile: $data");
       final response = await dio.multipart(
         path: EndPoints.profile,
-        imageFile: image,
+        pickedImage: image,
         fields: data,
       );
       return Right(AuthModel.fromJson(response));

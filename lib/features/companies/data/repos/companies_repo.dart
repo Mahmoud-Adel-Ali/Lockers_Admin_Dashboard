@@ -1,12 +1,12 @@
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../../../core/api/dio_consumer.dart';
 import '../../../../core/api/end_points.dart';
 import '../../../../core/errors/exception.dart';
 import '../../../../core/models/location_details_model.dart';
+import '../../../../core/models/picked_image_model.dart';
 import '../../../../core/models/simple_model.dart';
 import '../../../../core/services/service_locator.dart';
 import '../models/all_companies_response.dart';
@@ -53,7 +53,7 @@ class CompaniesRepo {
 
   // Add New Company
   Future<Either<String, SimpleModel>> addNewCompany({
-    required XFile image,
+    required PickedImage image,
     required String name,
     required String adminName,
     required String phone,
@@ -74,7 +74,7 @@ class CompaniesRepo {
       };
       final response = await dio.multipart(
         path: EndPoints.companies,
-        imageFile: image,
+        pickedImage: image,
         fields: data,
       );
       return Right(SimpleModel.fromJson(response));

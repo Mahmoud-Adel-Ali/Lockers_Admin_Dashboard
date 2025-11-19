@@ -1,9 +1,9 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
-import '../../../../core/functions/pick_image.dart';
+import '../../../../core/functions/pick_image_universal.dart';
+import '../../../../core/models/picked_image_model.dart';
 import '../../data/enums/permission_type.dart';
 import '../../data/models/employee_model.dart';
 import '../../data/models/permissions_model.dart';
@@ -68,7 +68,7 @@ class EmployeesProvider extends ChangeNotifier {
   }
 
   //* Employee [Add & Update]
-  XFile? image;
+  PickedImage? image;
   var formKey = GlobalKey<FormState>();
   var name = TextEditingController();
   var phone = TextEditingController();
@@ -84,7 +84,7 @@ class EmployeesProvider extends ChangeNotifier {
   bool manageShippingCompanies = false;
 
   void pickEmployeeImage() async {
-    image = await pickImage();
+    image = await pickImageUniversal();
     notifyListeners();
   }
 

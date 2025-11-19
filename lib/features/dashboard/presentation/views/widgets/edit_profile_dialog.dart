@@ -1,7 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -53,7 +51,7 @@ class EditProfileForm extends StatelessWidget {
                   color: AppColors.filedGrey,
                   image: prov.imageFile != null
                       ? DecorationImage(
-                          image: FileImage(File(prov.imageFile!.path)),
+                          image: MemoryImage(prov.imageFile!.bytes),
                           fit: BoxFit.cover,
                         )
                       : customCachedNetworkImageprovider(prov.adminData?.image),
