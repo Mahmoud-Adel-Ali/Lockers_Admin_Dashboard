@@ -1,6 +1,7 @@
-import 'dart:developer';
+import 'dart:async';
 
-import 'package:geocoding/geocoding.dart' as gecode;
+import 'package:flutter/foundation.dart';
+import 'package:geocoding/geocoding.dart' as geocode;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
@@ -9,16 +10,10 @@ import '../models/location_details_model.dart';
 class LocationService {
   Location location = Location();
 
-  /// Check if location services are enabled
-  Future<void> checkAndRequestLocationService() async {
-    bool isServiceEnabled = await location.serviceEnabled();
-    if (!isServiceEnabled) {
-      isServiceEnabled = await location.requestService();
-      throw LocationServiceException();
-    }
-  }
-
+  /// Request permission ONLY on mobile/desktop
   Future<void> checkAndRequestLocationPermission() async {
+    if (kIsWeb) return; // ❗ Web: SKIP permissions completely
+
     var permissionStatus = await location.hasPermission();
     if (permissionStatus == PermissionStatus.deniedForever) {
       throw LocationPermissionException();
@@ -30,35 +25,48 @@ class LocationService {
     }
   }
 
-  void getRealTimeLocationData(void Function(LocationData)? onData) async {
-    await checkAndRequestLocationService();
-    await checkAndRequestLocationPermission();
-    location.changeSettings(distanceFilter: 2);
-    location.onLocationChanged.listen(onData);
+  /// Check if location services are enabled (mobile only)
+  Future<void> checkAndRequestLocationService() async {
+    if (kIsWeb) return; // ❗ Web: SKIP service checks
+
+    bool isServiceEnabled = await location.serviceEnabled();
+    if (!isServiceEnabled) {
+      isServiceEnabled = await location.requestService();
+      if (!isServiceEnabled) throw LocationServiceException();
+    }
   }
 
-  Future<LocationData> getLocation() async {
+  /// Get device GPS location (mobile/desktop only)
+  Future<LocationData?> getLocation() async {
+    if (kIsWeb) return null;
     await checkAndRequestLocationService();
     await checkAndRequestLocationPermission();
-    final locationData = await location.getLocation();
-    return locationData;
+    return await location.getLocation();
   }
 
+  /// Web-safe method to get reverse geocoding
   Future<LocationDetailsModel> getLocationDetails(LatLng? latLng) async {
-    final loc = await getLocation();
+    LatLng finalLatLng = latLng ?? LatLng(27.5042, 30.7202); // Default Egypt
 
-    latLng ??= LatLng(loc.latitude!, loc.longitude!);
+    // ❗ On mobile, if latLng is null → get GPS
+    if (!kIsWeb && latLng == null) {
+      final loc = await getLocation();
+      if (loc != null) {
+        finalLatLng = LatLng(loc.latitude!, loc.longitude!);
+      }
+    }
 
-    final placemarks = await gecode.placemarkFromCoordinates(
-      latLng.latitude,
-      latLng.longitude,
+    // Reverse geocoding
+    final placemarks = await geocode.placemarkFromCoordinates(
+      finalLatLng.latitude,
+      finalLatLng.longitude,
     );
 
-    final gecode.Placemark place = placemarks.first;
-    log(place.toString());
-    final locationDetailsModel = LocationDetailsModel(
-      latitude: latLng.latitude,
-      longitude: latLng.longitude,
+    final place = placemarks.first;
+
+    return LocationDetailsModel(
+      latitude: finalLatLng.latitude,
+      longitude: finalLatLng.longitude,
       country: place.country,
       city: place.administrativeArea ?? place.locality,
       neighborhood: place.subAdministrativeArea,
@@ -66,9 +74,6 @@ class LocationService {
       postalCode: place.postalCode,
       administrativeArea: place.subLocality,
     );
-
-    log(locationDetailsModel.toString());
-    return locationDetailsModel;
   }
 }
 

@@ -1,11 +1,6 @@
-// ignore_for_file: use_build_context_synchronously
-
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../generated/l10n.dart';
 import '../models/location_details_model.dart';
 import '../services/location_service.dart';
 import '../widgets/arrow_back_icon.dart';
@@ -15,57 +10,76 @@ import 'widgets/pick_location_bottom_sheet.dart';
 
 class PickLocationView extends StatefulWidget {
   const PickLocationView({super.key, this.lastLocationModel});
-  static const routeName = 'PickCompanyLocation';
-
   final LocationDetailsModel? lastLocationModel;
+
   @override
   State<PickLocationView> createState() => _PickLocationViewState();
 }
 
 class _PickLocationViewState extends State<PickLocationView> {
-  bool isLoading = true;
-  LocationDetailsModel? locationDetailsModel;
-
-  late CameraPosition initialCameraPosition;
-  late LocationService locationService;
+  late CameraPosition initialPosition;
   late GoogleMapController mapController;
+
+  LocationDetailsModel? locationDetailsModel;
   Set<Marker> markers = {};
+  bool isLoading = true;
+
+  final locationService = LocationService();
 
   @override
   void initState() {
     super.initState();
-    if (widget.lastLocationModel == null) {
-      locationService = LocationService();
-      // Egypt initial position
-      var latLng = LatLng(27.504233709174983, 30.720281847535116);
 
-      initialCameraPosition = CameraPosition(target: latLng, zoom: 10);
+    if (widget.lastLocationModel == null) {
+      initialPosition = CameraPosition(
+        target: LatLng(27.5042, 30.7202), // Egypt default
+        zoom: 10,
+      );
     } else {
-      var latLng = LatLng(
+      final latLng = LatLng(
         widget.lastLocationModel!.latitude,
         widget.lastLocationModel!.longitude,
       );
-      initialCameraPosition = CameraPosition(target: latLng, zoom: 16);
-      isLoading = false;
-      locationDetailsModel = LocationDetailsModel(
-        latitude: latLng.latitude,
-        longitude: latLng.longitude,
-        country: widget.lastLocationModel!.country,
-        city: widget.lastLocationModel!.city,
-        buildingNum: widget.lastLocationModel!.buildingNum,
-        neighborhood: widget.lastLocationModel!.neighborhood,
-        street: widget.lastLocationModel!.street,
-        postalCode: widget.lastLocationModel!.postalCode,
-        administrativeArea: widget.lastLocationModel!.administrativeArea,
-      );
+      initialPosition = CameraPosition(target: latLng, zoom: 16);
+
+      locationDetailsModel = widget.lastLocationModel;
       setLocationMarker(latLng);
+      isLoading = false;
     }
   }
 
   @override
   void dispose() {
-    super.dispose();
     mapController.dispose();
+    super.dispose();
+  }
+
+  void setLocationMarker(LatLng latLng) {
+    markers = {Marker(markerId: const MarkerId("picked"), position: latLng)};
+    setState(() {});
+  }
+
+  Future<void> updateLocation({LatLng? newLatLng}) async {
+    setState(() => isLoading = true);
+
+    try {
+      final data = await locationService.getLocationDetails(newLatLng);
+      locationDetailsModel = data;
+
+      final latLng = LatLng(data.latitude, data.longitude);
+      setLocationMarker(latLng);
+
+      mapController.animateCamera(
+        CameraUpdate.newCameraPosition(
+          CameraPosition(target: latLng, zoom: 16),
+        ),
+      );
+    } catch (e) {
+      // ignore: use_build_context_synchronously
+      DialogHelper.showErrorDialog(context, title: "Error", desc: "$e");
+    }
+
+    setState(() => isLoading = false);
   }
 
   @override
@@ -74,20 +88,17 @@ class _PickLocationViewState extends State<PickLocationView> {
       body: Stack(
         children: [
           GoogleMap(
-            initialCameraPosition: initialCameraPosition,
+            initialCameraPosition: initialPosition,
             markers: markers,
             zoomControlsEnabled: false,
             onMapCreated: (controller) {
               mapController = controller;
-              if (widget.lastLocationModel == null) updateLocation();
-            },
-            onTap: (latLng) {
-              // Update marker to new position
-              setLocationMarker(latLng);
 
-              /// Update location details
-              updateLocation(newLatLng: latLng);
+              if (widget.lastLocationModel == null) {
+                updateLocation(); // Uses GPS for mobile, not for web
+              }
             },
+            onTap: (latLng) => updateLocation(newLatLng: latLng),
           ),
 
           PickLocationViewBody(
@@ -97,58 +108,6 @@ class _PickLocationViewState extends State<PickLocationView> {
         ],
       ),
     );
-  }
-
-  void updateLocation({LatLng? newLatLng}) async {
-    setState(() => isLoading = true);
-    try {
-      var locationData = await locationService.getLocationDetails(newLatLng);
-      locationDetailsModel = locationData;
-
-      var latLng = LatLng(locationData.latitude, locationData.longitude);
-      log("New latLng: ${latLng.toString()}");
-      setLocationMarker(latLng);
-
-      var cameraPosition = CameraPosition(target: latLng, zoom: 16);
-      mapController.animateCamera(
-        CameraUpdate.newCameraPosition(cameraPosition),
-      );
-    } on LocationServiceException catch (e) {
-      log("LocationServiceException $e");
-      Navigator.pop(context);
-      DialogHelper.showErrorDialog(
-        context,
-        title: S.of(context).location_service_error_title,
-        desc: S.of(context).location_service_error_desc,
-      );
-    } on LocationPermissionException catch (e) {
-      log("LocationPermissionException $e");
-      Navigator.pop(context);
-      DialogHelper.showErrorDialog(
-        context,
-        title: S.of(context).location_permission_error_title,
-        desc: S.of(context).location_permission_error_desc,
-      );
-    } catch (e) {
-      log("Exception $e");
-      Navigator.pop(context);
-      DialogHelper.showErrorDialog(context, title: "Exception", desc: "$e");
-    }
-
-    isLoading = false;
-    setState(() {});
-  }
-
-  void setLocationMarker(LatLng latLng) {
-    var myLocationMarker = Marker(
-      markerId: const MarkerId('Your Location'),
-      position: latLng,
-      infoWindow: const InfoWindow(title: 'Your Location'),
-      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
-    );
-
-    markers = {myLocationMarker};
-    if (mounted) setState(() {});
   }
 }
 
