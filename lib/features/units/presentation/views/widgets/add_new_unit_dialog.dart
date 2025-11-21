@@ -17,6 +17,7 @@ import '../../../../../generated/l10n.dart';
 import '../../manager/units_provider.dart';
 
 Future<dynamic> addNewUnitDialog(BuildContext context) {
+  context.read<UnitsProvider>().clearUnitLocation();
   return showDialog(
     context: context,
     builder: (context) {

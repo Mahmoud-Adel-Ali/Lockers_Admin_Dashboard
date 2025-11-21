@@ -237,15 +237,20 @@ class UnitsProvider extends ChangeNotifier {
       (msg) {
         checkAddingNewUnit = false;
         message = msg;
+        notifyListeners();
       },
       (model) {
         checkAddingNewUnit = true;
         message = model.message;
-        unitLocation = null;
+        clearUnitLocation();
         getAllUnits();
         getAllRegions();
       },
     );
+  }
+
+  void clearUnitLocation() {
+    unitLocation = null;
     notifyListeners();
   }
 
@@ -265,15 +270,15 @@ class UnitsProvider extends ChangeNotifier {
       (msg) {
         checkUpdatingUnit = false;
         message = msg;
+        notifyListeners();
       },
       (model) {
         checkUpdatingUnit = true;
         message = model.message;
-        unitLocation = null;
+        clearUnitLocation();
         getAllUnits();
         getAllRegions();
       },
     );
-    notifyListeners();
   }
 }
