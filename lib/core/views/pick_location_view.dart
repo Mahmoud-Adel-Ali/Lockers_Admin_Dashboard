@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -22,7 +23,7 @@ class _PickLocationViewState extends State<PickLocationView> {
 
   LocationDetailsModel? locationDetailsModel;
   Set<Marker> markers = {};
-  bool isLoading = true;
+  bool? isLoading;
 
   final locationService = LocationService();
 
@@ -94,7 +95,7 @@ class _PickLocationViewState extends State<PickLocationView> {
             onMapCreated: (controller) {
               mapController = controller;
 
-              if (widget.lastLocationModel == null) {
+              if (widget.lastLocationModel == null && !kIsWeb) {
                 updateLocation(); // Uses GPS for mobile, not for web
               }
             },
@@ -114,10 +115,10 @@ class _PickLocationViewState extends State<PickLocationView> {
 class PickLocationViewBody extends StatelessWidget {
   const PickLocationViewBody({
     super.key,
-    required this.isLoading,
+     this.isLoading,
     this.locationModel,
   });
-  final bool isLoading;
+  final bool? isLoading;
   final LocationDetailsModel? locationModel;
 
   @override
@@ -130,8 +131,8 @@ class PickLocationViewBody extends StatelessWidget {
           child: Row(children: [ArrowBackIcon()]),
         ),
         const Spacer(),
-        if (isLoading) Center(child: const CircularProgressIndicator()),
-        if (!isLoading)
+        if (isLoading == true) Center(child: const CircularProgressIndicator()),
+        if (isLoading == false)
           CustomButton(
             text: 'حفظ',
             onPressed: () {

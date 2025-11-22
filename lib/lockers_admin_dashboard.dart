@@ -11,7 +11,7 @@ import 'core/services/hive_services.dart';
 import 'core/utils/app_colors.dart';
 import 'core/utils/size_config.dart';
 import 'features/auth/presentation/views/signin_view.dart';
-import 'features/dashboard/presentation/views/admin_dashboard_view.dart';
+import 'features/units/presentation/views/units_view.dart';
 import 'generated/l10n.dart';
 
 class LockersAdminDashboard extends StatelessWidget {
@@ -42,9 +42,7 @@ class LockersAdminDashboard extends StatelessWidget {
       ],
       supportedLocales: S.delegate.supportedLocales,
       onGenerateRoute: onGenerateRoutes,
-      initialRoute: isLoggedIn
-          ? AdminDashboardView.routeName
-          : SigninView.routeName,
+      initialRoute: !isLoggedIn ? UnitsView.routeName : SigninView.routeName,
     );
   }
 }

@@ -51,12 +51,11 @@ class _PickLocationBottomSheetFormState
   @override
   void initState() {
     super.initState();
-    cityController.text = widget.locationModel.city ?? '';
-    neighborhoodController.text = widget.locationModel.neighborhood ?? '';
-    streetController.text = widget.locationModel.street ?? '';
-    buildingController.text = widget.locationModel.buildingNum ?? '';
-    administrativeAreaController.text =
-        widget.locationModel.administrativeArea ?? '';
+    cityController.text = widget.locationModel.city;
+    neighborhoodController.text = widget.locationModel.neighborhood;
+    streetController.text = widget.locationModel.street;
+    buildingController.text = widget.locationModel.buildingNum;
+    administrativeAreaController.text = widget.locationModel.administrativeArea;
   }
 
   @override

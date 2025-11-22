@@ -1,4 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../functions/get_root_context.dart';
@@ -24,7 +25,7 @@ abstract class DialogHelper {
   }) {
     return AwesomeDialog(
       context: getRootContext(context),
-      dialogType: dialogType,
+      dialogType: kIsWeb ? DialogType.noHeader : dialogType,
       animType: animType,
       title: title,
       desc: desc,

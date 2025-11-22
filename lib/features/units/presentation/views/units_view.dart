@@ -12,6 +12,7 @@ import 'widgets/units_grid_view.dart';
 
 class UnitsView extends StatelessWidget {
   const UnitsView({super.key});
+  static const routeName = 'units_view';
 
   @override
   Widget build(BuildContext context) {
@@ -19,17 +20,17 @@ class UnitsView extends StatelessWidget {
     bool isMobile = SizeConfig.isMobile();
     var prov = context.watch<UnitsProvider>();
 
-    return prov.checkGettingAllUnits == false
-        ? ApiErrorView(msg: prov.message, onRetry: prov.getAllUnits)
-        : Scaffold(
-            floatingActionButton: !isMobile
-                ? null
-                : FloatingActionButton(
-                    backgroundColor: AppColors.main,
-                    onPressed: () => addNewUnitDialog(context),
-                    child: const Icon(Icons.add, color: Colors.white),
-                  ),
-            body: Column(
+    return Scaffold(
+      floatingActionButton: !isMobile
+          ? null
+          : FloatingActionButton(
+              backgroundColor: AppColors.main,
+              onPressed: () => addNewUnitDialog(context),
+              child: const Icon(Icons.add, color: Colors.white),
+            ),
+      body: prov.checkGettingAllUnits == false
+          ? ApiErrorView(msg: prov.message, onRetry: prov.getAllUnits)
+          : Column(
               children: [
                 SizedBox(height: 8),
                 if (!isMobile) Row(children: [const Spacer(), AddUnitButton()]),
@@ -40,6 +41,6 @@ class UnitsView extends StatelessWidget {
                 SizedBox(height: 12),
               ],
             ),
-          );
+    );
   }
 }

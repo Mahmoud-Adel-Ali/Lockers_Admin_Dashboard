@@ -1,37 +1,37 @@
 class LocationDetailsModel {
   final double latitude;
   final double longitude;
-  final String? country;
-  final String? city;
-  final String? neighborhood;
-  final String? street;
-  final String? postalCode;
-  final String? buildingNum;
-  final String? administrativeArea;
+  final String country;
+  final String city;
+  final String neighborhood;
+  final String street;
+  final String postalCode;
+  final String buildingNum;
+  final String administrativeArea;
 
   LocationDetailsModel({
     required this.latitude,
     required this.longitude,
-    this.country,
-    this.city,
-    this.neighborhood,
-    this.street,
-    this.buildingNum,
-    this.postalCode,
-    this.administrativeArea,
+    this.country = '',
+    this.city = '',
+    this.neighborhood = '',
+    this.street = '',
+    this.buildingNum = '',
+    this.postalCode = '',
+    this.administrativeArea = '',
   });
 
   factory LocationDetailsModel.fromJson(Map<String, dynamic> json) {
     return LocationDetailsModel(
       latitude: (json['latitude'] as num).toDouble(),
       longitude: (json['longitude'] as num).toDouble(),
-      country: json['country'],
-      city: json['city'],
-      neighborhood: json['neighborhood'],
-      street: json['street'],
+      country: json['country'] ?? '',
+      city: json['city'] ?? '',
+      neighborhood: json['neighborhood'] ?? '',
+      street: json['street'] ?? '',
       buildingNum: json['buildingNum'] ?? '',
-      postalCode: json['postalCode'],
-      administrativeArea: json['administrativeArea'],
+      postalCode: json['postalCode'] ?? '',
+      administrativeArea: json['administrativeArea'] ?? '',
     );
   }
 
@@ -60,4 +60,7 @@ class LocationDetailsModel {
         'administrativeArea: $administrativeArea'
         ')';
   }
+
+  factory LocationDetailsModel.empty() =>
+      LocationDetailsModel(latitude: 0.0, longitude: 0.0);
 }

@@ -69,10 +69,10 @@ class CompanyBasicInfoSection extends StatelessWidget {
               ),
               onTap: () {
                 LocationDetailsModel location = LocationDetailsModel(
-                  city: company?.city,
-                  neighborhood: company?.neighborhood,
-                  street: company?.street,
-                  buildingNum: company?.buildNumber,
+                  city: company?.city ?? '',
+                  neighborhood: company?.neighborhood ?? '',
+                  street: company?.street ?? '',
+                  buildingNum: company?.buildNumber ?? '',
                   latitude: company?.latitude ?? 0.0,
                   longitude: company?.longitude ?? 0.0,
                 );
