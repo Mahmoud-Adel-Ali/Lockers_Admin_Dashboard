@@ -4,10 +4,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../models/location_details_model.dart';
 import '../services/location_service.dart';
-import '../widgets/arrow_back_icon.dart';
-import '../widgets/custom_button.dart';
 import '../widgets/dialog_helper.dart';
 import 'widgets/pick_location_bottom_sheet.dart';
+import 'widgets/pick_location_view_body.dart';
 
 class PickLocationView extends StatefulWidget {
   const PickLocationView({super.key, this.lastLocationModel});
@@ -24,6 +23,7 @@ class _PickLocationViewState extends State<PickLocationView> {
   LocationDetailsModel? locationDetailsModel;
   Set<Marker> markers = {};
   bool? isLoading;
+  bool isBottomSheetOpen = false;
 
   final locationService = LocationService();
 
@@ -34,7 +34,7 @@ class _PickLocationViewState extends State<PickLocationView> {
     if (widget.lastLocationModel == null) {
       initialPosition = CameraPosition(
         target: LatLng(27.5042, 30.7202), // Egypt default
-        zoom: 10,
+        zoom: 12,
       );
     } else {
       final latLng = LatLng(
@@ -47,12 +47,6 @@ class _PickLocationViewState extends State<PickLocationView> {
       setLocationMarker(latLng);
       isLoading = false;
     }
-  }
-
-  @override
-  void dispose() {
-    mapController.dispose();
-    super.dispose();
   }
 
   void setLocationMarker(LatLng latLng) {
@@ -99,52 +93,42 @@ class _PickLocationViewState extends State<PickLocationView> {
                 updateLocation(); // Uses GPS for mobile, not for web
               }
             },
-            onTap: (latLng) => updateLocation(newLatLng: latLng),
+            onTap: isBottomSheetOpen
+                ? null
+                : (latLng) => updateLocation(newLatLng: latLng).then((value) {
+                    if (kIsWeb) {
+                      // ignore: use_build_context_synchronously
+                      showBottomSheet(context);
+                    }
+                  }),
           ),
 
-          PickLocationViewBody(
-            isLoading: isLoading,
-            locationModel: locationDetailsModel,
-          ),
+          // 🔥 ADD THIS OVERLAY
+          if (isBottomSheetOpen)
+            Positioned.fill(
+              child: Container(
+                color: Colors.transparent, // invisible but blocks taps
+              ),
+            ),
+          if (!kIsWeb)
+            PickLocationViewBody(
+              isLoading: isLoading,
+              onTabNext: () async {
+                await showBottomSheet(context);
+              },
+            ),
         ],
       ),
     );
   }
-}
 
-class PickLocationViewBody extends StatelessWidget {
-  const PickLocationViewBody({
-    super.key,
-     this.isLoading,
-    this.locationModel,
-  });
-  final bool? isLoading;
-  final LocationDetailsModel? locationModel;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(height: 32),
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Row(children: [ArrowBackIcon()]),
-        ),
-        const Spacer(),
-        if (isLoading == true) Center(child: const CircularProgressIndicator()),
-        if (isLoading == false)
-          CustomButton(
-            text: 'حفظ',
-            onPressed: () {
-              // Open bottom sheet to complete details
-              pickLocationDetailsBottomSheet(
-                context,
-                locationModel: locationModel!,
-              );
-            },
-          ),
-        SizedBox(height: 16),
-      ],
+  Future<void> showBottomSheet(BuildContext context) async {
+    setState(() => isBottomSheetOpen = true);
+    // Open bottom sheet to complete details
+    await pickLocationDetailsBottomSheet(
+      context,
+      locationModel: locationDetailsModel!,
     );
+    setState(() => isBottomSheetOpen = false);
   }
 }
