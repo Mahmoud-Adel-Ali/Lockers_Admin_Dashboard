@@ -11,6 +11,7 @@ import 'widgets/companies_view_header.dart';
 
 class CompaniesView extends StatelessWidget {
   const CompaniesView({super.key});
+  static const routeName = '/companies';
 
   @override
   Widget build(BuildContext context) {

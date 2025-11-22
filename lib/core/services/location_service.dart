@@ -63,8 +63,8 @@ class LocationService {
       latitude: target.latitude,
       longitude: target.longitude,
       country: place.country ?? '',
-      city: place.locality ?? place.administrativeArea ?? "",
-      neighborhood: place.subLocality ?? "",
+      city: place.administrativeArea ?? place.locality ?? "",
+      neighborhood: place.subAdministrativeArea ?? place.subLocality ?? "",
       street: place.street ?? place.thoroughfare ?? "",
     );
 
