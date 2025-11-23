@@ -1,0 +1,24 @@
+# flutter_launcher_icons:
+#   # android: true
+#   # ios: true
+#   web: true
+#   # remove_alpha_ios: true
+#   # background_color: "#01509F"u
+#   image_path: "assets/images/web_icon.png"
+#   adaptive_icon_foreground: "assets/images/web_icon.png"
+#   adaptive_icon_background: "#01509F"
+
+flutter_launcher_icons:
+  android: false
+  ios: false
+
+  web:
+    generate: true
+    image_path: "assets/images/web_icon.png"
+
+  windows:
+    generate: true
+    image_path: "assets/images/web_icon.png"
+  macos:
+    generate: true
+    image_path: "assets/images/web_icon.png"

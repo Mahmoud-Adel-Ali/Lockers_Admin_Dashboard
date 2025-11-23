@@ -86,6 +86,8 @@ class Assets {
 
   static const String imagesUnitIcon2 = "assets/images/unit_icon2.svg";
 
+  static const String imagesWebIcon = "assets/images/web_icon.png";
+
   static const String videosFiveMinuts = "assets/videos/five_minuts.mp4";
 }
 
