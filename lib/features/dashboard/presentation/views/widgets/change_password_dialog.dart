@@ -21,7 +21,7 @@ Future<void> changePasswordDialog(BuildContext context) async {
       return CustomDialog(
         title: 'تعديل كلمة المرور',
         message: '',
-        constraints: const BoxConstraints(maxHeight: 450, maxWidth: 500),
+        constraints: const BoxConstraints(maxHeight: 420, maxWidth: 500),
         child: ChangePasswordForm(),
       );
     },

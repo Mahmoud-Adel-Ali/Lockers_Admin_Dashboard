@@ -69,7 +69,6 @@ class FollowUpReservationCustomerCard extends StatelessWidget {
                   Expanded(
                     flex: 3,
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(

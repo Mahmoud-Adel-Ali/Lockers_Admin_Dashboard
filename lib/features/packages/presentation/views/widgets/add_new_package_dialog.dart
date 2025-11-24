@@ -9,7 +9,7 @@ Future<dynamic> addNewPackageDialog(BuildContext context) {
     builder: (context) {
       return CustomDialog(
         title: 'إضافة باقة جديدة',
-        constraints: BoxConstraints(maxWidth: 500, maxHeight: 530),
+        constraints: BoxConstraints(maxWidth: 500, maxHeight: 460),
         child: const AddNewPackageForm(),
       );
     },

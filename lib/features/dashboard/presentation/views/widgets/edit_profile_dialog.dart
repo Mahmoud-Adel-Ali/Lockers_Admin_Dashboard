@@ -23,7 +23,7 @@ Future<dynamic> editProfileDataDialog(BuildContext context) {
     context: context,
     builder: (context) {
       return CustomDialog(
-        constraints: BoxConstraints(maxWidth: 500, maxHeight: 620),
+        constraints: BoxConstraints(maxWidth: 500, maxHeight: 550),
         child: EditProfileForm(),
       );
     },
@@ -49,6 +49,7 @@ class EditProfileForm extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: AppColors.filedGrey,
+                  border: Border.all(color: AppColors.grey, width: 1),
                   image: prov.imageFile != null
                       ? DecorationImage(
                           image: MemoryImage(prov.imageFile!.bytes),

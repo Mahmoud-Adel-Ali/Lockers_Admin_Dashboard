@@ -9,13 +9,11 @@ class CustomUserCard extends StatelessWidget {
     super.key,
     required this.name,
     required this.phone,
-    this.assetsImage,
     this.imgUrl,
     this.onTap,
   });
   final String name;
   final String phone;
-  final String? assetsImage;
   final String? imgUrl;
   final VoidCallback? onTap;
   @override
@@ -29,22 +27,23 @@ class CustomUserCard extends StatelessWidget {
         ),
         child: Column(
           children: [
-            const Spacer(flex: 2),
-            if (imgUrl != null)
-              Container(
-                height: 90,
-                width: 90,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: customCachedNetworkImageprovider(imgUrl),
-                ),
+            SizedBox(height: 12),
+            Expanded(
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return Container(
+                    height: constraints.maxHeight,
+                    width: constraints.maxWidth,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: customCachedNetworkImageprovider(imgUrl),
+                    ),
+                  );
+                },
               ),
-            if (assetsImage != null)
-              CircleAvatar(
-                radius: 45,
-                backgroundImage: AssetImage(assetsImage!),
-              ),
-            const Spacer(flex: 2),
+            ),
+
+            SizedBox(height: 12),
             Text(
               name,
               maxLines: 1,
@@ -52,7 +51,7 @@ class CustomUserCard extends StatelessWidget {
               textAlign: TextAlign.center,
               style: AppTextStyles.style20w500(context),
             ),
-            const SizedBox(height: 8),
+            // const SizedBox(height: 8),
             Text(
               phone,
               maxLines: 1,
@@ -60,7 +59,7 @@ class CustomUserCard extends StatelessWidget {
               textAlign: TextAlign.center,
               style: AppTextStyles.style16w400(context),
             ),
-            const Spacer(flex: 2),
+            SizedBox(height: 12),
           ],
         ),
       ),

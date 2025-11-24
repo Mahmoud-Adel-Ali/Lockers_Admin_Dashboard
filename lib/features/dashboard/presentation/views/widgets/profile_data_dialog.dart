@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/custom_cached_network_image.dart';
@@ -15,7 +16,7 @@ Future<dynamic> profileDataDialog(BuildContext context) {
     context: context,
     builder: (context) {
       return CustomDialog(
-        constraints: BoxConstraints(maxWidth: 500, maxHeight: 620),
+        constraints: BoxConstraints(maxWidth: 500, maxHeight: 575),
         leading: CustomButton(
           text: 'تعديل البيانات',
           horizontal: 0,
@@ -42,6 +43,7 @@ class ProfileDataForm extends StatelessWidget {
           height: 150,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
+            border: Border.all(color: AppColors.grey, width: 1),
             image: customCachedNetworkImageprovider(prov.adminData?.image),
           ),
         ),

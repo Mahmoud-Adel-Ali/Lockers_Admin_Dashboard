@@ -9,7 +9,7 @@ Future<dynamic> editPackageDialog(BuildContext context) {
     builder: (context) {
       return CustomDialog(
         title: 'تعديل بيانات الباقة',
-        constraints: BoxConstraints(maxWidth: 500, maxHeight: 530),
+        constraints: BoxConstraints(maxWidth: 500, maxHeight: 460),
         child: const EditPackageForm(),
       );
     },

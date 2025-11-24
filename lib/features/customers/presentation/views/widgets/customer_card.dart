@@ -33,10 +33,7 @@ class CustomerCard extends StatelessWidget {
                 height: double.infinity,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  image: customCachedNetworkImageprovider(
-                    customer.image,
-                    fit: BoxFit.contain,
-                  ),
+                  image: customCachedNetworkImageprovider(customer.image),
                 ),
               ),
             ),
