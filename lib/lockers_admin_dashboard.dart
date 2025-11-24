@@ -25,7 +25,7 @@ class LockersAdminDashboard extends StatelessWidget {
     log("Widht: ${SizeConfig.width}");
     log("Height: ${SizeConfig.height}");
     return MaterialApp(
-      title: 'Lockers Admin Dashboard',
+      title: 'Lockers Admin',
       theme: ThemeData(
         primaryColor: AppColors.main,
         scaffoldBackgroundColor: AppColors.white,
