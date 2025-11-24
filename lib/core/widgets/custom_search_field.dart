@@ -23,21 +23,29 @@ class CustomSearchField extends StatefulWidget {
 
 class _CustomSearchFieldState extends State<CustomSearchField> {
   late final TextEditingController _controller;
+  late final VoidCallback _listener;
 
   @override
   void initState() {
     super.initState();
+
     _controller = widget.controller ?? TextEditingController();
-    _controller.addListener(() {
-      setState(() {}); // rebuild to show/hide clear icon
-    });
+
+    _listener = () {
+      if (mounted) setState(() {}); // avoid setState after dispose
+    };
+
+    _controller.addListener(_listener);
   }
 
   @override
   void dispose() {
+    _controller.removeListener(_listener); // IMPORTANT
+
     if (widget.controller == null) {
       _controller.dispose(); // only dispose if we created it
     }
+
     super.dispose();
   }
 
