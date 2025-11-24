@@ -14,9 +14,9 @@ class CompaniesViewHeader extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
         children: [
-          if (!SizeConfig.isMobile()) AddCompanyButton(),
-          if (!SizeConfig.isMobile()) const Spacer(),
           Expanded(child: CompaniesSearchField()),
+          if (!SizeConfig.isMobile()) const Spacer(flex: 2),
+          if (!SizeConfig.isMobile()) AddCompanyButton(),
         ],
       ),
     );

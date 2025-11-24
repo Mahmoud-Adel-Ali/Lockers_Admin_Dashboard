@@ -18,7 +18,7 @@ class CompaniesSearchField extends StatelessWidget {
           hintText: 'ابحث عن شركة',
           controller: prov.searchCompanyController,
           onChanged: (val) {
-            if (prov.checkGetAllCompanies == null) return;
+            if (prov.checkGetAllCompanies == null && val.isNotEmpty) return;
             prov.getAllCompanies();
           },
         ),
