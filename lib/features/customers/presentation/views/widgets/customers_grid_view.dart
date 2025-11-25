@@ -4,7 +4,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../manager/customers_provider.dart';
 import 'customer_card.dart';
-import 'pagination_controls.dart';
+import '../../../../../core/widgets/pagination_controls.dart';
 
 class CustomersGridView extends StatelessWidget {
   const CustomersGridView({super.key});
