@@ -14,18 +14,26 @@ class UnitsOrLockersPercentIndicator extends StatelessWidget {
     required this.textTwo,
     required this.percentIndecator,
     required this.textIndecator,
+    required this.totalText,
+    required this.totalValue,
+    required this.countAvailable,
+    required this.countInMaintenance,
   });
   final String title;
   final String textOne;
   final String textTwo;
   final double percentIndecator;
   final String textIndecator;
+  final String totalText;
+  final int totalValue;
+  final int countAvailable;
+  final int countInMaintenance;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 240,
+      height: 280,
       alignment: Alignment.center,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
@@ -50,10 +58,12 @@ class UnitsOrLockersPercentIndicator extends StatelessWidget {
                       TitleWithSmallCircle(
                         title: textOne,
                         color: AppColors.blue,
+                        count: countAvailable,
                       ),
                       TitleWithSmallCircle(
                         title: textTwo,
                         color: AppColors.orange,
+                        count: countInMaintenance,
                       ),
                     ],
                   ),
@@ -64,6 +74,14 @@ class UnitsOrLockersPercentIndicator extends StatelessWidget {
                   text: textIndecator,
                 ),
               ],
+            ),
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            title: Text(totalText, style: AppTextStyles.style20w500(context)),
+            trailing: Text(
+              ' ( $totalValue ) ',
+              style: AppTextStyles.style16w700(context),
             ),
           ),
         ],
@@ -77,14 +95,26 @@ class TitleWithSmallCircle extends StatelessWidget {
     super.key,
     required this.title,
     required this.color,
+    required this.count,
   });
   final String title;
   final Color color;
+  final int count;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(title, style: AppTextStyles.style18w400(context)),
+      title: Text.rich(
+        TextSpan(
+          children: [
+            TextSpan(text: title, style: AppTextStyles.style16w500(context)),
+            TextSpan(
+              text: ' ( $count )',
+              style: AppTextStyles.style20w700(context).copyWith(color: color),
+            ),
+          ],
+        ),
+      ),
       leading: Container(
         width: 16,
         height: 16,

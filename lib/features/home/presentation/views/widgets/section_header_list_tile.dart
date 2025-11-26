@@ -10,7 +10,7 @@ class SectionHeaderListTile extends StatelessWidget {
     super.key,
     required this.title,
     required this.svgIcon,
-    this.color = AppColors.main,
+    this.color = AppColors.glowGreen,
   });
   final String title;
   final String svgIcon;
@@ -28,7 +28,7 @@ class SectionHeaderListTile extends StatelessWidget {
         title,
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
-        style: AppTextStyles.style16w500(
+        style: AppTextStyles.style20w700(
           context,
         ).copyWith(color: AppColors.main, fontFamily: almarai),
       ),

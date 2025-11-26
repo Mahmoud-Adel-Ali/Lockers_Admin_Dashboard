@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
+import '../../../../../core/widgets/pagination_controls.dart';
 import '../../manager/customers_provider.dart';
 import 'customer_card.dart';
-import '../../../../../core/widgets/pagination_controls.dart';
 
 class CustomersGridView extends StatelessWidget {
   const CustomersGridView({super.key});

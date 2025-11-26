@@ -18,7 +18,11 @@ class UnitsIndecator extends StatelessWidget {
       textOne: 'الوحدات المتاحة',
       textTwo: 'وحدات في الصيانة',
       percentIndecator: 1 - percentIndecator,
-      textIndecator: '${prov.unitsUnderMaintenance}\nفي الصيانة',
+      textIndecator: '${(100 - (percentIndecator * 100)).toStringAsFixed(2)} %',
+      totalText: 'إجمالي الوحدات',
+      totalValue: prov.totalUnits,
+      countAvailable: prov.totalUnits - prov.unitsUnderMaintenance,
+      countInMaintenance: prov.unitsUnderMaintenance,
     );
   }
 }

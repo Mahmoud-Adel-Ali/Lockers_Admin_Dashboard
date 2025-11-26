@@ -18,7 +18,11 @@ class LockersIndecator extends StatelessWidget {
       textOne: 'الخزائن المتاحة',
       textTwo: 'خزائن في الصيانة',
       percentIndecator: 1 - percentIndecator,
-      textIndecator: '${prov.lockersUnderMaintenance}\nفي الصيانة',
+      textIndecator: '${(100 - (percentIndecator * 100)).toStringAsFixed(2)} %',
+      totalText: 'إجمالي الخزائن',
+      totalValue: prov.totalLockers,
+      countAvailable: prov.totalLockers - prov.lockersUnderMaintenance,
+      countInMaintenance: prov.lockersUnderMaintenance,
     );
   }
 }
