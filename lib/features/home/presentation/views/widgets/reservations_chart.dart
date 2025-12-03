@@ -164,15 +164,13 @@ class ReservationsChart extends StatelessWidget {
                   ),
                   borderData: FlBorderData(show: false),
                   barGroups: List.generate(monthly.length, (i) {
-                    // x = monthly[i].orders
-                    // y = maxVal
-                    // finalVal = x / y + x * 0.05
-                    //     =  x * (0.05 + 1 / y)
                     final isHighlighted = (i == DateTime.now().month - 1);
-                    var val = monthly[i].orders;
-                    var finalVal = val * (0.05 + 1 / maxVal);
+                    var val = monthly[i].orders; //* Month orders count.
+                    var idx = (val / (maxVal / 5))
+                        .toInt(); //* Horizontal index [1 ...... 5]
+                    var finalVal = val / maxVal + idx * 0.05;
 
-                    log("$val / $maxVal = val[$i] : $finalVal");
+                    log("$val / $maxVal + ($idx * 0.05) = val[$i] : $finalVal");
                     return BarChartGroupData(
                       x: i,
                       barRods: [
