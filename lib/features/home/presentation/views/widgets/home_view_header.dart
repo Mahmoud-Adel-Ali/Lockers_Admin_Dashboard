@@ -21,25 +21,25 @@ class HomeViewHeader extends StatelessWidget {
     // TODO : change this values after added to the response API
     List<HomeHeaderItemModel> homeHeaderItems = [
       HomeHeaderItemModel(
-        title: prov.totalUnits.toString(),
+        title: prov.newUser.toString(),
         subtitle: 'عدد العملاء الجدد',
         icon: Assets.imagesNewCustomersIcon,
         color: AppColors.filedGrey,
       ),
       HomeHeaderItemModel(
-        title: prov.totalLockers.toString(),
+        title: prov.companies.toString(),
         subtitle: 'عدد الشركات',
         icon: Assets.imagesCompaniesIcon,
         color: AppColors.green.shade50,
       ),
       HomeHeaderItemModel(
-        title: prov.unitsUnderMaintenance.toString(),
+        title: prov.complains.toString(),
         subtitle: 'عدد الشكاوي',
         icon: Assets.imagesComplaintsIcon,
         color: AppColors.orange.shade50,
       ),
       HomeHeaderItemModel(
-        title: prov.lockersUnderMaintenance.toString(),
+        title: prov.employees.toString(),
         subtitle: 'عدد الموظفين',
         icon: Assets.imagesEmployeesIcon,
         color: AppColors.red.shade50,

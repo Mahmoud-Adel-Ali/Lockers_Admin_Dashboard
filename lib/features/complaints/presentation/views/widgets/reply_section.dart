@@ -8,6 +8,7 @@ import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../../core/widgets/dialog_helper.dart';
 import '../../../../../generated/l10n.dart';
+import '../../../../home/presentation/manager/home_provider.dart';
 import '../../../data/models/complaint_model.dart';
 import '../../manager/complaints_provider.dart';
 
@@ -41,11 +42,9 @@ class ReplySection extends StatelessWidget {
             if (prov.checkReplyingToComplaint == true) {
               //* Close dialog
               Navigator.pop(context);
-              DialogHelper.showSuccessDialog(
-                context,
-                title: 'تم',
-                desc: prov.message,
-              );
+
+              //* Get Home Dashboard Data
+              context.read<HomeProvider>().getHomeDashboardData();
             } else if (prov.checkReplyingToComplaint == false) {
               DialogHelper.showErrorDialog(
                 context,

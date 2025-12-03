@@ -7,6 +7,7 @@ import '../../../../../core/functions/check_unauthenticated.dart';
 import '../../../../../core/functions/show_loading_dialog.dart';
 import '../../../../../core/widgets/dialog_helper.dart';
 import '../../../../../generated/l10n.dart';
+import '../../../../home/presentation/manager/home_provider.dart';
 import '../../../data/enums/customer_type.dart';
 import '../customers_provider.dart';
 
@@ -26,6 +27,8 @@ Future<void> updateCustomerStatus(
   Navigator.pop(context);
 
   if (prov.checkUpdateCustomerStatus == true) {
+    //* Get Home Dashboard Data
+    context.read<HomeProvider>().getHomeDashboardData();
   } else if (prov.checkUpdateCustomerStatus == false) {
     checkUnauthenticated(context, msg: prov.message);
     DialogHelper.showErrorDialog(

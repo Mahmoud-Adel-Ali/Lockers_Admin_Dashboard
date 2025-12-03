@@ -4,10 +4,10 @@ import 'package:provider/provider.dart';
 
 import '../../../../../core/functions/check_unauthenticated.dart';
 import '../../../../../core/functions/show_loading_dialog.dart';
-import '../../../../../core/functions/snack_bar.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/dialog_helper.dart';
 import '../../../../../generated/l10n.dart';
+import '../../../../home/presentation/manager/home_provider.dart';
 import '../../manager/companies_provider.dart';
 
 class AddNewCompanyFormButton extends StatelessWidget {
@@ -31,7 +31,9 @@ class AddNewCompanyFormButton extends StatelessWidget {
           if (prov.checkAddNewCompany == true) {
             //* Close Dialog
             Navigator.pop(context);
-            showSuccessSnackBar(context, msg: prov.message);
+
+            //* Get Home Dashboard Data
+            context.read<HomeProvider>().getHomeDashboardData();
           } else if (prov.checkAddNewCompany == false) {
             checkUnauthenticated(context, msg: prov.message);
             DialogHelper.showErrorDialog(

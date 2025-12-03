@@ -16,6 +16,7 @@ import '../../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../../core/widgets/custom_text_password.dart';
 import '../../../../../core/widgets/dialog_helper.dart';
 import '../../../../../generated/l10n.dart';
+import '../../../../home/presentation/manager/home_provider.dart';
 import '../../manager/employees_provider.dart';
 import 'add_new_employee_image.dart';
 
@@ -144,6 +145,9 @@ class AddEmployeeeDataForm extends StatelessWidget {
                   if (prov.checkAddEmployee == true) {
                     //* Close Dialog
                     Navigator.pop(context);
+
+                    //* Get Home Dashboard Data
+                    context.read<HomeProvider>().getHomeDashboardData();
                   } else if (prov.checkAddEmployee == false) {
                     checkUnauthenticated(context, msg: prov.message);
                     DialogHelper.showErrorDialog(

@@ -9,6 +9,11 @@ class HomeProvider extends ChangeNotifier {
   String message = '';
 
   //* Home Dashboard Data
+  int newUser = 0;
+  int complains = 0;
+  int employees = 0;
+  int companies = 0;
+
   int totalLockers = 0;
   int totalUnits = 0;
   int lockersUnderMaintenance = 0;
@@ -46,6 +51,10 @@ class HomeProvider extends ChangeNotifier {
         year = model.data.orders.year;
         total = model.data.orders.total;
         monthly = model.data.orders.monthly;
+        newUser = model.data.newUser;
+        complains = model.data.complains;
+        employees = model.data.employees;
+        companies = model.data.companies;
       },
     );
     notifyListeners();

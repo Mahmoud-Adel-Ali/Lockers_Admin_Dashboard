@@ -18,15 +18,17 @@ class HomeDashboardResponse {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'status': status,
-      'message': message,
-      'data': data.toJson(),
-    };
+    return {'status': status, 'message': message, 'data': data.toJson()};
   }
 }
 
 class HomeDashboardData {
+  final int newUser;
+  final int complains;
+  final int employees;
+  final int companies;
+
+  //*
   final int totalLockers;
   final int totalUnits;
   final int lockersUnderMaintenance;
@@ -43,6 +45,10 @@ class HomeDashboardData {
     required this.lockers,
     required this.units,
     required this.orders,
+    required this.newUser,
+    required this.complains,
+    required this.employees,
+    required this.companies,
   });
 
   factory HomeDashboardData.fromJson(Map<String, dynamic> json) {
@@ -51,6 +57,10 @@ class HomeDashboardData {
       totalUnits: json['totalUnits'] ?? 0,
       lockersUnderMaintenance: json['lockersUnderMaintenance'] ?? 0,
       unitsUnderMaintenance: json['unitsUnderMaintenance'] ?? 0,
+      newUser: json['newUser'] ?? 0,
+      complains: json['complains'] ?? 0,
+      employees: json['employees'] ?? 0,
+      companies: json['companies'] ?? 0,
       lockers: CountModel.fromJson(json['lockers'] ?? {}),
       units: CountModel.fromJson(json['units'] ?? {}),
       orders: OrdersModel.fromJson(json['orders'] ?? {}),
@@ -63,6 +73,10 @@ class HomeDashboardData {
       'totalUnits': totalUnits,
       'lockersUnderMaintenance': lockersUnderMaintenance,
       'unitsUnderMaintenance': unitsUnderMaintenance,
+      'newUser': newUser,
+      'complains': complains,
+      'employees': employees,
+      'companies': companies,
       'lockers': lockers.toJson(),
       'units': units.toJson(),
       'orders': orders.toJson(),
@@ -74,10 +88,7 @@ class CountModel {
   final int available;
   final int maintenance;
 
-  CountModel({
-    required this.available,
-    required this.maintenance,
-  });
+  CountModel({required this.available, required this.maintenance});
 
   factory CountModel.fromJson(Map<String, dynamic> json) {
     return CountModel(
@@ -87,10 +98,7 @@ class CountModel {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'available': available,
-      'maintenance': maintenance,
-    };
+    return {'available': available, 'maintenance': maintenance};
   }
 }
 
@@ -99,11 +107,7 @@ class OrdersModel {
   final int total;
   final List<MonthlyOrders> monthly;
 
-  OrdersModel({
-    required this.year,
-    required this.total,
-    required this.monthly,
-  });
+  OrdersModel({required this.year, required this.total, required this.monthly});
 
   factory OrdersModel.fromJson(Map<String, dynamic> json) {
     return OrdersModel(
@@ -128,10 +132,7 @@ class MonthlyOrders {
   final int month;
   final int orders;
 
-  MonthlyOrders({
-    required this.month,
-    required this.orders,
-  });
+  MonthlyOrders({required this.month, required this.orders});
 
   factory MonthlyOrders.fromJson(Map<String, dynamic> json) {
     return MonthlyOrders(
@@ -141,9 +142,6 @@ class MonthlyOrders {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'month': month,
-      'orders': orders,
-    };
+    return {'month': month, 'orders': orders};
   }
 }
