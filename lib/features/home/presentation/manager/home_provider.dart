@@ -9,6 +9,12 @@ class HomeProvider extends ChangeNotifier {
   String message = '';
 
   //* Home Dashboard Data
+
+  /// [max val , min val] in the chart
+  int maxVal = 0;
+  int minVal = 0;
+
+  /// [orders , complains , employees , companies] on the header of the view.
   int newUser = 0;
   int complains = 0;
   int employees = 0;
@@ -55,6 +61,8 @@ class HomeProvider extends ChangeNotifier {
         complains = model.data.complains;
         employees = model.data.employees;
         companies = model.data.companies;
+        maxVal = model.data.maxVal;
+        minVal = model.data.minVal;
       },
     );
     notifyListeners();

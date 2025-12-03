@@ -27,6 +27,8 @@ class HomeDashboardData {
   final int complains;
   final int employees;
   final int companies;
+  final int maxVal;
+  final int minVal;
 
   //*
   final int totalLockers;
@@ -49,6 +51,8 @@ class HomeDashboardData {
     required this.complains,
     required this.employees,
     required this.companies,
+    required this.maxVal,
+    required this.minVal,
   });
 
   factory HomeDashboardData.fromJson(Map<String, dynamic> json) {
@@ -61,6 +65,8 @@ class HomeDashboardData {
       complains: json['complains'] ?? 0,
       employees: json['employees'] ?? 0,
       companies: json['companies'] ?? 0,
+      maxVal: json['max'] ?? 0,
+      minVal: json['min'] ?? 0,
       lockers: CountModel.fromJson(json['lockers'] ?? {}),
       units: CountModel.fromJson(json['units'] ?? {}),
       orders: OrdersModel.fromJson(json['orders'] ?? {}),
