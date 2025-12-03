@@ -18,31 +18,31 @@ class HomeViewHeader extends StatelessWidget {
     var prov = context.watch<HomeProvider>();
 
     SizeConfig.init(context);
-
+    // TODO : change this values after added to the response API
     List<HomeHeaderItemModel> homeHeaderItems = [
       HomeHeaderItemModel(
         title: prov.totalUnits.toString(),
-        subtitle: 'عدد الوحدات',
-        icon: Assets.imagesUnitIcon1,
+        subtitle: 'عدد العملاء الجدد',
+        icon: Assets.imagesNewCustomersIcon,
         color: AppColors.filedGrey,
       ),
       HomeHeaderItemModel(
         title: prov.totalLockers.toString(),
-        subtitle: 'عدد الخزائن',
-        icon: Assets.imagesLockerIcon1,
-        color: AppColors.babyBlue,
-      ),
-      HomeHeaderItemModel(
-        title: prov.unitsUnderMaintenance.toString(),
-        subtitle: 'عدد الوحدات في الصيانة',
-        icon: Assets.imagesUnitIcon2,
+        subtitle: 'عدد الشركات',
+        icon: Assets.imagesCompaniesIcon,
         color: AppColors.green.shade50,
       ),
       HomeHeaderItemModel(
-        title: prov.lockersUnderMaintenance.toString(),
-        subtitle: 'عدد الخزائن في الصيانة',
-        icon: Assets.imagesLockerIcon2,
+        title: prov.unitsUnderMaintenance.toString(),
+        subtitle: 'عدد الشكاوي',
+        icon: Assets.imagesComplaintsIcon,
         color: AppColors.orange.shade50,
+      ),
+      HomeHeaderItemModel(
+        title: prov.lockersUnderMaintenance.toString(),
+        subtitle: 'عدد الموظفين',
+        icon: Assets.imagesEmployeesIcon,
+        color: AppColors.red.shade50,
       ),
     ];
 

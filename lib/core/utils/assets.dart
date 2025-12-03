@@ -30,7 +30,13 @@ class Assets {
 
   static const String imagesArrowBackIcon = "assets/images/arrow_back_icon.svg";
 
+  static const String imagesCompaniesIcon = "assets/images/companies_icon.svg";
+
+  static const String imagesComplaintsIcon = "assets/images/complaints_icon.svg";
+
   static const String imagesEditIcon = "assets/images/edit_icon.svg";
+
+  static const String imagesEmployeesIcon = "assets/images/employees_icon.svg";
 
   static const String imagesForget1Background = "assets/images/forget1_background.png";
 
@@ -61,6 +67,8 @@ class Assets {
   static const String imagesLogo = "assets/images/logo.png";
 
   static const String imagesMessage = "assets/images/message.png";
+
+  static const String imagesNewCustomersIcon = "assets/images/new_customers_icon.svg";
 
   static const String imagesNoteIcon = "assets/images/note_icon.png";
 
