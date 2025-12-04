@@ -23,7 +23,7 @@ class FilterCustomersButton extends StatelessWidget {
       backgroundColor: AppColors.whiteGrey,
       textStyle: AppTextStyles.style16w400(context),
       onSelected: (index) {
-        prov.filterUsers(
+        prov.filterUnitOrders(
           showAll: index == 0,
           showAllUsrs: index == 1,
           showShippingOrder: index == 2,

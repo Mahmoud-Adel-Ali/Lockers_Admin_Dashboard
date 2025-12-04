@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:lockers_admin_dashboard/core/enum/locker_size.dart';
-import 'package:lockers_admin_dashboard/core/enum/locker_status.dart';
-import 'package:lockers_admin_dashboard/core/extensions/locker_extension.dart';
 
 import '../../../../../../core/utils/app_colors.dart';
 import '../../../../../../core/utils/app_text_styles.dart';
+import '../../../../../core/extensions/locker_extension.dart';
 import '../../../../../core/functions/is_arabic.dart';
-import '../../../../../core/models/user_model.dart';
 import '../../../../../core/widgets/custom_cached_network_image.dart';
+import '../../../../units/data/enum/order_status.dart';
+import '../../../../units/data/models/order_model.dart';
 import 'company_details_dialog.dart';
 
 class FollowUpReservationCustomerCard extends StatelessWidget {
-  const FollowUpReservationCustomerCard({super.key, required this.user});
-  final UserModel user;
+  const FollowUpReservationCustomerCard({super.key, required this.order});
+  final OrderModel order;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class FollowUpReservationCustomerCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        user.lockerNum.toLockerNumberString(
+                        order.lockerNumber.toLockerNumberString(
                           context,
                           withEmoji: true,
                         ),
@@ -57,7 +57,7 @@ class FollowUpReservationCustomerCard extends StatelessWidget {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             image: customCachedNetworkImageprovider(
-                              user.image,
+                              order.user.image,
                               fit: BoxFit.contain,
                             ),
                           ),
@@ -72,7 +72,7 @@ class FollowUpReservationCustomerCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          user.name,
+                          order.user.name,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.center,
@@ -81,7 +81,7 @@ class FollowUpReservationCustomerCard extends StatelessWidget {
                           ).copyWith(color: AppColors.black),
                         ),
                         Text(
-                          user.phone,
+                          order.user.phone,
                           maxLines: 1,
                           textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,
@@ -96,11 +96,11 @@ class FollowUpReservationCustomerCard extends StatelessWidget {
               ),
             ),
           ),
-          user.company == null
+          order.company == null
               ? const SizedBox()
               : InkWell(
                   onTap: () =>
-                      companyDetailsDialog(context, company: user.company!),
+                      companyDetailsDialog(context, company: order.company!),
                   child: Container(
                     color: AppColors.filedGrey,
                     padding: const EdgeInsets.symmetric(
@@ -116,13 +116,12 @@ class FollowUpReservationCustomerCard extends StatelessWidget {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             image: customCachedNetworkImageprovider(
-                              user.company!.image,
-                              fit: BoxFit.contain,
+                              order.company!.image,
                             ),
                           ),
                         ),
                         Text(
-                          user.company!.name,
+                          order.company!.name,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: AppTextStyles.style12w400(
@@ -150,7 +149,7 @@ class FollowUpReservationCustomerCard extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        isArabic() ? user.size.arName : user.size.enName,
+                        isArabic() ? order.size.arName : order.size.enName,
                         style: AppTextStyles.style14w500(
                           context,
                         ).copyWith(color: AppColors.white),
@@ -171,7 +170,7 @@ class FollowUpReservationCustomerCard extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        isArabic() ? user.status.arName : user.status.enName,
+                        isArabic() ? order.status.arName : order.status.enName,
                         style: AppTextStyles.style14w500(
                           context,
                         ).copyWith(color: AppColors.white),

@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 
 import '../../../../core/models/places_model.dart';
 import '../../../../core/models/unit_model.dart';
-import '../../../../core/models/user_model.dart';
+import '../../../units/data/models/order_model.dart';
 import '../../data/repos/reservations_repo.dart';
 
 class ReservationsProvider extends ChangeNotifier {
@@ -101,28 +101,28 @@ class ReservationsProvider extends ChangeNotifier {
   }
 
   //* Get All Order Unit Details
-  List<UserModel> usersList = [];
-  List<UserModel> filterdUsersList = [];
-
   int currentIdx = 0;
-  void filterUsers({
+  List<OrderModel> unitOrders = [];
+  List<OrderModel> filterdUnitOrders = [];
+
+  void filterUnitOrders({
     bool showAll = false,
     bool showAllUsrs = false,
     bool showShippingOrder = false,
   }) {
     if (showAllUsrs) {
       currentIdx = 1;
-      filterdUsersList = usersList.where((user) {
-        return user.company == null;
+      filterdUnitOrders = unitOrders.where((order) {
+        return order.company == null;
       }).toList();
     } else if (showShippingOrder) {
       currentIdx = 2;
-      filterdUsersList = usersList.where((user) {
-        return user.company != null;
+      filterdUnitOrders = unitOrders.where((order) {
+        return order.company != null;
       }).toList();
     } else {
       currentIdx = 0;
-      filterdUsersList = usersList;
+      filterdUnitOrders = unitOrders;
     }
     notifyListeners();
   }
@@ -141,9 +141,8 @@ class ReservationsProvider extends ChangeNotifier {
       },
       (model) {
         checkGettingUnitDetails = true;
-        selectedUnit = model.data;
-        usersList = model.data?.users ?? [];
-        filterUsers(showAll: true);
+        unitOrders = model.data.orders;
+        filterUnitOrders(showAll: true);
       },
     );
     notifyListeners();

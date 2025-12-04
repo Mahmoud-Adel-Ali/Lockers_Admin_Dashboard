@@ -12,8 +12,8 @@ class FollowUpReservationCustomersGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var prov = context.watch<ReservationsProvider>();
-    var users = prov.filterdUsersList;
-    return users.isEmpty && prov.checkGettingUnitDetails == true
+    var orders = prov.filterdUnitOrders;
+    return orders.isEmpty && prov.checkGettingUnitDetails == true
         ? const EmptyGridViewWidget(msg: 'لا يوجد عملاء بعد')
         : LayoutBuilder(
             builder: (context, constraints) {
@@ -31,9 +31,11 @@ class FollowUpReservationCustomersGridView extends StatelessWidget {
                     childAspectRatio: 200 / 300,
                     mainAxisExtent: 280,
                   ),
-                  itemCount: users.length,
+                  itemCount: orders.length,
                   itemBuilder: (context, index) {
-                    return FollowUpReservationCustomerCard(user: users[index]);
+                    return FollowUpReservationCustomerCard(
+                      order: orders[index],
+                    );
                   },
                 ),
               );

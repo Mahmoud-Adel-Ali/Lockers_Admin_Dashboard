@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/functions/convert_location_to_text.dart';
-import '../../../../../core/models/user_model.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/assets.dart';
-import '../../../../../core/utils/size_config.dart';
 import '../../../../../core/widgets/custom_cached_network_image.dart';
 import '../../../../../core/widgets/custom_dialog.dart';
 import '../../../../../core/widgets/profile_text_field.dart';
+import '../../../../units/data/models/order_company_model.dart';
 
 Future<dynamic> companyDetailsDialog(
   BuildContext context, {
@@ -18,11 +17,7 @@ Future<dynamic> companyDetailsDialog(
     context: context,
     builder: (context) {
       return CustomDialog(
-        constraints: BoxConstraints(
-          maxWidth: 500,
-          maxHeight: SizeConfig.height * 0.9,
-        ),
-
+        constraints: BoxConstraints(maxWidth: 500, maxHeight: 580),
         child: Column(
           children: [
             Text('بيانات الحساب', style: AppTextStyles.style24w500(context)),
@@ -32,10 +27,7 @@ Future<dynamic> companyDetailsDialog(
               height: 150,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                image: customCachedNetworkImageprovider(
-                  company.image,
-                  fit: BoxFit.contain,
-                ),
+                image: customCachedNetworkImageprovider(company.image),
               ),
             ),
             const SizedBox(height: 16),
@@ -53,7 +45,7 @@ Future<dynamic> companyDetailsDialog(
                           controller: TextEditingController(text: company.name),
                           readOnly: true,
                         ),
-                        
+
                         ProfileTextField(
                           title: 'الإيميل :',
                           controller: TextEditingController(

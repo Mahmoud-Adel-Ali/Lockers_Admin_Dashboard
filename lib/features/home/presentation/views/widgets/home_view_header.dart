@@ -18,7 +18,6 @@ class HomeViewHeader extends StatelessWidget {
     var prov = context.watch<HomeProvider>();
 
     SizeConfig.init(context);
-    // TODO : change this values after added to the response API
     List<HomeHeaderItemModel> homeHeaderItems = [
       HomeHeaderItemModel(
         title: prov.newUser.toString(),

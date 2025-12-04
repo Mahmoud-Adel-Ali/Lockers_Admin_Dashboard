@@ -9,7 +9,7 @@ import '../../../../core/errors/exception.dart';
 import '../../../../core/models/places_model.dart';
 import '../../../../core/services/service_locator.dart';
 import '../../../units/data/models/all_units_response.dart';
-import '../../../units/data/models/unit_details_response.dart';
+import '../../../units/data/models/unit_orders_response_model.dart';
 
 class ReservationsRepo {
   final DioConsumer dio = getit.get<DioConsumer>();
@@ -47,7 +47,7 @@ class ReservationsRepo {
   }
 
   //* Get Unit Details
-  Future<Either<String, UnitDetailsResponse>> getUnitDetails({
+  Future<Either<String, UnitOrdersResponseModel>> getUnitDetails({
     required int id,
   }) async {
     try {
@@ -55,13 +55,12 @@ class ReservationsRepo {
         '${EndPoints.reservationUnitDetails}/$id',
         isFormData: false,
       );
-      return Right(UnitDetailsResponse.fromJson(response));
+      return Right(UnitOrdersResponseModel.fromJson(response));
     } on ServerException catch (e) {
       return Left(e.errorModel.message);
+    } catch (e) {
+      log("Exception in getUnitDetails [Admin]: $e");
+      return Left(kErrorMsg);
     }
-    // catch (e) {
-    //   log("Exception in getUnitDetails [Admin]: $e");
-    //   return Left(kErrorMsg);
-    // }
   }
 }
