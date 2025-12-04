@@ -10,8 +10,8 @@ import '../../../../dashboard/data/enums/dashboard_type.dart';
 import '../../../../dashboard/presentation/manager/dashboard_manager.dart';
 import '../../manager/reservations_provider.dart';
 
-class FollowUpUnitCard extends StatelessWidget {
-  const FollowUpUnitCard({super.key, required this.unit});
+class ReservationUnitCard extends StatelessWidget {
+  const ReservationUnitCard({super.key, required this.unit});
   final UnitModel unit;
 
   @override

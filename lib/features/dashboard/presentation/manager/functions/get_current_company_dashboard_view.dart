@@ -6,8 +6,8 @@ import '../../../../companies/presentation/views/company_emplyees_view.dart';
 import '../../../../complaints/presentation/views/complaints_view.dart';
 import '../../../../customers/presentation/views/customers_view.dart';
 import '../../../../employees/presentation/views/employees_view.dart';
-import '../../../../follow_up_reservations/presentation/views/follow_up_reservations_details_view.dart';
-import '../../../../follow_up_reservations/presentation/views/follow_up_reservations_view.dart';
+import '../../../../follow_up_reservations/presentation/views/reservation_unit_details_view.dart';
+import '../../../../follow_up_reservations/presentation/views/reservations_units_view.dart';
 import '../../../../home/presentation/views/home_view.dart';
 import '../../../../maintenance/presentation/views/maintenance_view.dart';
 import '../../../../packages/presentation/views/packages_view.dart';
@@ -24,7 +24,7 @@ Widget getCurrentCompanyDashboardView(DashboardType type) {
     case DashboardType.Units:
       return const UnitsView();
     case DashboardType.FollowUpReservations:
-      return const FollowUpReservationsView();
+      return const ReservationsUnitsView();
     case DashboardType.Packages:
       return const PackagesView();
     case DashboardType.Customers:

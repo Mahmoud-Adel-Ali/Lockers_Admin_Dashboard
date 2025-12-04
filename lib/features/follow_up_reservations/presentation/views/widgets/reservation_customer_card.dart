@@ -10,8 +10,8 @@ import '../../../../units/data/enum/order_status.dart';
 import '../../../../units/data/models/order_model.dart';
 import 'company_details_dialog.dart';
 
-class FollowUpReservationCustomerCard extends StatelessWidget {
-  const FollowUpReservationCustomerCard({super.key, required this.order});
+class ReservationCustomerCard extends StatelessWidget {
+  const ReservationCustomerCard({super.key, required this.order});
   final OrderModel order;
 
   @override

@@ -147,4 +147,12 @@ class ReservationsProvider extends ChangeNotifier {
     );
     notifyListeners();
   }
+
+  //* For Show order details view
+  //* On Select Order
+  OrderModel? selectedOrder;
+  void onSelectOrder(OrderModel order) {
+    selectedOrder = order;
+    notifyListeners();
+  }
 }

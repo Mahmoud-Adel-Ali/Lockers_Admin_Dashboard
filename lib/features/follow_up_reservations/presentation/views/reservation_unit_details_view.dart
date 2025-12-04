@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 
 import '../../../../core/widgets/api_error_widget.dart';
 import '../manager/reservations_provider.dart';
-import 'widgets/follow_up_reservations_customers_grid_view.dart';
-import 'widgets/follow_up_reservations_details_header_view.dart';
+import 'widgets/reservations_customers_grid_view.dart';
+import 'widgets/reservation_unit_details_header_view.dart';
 
 class FollowUpReservationsDetailsView extends StatelessWidget {
   const FollowUpReservationsDetailsView({super.key});
@@ -26,7 +26,7 @@ class FollowUpReservationsDetailsView extends StatelessWidget {
                   height: 500,
                   child: const Center(child: LinearProgressIndicator()),
                 )
-              : FollowUpReservationCustomersGridView(),
+              : ReservationCustomersGridView(),
           SizedBox(height: 8),
         ],
       ),

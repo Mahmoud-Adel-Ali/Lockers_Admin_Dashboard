@@ -4,10 +4,10 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../../core/widgets/empty_grid_view_widget.dart';
 import '../../manager/reservations_provider.dart';
-import 'follow_up_reservation_customer_card.dart';
+import 'reservation_customer_card.dart';
 
-class FollowUpReservationCustomersGridView extends StatelessWidget {
-  const FollowUpReservationCustomersGridView({super.key});
+class ReservationCustomersGridView extends StatelessWidget {
+  const ReservationCustomersGridView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +33,7 @@ class FollowUpReservationCustomersGridView extends StatelessWidget {
                   ),
                   itemCount: orders.length,
                   itemBuilder: (context, index) {
-                    return FollowUpReservationCustomerCard(
-                      order: orders[index],
-                    );
+                    return ReservationCustomerCard(order: orders[index]);
                   },
                 ),
               );

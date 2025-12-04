@@ -6,8 +6,8 @@ import '../../../../../core/utils/size_config.dart';
 import '../../../../../core/widgets/location_filter_button.dart';
 import '../../manager/reservations_provider.dart';
 
-class FilterFollowReservedUnitsLocationSection extends StatelessWidget {
-  const FilterFollowReservedUnitsLocationSection({super.key});
+class ReservationsUnitsLocationSection extends StatelessWidget {
+  const ReservationsUnitsLocationSection({super.key});
 
   @override
   Widget build(BuildContext context) {

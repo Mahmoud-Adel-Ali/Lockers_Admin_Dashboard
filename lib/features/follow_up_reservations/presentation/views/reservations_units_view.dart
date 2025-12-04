@@ -3,11 +3,11 @@ import 'package:provider/provider.dart';
 
 import '../../../../core/widgets/api_error_widget.dart';
 import '../manager/reservations_provider.dart';
-import 'widgets/filter_follow_up_units_location_section.dart';
-import 'widgets/follow_up_units_grid_view.dart';
+import 'widgets/filter_reservations_units_location_section.dart';
+import 'widgets/reservations_units_grid_view.dart';
 
-class FollowUpReservationsView extends StatelessWidget {
-  const FollowUpReservationsView({super.key});
+class ReservationsUnitsView extends StatelessWidget {
+  const ReservationsUnitsView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +24,9 @@ class FollowUpReservationsView extends StatelessWidget {
             child: const Column(
               children: [
                 SizedBox(height: 8),
-                FilterFollowReservedUnitsLocationSection(),
+                ReservationsUnitsLocationSection(),
                 SizedBox(height: 8),
-                FollowUpUnitsGridView(),
+                ReservationsUnitsGridView(),
                 SizedBox(height: 8),
               ],
             ),
