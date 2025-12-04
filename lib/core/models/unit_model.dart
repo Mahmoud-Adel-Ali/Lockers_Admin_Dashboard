@@ -1,5 +1,4 @@
 import 'locker_model.dart';
-import 'user_model.dart';
 
 class UnitModel {
   final int id;
@@ -17,7 +16,6 @@ class UnitModel {
   final int countReserved;
   final int countUnderMaintenance;
   final List<LockerModel> lockers;
-  final List<UserModel> users;
 
   UnitModel({
     required this.id,
@@ -35,7 +33,6 @@ class UnitModel {
     required this.countReserved,
     required this.countUnderMaintenance,
     required this.lockers,
-    required this.users,
   });
 
   factory UnitModel.fromJson(Map<String, dynamic> json) {
@@ -57,9 +54,6 @@ class UnitModel {
       lockers: (json['lockers'] as List? ?? [])
           .map((e) => LockerModel.fromJson(e))
           .toList(),
-      users: (json['users'] as List? ?? [])
-          .map((e) => UserModel.fromJson(e ?? {}))
-          .toList(),
     );
   }
 
@@ -80,7 +74,6 @@ class UnitModel {
       'countReserved': countReserved,
       'countUnderMaintenance': countUnderMaintenance,
       'lockers': lockers.map((e) => e.toJson()).toList(),
-      'users': users.map((e) => e.toJson()).toList(),
     };
   }
 }
