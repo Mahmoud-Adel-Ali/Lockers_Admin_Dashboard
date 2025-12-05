@@ -3,11 +3,11 @@ import 'package:provider/provider.dart';
 
 import '../../../../core/widgets/api_error_widget.dart';
 import '../manager/reservations_provider.dart';
-import 'widgets/reservations_customers_grid_view.dart';
 import 'widgets/reservation_unit_details_header_view.dart';
+import 'widgets/reservations_customers_grid_view.dart';
 
-class FollowUpReservationsDetailsView extends StatelessWidget {
-  const FollowUpReservationsDetailsView({super.key});
+class ReservationUnitDetailsView extends StatelessWidget {
+  const ReservationUnitDetailsView({super.key});
 
   @override
   Widget build(BuildContext context) {
