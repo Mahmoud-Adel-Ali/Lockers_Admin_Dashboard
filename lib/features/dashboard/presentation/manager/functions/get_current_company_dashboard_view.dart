@@ -6,6 +6,7 @@ import '../../../../companies/presentation/views/company_emplyees_view.dart';
 import '../../../../complaints/presentation/views/complaints_view.dart';
 import '../../../../customers/presentation/views/customers_view.dart';
 import '../../../../employees/presentation/views/employees_view.dart';
+import '../../../../follow_up_reservations/presentation/views/reservation_details_view.dart';
 import '../../../../follow_up_reservations/presentation/views/reservation_unit_details_view.dart';
 import '../../../../follow_up_reservations/presentation/views/reservations_units_view.dart';
 import '../../../../home/presentation/views/home_view.dart';
@@ -37,7 +38,9 @@ Widget getCurrentCompanyDashboardView(DashboardType type) {
       return const MaintenanceView();
     //* Related to FollowUpReservations
     case DashboardType.FollowUpReservationsDetails:
-      return const FollowUpReservationsDetailsView();
+      return const ReservationUnitDetailsView();
+    case DashboardType.ReservationDetails:
+      return const ReservationDetailsView();
     //* Related to ShippingCompanies
     case DashboardType.CompanyDetails:
       return const CompanyDetailsView();

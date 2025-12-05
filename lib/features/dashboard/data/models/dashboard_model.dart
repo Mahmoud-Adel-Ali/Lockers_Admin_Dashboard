@@ -51,7 +51,10 @@ List<DashboardModel> adminFeaturesList = [
     subtitle: 'متابعة الحجوزات :',
     type: DashboardType.FollowUpReservations,
     icon: Assets.imagesActiveFollowUpReservationIcon,
-    relatedTypes: [DashboardType.FollowUpReservationsDetails],
+    relatedTypes: [
+      DashboardType.FollowUpReservationsDetails,
+      DashboardType.ReservationDetails,
+    ],
   ),
   //* Packages
   DashboardModel(
