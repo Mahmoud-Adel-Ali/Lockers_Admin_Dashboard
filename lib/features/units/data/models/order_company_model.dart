@@ -48,4 +48,9 @@ class OrderCompanyModel {
       'additionalAddress': additionalAddress,
     };
   }
+
+  @override
+  String toString() {
+    return 'OrderCompanyModel(name: $name, phone: $phone, email: $email, image: $image, city: $city, neighborhood: $neighborhood, street: $street, building: $building, additionalAddress: $additionalAddress)';
+  }
 }

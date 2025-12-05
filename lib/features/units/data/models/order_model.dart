@@ -56,4 +56,9 @@ class OrderModel {
           : OrderCompanyModel.fromJson(json['company'] ?? {}),
     );
   }
+
+  @override
+  String toString() {
+    return 'OrderModel(id: $id,\n placeAtDate: $placeAtDate,\n placeAtDateHour: $placeAtDateHour,\n placeUpDate: $placeUpDate,\n placeUpDateHour: $placeUpDateHour,\n size: $size,\n status: $status,\n lockerNumber: $lockerNumber,\n user: $user,\n employee: $employee,\n unit: $unit,\n company: $company)';
+  }
 }

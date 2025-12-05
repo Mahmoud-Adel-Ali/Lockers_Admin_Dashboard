@@ -35,4 +35,9 @@ class OrderUnitModel {
       longitude: double.tryParse(json['longitude']?.toString() ?? '') ?? 0.0,
     );
   }
+
+  @override
+  String toString() {
+    return 'OrderUnitModel(id: $id, unitNumber: $unitNumber, city: $city, neighborhood: $neighborhood, street: $street, buildNumber: $buildNumber, latitude: $latitude, longitude: $longitude)';
+  }
 }

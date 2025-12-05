@@ -40,4 +40,9 @@ class OrderUserModel {
       longitude: double.tryParse(json['longitude']?.toString() ?? '') ?? 0.0,
     );
   }
+
+  @override
+  String toString() {
+    return 'OrderUserModel(name: $name, phone: $phone, image: $image, email: $email, city: $city, neighborhood: $neighborhood, street: $street, buildNumber: $buildNumber, latitude: $latitude, longitude: $longitude)';
+  }
 }
