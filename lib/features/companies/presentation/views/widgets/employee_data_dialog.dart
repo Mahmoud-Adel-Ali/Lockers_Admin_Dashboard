@@ -14,7 +14,7 @@ Future<dynamic> showEmployeeDialog(
       return CustomDialog(
         title: 'بيانات حساب الموظف',
         message: '',
-        constraints: BoxConstraints(maxWidth: 500, maxHeight: 500),
+        constraints: BoxConstraints(maxWidth: 500, maxHeight: 400),
         child: ShowEmployeeData(employee: employee),
       );
     },

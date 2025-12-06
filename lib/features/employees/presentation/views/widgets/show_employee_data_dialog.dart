@@ -7,8 +7,8 @@ import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/custom_cached_network_image.dart';
+import '../../../../../core/widgets/custom_info_field.dart';
 import '../../../../../core/widgets/custom_labeled_checkbox.dart';
-import '../../../../../core/widgets/profile_text_field.dart';
 import '../../../data/models/employee_model.dart';
 import '../../manager/employees_provider.dart';
 import 'edit_employee_data_dialog.dart';
@@ -65,9 +65,9 @@ class ShowEmployeeDataForm extends StatelessWidget {
               ),
             ),
             const SizedBox(),
-            ProfileTextField(title: 'الإسم', controller: prov.name),
-            ProfileTextField(title: 'رقم الهاتف', controller: prov.phone),
-            ProfileTextField(title: 'الإيميل', controller: prov.email),
+            CustomInfoField(title: 'الإسم', info: prov.name.text),
+            CustomInfoField(title: 'رقم الهاتف', info: prov.phone.text),
+            CustomInfoField(title: 'الإيميل', info: prov.email.text),
             Container(
               padding: const EdgeInsets.all(8.0),
               decoration: BoxDecoration(

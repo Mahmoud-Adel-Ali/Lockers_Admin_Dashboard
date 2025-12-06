@@ -1,16 +1,15 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:lockers_admin_dashboard/core/models/location_details_model.dart';
-import 'package:lockers_admin_dashboard/core/utils/assets.dart';
 
 import '../../../../../../core/utils/size_config.dart';
 import '../../../../../../core/widgets/custom_dialog.dart';
 import '../../../../../core/functions/convert_location_to_text.dart';
+import '../../../../../core/models/location_details_model.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
+import '../../../../../core/utils/assets.dart';
 import '../../../../../core/views/show_location_view.dart';
 import '../../../../../core/widgets/custom_cached_network_image.dart';
-import '../../../../../core/widgets/profile_text_field.dart';
+import '../../../../../core/widgets/custom_info_field.dart';
 import '../../../data/models/customer_model.dart';
 import 'video_preview_widget.dart';
 
@@ -52,25 +51,13 @@ class ShowCustomerDataForm extends StatelessWidget {
             ),
           ),
           const SizedBox(),
-          AbsorbPointer(
-            absorbing: true,
-            child: Column(
-              spacing: 16,
-              children: [
-                ProfileTextField(
-                  title: 'الإسم',
-                  controller: TextEditingController(text: customer.name),
-                ),
-                ProfileTextField(
-                  title: 'رقم الهاتف',
-                  controller: TextEditingController(text: customer.phone),
-                ),
-                ProfileTextField(
-                  title: 'الإيميل',
-                  controller: TextEditingController(text: customer.email),
-                ),
-              ],
-            ),
+          Column(
+            spacing: 16,
+            children: [
+              CustomInfoField(title: 'الإسم', info: customer.name),
+              CustomInfoField(title: 'رقم الهاتف', info: customer.phone),
+              CustomInfoField(title: 'الإيميل', info: customer.email),
+            ],
           ),
           InkWell(
             onTap: () {
@@ -87,26 +74,18 @@ class ShowCustomerDataForm extends StatelessWidget {
                 context,
               ).pushNamed(ShowLocationView.routeName, arguments: location);
             },
-            child: AbsorbPointer(
-              absorbing: true,
-              child: ProfileTextField(
-                suffixIcon: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(
-                    Assets.imagesGoogleMap,
-                    width: 20,
-                    height: 20,
-                  ),
-                ),
-                controller: TextEditingController(
-                  text: convertLocationToText(
-                    context,
-                    city: customer.city,
-                    neighborhood: customer.neighborhood,
-                    street: customer.street,
-                    buildingNum: customer.buildNumber,
-                  ),
-                ),
+            child: CustomInfoField(
+              suffixIcon: Image.asset(
+                Assets.imagesGoogleMap,
+                width: 20,
+                height: 20,
+              ),
+              title: convertLocationToText(
+                context,
+                city: customer.city,
+                neighborhood: customer.neighborhood,
+                street: customer.street,
+                buildingNum: customer.buildNumber,
               ),
             ),
           ),

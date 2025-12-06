@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/widgets/profile_text_field.dart';
-import '../../../../../core/functions/convert_location_to_text.dart';
+import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/widgets/custom_cached_network_image.dart';
+import '../../../../../core/widgets/custom_info_field.dart';
 import '../../../data/models/company_employee_model.dart';
 
 class ShowEmployeeData extends StatelessWidget {
@@ -17,6 +17,7 @@ class ShowEmployeeData extends StatelessWidget {
           height: 160,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
+            border: Border.all(color: AppColors.grey, width: 1.5),
             image: customCachedNetworkImageprovider(employee.image),
           ),
         ),
@@ -30,37 +31,26 @@ class ShowEmployeeData extends StatelessWidget {
                   spacing: 16,
                   children: [
                     //الإسم
-                    ProfileTextField(
-                      title: 'الإسم :',
-                      readOnly: true,
-                      controller: TextEditingController(text: employee.name),
-                    ),
-                    //البريد الإلكتروني
-                    // ProfileTextField(
-                    //   title: 'البريد الإلكتروني :',
-                    //   readOnly: true,
-                    //   controller: TextEditingController(text: employee.email),
-                    // ),
+                    CustomInfoField(title: 'الإسم :', info: employee.name),
                     //رقم التواصل
-                    ProfileTextField(
+                    CustomInfoField(
                       title: 'رقم التواصل :',
-                      readOnly: true,
-                      controller: TextEditingController(text: employee.phone),
+                      info: employee.phone,
                     ),
                     // الموقع
-                    ProfileTextField(
-                      title: 'الموقع :',
-                      readOnly: true,
-                      controller: TextEditingController(
-                        text: convertLocationToText(
-                          context,
-                          city: employee.city,
-                          neighborhood: employee.neighborhood,
-                          street: employee.street,
-                          buildingNum: employee.buildNumber,
-                        ),
-                      ),
-                    ),
+                    // ProfileTextField(
+                    //   title: 'الموقع :',
+                    //   readOnly: true,
+                    //   controller: TextEditingController(
+                    //     text: convertLocationToText(
+                    //       context,
+                    //       city: employee.city,
+                    //       neighborhood: employee.neighborhood,
+                    //       street: employee.street,
+                    //       buildingNum: employee.buildNumber,
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

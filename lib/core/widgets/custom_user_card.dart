@@ -36,6 +36,7 @@ class CustomUserCard extends StatelessWidget {
                     width: constraints.maxWidth,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
+                      border: Border.all(color: AppColors.grey, width: 1.5),
                       image: customCachedNetworkImageprovider(imgUrl),
                     ),
                   );
