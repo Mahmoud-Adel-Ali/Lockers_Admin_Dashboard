@@ -20,7 +20,6 @@ class ReservationDetailsView extends StatelessWidget {
                 hasScrollBody: false,
                 child: ReservationDetailsViewBody(),
               ),
-              // SliverToBoxAdapter(child: SizedBox(height: 12)),
             ],
           ),
         ),

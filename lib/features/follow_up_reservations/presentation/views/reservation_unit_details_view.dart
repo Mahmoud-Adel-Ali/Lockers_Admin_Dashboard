@@ -12,24 +12,18 @@ class ReservationUnitDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var prov = context.watch<ReservationsProvider>();
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          SizedBox(height: 8),
-          FollowUpReservationsDetailsHeaderView(),
-          SizedBox(height: 8),
-          prov.checkGettingUnitDetails == false
+    return Column(
+      children: [
+        SizedBox(height: 8),
+        FollowUpReservationsDetailsHeaderView(),
+        SizedBox(height: 8),
+        Expanded(
+          child: prov.checkGettingUnitDetails == false
               ? ApiErrorView(msg: prov.message, onRetry: prov.getUnitDetails)
-              : prov.checkGettingUnitDetails == null
-              ? SizedBox(
-                  width: 300,
-                  height: 500,
-                  child: const Center(child: LinearProgressIndicator()),
-                )
               : ReservationCustomersGridView(),
-          SizedBox(height: 8),
-        ],
-      ),
+        ),
+        SizedBox(height: 8),
+      ],
     );
   }
 }
