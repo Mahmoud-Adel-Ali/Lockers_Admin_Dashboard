@@ -6,7 +6,7 @@ import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/custom_cached_network_image.dart';
 import '../../../../../core/widgets/custom_dialog.dart';
-import '../../../../../core/widgets/profile_text_field.dart';
+import '../../../../../core/widgets/custom_info_field.dart';
 import '../../manager/profile_provider.dart';
 import 'edit_profile_dialog.dart';
 import 'profile_password_filed.dart';
@@ -53,28 +53,16 @@ class ProfileDataForm extends StatelessWidget {
           child: Column(
             spacing: 16,
             children: [
-              AbsorbPointer(
-                child: Column(
-                  spacing: 16,
-                  children: [
-                    ProfileTextField(
-                      title: 'الإسم :',
-                      controller: prov.nameController,
-                    ),
-                    ProfileTextField(
-                      title: 'الإيميل :',
-                      controller: prov.emailController,
-                    ),
-                    ProfileTextField(
-                      title: 'رقم الهاتف :',
-                      controller: TextEditingController(
-                        text: prov.adminData?.phone ?? '',
-                      ),
-                    ),
-                  ],
-                ),
+              CustomInfoField(title: 'الإسم :', info: prov.nameController.text),
+              CustomInfoField(
+                title: 'الإيميل :',
+                info: prov.emailController.text,
               ),
-              const ProfilePasswordFields(),
+              CustomInfoField(
+                title: 'رقم الهاتف :',
+                info: prov.adminData?.phone ?? '',
+              ),
+              const AbsorbPointer(child: ProfilePasswordFields()),
             ],
           ),
         ),

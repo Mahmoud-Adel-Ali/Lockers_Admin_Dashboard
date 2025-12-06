@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/widgets/profile_text_field.dart';
+import '../../../../../core/widgets/custom_info_field.dart';
 import 'change_password_dialog.dart';
 
 class ProfilePasswordFields extends StatelessWidget {
@@ -13,13 +13,7 @@ class ProfilePasswordFields extends StatelessWidget {
       children: [
         InkWell(
           onTap: () => changePasswordDialog(context),
-          child: AbsorbPointer(
-            child: ProfileTextField(
-              title: 'كلمة المرور :',
-              readOnly: true,
-              controller: TextEditingController(text: '**********'),
-            ),
-          ),
+          child: CustomInfoField(title: 'كلمة المرور :', info: '**********'),
         ),
       ],
     );
