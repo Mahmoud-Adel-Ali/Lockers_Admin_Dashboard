@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/widgets/custom_cached_network_image.dart';
-import '../../../../../core/widgets/profile_text_field.dart';
+import '../../../../../core/widgets/custom_info_field.dart';
 import '../../../data/models/complaint_model.dart';
 
 class ShowComplaintDataForm extends StatelessWidget {
@@ -27,42 +26,22 @@ class ShowComplaintDataForm extends StatelessWidget {
               ),
             ),
             const SizedBox(),
-            ProfileTextField(
-              title: 'الإسم',
-              controller: TextEditingController(text: complaint.name),
-            ),
-            ProfileTextField(
-              title: 'رقم الهاتف',
-              controller: TextEditingController(text: complaint.phone),
-            ),
-            Container(
-              padding: const EdgeInsets.all(8.0),
-              decoration: BoxDecoration(
-                color: AppColors.filedGrey,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        'الشكوي: ',
-                        style: AppTextStyles.style16w500(context),
+            CustomInfoField(title: 'الإسم', info: complaint.name),
+            CustomInfoField(title: 'رقم الهاتف', info: complaint.phone),
+            CustomInfoField(
+              title: 'الشكوي: ',
+              body: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        complaint.message,
+                        style: AppTextStyles.style16w400(context),
                       ),
-                    ],
-                  ),
-                  SizedBox(height: 16),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          complaint.message,
-                          style: AppTextStyles.style16w400(context),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
