@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import '../../../../core/models/places_model.dart';
 import '../../../../core/models/unit_model.dart';
 import '../../../units/data/models/order_model.dart';
+import '../../data/enum/unit_customer_type.dart';
 import '../../data/repos/reservations_repo.dart';
 
 class ReservationsProvider extends ChangeNotifier {
@@ -99,43 +100,54 @@ class ReservationsProvider extends ChangeNotifier {
   UnitModel? selectedUnit;
   void onSelectUnit(UnitModel unit) {
     selectedUnit = unit;
+
+    // Reset Pagination Values
+    currentPage = 1;
+    lastPage = 1;
+
+    // Get Unit Details
     getUnitDetails();
   }
 
   //* Get All Order Unit Details
-  int currentIdx = 0;
+  // int currentIdx = 0;
+  UnitCustomerType unitCustomerType = UnitCustomerType.all;
   List<OrderModel> unitOrders = [];
   List<OrderModel> filterdUnitOrders = [];
+  // For Pagination
+  int currentPage = 1;
+  int lastPage = 1;
 
-  void filterUnitOrders({
-    bool showAll = false,
-    bool showAllUsrs = false,
-    bool showShippingOrder = false,
-  }) {
-    if (showAllUsrs) {
-      currentIdx = 1;
-      filterdUnitOrders = unitOrders.where((order) {
-        return order.company == null;
-      }).toList();
-    } else if (showShippingOrder) {
-      currentIdx = 2;
-      filterdUnitOrders = unitOrders.where((order) {
-        return order.company != null;
-      }).toList();
-    } else {
-      currentIdx = 0;
-      filterdUnitOrders = unitOrders;
-    }
-    notifyListeners();
+  // next page
+  void nextPage() {
+    if (currentPage == lastPage) return;
+    currentPage += 1;
+    getUnitDetails();
+  }
+
+  // previous page
+  void previousPage() {
+    if (currentPage == 1) return;
+    currentPage -= 1;
+    getUnitDetails();
+  }
+
+  void filterUnitOrders({UnitCustomerType? type}) {
+    unitCustomerType = type ?? unitCustomerType;
+    currentPage = 1;
+    getUnitDetails();
   }
 
   // Get Unit Details
   bool? checkGettingUnitDetails = false;
   Future<void> getUnitDetails() async {
-    currentIdx = 0;
     checkGettingUnitDetails = null;
     notifyListeners();
-    final response = await repo.getUnitDetails(id: selectedUnit!.id);
+    final response = await repo.getUnitDetails(
+      id: selectedUnit!.id,
+      page: currentPage,
+      unitCustomerType: unitCustomerType,
+    );
     response.fold(
       (msg) {
         checkGettingUnitDetails = false;
@@ -144,7 +156,9 @@ class ReservationsProvider extends ChangeNotifier {
       (model) {
         checkGettingUnitDetails = true;
         unitOrders = model.data.orders;
-        filterUnitOrders(showAll: true);
+        filterdUnitOrders = unitOrders;
+        currentPage = model.data.currentPage;
+        lastPage = model.data.lastPage;
       },
     );
     notifyListeners();

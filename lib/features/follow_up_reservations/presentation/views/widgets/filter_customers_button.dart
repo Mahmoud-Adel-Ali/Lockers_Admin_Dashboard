@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../core/functions/is_arabic.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/widgets/custom_popup_menu_button.dart';
+import '../../../data/enum/unit_customer_type.dart';
 import '../../manager/reservations_provider.dart';
 
 class FilterCustomersButton extends StatelessWidget {
@@ -13,21 +15,21 @@ class FilterCustomersButton extends StatelessWidget {
   Widget build(BuildContext context) {
     var prov = context.watch<ReservationsProvider>();
     // List of filter options
-    final items = ['الكل', 'عملاء التطبيق', 'شركات الشحن'];
+    final List<UnitCustomerType> items = [
+      UnitCustomerType.all,
+      UnitCustomerType.appClients,
+      UnitCustomerType.shippingCompanies,
+    ];
 
-    return CustomPopupMenuButton<String>(
+    return CustomPopupMenuButton<UnitCustomerType>(
       key: const Key('filter_button'),
       items: items,
-      initialValue: items[prov.currentIdx],
-      itemLabelBuilder: (item) => item,
+      initialValue: prov.unitCustomerType,
+      itemLabelBuilder: (item) => isArabic() ? item.arName : item.enName,
       backgroundColor: AppColors.whiteGrey,
       textStyle: AppTextStyles.style16w400(context),
       onSelected: (index) {
-        prov.filterUnitOrders(
-          showAll: index == 0,
-          showAllUsrs: index == 1,
-          showShippingOrder: index == 2,
-        );
+        prov.filterUnitOrders(type: items[index]);
       },
     );
   }
