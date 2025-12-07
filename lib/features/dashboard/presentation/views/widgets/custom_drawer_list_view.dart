@@ -11,19 +11,22 @@ class CustomDrawerListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var prov = context.watch<DashboardManager>();
+    var featuresList = adminFeaturesList(context);
     return ListView.builder(
-      itemCount: adminFeaturesList.length,
+      itemCount: featuresList.length,
       itemBuilder: (context, index) {
-        DashboardModel item = adminFeaturesList[index];
-        return CustomDrawerItem(
-          item: item,
-          isSelected: itemIsSelected(item, prov),
-          onTap: () {
-            if (itemIsSelected(item, prov)) return;
-            prov.changeView(item.type);
-            if (prov.isDrawerOpen()) prov.closeDrawer();
-          },
-        );
+        DashboardModel item = featuresList[index];
+        return item.canShow
+            ? CustomDrawerItem(
+                item: item,
+                isSelected: itemIsSelected(item, prov),
+                onTap: () {
+                  if (itemIsSelected(item, prov)) return;
+                  prov.changeView(item.type);
+                  if (prov.isDrawerOpen()) prov.closeDrawer();
+                },
+              )
+            : SizedBox();
       },
     );
   }

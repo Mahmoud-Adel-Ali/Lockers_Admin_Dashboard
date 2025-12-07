@@ -28,6 +28,7 @@ class AdminDashboardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future.microtask(() {
+      context.read<DashboardManager>().init();
       context.read<ProfileProvider>().getAdminData();
     });
     Future.microtask(() {
