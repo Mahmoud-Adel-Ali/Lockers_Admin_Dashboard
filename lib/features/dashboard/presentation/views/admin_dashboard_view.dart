@@ -27,29 +27,42 @@ class AdminDashboardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var manager = context.read<DashboardManager>();
     Future.microtask(() {
-      context.read<DashboardManager>().init();
+      manager.init();
       context.read<ProfileProvider>().getAdminData();
     });
     Future.microtask(() {
       // another providers
-      context.read<HomeProvider>().getHomeDashboardData();
-      context.read<CompaniesProvider>().getAllCompanies();
-      context.read<UnitsProvider>()
-        ..getAllRegions()
-        ..getAllUnits();
-      context.read<ReservationsProvider>()
-        ..getAllRegions()
-        ..getAllUnits();
-      context.read<PackagesProvider>().getAllPackages();
-      context.read<CustomersProvider>().getAllCustomers();
-      context.read<EmployeesProvider>().getAllEmployees();
-      context.read<ComplaintsProvider>().getAllComplaints();
-      context.read<MaintenanceProvider>()
-        ..getRegionsOfMaintenanceUnits()
-        ..getRegionsOfMaintenanceLockers()
-        ..getMaintenanceUnits()
-        ..getMaintenanceLockers();
+      if (manager.isAdmin) context.read<HomeProvider>().getHomeDashboardData();
+      if (manager.isAdmin || manager.manageShippingCompanies) {
+        context.read<CompaniesProvider>().getAllCompanies();
+      }
+      if (manager.isAdmin || manager.manageUnits) {
+        context.read<UnitsProvider>()
+          ..getAllRegions()
+          ..getAllUnits();
+      }
+      if (manager.isAdmin || manager.followReservations) {
+        context.read<ReservationsProvider>()
+          ..getAllRegions()
+          ..getAllUnits();
+      }
+      if (manager.isAdmin) context.read<PackagesProvider>().getAllPackages();
+      if (manager.isAdmin || manager.manageCustomers) {
+        context.read<CustomersProvider>().getAllCustomers();
+      }
+      if (manager.isAdmin) context.read<EmployeesProvider>().getAllEmployees();
+      if (manager.isAdmin || manager.manageComplaints) {
+        context.read<ComplaintsProvider>().getAllComplaints();
+      }
+      if (manager.isAdmin || manager.manageMaintenance) {
+        context.read<MaintenanceProvider>()
+          ..getRegionsOfMaintenanceUnits()
+          ..getRegionsOfMaintenanceLockers()
+          ..getMaintenanceUnits()
+          ..getMaintenanceLockers();
+      }
     });
     return const AdminDashboardViewBody();
   }

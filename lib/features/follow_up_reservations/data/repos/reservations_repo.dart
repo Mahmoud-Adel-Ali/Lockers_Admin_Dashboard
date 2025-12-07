@@ -55,9 +55,8 @@ class ReservationsRepo {
   }) async {
     try {
       final response = await dio.get(
-        //TODO : to apply filtering the orders by type , then send the type for back-end aftet apply it.
-        // '${EndPoints.reservationUnitDetails}/$id?page=$page&type=${unitCustomerType.name}',
-        '${EndPoints.reservationUnitDetails}/$id?page=$page',
+        '${EndPoints.reservationUnitDetails}/$id?page=$page&type=${unitCustomerType.name}',
+        // '${EndPoints.reservationUnitDetails}/$id?page=$page',
         isFormData: false,
       );
       return Right(UnitOrdersResponseModel.fromJson(response));

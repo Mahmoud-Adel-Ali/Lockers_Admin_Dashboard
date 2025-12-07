@@ -15,6 +15,7 @@ class UnitModel {
   final int countAvailable;
   final int countReserved;
   final int countUnderMaintenance;
+  final int countUser;
   final List<LockerModel> lockers;
 
   UnitModel({
@@ -31,6 +32,7 @@ class UnitModel {
     required this.countProgress,
     required this.countAvailable,
     required this.countReserved,
+    required this.countUser,
     required this.countUnderMaintenance,
     required this.lockers,
   });
@@ -50,6 +52,7 @@ class UnitModel {
       countProgress: json['countProgress'] ?? 0,
       countAvailable: json['countAvailable'] ?? 0,
       countReserved: json['countReserved'] ?? 0,
+      countUser: json['countUser'] ?? 0,
       countUnderMaintenance: json['countUnderMaintenance'] ?? 0,
       lockers: (json['lockers'] as List? ?? [])
           .map((e) => LockerModel.fromJson(e))
@@ -72,6 +75,7 @@ class UnitModel {
       'countProgress': countProgress,
       'countAvailable': countAvailable,
       'countReserved': countReserved,
+      'countUser': countUser,
       'countUnderMaintenance': countUnderMaintenance,
       'lockers': lockers.map((e) => e.toJson()).toList(),
     };

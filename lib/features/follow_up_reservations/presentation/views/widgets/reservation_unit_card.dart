@@ -54,7 +54,7 @@ class ReservationUnitCard extends StatelessWidget {
             ),
             const Spacer(),
             Text(
-              unit.unitNumber.toCustomerString(context),
+              unit.countUser.toCustomerString(context),
               style: AppTextStyles.style20w500(
                 context,
               ).copyWith(color: AppColors.white),

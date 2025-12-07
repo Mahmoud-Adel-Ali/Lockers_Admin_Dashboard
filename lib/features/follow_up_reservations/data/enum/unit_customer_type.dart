@@ -31,9 +31,9 @@ extension UnitCustomerTypeExtension on UnitCustomerType {
       case UnitCustomerType.all:
         return '';
       case UnitCustomerType.appClients:
-        return 'customers';
+        return 'user';
       case UnitCustomerType.shippingCompanies:
-        return 'companies';
+        return 'company';
     }
   }
 
@@ -42,12 +42,12 @@ extension UnitCustomerTypeExtension on UnitCustomerType {
     switch (value) {
       case 'all':
         return UnitCustomerType.all;
-      case 'appClients':
+      case 'user':
         return UnitCustomerType.appClients;
-      case 'shippingCompanies':
+      case 'company':
         return UnitCustomerType.shippingCompanies;
       default:
-        throw Exception('Invalid UnitCustomerType: $value');
+        return UnitCustomerType.appClients;
     }
   }
 }
