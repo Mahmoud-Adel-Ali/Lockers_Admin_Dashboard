@@ -16,7 +16,7 @@ import '../../../../units/presentation/views/unit_details_view.dart';
 import '../../../../units/presentation/views/units_view.dart';
 import '../../../data/enums/dashboard_type.dart';
 
-Widget getCurrentCompanyDashboardView(DashboardType type) {
+Widget getCurrentCompanyDashboardView(DashboardType? type) {
   switch (type) {
     case DashboardType.Home:
       return const HomeView();
@@ -49,5 +49,18 @@ Widget getCurrentCompanyDashboardView(DashboardType type) {
     //* Related to Units
     case DashboardType.UnitDetails:
       return const UnitDetailsView();
+    default:
+      return NoViewCanShown();
+  }
+}
+
+class NoViewCanShown extends StatelessWidget {
+  const NoViewCanShown({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text('لا يوجد لديك اي صلاحيات لعرض او تعديل اي بيانات'),
+    );
   }
 }

@@ -1,6 +1,6 @@
 import '../../../data/enums/dashboard_type.dart';
 
-String dashboardSubtitle(DashboardType type) {
+String dashboardSubtitle(DashboardType? type) {
   //   var subtitle = adminFeaturesList
   //       .where((item) => item.type == type)
   //       .first
@@ -41,5 +41,9 @@ String dashboardSubtitle(DashboardType type) {
     //* Related to Units
     case DashboardType.UnitDetails:
       return 'الوحدات  >  تفاصيل الوحدة';
+
+    //* Default :- There is no permissions for this employee
+    default:
+      return '';
   }
 }

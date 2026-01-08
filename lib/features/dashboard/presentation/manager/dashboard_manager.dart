@@ -7,7 +7,7 @@ import '../../data/enums/dashboard_type.dart';
 
 class DashboardManager extends ChangeNotifier {
   // Manage view with his type
-  DashboardType type = DashboardType.Home;
+  DashboardType? type;
 
   // init
   bool isAdmin = false;
@@ -57,6 +57,9 @@ class DashboardManager extends ChangeNotifier {
     } else if (permissions.manageMaintenance) {
       type = DashboardType.Maintenance;
       return;
+    } else {
+      //* There is no permissions for this employee.
+      type = null;
     }
   }
 
