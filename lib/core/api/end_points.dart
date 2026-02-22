@@ -1,7 +1,5 @@
 class EndPoints {
-  static const baseUrl = 'https://teamhup.net/Lockers/public';
-  // static const baseUrl =
-  //     'https://corsproxy.io/?https://teamhup.net/Lockers/public/api';
+  static const baseUrl = 'https://covery.online/Lockers/public';
   static const signin = '/api/admin/login';
   // static const register = '/api/register';
   static const forgetPassword = '/api/admin/forget-password';
